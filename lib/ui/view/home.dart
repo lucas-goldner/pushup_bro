@@ -1,40 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:pushup_bro/flavor/flavor.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/generated/l10n.dart';
+import 'package:pushup_bro/ui/styles/pb_colors.dart';
+import 'package:pushup_bro/ui/widgets/home/home_app_bar.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<Home> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<Home> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final flavour = Flavor.getCurrentEnvironment;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
+    return CupertinoPageScaffold(
+      backgroundColor: PBColors.bgColor,
+      child: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You are running $flavour',
-            ),
+          children: [
+            const HomeAppBar(),
             Text(
               S.of(context).helloWorld,
               style: const TextStyle(
@@ -42,20 +21,8 @@ class _HomePageState extends State<Home> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }

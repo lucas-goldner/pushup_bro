@@ -18,7 +18,6 @@ class Main extends StatelessWidget {
       debugShowCheckedModeBanner:
           Flavor.getCurrentEnvironment == Environment.dev.getFlavorName(),
       key: const Key('MainApp'),
-      title: 'Pushup Bro',
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -34,12 +33,11 @@ class Main extends StatelessWidget {
           textStyle: TextStyle(
             fontSize: 14,
             fontFamily: 'Satoshi',
-            backgroundColor: CupertinoColors.black,
+            color: CupertinoColors.black,
           ),
         ),
       ),
       home: const Home(
-        title: 'Pushup Bro',
         key: Key('Home'),
       ),
     );

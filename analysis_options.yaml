@@ -34,6 +34,7 @@ dart_code_metrics:
       unit-type: "hours"
   metrics-exclude:
     - "test/**"
+    - "lib/generated/**"
   rules-exclude:
     - "lib/generated/**"
   rules:
