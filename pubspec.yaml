@@ -29,7 +29,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/
+    - assets/fonts/
+    - assets/rive/
 
   fonts:
     - family: Satoshi
