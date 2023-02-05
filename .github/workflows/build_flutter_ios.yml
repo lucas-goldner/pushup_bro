@@ -6,16 +6,16 @@ on:
 
 jobs:
   flutter_test:
-    name: Run flutter test, analyze and build
+    name: Run flutter test, analyze and build for ios
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Flutter get
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
           architecture: x64
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
-      - run: flutter build ios --release --no-codesign
+      - run: flutter build ios --release --no-codesign --flavor prod -t lib/flavor/main_prod.dart
