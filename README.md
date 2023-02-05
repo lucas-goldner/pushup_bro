@@ -1,5 +1,7 @@
 # PushUpTracker
 
+[![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
+
 Track your pushups with ease using the sensors in your AirPods!
 
 ## Introduction
@@ -22,3 +24,10 @@ Simply start a workout session and place your AirPods in your ears. The app will
 ## Get Started
 
 Download PushUpTracker from the App Store today and start tracking your pushups with ease. Whether you're a seasoned athlete or just starting your fitness journey, PushUpTracker is the perfect companion to help you reach your goals.
+
+To run the project use:
+
+```
+# Flavors available: dev, prod
+$ flutter run --flavor <flavor-name>
+```
