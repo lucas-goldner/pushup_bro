@@ -7,4 +7,10 @@ class PBTextStyles {
     fontWeight: FontWeight.w700,
     fontSize: 28,
   );
+
+  static const buttonTextStyle = TextStyle(
+    fontFamily: FontFamily.satoshi,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+  );
 }

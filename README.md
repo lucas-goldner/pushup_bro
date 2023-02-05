@@ -32,6 +32,8 @@ To run the project use:
 $ flutter pub get
 # If fluttergen is not installed go here: https://pub.dev/packages/flutter_gen
 $ fluttergen
+# If language files were not generated
+$ flutter pub run intl_utils:generate
 
 # For dev run
 $ flutter run --flavor dev -t lib/flavor/main_dev.dart
