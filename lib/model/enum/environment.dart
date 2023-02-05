@@ -18,9 +18,9 @@ extension FlavorTypeExtension on Environment {
   String getFlavorName() {
     switch (this) {
       case Environment.dev:
-        return 'Development';
+        return 'dev';
       case Environment.prod:
-        return 'Production';
+        return 'prod';
     }
   }
 }

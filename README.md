@@ -1,7 +1,7 @@
 # PushUpTracker
 
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
-[![CI](https://github.com/lucas-goldner/Pushup-Bro/actions/workflows/build_flutter_ios.yml/badge.svg?branch=main)](https://github.com/lucas-goldner/Pushup-Bro/actions/workflows/build_flutter_ios.yml)
+[![CI](https://github.com/lucas-goldner/Pushup-Bro/actions/workflows/build_flutter_ios.yml/badge.svg?branch=main&event=pull_request)](https://github.com/lucas-goldner/Pushup-Bro/actions/workflows/build_flutter_ios.yml)
 
 Track your pushups with ease using the sensors in your AirPods!
 

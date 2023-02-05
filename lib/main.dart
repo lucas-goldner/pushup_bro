@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/flavor/flavor.dart';
+import 'package:pushup_bro/model/enum/environment.dart';
 import 'package:pushup_bro/ui/view/home.dart';
 
 void main() {
@@ -10,15 +13,30 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return CupertinoApp(
+      debugShowCheckedModeBanner:
+          Flavor.getCurrentEnvironment == Environment.dev.getFlavorName(),
       key: const Key('MainApp'),
       title: 'Pushup Bro',
-      theme: ThemeData(
-        fontFamily: 'NDS12',
-        primarySwatch: Colors.blue,
+      localizationsDelegates: const [
+        DefaultMaterialLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
+      ],
+      theme: const CupertinoThemeData(
+        brightness: Brightness.dark,
+        barBackgroundColor: CupertinoColors.black,
+        scaffoldBackgroundColor: CupertinoColors.black,
+        textTheme: CupertinoTextThemeData(
+          textStyle: TextStyle(
+            fontSize: 14,
+            fontStyle: FontStyle.italic,
+            backgroundColor: CupertinoColors.black,
+          ),
+        ),
       ),
       home: const Home(
-        title: 'Flutter Demo Home Page',
+        title: 'Pushup Bro',
         key: Key('Home'),
       ),
     );
