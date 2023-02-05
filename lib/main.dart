@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pushup_bro/flavor/flavor.dart';
+import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/enum/environment.dart';
 import 'package:pushup_bro/ui/view/home.dart';
 
@@ -19,10 +20,12 @@ class Main extends StatelessWidget {
       key: const Key('MainApp'),
       title: 'Pushup Bro',
       localizationsDelegates: const [
-        DefaultMaterialLocalizations.delegate,
-        DefaultCupertinoLocalizations.delegate,
-        DefaultWidgetsLocalizations.delegate,
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
       ],
+      supportedLocales: S.delegate.supportedLocales,
       theme: const CupertinoThemeData(
         brightness: Brightness.dark,
         barBackgroundColor: CupertinoColors.black,
@@ -30,7 +33,7 @@ class Main extends StatelessWidget {
         textTheme: CupertinoTextThemeData(
           textStyle: TextStyle(
             fontSize: 14,
-            fontStyle: FontStyle.italic,
+            fontFamily: 'Satoshi',
             backgroundColor: CupertinoColors.black,
           ),
         ),

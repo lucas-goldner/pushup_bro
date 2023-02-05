@@ -1,3 +1,6 @@
+# Generated
+/lib/generated
+
 # Miscellaneous
 *.class
 *.log

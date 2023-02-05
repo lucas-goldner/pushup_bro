@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/flavor/flavor.dart';
+import 'package:pushup_bro/generated/l10n.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key, required this.title});
@@ -33,6 +34,13 @@ class _HomePageState extends State<Home> {
           children: <Widget>[
             Text(
               'You are running $flavour',
+            ),
+            Text(
+              S.of(context).helloWorld,
+              style: const TextStyle(
+                fontFamily: 'Satoshi',
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const Text(
               'You have pushed the button this many times:',
