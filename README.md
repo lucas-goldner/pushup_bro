@@ -28,6 +28,11 @@ Download PushUpTracker from the App Store today and start tracking your pushups 
 To run the project use:
 
 ```
-# Flavors available: dev, prod
-$ flutter run --flavor <flavor-name>
+$ flutter pub get
+
+# For dev run
+$ flutter run --flavor dev -t lib/flavor/main_dev.dart
+
+# For prod run
+$ flutter run --flavor prod -t lib/flavor/main_prod.dart
 ```
