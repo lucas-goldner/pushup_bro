@@ -16,9 +16,12 @@ dependencies:
     sdk: flutter
   intl: ^0.17.0
   intl_utils: ^2.8.1
+  rive: ^0.10.1
 
 dev_dependencies:
+  build_runner: ^2.3.3
   dart_code_metrics: ^4.14.0
+  flutter_gen_runner: ^5.1.0+1
   flutter_test:
     sdk: flutter
   very_good_analysis: ^3.1.0
@@ -45,3 +48,10 @@ flutter_intl:
   main_locale: en
   arb_dir: assets/l10n
   ouput_dir: lib/generated
+
+flutter_gen:
+  output: lib/generated/
+  line_length: 80
+
+  integrations:
+    rive: true

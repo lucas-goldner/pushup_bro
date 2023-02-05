@@ -30,6 +30,8 @@ To run the project use:
 
 ```
 $ flutter pub get
+# If fluttergen is not installed go here: https://pub.dev/packages/flutter_gen
+$ fluttergen
 
 # For dev run
 $ flutter run --flavor dev -t lib/flavor/main_dev.dart
