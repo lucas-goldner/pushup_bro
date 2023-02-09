@@ -1,4 +1,3 @@
-import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
@@ -6,7 +5,9 @@ import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:rive/rive.dart';
 
 class AnimatedButton extends StatefulWidget {
-  const AnimatedButton({super.key});
+  const AnimatedButton({super.key, required this.text, this.icon});
+  final String text;
+  final IconData? icon;
 
   @override
   State<AnimatedButton> createState() => _AnimatedButtonState();
@@ -14,8 +15,8 @@ class AnimatedButton extends StatefulWidget {
 
 class _AnimatedButtonState extends State<AnimatedButton>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late RiveAnimationController _btnController;
+  AnimationController? _controller;
+  OneShotAnimation? _btnController;
 
   @override
   void initState() {
@@ -33,18 +34,21 @@ class _AnimatedButtonState extends State<AnimatedButton>
       damping: 5,
     );
 
-    _btnController.isActiveChanged.addListener(() {
-      if (!_btnController.isActive) {
+    if (_btnController == null) return;
+    final isButtonControllerActive = _btnController?.isActive ?? false;
+
+    _btnController?.isActiveChanged.addListener(() {
+      if (!isButtonControllerActive) {
         final springAnim = SpringSimulation(springDesc, 0, 1, 0);
-        _controller.animateWith(springAnim);
+        _controller?.animateWith(springAnim);
       }
     });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
-    _btnController.dispose();
+    _controller?.dispose();
+    _btnController?.dispose();
     super.dispose();
   }
 
@@ -65,27 +69,33 @@ class _AnimatedButtonState extends State<AnimatedButton>
       ),
       child: GestureDetector(
         onTap: () {
-          _btnController.isActive = true;
+          _btnController?.isActive = true;
         },
         child: Stack(
           children: [
             Assets.rive.button.rive(
               fit: BoxFit.cover,
-              controllers: [_btnController],
+              controllers: <OneShotAnimation>[
+                if (_btnController != null)
+                  _btnController ?? OneShotAnimation(''),
+              ],
             ),
             Center(
               child: Transform.translate(
                 offset: const Offset(4, 4),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(CarbonIcons.arrow_right),
-                    SizedBox(width: 8),
+                  children: [
+                    Visibility(
+                      visible: widget.icon != null,
+                      child: Icon(widget.icon),
+                    ),
+                    const SizedBox(width: 8),
                     Text(
-                      'Start pushin',
+                      widget.text,
                       style: PBTextStyles.buttonTextStyle,
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                   ],
                 ),
               ),

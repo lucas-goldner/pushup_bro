@@ -10,8 +10,11 @@ environment:
 dependencies:
   carbon_icons: ^0.0.1+2
   cupertino_icons: ^1.0.2
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_airpods: ^1.0.3
+  flutter_bloc: ^8.1.2
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
