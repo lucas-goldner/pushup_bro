@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
+import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
 import 'package:pushup_bro/flavor/flavor.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/enum/environment.dart';
@@ -19,11 +20,15 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     final airpodsMotionProvider = AirPodsMotionProvider();
     final airpodsTrackerCubit = AirPodsTrackerCubit(airpodsMotionProvider);
+    final pushupCubit = PushupCubit();
 
     return MultiBlocProvider(
       providers: [
         BlocProvider<AirPodsTrackerCubit>(
           create: (context) => airpodsTrackerCubit,
+        ),
+        BlocProvider<PushupCubit>(
+          create: (context) => pushupCubit,
         ),
       ],
       child: CupertinoApp(

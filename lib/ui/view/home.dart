@@ -4,6 +4,8 @@ import 'package:flutter_airpods/models/device_motion_data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_state.dart';
+import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
+import 'package:pushup_bro/cubit/pushups/pushup_state.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
@@ -47,34 +49,43 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     startListeningUpdates(context);
 
-    return CupertinoPageScaffold(
-      backgroundColor: PBColors.background,
-      child: SafeArea(
-        child: Column(
-          children: [
-            const HomeAppBar(),
-            const Spacer(),
-            SizedBox(
-              height: 200,
-              width: 200,
-              child: Assets.rive.carlosIdle.rive(fit: BoxFit.contain),
-            ),
-            BlocSelector<AirPodsTrackerCubit, AirPodsTrackerState,
-                DeviceMotionData?>(
-              selector: (state) => state.currentMotionData,
-              builder: (context, deviceMotionData) => deviceMotionData != null
-                  ? Text(getFormatedText(deviceMotionData))
-                  : const Text('Waiting for incoming data...'),
-            ),
-            const Spacer(),
-            AnimatedButton(
-              text: S.of(context).startPush,
-              icon: CarbonIcons.arrow_right,
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-          ],
+    return BlocBuilder<PushupCubit, PushupState>(
+      builder: (context, pushupState) => CupertinoPageScaffold(
+        backgroundColor: PBColors.background,
+        child: SafeArea(
+          child: Column(
+            children: [
+              const HomeAppBar(),
+              const Spacer(),
+              SizedBox(
+                height: 200,
+                width: 200,
+                child: Assets.rive.carlosIdle.rive(fit: BoxFit.contain),
+              ),
+              BlocSelector<AirPodsTrackerCubit, AirPodsTrackerState,
+                  DeviceMotionData?>(
+                selector: (state) => state.currentMotionData,
+                builder: (context, deviceMotionData) {
+                  if (deviceMotionData != null) {
+                    BlocProvider.of<PushupCubit>(context)
+                        .listenForPushupEvents(deviceMotionData);
+                  }
+
+                  return deviceMotionData != null
+                      ? Text('Pushups: ${pushupState.pushups.length}')
+                      : const Text('Waiting for incoming data...');
+                },
+              ),
+              const Spacer(),
+              AnimatedButton(
+                text: S.of(context).startPush,
+                icon: CarbonIcons.arrow_right,
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+            ],
+          ),
         ),
       ),
     );

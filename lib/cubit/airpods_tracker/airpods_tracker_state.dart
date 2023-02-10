@@ -29,5 +29,5 @@ class AirPodsTrackerStateInitial extends AirPodsTrackerState {
 
 class AirPodsTrackerStateListening extends AirPodsTrackerState {
   const AirPodsTrackerStateListening(DeviceMotionData deviceMotionData)
-      : super(currentMotionData: deviceMotionData, isListening: false);
+      : super(currentMotionData: deviceMotionData, isListening: true);
 }
