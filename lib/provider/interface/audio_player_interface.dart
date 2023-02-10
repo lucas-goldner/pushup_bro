@@ -1,6 +1,4 @@
 abstract class AudioPlayerInterface {
-  Future<void> play(String asset);
-  Future<void> pause();
-  Future<void> stop();
-  Future<void> setVolume(double volume);
+  Future<void> setVolumeLevel(double volume);
+  Future<void> playSound(String asset);
 }

@@ -74,7 +74,6 @@
 				63A5A2AFDF097E5655A0A576 /* Pods-Runner.profile-prod.xcconfig */,
 				2567ABA4FF53655C6B186417 /* Pods-Runner.profile-dev.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

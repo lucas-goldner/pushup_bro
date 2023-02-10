@@ -10,6 +10,7 @@ import 'package:pushup_bro/model/enum/environment.dart';
 import 'package:pushup_bro/provider/airpods_motion_provider.dart';
 import 'package:pushup_bro/provider/audio_player_provider.dart';
 import 'package:pushup_bro/ui/view/home.dart';
+import 'package:pushup_bro/utils/constants.dart';
 
 void main() {
   runApp(const Main());
@@ -18,9 +19,22 @@ void main() {
 class Main extends StatelessWidget {
   const Main({super.key});
 
+  void setAudioContext() {
+    const audioContext = AudioContext(
+      iOS: AudioContextIOS(
+        options: [
+          AVAudioSessionOptions.mixWithOthers,
+        ],
+      ),
+    );
+    AudioPlayer.global.setGlobalAudioContext(audioContext);
+    AudioPlayer.global.changeLogLevel(LogLevel.none);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final audioPlayer = AudioPlayer();
+    setAudioContext();
+    final audioPlayer = AudioPlayer(playerId: Constants.audioPlayerId);
     final audioPlayerProvider = AudioPlayerProvider(audioPlayer);
     final airpodsMotionProvider = AirPodsMotionProvider();
     final airpodsTrackerCubit = AirPodsTrackerCubit(airpodsMotionProvider);

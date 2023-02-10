@@ -6,22 +6,13 @@ class AudioPlayerProvider implements AudioPlayerInterface {
   final AudioPlayer player;
 
   @override
-  Future<void> pause() async {
-    await player.pause();
-  }
-
-  @override
-  Future<void> play(String asset) async {
-    await player.play(DeviceFileSource(asset));
-  }
-
-  @override
-  Future<void> stop() async {
+  Future<void> playSound(String asset) async {
     await player.stop();
+    await player.play(AssetSource(asset));
   }
 
   @override
-  Future<void> setVolume(double volume) async {
-    await player.setVolume(volume);
+  Future<void> setVolumeLevel(double volume) async {
+    await player.setVolume(1);
   }
 }
