@@ -15,10 +15,7 @@ class PushupCubit extends Cubit<PushupState> {
         final pushups = [...state.pushups, newPushup];
 
         emit(
-          state.copyWith(
-            pushups: pushups,
-            inPushup: true,
-          ),
+          state.copyWith(pushups: pushups, inPushup: false),
         );
       }
     } else {
