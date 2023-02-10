@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,6 +8,7 @@ import 'package:pushup_bro/flavor/flavor.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/enum/environment.dart';
 import 'package:pushup_bro/provider/airpods_motion_provider.dart';
+import 'package:pushup_bro/provider/audio_player_provider.dart';
 import 'package:pushup_bro/ui/view/home.dart';
 
 void main() {
@@ -18,9 +20,11 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final audioPlayer = AudioPlayer();
+    final audioPlayerProvider = AudioPlayerProvider(audioPlayer);
     final airpodsMotionProvider = AirPodsMotionProvider();
     final airpodsTrackerCubit = AirPodsTrackerCubit(airpodsMotionProvider);
-    final pushupCubit = PushupCubit();
+    final pushupCubit = PushupCubit(audioPlayerProvider);
 
     return MultiBlocProvider(
       providers: [
