@@ -1,13 +1,11 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
-import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/ui/widgets/common/animated_button.dart';
 
 class StartPushupsButton extends StatefulWidget {
-  const StartPushupsButton({super.key});
+  const StartPushupsButton(this.onButtontrigger, {super.key});
+  final VoidCallback onButtontrigger;
 
   @override
   State<StartPushupsButton> createState() => _StartPushupsButtonState();
@@ -16,21 +14,12 @@ class StartPushupsButton extends StatefulWidget {
 class _StartPushupsButtonState extends State<StartPushupsButton> {
   bool buttonPressed = false;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void toggleListeningUpdates(BuildContext context) {
-    final airpodsCubit = BlocProvider.of<AirPodsTrackerCubit>(context);
-    final pushupCubit = BlocProvider.of<PushupCubit>(context);
-
-    if (airpodsCubit.state.isListening) {
-      airpodsCubit.stopListening();
-      pushupCubit.resetPushups();
+  void switchButtonState(BuildContext context) {
+    if (buttonPressed) {
+      widget.onButtontrigger.call();
       setState(() => buttonPressed = false);
     } else {
-      airpodsCubit.getAirPodsMotionData();
+      widget.onButtontrigger.call();
       setState(() => buttonPressed = true);
     }
   }
@@ -40,7 +29,7 @@ class _StartPushupsButtonState extends State<StartPushupsButton> {
     return AnimatedButton(
       text: buttonPressed ? S.of(context).finishSet : S.of(context).startPush,
       icon: CarbonIcons.arrow_right,
-      callback: () => toggleListeningUpdates(context),
+      callback: () => switchButtonState(context),
     );
   }
 }
