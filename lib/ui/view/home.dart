@@ -1,85 +1,60 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_airpods/models/device_motion_data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_state.dart';
 import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
-import 'package:pushup_bro/cubit/pushups/pushup_state.dart';
-import 'package:pushup_bro/generated/assets.gen.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/widgets/common/animated_button.dart';
 import 'package:pushup_bro/ui/widgets/home/home_app_bar.dart';
+import 'package:pushup_bro/ui/widgets/home/monkey.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
-  String getFormatedText(DeviceMotionData? dm) {
-    if (dm == null) return '';
+  void toggleListeningUpdates(BuildContext context) {
+    final airpodsCubit = BlocProvider.of<AirPodsTrackerCubit>(context);
+    final pushupCubit = BlocProvider.of<PushupCubit>(context);
 
-    final quaternionX = dm.gravity.x.toStringAsFixed(2);
-    final pitch = dm.attitude.pitch.toStringAsFixed(2);
-    final roll = dm.attitude.roll.toStringAsFixed(2);
-    final rotationX = dm.rotationRate.x.toStringAsFixed(2);
-    final rotationY = dm.rotationRate.y.toStringAsFixed(2);
-    final rotationZ = dm.rotationRate.z.toStringAsFixed(2);
-    final userX = dm.userAcceleration.x.toStringAsFixed(2);
-    final userY = dm.userAcceleration.y.toStringAsFixed(2);
-    final userZ = dm.userAcceleration.z.toStringAsFixed(2);
-
-    return '''
-    quaternionX: $quaternionX
-    pitch: $pitch
-    roll: $roll
-    rotationX: $rotationX
-    rotationY: $rotationY
-    rotationZ: $rotationZ
-    userAccelerationX: $userX 
-    userAccelerationY: $userY 
-    userAccelerationZ: $userZ
-  ''';
-  }
-
-  void startListeningUpdates(BuildContext context) {
-    BlocProvider.of<AirPodsTrackerCubit>(context).getAirPodsMotionData();
+    if (airpodsCubit.state.isListening) {
+      airpodsCubit.stopListening();
+      pushupCubit.resetPushups();
+    } else {
+      airpodsCubit.getAirPodsMotionData();
+    }
   }
 
   @override
-  Widget build(BuildContext context) {
-    startListeningUpdates(context);
-
-    return BlocBuilder<PushupCubit, PushupState>(
-      builder: (context, pushupState) => CupertinoPageScaffold(
+  Widget build(BuildContext context) => CupertinoPageScaffold(
         backgroundColor: PBColors.background,
         child: SafeArea(
           child: Column(
             children: [
               const HomeAppBar(),
               const Spacer(),
-              SizedBox(
-                height: 200,
-                width: 200,
-                child: Assets.rive.carlosIdle.rive(fit: BoxFit.contain),
-              ),
-              BlocSelector<AirPodsTrackerCubit, AirPodsTrackerState,
-                  DeviceMotionData?>(
-                selector: (state) => state.currentMotionData,
-                builder: (context, deviceMotionData) {
-                  if (deviceMotionData != null) {
-                    BlocProvider.of<PushupCubit>(context)
-                        .listenForPushupEvents(deviceMotionData);
+              const Monkey(),
+              BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
+                builder: (context, airPodsState) {
+                  if (airPodsState.isListening) {
+                    final pushupCubit = BlocProvider.of<PushupCubit>(context)
+                      ..listenForPushupEvents(
+                        airPodsState.currentMotionData,
+                      );
+
+                    return Text(
+                      'Pushups: ${pushupCubit.getCurrentPushups()}',
+                    );
                   }
 
-                  return deviceMotionData != null
-                      ? Text('Pushups: ${pushupState.pushups.length}')
-                      : const Text('Waiting for incoming data...');
+                  return const SizedBox();
                 },
               ),
               const Spacer(),
               AnimatedButton(
                 text: S.of(context).startPush,
                 icon: CarbonIcons.arrow_right,
+                callback: () => toggleListeningUpdates(context),
               ),
               const SizedBox(
                 height: 40,
@@ -87,7 +62,5 @@ class Home extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
+      );
 }

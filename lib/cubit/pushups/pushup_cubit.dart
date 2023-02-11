@@ -10,8 +10,12 @@ class PushupCubit extends Cubit<PushupState> {
       : super(const PushupState(pushups: [], inPushup: false));
   final AudioPlayerProvider _audioPlayer;
 
-  void listenForPushupEvents(DeviceMotionData deviceMotionData) {
-    final userAccelerationY = deviceMotionData.userAcceleration.y;
+  int getCurrentPushups() => state.pushups.length;
+
+  void resetPushups() => emit(const PushupState(pushups: [], inPushup: false));
+
+  void listenForPushupEvents(DeviceMotionData? deviceMotionData) {
+    final userAccelerationY = deviceMotionData?.userAcceleration.y ?? 0;
 
     if (state.inPushup) {
       if (_checkForUpwardsMovement(userAccelerationY)) {

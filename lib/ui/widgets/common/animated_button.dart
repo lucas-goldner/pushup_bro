@@ -5,9 +5,15 @@ import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:rive/rive.dart';
 
 class AnimatedButton extends StatefulWidget {
-  const AnimatedButton({super.key, required this.text, this.icon});
+  const AnimatedButton({
+    super.key,
+    required this.text,
+    this.icon,
+    this.callback,
+  });
   final String text;
   final IconData? icon;
+  final VoidCallback? callback;
 
   @override
   State<AnimatedButton> createState() => _AnimatedButtonState();
@@ -55,7 +61,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 236,
+      width: 240,
       height: 64,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
@@ -70,6 +76,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
       child: GestureDetector(
         onTap: () {
           _btnController?.isActive = true;
+          widget.callback?.call();
         },
         child: Stack(
           children: [
