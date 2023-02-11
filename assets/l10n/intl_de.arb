@@ -1,4 +1,6 @@
 {
   "helloWorld": "Hallo Welt!",
-  "startPush": "Liegestützen starten"
+  "startPush": "Liegestützen starten",
+  "pushupsCounter": "Pushups: ",
+  "finishSet": "Finish"
 }

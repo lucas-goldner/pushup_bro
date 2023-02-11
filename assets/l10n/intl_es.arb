@@ -1,4 +1,6 @@
 {
   "helloWorld": "¡Hola Mundo!",
-  "startPush": "Start pushin'"
+  "startPush": "Start pushin'",
+  "pushupsCounter": "Pushups: ",
+  "finishSet": "Finish"
 }
