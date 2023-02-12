@@ -82,7 +82,10 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
             const SizedBox(
               height: 20,
             ),
-            const PBButton('Save Session'),
+            PBButton(
+              'Save Session',
+              callback: () => Navigator.of(context).pop(),
+            ),
           ],
         ),
       ),

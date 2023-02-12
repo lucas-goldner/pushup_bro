@@ -17,6 +17,7 @@ class PBButton extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => callback?.call(),
               style: ElevatedButton.styleFrom(
+                splashFactory: NoSplash.splashFactory,
                 backgroundColor: PBColors.primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
