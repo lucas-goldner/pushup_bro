@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:pushup_bro/generated/fonts.gen.dart';
 
 class PBTextStyles {
@@ -14,9 +14,21 @@ class PBTextStyles {
     fontSize: 28,
   );
 
+  static const headerTextStyle = TextStyle(
+    fontFamily: FontFamily.satoshi,
+    fontWeight: FontWeight.w500,
+    fontSize: 20,
+  );
+
   static const buttonTextStyle = TextStyle(
     fontFamily: FontFamily.satoshi,
     fontWeight: FontWeight.w500,
+    fontSize: 16,
+  );
+
+  static const defaultTextStyle = TextStyle(
+    fontFamily: FontFamily.satoshi,
+    fontWeight: FontWeight.w400,
     fontSize: 16,
   );
 }

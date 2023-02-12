@@ -15,7 +15,7 @@ import 'package:pushup_bro/model/enum/shared_preferences_key.dart';
 import 'package:pushup_bro/provider/airpods_motion_provider.dart';
 import 'package:pushup_bro/provider/audio_player_provider.dart';
 import 'package:pushup_bro/provider/shared_preferences_provider.dart';
-import 'package:pushup_bro/ui/view/home.dart';
+import 'package:pushup_bro/ui/routes.dart';
 import 'package:pushup_bro/utils/constants.dart';
 
 void main() {
@@ -43,19 +43,11 @@ class Main extends StatelessWidget {
   ) async {
     final selectedLanguage = await sharedPreferencesProvider
         .getSharedPrefString(SharedPreferencesKey.language);
-    final volume = await sharedPreferencesProvider
-        .getSharedPrefInt(SharedPreferencesKey.volume);
-    final firstPushupCompleted = await sharedPreferencesProvider
-        .getSharedPrefBool(SharedPreferencesKey.firstPushupDone);
 
     await sharedPreferencesCubit.setLanguage(
       selectedLanguage != null
           ? Locale(selectedLanguage)
           : Locale(await findSystemLocale()),
-    );
-    await sharedPreferencesCubit.setVolume(volume == null ? 1 : volume / 10);
-    await sharedPreferencesCubit.setFirstPushupCompleted(
-      completed: firstPushupCompleted ?? false,
     );
   }
 
@@ -124,9 +116,8 @@ class Main extends StatelessWidget {
                 ),
               ),
             ),
-            home: const Home(
-              key: Key('Home'),
-            ),
+            onGenerateRoute: (settings) =>
+                RouteGenerator().onGenerateMainRoutes(settings),
           );
         },
       ),
