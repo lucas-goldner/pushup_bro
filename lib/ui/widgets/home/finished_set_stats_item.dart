@@ -13,12 +13,11 @@ class FinishedSetStatsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         border: Border.all(color: PBColors.background2),
         borderRadius: BorderRadius.circular(10),
       ),
-      width: MediaQuery.of(context).size.width / 3.5,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 8,

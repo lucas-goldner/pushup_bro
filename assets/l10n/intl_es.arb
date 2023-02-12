@@ -2,5 +2,36 @@
   "helloWorld": "¡Hola Mundo!",
   "startPush": "Start pushin'",
   "pushupsCounter": "Pushups: ",
-  "finishSet": "Finish"
+  "finishSet": "Finish",
+  "congrats": "Congrats!",
+  "difficulty": "Difficulty",
+  "easyDifficulty": "Easy",
+  "middleDifficulty": "Moderate",
+  "hardDifficulty": "Exhausting",
+  "stats": "Stats",
+  "completedInXMinutes": "Completed in {XMinutes} min",
+  "@completedInXMinutes": {
+    "placeholders": {
+      "XMinutes": {
+        "type": "String"
+      }
+    }
+  },
+  "madeXPushups": "Did {xPushups} pushups",
+  "@madeXPushups": {
+    "placeholders": {
+      "xPushups": {
+        "type": "String"
+      }
+    }
+  },
+  "onAverage": "On average: {xPushupsPerMin} pushups/min",
+  "@onAverage": {
+    "placeholders": {
+      "xPushupsPerMin": {
+        "type": "String"
+      }
+    }
+  },
+  "saveSet": "Save set"
 }
