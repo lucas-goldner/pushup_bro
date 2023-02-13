@@ -21,6 +21,15 @@ class SharedPreferencesCubit extends Cubit<SharedPreferencesState> {
     return selectedLanguage ?? systemLanguage;
   }
 
+  Future<bool> getFirstPushupCompleted() async {
+    final firstPushupCompleted =
+        await _sharedPreferencesProvider.getSharedPrefBool(
+      SharedPreferencesKey.firstPushupDone,
+    );
+
+    return firstPushupCompleted ?? false;
+  }
+
   Future<void> setLanguage(Locale locale) async {
     await _sharedPreferencesProvider.writeStringToSharedPrefs(
       SharedPreferencesKey.language,

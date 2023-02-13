@@ -1,13 +1,17 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_cubit.dart';
 import 'package:pushup_bro/generated/l10n.dart';
+import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/common/pb_button.dart';
 import 'package:pushup_bro/ui/widgets/home/finished_set_stats_item.dart';
 
 class FinishedSetBottomSheet extends StatefulWidget {
-  const FinishedSetBottomSheet({super.key});
+  const FinishedSetBottomSheet(this.pushupSet, {super.key});
+  final PushupSet pushupSet;
 
   @override
   State<FinishedSetBottomSheet> createState() => _FinishedSetBottomSheetState();
@@ -15,6 +19,19 @@ class FinishedSetBottomSheet extends StatefulWidget {
 
 class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
   double currentSliderValue = 0;
+
+  Future<void> closeModal() async => Navigator.of(context).pop(
+        await BlocProvider.of<SharedPreferencesCubit>(context)
+            .getFirstPushupCompleted(),
+      );
+
+  String getCompletedTime() {
+    final difference = widget.pushupSet.completedDate
+        .difference(widget.pushupSet.startedDate)
+        .inMinutes;
+
+    return difference == 0 ? '1' : difference.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +47,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
               padding: const EdgeInsets.only(left: 16, top: 16),
               child: Text(
                 localized.congrats,
-                style: PBTextStyles.boldTextStyle,
+                style: PBTextStyles.pageTitleTextStyle,
               ),
             ),
             Padding(
@@ -83,21 +100,26 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: FinishedSetStatsItem(
                       icon: CarbonIcons.time,
-                      text: S.of(context).completedInXMinutes('3'),
+                      text:
+                          S.of(context).completedInXMinutes(getCompletedTime()),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: FinishedSetStatsItem(
                       icon: CarbonIcons.add_alt,
-                      text: S.of(context).madeXPushups('10'),
+                      text: S.of(context).madeXPushups(
+                            widget.pushupSet.pushups.length.toString(),
+                          ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: FinishedSetStatsItem(
                       icon: CarbonIcons.chart_average,
-                      text: S.of(context).onAverage('3/10'),
+                      text: S.of(context).onAverage(
+                            '${widget.pushupSet.pushups.length}/${getCompletedTime()}',
+                          ),
                     ),
                   ),
                 ],
@@ -108,7 +130,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
             ),
             PBButton(
               localized.saveSet,
-              callback: () => Navigator.of(context).pop(),
+              callback: closeModal,
             ),
           ],
         ),

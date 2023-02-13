@@ -8,7 +8,7 @@ class PBTextStyles {
     fontSize: 32,
   );
 
-  static const boldTextStyle = TextStyle(
+  static const pageTitleTextStyle = TextStyle(
     fontFamily: FontFamily.satoshi,
     fontWeight: FontWeight.w700,
     fontSize: 28,

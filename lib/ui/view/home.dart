@@ -5,7 +5,10 @@ import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_state.dart';
 import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
+import 'package:pushup_bro/model/pushup.dart';
+import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
+import 'package:pushup_bro/ui/view/onboarding.dart';
 import 'package:pushup_bro/ui/widgets/home/finished_set_bottom_sheet.dart';
 import 'package:pushup_bro/ui/widgets/home/home_app_bar.dart';
 import 'package:pushup_bro/ui/widgets/home/monkey.dart';
@@ -24,31 +27,37 @@ class _HomeState extends State<Home> {
   bool finished = false;
   bool started = false;
 
-  void toggleListeningUpdates(BuildContext ogContext) {
-    final airpodsCubit = BlocProvider.of<AirPodsTrackerCubit>(ogContext);
-    final pushupCubit = BlocProvider.of<PushupCubit>(ogContext);
+  void toggleListeningUpdates() {
+    final airpodsCubit = BlocProvider.of<AirPodsTrackerCubit>(context);
+    final pushupCubit = BlocProvider.of<PushupCubit>(context);
 
     // Replace again
     // started && pushupCubit.getCurrentPushups() >= 1
     if (started) {
       airpodsCubit.stopListening();
-      pushupCubit.resetPushups();
+      final pushups = pushupCubit.resetAndReturnCurrentPushupSet();
       setState(() => {finished = true, started = false});
-      openBottomSheet(ogContext);
+      openBottomSheet(pushups);
     } else {
       airpodsCubit.getAirPodsMotionData();
       setState(() => {finished = false, started = true});
     }
   }
 
-  void openBottomSheet(BuildContext ogContext) {
-    showCupertinoModalBottomSheet<Widget>(
-      context: context,
-      useRootNavigator: true,
-      enableDrag: false,
-      isDismissible: false,
-      builder: (context) => const FinishedSetBottomSheet(),
-    );
+  Future<void> openBottomSheet(PushupSet pushups) async {
+    final navigator = Navigator.of(context);
+    final firstPushupCompleted = await showCupertinoModalBottomSheet<bool>(
+          context: context,
+          useRootNavigator: true,
+          enableDrag: false,
+          isDismissible: false,
+          builder: (context) => FinishedSetBottomSheet(pushups),
+        ) ??
+        false;
+
+    if (!firstPushupCompleted) {
+      await navigator.pushNamed(Onboarding.routeName, arguments: PushupSet([]));
+    }
   }
 
   @override
@@ -82,7 +91,15 @@ class _HomeState extends State<Home> {
                     },
                   ),
                   const Spacer(),
-                  StartPushupsButton(() => openBottomSheet(context)),
+                  StartPushupsButton(
+                    () => openBottomSheet(
+                      PushupSet([
+                        Pushup(DateTime(2023, 2, 13, 0, 55)),
+                        Pushup(DateTime(2023, 2, 13, 0, 56)),
+                        Pushup(DateTime(2023, 2, 13, 0, 57))
+                      ]),
+                    ),
+                  ),
                   const SizedBox(
                     height: 40,
                   ),

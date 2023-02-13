@@ -10,4 +10,7 @@ class PBColors {
   static const Color background = Color(0xFFF2F6FF);
   static const Color backgroundDark = Color(0xFF25254B);
   static const Color background2 = Color(0xFF17203A);
+  static const Color onboardingInitialBackground = Color(0xFFCC0066);
+  static const Color onboardingFeaturesBackground = Color(0xFFFFFFCC);
+  static const Color onboardingLoginBackground = Color(0xFF000066);
 }

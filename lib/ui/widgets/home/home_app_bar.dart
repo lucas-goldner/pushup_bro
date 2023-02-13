@@ -22,7 +22,7 @@ class HomeAppBar extends StatelessWidget {
         Spacer(),
         Text(
           'Pushup Bro',
-          style: PBTextStyles.boldTextStyle,
+          style: PBTextStyles.pageTitleTextStyle,
         ),
         Spacer(
           flex: 2,

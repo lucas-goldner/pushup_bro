@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/cubit/pushups/pushup_state.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 import 'package:pushup_bro/model/pushup.dart';
+import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/provider/audio_player_provider.dart';
 
 class PushupCubit extends Cubit<PushupState> {
@@ -12,7 +13,11 @@ class PushupCubit extends Cubit<PushupState> {
 
   int getCurrentPushups() => state.pushups.length;
 
-  void resetPushups() => emit(const PushupState(pushups: [], inPushup: false));
+  PushupSet resetAndReturnCurrentPushupSet() {
+    final pushups = state.pushups;
+    emit(const PushupState(pushups: [], inPushup: false));
+    return PushupSet(pushups);
+  }
 
   void listenForPushupEvents(DeviceMotionData? deviceMotionData) {
     final userAccelerationY = deviceMotionData?.userAcceleration.y ?? 0;
