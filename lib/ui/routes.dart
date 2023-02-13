@@ -16,7 +16,7 @@ class RouteGenerator {
         final pushupsSet = settings.arguments as PushupSet?;
         if (pushupsSet == null) return null;
         return CupertinoPageRoute(
-          builder: (context) => Onboarding(pushupsSet.pushups.length),
+          builder: (context) => Onboarding(pushupsSet),
         );
     }
 

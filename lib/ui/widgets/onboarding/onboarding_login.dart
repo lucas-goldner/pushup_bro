@@ -13,12 +13,14 @@ class OnboardingLogin extends StatelessWidget {
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Padding(
-              padding: EdgeInsets.only(left: 16, top: 16),
+              padding: const EdgeInsets.only(left: 16, top: 16),
               child: Text(
                 'Create account',
-                style: PBTextStyles.pageTitleTextStyle,
+                style: PBTextStyles.pageTitleTextStyle.copyWith(
+                  color: CupertinoColors.white,
+                ),
               ),
             ),
           ],

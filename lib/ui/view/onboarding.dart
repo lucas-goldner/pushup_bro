@@ -1,13 +1,14 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/widgets/onboarding/onboarding_features.dart';
 import 'package:pushup_bro/ui/widgets/onboarding/onboarding_initial.dart';
 import 'package:pushup_bro/ui/widgets/onboarding/onboarding_login.dart';
 
 class Onboarding extends StatefulWidget {
-  const Onboarding(this.numberOfPushups, {super.key});
-  final int numberOfPushups;
+  const Onboarding(this.pushupSet, {super.key});
+  final PushupSet pushupSet;
   static const routeName = 'onboarding';
 
   @override
@@ -47,10 +48,10 @@ class _OnboardingState extends State<Onboarding> {
         ignoreUserGestureWhileAnimating: true,
         liquidController: liquidController,
         onPageChangeCallback: handlePageChange,
-        pages: const [
-          OnboardingInitial(),
-          OnboardingFeatures(),
-          OnboardingLogin()
+        pages: [
+          OnboardingInitial(widget.pushupSet),
+          const OnboardingFeatures(),
+          const OnboardingLogin()
         ],
       ),
     );

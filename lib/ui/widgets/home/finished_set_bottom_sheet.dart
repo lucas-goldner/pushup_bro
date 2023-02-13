@@ -25,14 +25,6 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
             .getFirstPushupCompleted(),
       );
 
-  String getCompletedTime() {
-    final difference = widget.pushupSet.completedDate
-        .difference(widget.pushupSet.startedDate)
-        .inMinutes;
-
-    return difference == 0 ? '1' : difference.toString();
-  }
-
   @override
   Widget build(BuildContext context) {
     final localized = S.of(context);
@@ -100,8 +92,9 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: FinishedSetStatsItem(
                       icon: CarbonIcons.time,
-                      text:
-                          S.of(context).completedInXMinutes(getCompletedTime()),
+                      text: S.of(context).completedInXMinutes(
+                            widget.pushupSet.timeSpent.toString(),
+                          ),
                     ),
                   ),
                   Padding(
@@ -118,7 +111,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
                     child: FinishedSetStatsItem(
                       icon: CarbonIcons.chart_average,
                       text: S.of(context).onAverage(
-                            '${widget.pushupSet.pushups.length}/${getCompletedTime()}',
+                            '${widget.pushupSet.pushups.length}/${widget.pushupSet.timeSpent}',
                           ),
                     ),
                   ),

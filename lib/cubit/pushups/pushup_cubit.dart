@@ -16,7 +16,7 @@ class PushupCubit extends Cubit<PushupState> {
   PushupSet resetAndReturnCurrentPushupSet() {
     final pushups = state.pushups;
     emit(const PushupState(pushups: [], inPushup: false));
-    return PushupSet(pushups);
+    return PushupSet(pushups, 0);
   }
 
   void listenForPushupEvents(DeviceMotionData? deviceMotionData) {

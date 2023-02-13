@@ -56,7 +56,10 @@ class _HomeState extends State<Home> {
         false;
 
     if (!firstPushupCompleted) {
-      await navigator.pushNamed(Onboarding.routeName, arguments: PushupSet([]));
+      await navigator.pushNamed(
+        Onboarding.routeName,
+        arguments: PushupSet([], 0),
+      );
     }
   }
 
@@ -93,11 +96,14 @@ class _HomeState extends State<Home> {
                   const Spacer(),
                   StartPushupsButton(
                     () => openBottomSheet(
-                      PushupSet([
-                        Pushup(DateTime(2023, 2, 13, 0, 55)),
-                        Pushup(DateTime(2023, 2, 13, 0, 56)),
-                        Pushup(DateTime(2023, 2, 13, 0, 57))
-                      ]),
+                      PushupSet(
+                        [
+                          Pushup(DateTime(2023, 2, 13, 0, 55)),
+                          Pushup(DateTime(2023, 2, 13, 0, 56)),
+                          Pushup(DateTime(2023, 2, 13, 0, 57))
+                        ],
+                        0,
+                      ),
                     ),
                   ),
                   const SizedBox(
