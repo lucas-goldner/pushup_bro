@@ -53,5 +53,12 @@
   "friendsFeature": "Compete with your friends",
   "syncFeature": "Keep your data synced across devices",
   "comingSoon": "More coming soon...",
-  "moreIdeas": "More ideas? Head to the submit feature section and let me know"
+  "moreIdeas": "More ideas? Head to the submit feature section and let me know",
+  "createAccount": "Create account",
+  "orCreateAccount": "Or create account",
+  "login": "Login",
+  "orLogin": "Or login",
+  "email": "Email",
+  "username": "Username",
+  "password": "Password"
 }

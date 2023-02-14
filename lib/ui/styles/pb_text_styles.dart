@@ -14,6 +14,13 @@ class PBTextStyles {
     fontSize: 28,
   );
 
+  static const secondaryPageTitleTextStyle = TextStyle(
+    fontFamily: FontFamily.satoshi,
+    fontWeight: FontWeight.w700,
+    fontSize: 22,
+    decoration: TextDecoration.underline,
+  );
+
   static const headerTextStyle = TextStyle(
     fontFamily: FontFamily.satoshi,
     fontWeight: FontWeight.w500,
