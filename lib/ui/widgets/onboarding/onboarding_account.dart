@@ -15,8 +15,13 @@ class OnboardingAccount extends StatefulWidget {
 class _OnboardingAccountState extends State<OnboardingAccount> {
   final CarouselController _carouselController = CarouselController();
 
-  void navigateToPage(int pageViewIndex) =>
-      _carouselController.animateToPage(pageViewIndex);
+  void navigateToPage(int pageViewIndex) {
+    _carouselController.animateToPage(pageViewIndex);
+  }
+
+  void createAccount(String email, String username, String password) {}
+
+  void login(String email, String password) {}
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +35,11 @@ class _OnboardingAccountState extends State<OnboardingAccount> {
             carouselController: _carouselController,
             itemCount: 2,
             itemBuilder: (context, itemIndex, pageViewIndex) => itemIndex == 0
-                ? OnboardingCreateAccount(() => navigateToPage(1))
-                : OnboardingLogin(() => navigateToPage(0)),
+                ? OnboardingCreateAccount(
+                    () => navigateToPage(1),
+                    createAccount,
+                  )
+                : OnboardingLogin(() => navigateToPage(0), login),
             options: CarouselOptions(
               height: MediaQuery.of(context).size.height / 1.5,
               enlargeCenterPage: true,

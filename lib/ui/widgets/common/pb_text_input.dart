@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 class PBTextInput extends StatefulWidget {
-  const PBTextInput({super.key});
+  const PBTextInput(this.textEditingController, {super.key});
+  final TextEditingController textEditingController;
 
   @override
   State<PBTextInput> createState() => _PBTextInputState();
@@ -12,9 +13,10 @@ class _PBTextInputState extends State<PBTextInput> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 1.25,
-      child: const CupertinoTextField(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
+      child: CupertinoTextField(
+        controller: widget.textEditingController,
+        padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: CupertinoColors.white,
         ),

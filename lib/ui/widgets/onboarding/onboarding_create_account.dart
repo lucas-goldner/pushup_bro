@@ -5,8 +5,13 @@ import 'package:pushup_bro/ui/widgets/common/pb_button.dart';
 import 'package:pushup_bro/ui/widgets/common/pb_text_input.dart';
 
 class OnboardingCreateAccount extends StatefulWidget {
-  const OnboardingCreateAccount(this.navigateToPage, {super.key});
+  const OnboardingCreateAccount(
+    this.navigateToPage,
+    this.createAccount, {
+    super.key,
+  });
   final VoidCallback navigateToPage;
+  final void Function(String, String, String) createAccount;
 
   @override
   State<OnboardingCreateAccount> createState() =>
@@ -14,6 +19,10 @@ class OnboardingCreateAccount extends StatefulWidget {
 }
 
 class _OnboardingCreateAccountState extends State<OnboardingCreateAccount> {
+  final TextEditingController emailTextController = TextEditingController();
+  final TextEditingController userNameTextController = TextEditingController();
+  final TextEditingController passwordTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final pageTitleTextStyle =
@@ -61,7 +70,7 @@ class _OnboardingCreateAccountState extends State<OnboardingCreateAccount> {
           const SizedBox(
             height: 16,
           ),
-          const PBTextInput(),
+          PBTextInput(emailTextController),
           const SizedBox(
             height: 16,
           ),
@@ -72,7 +81,7 @@ class _OnboardingCreateAccountState extends State<OnboardingCreateAccount> {
           const SizedBox(
             height: 16,
           ),
-          const PBTextInput(),
+          PBTextInput(userNameTextController),
           const SizedBox(
             height: 16,
           ),
@@ -83,7 +92,7 @@ class _OnboardingCreateAccountState extends State<OnboardingCreateAccount> {
           const SizedBox(
             height: 16,
           ),
-          const PBTextInput(),
+          PBTextInput(passwordTextController),
           const SizedBox(
             height: 16,
           ),

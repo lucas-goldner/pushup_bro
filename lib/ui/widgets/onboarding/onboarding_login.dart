@@ -5,14 +5,18 @@ import 'package:pushup_bro/ui/widgets/common/pb_button.dart';
 import 'package:pushup_bro/ui/widgets/common/pb_text_input.dart';
 
 class OnboardingLogin extends StatefulWidget {
-  const OnboardingLogin(this.navigateToPage, {super.key});
+  const OnboardingLogin(this.navigateToPage, this.login, {super.key});
   final VoidCallback navigateToPage;
+  final void Function(String, String) login;
 
   @override
   State<OnboardingLogin> createState() => _OnboardingLoginState();
 }
 
 class _OnboardingLoginState extends State<OnboardingLogin> {
+  final TextEditingController emailTextController = TextEditingController();
+  final TextEditingController passwordTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final pageTitleTextStyle =
@@ -57,9 +61,9 @@ class _OnboardingLoginState extends State<OnboardingLogin> {
               style: headerTextStyle,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 16),
-            child: PBTextInput(),
+          Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: PBTextInput(emailTextController),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 16),
@@ -68,9 +72,9 @@ class _OnboardingLoginState extends State<OnboardingLogin> {
               style: headerTextStyle,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 16),
-            child: PBTextInput(),
+          Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: PBTextInput(passwordTextController),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 16),
