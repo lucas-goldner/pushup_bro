@@ -22,9 +22,9 @@ class _OnboardingAccountState extends State<OnboardingAccount> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
       color: PBColors.onboardingLoginBackground,
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CarouselSlider.builder(
             carouselController: _carouselController,
@@ -39,16 +39,13 @@ class _OnboardingAccountState extends State<OnboardingAccount> {
               scrollPhysics: const NeverScrollableScrollPhysics(),
             ),
           ),
-          Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 1.5,
-              ),
-              const Divider(
-                height: 5,
-                color: CupertinoColors.white,
-              )
-            ],
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32),
+            child: Divider(
+              height: 1,
+              thickness: 2,
+              color: CupertinoColors.white,
+            ),
           )
         ],
       ),
