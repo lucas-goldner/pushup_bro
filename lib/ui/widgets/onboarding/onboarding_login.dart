@@ -17,6 +17,18 @@ class _OnboardingLoginState extends State<OnboardingLogin> {
   final TextEditingController emailTextController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
 
+  void login() {
+    widget.login(
+      emailTextController.text,
+      passwordTextController.text,
+    );
+
+    setState(() {
+      emailTextController.text = '';
+      passwordTextController.text = '';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final pageTitleTextStyle =
@@ -80,7 +92,10 @@ class _OnboardingLoginState extends State<OnboardingLogin> {
             padding: const EdgeInsets.only(top: 16),
             child: SizedBox(
               width: MediaQuery.of(context).size.width / 1.25,
-              child: PBButton(S.of(context).login),
+              child: PBButton(
+                S.of(context).login,
+                callback: login,
+              ),
             ),
           ),
         ],

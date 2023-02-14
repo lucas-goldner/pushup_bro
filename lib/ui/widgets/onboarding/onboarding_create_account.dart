@@ -23,6 +23,20 @@ class _OnboardingCreateAccountState extends State<OnboardingCreateAccount> {
   final TextEditingController userNameTextController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
 
+  void createAccount() {
+    widget.createAccount(
+      emailTextController.text,
+      userNameTextController.text,
+      passwordTextController.text,
+    );
+
+    setState(() {
+      emailTextController.text = '';
+      userNameTextController.text = '';
+      passwordTextController.text = '';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final pageTitleTextStyle =
@@ -98,7 +112,10 @@ class _OnboardingCreateAccountState extends State<OnboardingCreateAccount> {
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width / 1.25,
-            child: PBButton(S.of(context).createAccount),
+            child: PBButton(
+              S.of(context).createAccount,
+              callback: createAccount,
+            ),
           ),
         ],
       ),
