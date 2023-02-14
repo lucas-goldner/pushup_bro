@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
@@ -20,7 +21,7 @@ class OnboardingInitial extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 16),
               child: Text(
-                'You did it!',
+                S.of(context).youDidIt,
                 style: PBTextStyles.pageTitleTextStyle.copyWith(
                   color: CupertinoColors.white,
                 ),
@@ -33,7 +34,10 @@ class OnboardingInitial extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Text(
-                'Well done! You completed your first set of ${pushupSet.pushups.length} pushups with Carlos the Gorilla. It seems like it was pretty ${pushupSet.translateEffort(context)}.\n\nKeep working towards building a higher and consistent pushup count.',
+                S.of(context).completedText(
+                      pushupSet.pushups.length.toString(),
+                      pushupSet.translateEffort(context),
+                    ),
                 style: PBTextStyles.headerTextStyle.copyWith(
                   color: CupertinoColors.white,
                 ),

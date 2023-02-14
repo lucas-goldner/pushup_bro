@@ -1,5 +1,6 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/onboarding/onboarding_features_item.dart';
@@ -16,10 +17,10 @@ class OnboardingFeatures extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 16, top: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 16),
               child: Text(
-                'Features!',
+                S.of(context).features,
                 style: PBTextStyles.pageTitleTextStyle,
               ),
             ),
@@ -28,42 +29,42 @@ class OnboardingFeatures extends StatelessWidget {
             ),
             Flexible(
               child: ListView(
-                children: const <Widget>[
+                children: <Widget>[
                   OnboardingFeaturesItem(
-                    'Track pushups using Airpods',
+                    S.of(context).aidPodsFeature,
                     CarbonIcons.headphones,
                   ),
                   OnboardingFeaturesItem(
-                    'Keep track of your sets in the calendar',
+                    S.of(context).calendarFeature,
                     CarbonIcons.calendar,
                   ),
                   OnboardingFeaturesItem(
-                    'Set yourself a daily goal',
+                    S.of(context).dailyGoalFeature,
                     CarbonIcons.reminder,
                   ),
                   OnboardingFeaturesItem(
-                    'Compete with your friends',
+                    S.of(context).friendsFeature,
                     CarbonIcons.group,
                   ),
                   OnboardingFeaturesItem(
-                    'Keep your data synced across devices',
+                    S.of(context).syncFeature,
                     CarbonIcons.save,
                   ),
                 ],
               ),
             ),
             const Spacer(),
-            const Padding(
-              padding: EdgeInsets.only(left: 16, top: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 16),
               child: Text(
-                'More coming soon..',
+                S.of(context).comingSoon,
                 style: PBTextStyles.pageTitleTextStyle,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 16, top: 16, right: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
               child: Text(
-                'More ideas? Head to the submit feature section and let me know',
+                S.of(context).moreIdeas,
                 style: PBTextStyles.defaultTextStyle,
               ),
             ),

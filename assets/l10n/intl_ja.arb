@@ -33,5 +33,25 @@
       }
     }
   },
-  "saveSet": "Save set"
+  "saveSet": "Save set",
+  "youDidIt": "You did it!",
+  "completedText": "Well done! You completed your first set of ${xPushups} pushups with Carlos the Gorilla. It seems like it was pretty ${xEffort}.\n\nKeep working towards building a higher and consistent pushup count.",
+  "@completedText": {
+    "placeholders": {
+      "xPushups": {
+        "type": "String"
+      },
+      "xEffort": {
+        "type": "String"
+      }
+    }
+  },
+  "features": "Features!",
+  "aidPodsFeature": "Track pushups using Airpods",
+  "calendarFeature": "Keep track of your sets in the calendar",
+  "dailyGoalFeature": "Set yourself a daily goal",
+  "friendsFeature": "Compete with your friends",
+  "syncFeature": "Keep your data synced across devices",
+  "comingSoon": "More coming soon...",
+  "moreIdeas": "More ideas? Head to the submit feature section and let me know"
 }
