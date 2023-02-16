@@ -31,20 +31,25 @@ class _OnboardingAccountState extends State<OnboardingAccount> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CarouselSlider.builder(
-            carouselController: _carouselController,
-            itemCount: 2,
-            itemBuilder: (context, itemIndex, pageViewIndex) => itemIndex == 0
-                ? OnboardingCreateAccount(
-                    () => navigateToPage(1),
-                    createAccount,
-                  )
-                : OnboardingLogin(() => navigateToPage(0), login),
-            options: CarouselOptions(
-              height: MediaQuery.of(context).size.height / 1.5,
-              enlargeCenterPage: true,
-              enlargeFactor: 1,
-              scrollPhysics: const NeverScrollableScrollPhysics(),
+          const SizedBox(
+            height: 75,
+          ),
+          Flexible(
+            child: CarouselSlider.builder(
+              carouselController: _carouselController,
+              itemCount: 2,
+              itemBuilder: (context, itemIndex, pageViewIndex) => itemIndex == 0
+                  ? OnboardingCreateAccount(
+                      () => navigateToPage(1),
+                      createAccount,
+                    )
+                  : OnboardingLogin(() => navigateToPage(0), login),
+              options: CarouselOptions(
+                height: MediaQuery.of(context).size.height / 1.75,
+                enlargeCenterPage: true,
+                enlargeFactor: 1,
+                scrollPhysics: const NeverScrollableScrollPhysics(),
+              ),
             ),
           ),
           const Padding(

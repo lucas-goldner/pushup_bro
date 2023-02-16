@@ -48,77 +48,72 @@ class _OnboardingCreateAccountState extends State<OnboardingCreateAccount> {
     final headerTextStyle =
         PBTextStyles.headerTextStyle.copyWith(color: CupertinoColors.white);
 
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 16,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                S.of(context).createAccount,
-                style: pageTitleTextStyle,
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              GestureDetector(
-                onTap: widget.navigateToPage,
-                child: Text(
-                  S.of(context).orLogin,
-                  style: secondaryPageTextStyle,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Text(
-            S.of(context).email,
-            style: headerTextStyle,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          PBTextInput(emailTextController),
-          const SizedBox(
-            height: 16,
-          ),
-          Text(
-            S.of(context).username,
-            style: headerTextStyle,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          PBTextInput(userNameTextController),
-          const SizedBox(
-            height: 16,
-          ),
-          Text(
-            S.of(context).password,
-            style: headerTextStyle,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          PBTextInput(passwordTextController),
-          const SizedBox(
-            height: 16,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 1.25,
-            child: PBButton(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
               S.of(context).createAccount,
-              callback: createAccount,
+              style: pageTitleTextStyle,
             ),
+            const SizedBox(
+              width: 20,
+            ),
+            GestureDetector(
+              onTap: widget.navigateToPage,
+              child: Text(
+                S.of(context).orLogin,
+                style: secondaryPageTextStyle,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Text(
+          S.of(context).email,
+          style: headerTextStyle,
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        PBTextInput(emailTextController),
+        const SizedBox(
+          height: 16,
+        ),
+        Text(
+          S.of(context).username,
+          style: headerTextStyle,
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        PBTextInput(userNameTextController),
+        const SizedBox(
+          height: 16,
+        ),
+        Text(
+          S.of(context).password,
+          style: headerTextStyle,
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        PBTextInput(passwordTextController),
+        const SizedBox(
+          height: 16,
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width / 1.25,
+          child: PBButton(
+            S.of(context).createAccount,
+            callback: createAccount,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -40,66 +40,64 @@ class _OnboardingLoginState extends State<OnboardingLogin> {
     final headerTextStyle =
         PBTextStyles.headerTextStyle.copyWith(color: CupertinoColors.white);
 
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  S.of(context).login,
-                  style: pageTitleTextStyle,
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                GestureDetector(
-                  onTap: widget.navigateToPage,
-                  child: Text(
-                    S.of(context).orCreateAccount,
-                    style: secondaryPageTextStyle,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Text(
-              S.of(context).email,
-              style: headerTextStyle,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: PBTextInput(emailTextController),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Text(
-              S.of(context).password,
-              style: headerTextStyle,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: PBTextInput(passwordTextController),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width / 1.25,
-              child: PBButton(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
                 S.of(context).login,
-                callback: login,
+                style: pageTitleTextStyle,
               ),
+              const SizedBox(
+                width: 20,
+              ),
+              GestureDetector(
+                onTap: widget.navigateToPage,
+                child: Text(
+                  S.of(context).orCreateAccount,
+                  style: secondaryPageTextStyle,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: Text(
+            S.of(context).email,
+            style: headerTextStyle,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: PBTextInput(emailTextController),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: Text(
+            S.of(context).password,
+            style: headerTextStyle,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: PBTextInput(passwordTextController),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width / 1.25,
+            child: PBButton(
+              S.of(context).login,
+              callback: login,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
