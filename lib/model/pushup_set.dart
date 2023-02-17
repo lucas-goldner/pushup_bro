@@ -37,4 +37,14 @@ class PushupSet {
 
     return '';
   }
+
+  PushupSet copyWith({
+    List<Pushup>? pushups,
+    int? effort,
+  }) {
+    return PushupSet(
+      pushups ?? this.pushups,
+      effort ?? this.effort,
+    );
+  }
 }

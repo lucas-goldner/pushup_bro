@@ -28,4 +28,8 @@ class DBProvider implements DBProviderInterface {
       await db?.pushupSets.delete(id);
     });
   }
+
+  @override
+  Future<List<PushupSet>> getAllPushupSets() async =>
+      await db?.pushupSets.where().findAll() ?? [];
 }

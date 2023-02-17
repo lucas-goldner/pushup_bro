@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
+import 'package:pushup_bro/cubit/db/db_cubit.dart';
 import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
 import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_cubit.dart';
 import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_state.dart';
@@ -16,6 +17,7 @@ import 'package:pushup_bro/model/enum/environment.dart';
 import 'package:pushup_bro/model/enum/shared_preferences_key.dart';
 import 'package:pushup_bro/provider/airpods_motion_provider.dart';
 import 'package:pushup_bro/provider/audio_player_provider.dart';
+import 'package:pushup_bro/provider/db_provider.dart';
 import 'package:pushup_bro/provider/shared_preferences_provider.dart';
 import 'package:pushup_bro/ui/routes.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
@@ -86,12 +88,14 @@ class Main extends StatelessWidget {
     final airpodsMotionProvider = AirPodsMotionProvider();
     final sharedPreferencesProvider = SharedPreferencesProvider()
       ..loadSharedPrefs();
+    final dbProvider = DBProvider();
 
     // Cubits
     final airpodsTrackerCubit = AirPodsTrackerCubit(airpodsMotionProvider);
     final pushupCubit = PushupCubit(audioPlayerProvider);
     final sharedPreferencesCubit =
         SharedPreferencesCubit(sharedPreferencesProvider);
+    final dbCubit = DBCubit(dbProvider);
 
     // Configuration
     _initConfig(sharedPreferencesProvider, sharedPreferencesCubit);
@@ -106,6 +110,9 @@ class Main extends StatelessWidget {
         ),
         BlocProvider<SharedPreferencesCubit>(
           create: (context) => sharedPreferencesCubit,
+        ),
+        BlocProvider<DBCubit>(
+          create: (context) => dbCubit,
         ),
       ],
       child:

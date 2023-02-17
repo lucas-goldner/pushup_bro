@@ -1,6 +1,7 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/cubit/db/db_cubit.dart';
 import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_cubit.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
@@ -20,10 +21,20 @@ class FinishedSetBottomSheet extends StatefulWidget {
 class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
   double currentSliderValue = 0;
 
-  Future<void> closeModal() async => Navigator.of(context).pop(
-        await BlocProvider.of<SharedPreferencesCubit>(context)
-            .getFirstPushupCompleted(),
-      );
+  Future<void> savePushupSet() async {
+    await BlocProvider.of<DBCubit>(context).writeNewPushupsetToDB(
+      widget.pushupSet.copyWith(effort: currentSliderValue.toInt()),
+    );
+  }
+
+  Future<void> closeModal() async {
+    final navigator = Navigator.of(context);
+    final sharedPrefsCubit = BlocProvider.of<SharedPreferencesCubit>(context);
+    await savePushupSet();
+    navigator.pop(
+      await sharedPrefsCubit.getFirstPushupCompleted(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
