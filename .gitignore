@@ -1,5 +1,6 @@
 # Generated
 /lib/generated
+**/**.g.dart
 
 # Miscellaneous
 *.class

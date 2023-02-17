@@ -14,6 +14,7 @@ analyzer:
     public_member_api_docs: ignore
   exclude:
     - "lib/generated/**"
+    - "**/**.g.dart"
 
 dart_code_metrics:
   anti-patterns:

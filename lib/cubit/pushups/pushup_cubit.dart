@@ -24,7 +24,7 @@ class PushupCubit extends Cubit<PushupState> {
 
     if (state.inPushup) {
       if (_checkForUpwardsMovement(userAccelerationY)) {
-        final newPushup = Pushup(DateTime.now());
+        final newPushup = Pushup(completedAt: DateTime.now());
         final pushups = [...state.pushups, newPushup];
         final pushupSoundFilePath =
             Assets.audio.pushupSound.replaceFirstMapped('assets/', (_) => '');

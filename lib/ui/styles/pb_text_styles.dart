@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/generated/fonts.gen.dart';
+import 'package:pushup_bro/ui/styles/pb_colors.dart';
 
 class PBTextStyles {
   static const pushupTextStyle = TextStyle(
@@ -37,5 +38,6 @@ class PBTextStyles {
     fontFamily: FontFamily.satoshi,
     fontWeight: FontWeight.w400,
     fontSize: 16,
+    color: PBColors.primaryColor,
   );
 }

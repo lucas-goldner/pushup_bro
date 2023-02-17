@@ -18,6 +18,7 @@ import 'package:pushup_bro/provider/airpods_motion_provider.dart';
 import 'package:pushup_bro/provider/audio_player_provider.dart';
 import 'package:pushup_bro/provider/shared_preferences_provider.dart';
 import 'package:pushup_bro/ui/routes.dart';
+import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/utils/constants.dart';
 
 void main() async {
@@ -58,6 +59,25 @@ class Main extends StatelessWidget {
     );
   }
 
+  void _initConfig(
+    SharedPreferencesProvider sharedPreferencesProvider,
+    SharedPreferencesCubit sharedPreferencesCubit,
+  ) {
+    SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp],
+    );
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(
+        statusBarBrightness: Brightness.light,
+      ),
+    );
+    setAudioContext();
+    initializeSharedPreferences(
+      sharedPreferencesProvider,
+      sharedPreferencesCubit,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // Providers
@@ -74,14 +94,7 @@ class Main extends StatelessWidget {
         SharedPreferencesCubit(sharedPreferencesProvider);
 
     // Configuration
-    SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp],
-    );
-    setAudioContext();
-    initializeSharedPreferences(
-      sharedPreferencesProvider,
-      sharedPreferencesCubit,
-    );
+    _initConfig(sharedPreferencesProvider, sharedPreferencesCubit);
 
     return MultiBlocProvider(
       providers: [
@@ -113,14 +126,8 @@ class Main extends StatelessWidget {
             supportedLocales: S.delegate.supportedLocales,
             theme: const CupertinoThemeData(
               brightness: Brightness.dark,
-              barBackgroundColor: CupertinoColors.black,
-              scaffoldBackgroundColor: CupertinoColors.black,
               textTheme: CupertinoTextThemeData(
-                textStyle: TextStyle(
-                  fontSize: 14,
-                  fontFamily: 'Satoshi',
-                  color: CupertinoColors.black,
-                ),
+                textStyle: PBTextStyles.defaultTextStyle,
               ),
             ),
             onGenerateRoute: (settings) =>
