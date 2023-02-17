@@ -26,6 +26,12 @@ Simply start a workout session and place your AirPods in your ears. The app will
 
 Download PushUpTracker from the App Store today and start tracking your pushups with ease. Whether you're a seasoned athlete or just starting your fitness journey, PushUpTracker is the perfect companion to help you reach your goals.
 
+**Before running**, create a /config folder at the root of the /ios folder and
+add a /dev and a /prod folder inside of it, inside of each of those add your GoogleServiceInfo.plist.
+The paths should look like this at the end:
+/ios/config/prod/GoogleService-Info.plist
+/ios/config/dev/GoogleService-Info.plist
+
 To run the project use:
 
 ```

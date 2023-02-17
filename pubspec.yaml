@@ -12,8 +12,13 @@ dependencies:
   audioplayers: ^3.0.1
   carbon_icons: ^0.0.1+2
   carousel_slider: ^4.2.1
+  cloud_firestore: ^4.4.1
   cupertino_icons: ^1.0.2
   equatable: ^2.0.5
+  firebase_app_check: ^0.1.1+10
+  firebase_auth: ^4.2.7
+  firebase_core: ^2.6.0
+  firebase_crashlytics: ^3.0.13
   flutter:
     sdk: flutter
   flutter_airpods: ^1.0.3
