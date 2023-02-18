@@ -68,36 +68,44 @@ class _HomeState extends State<Home> {
         child: Stack(
           children: [
             SafeArea(
-              child: Column(
+              child: Stack(
                 children: [
                   PBAppBar(S.of(context).pushupBro),
-                  const Spacer(),
-                  const Monkey(),
-                  BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
-                    builder: (context, airPodsState) {
-                      if (airPodsState.isListening) {
-                        final pushupCubit =
-                            BlocProvider.of<PushupCubit>(context)
-                              ..listenForPushupEvents(
-                                airPodsState.currentMotionData,
+                  Center(
+                    child: Column(
+                      children: [
+                        const Spacer(),
+                        const Monkey(),
+                        BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
+                          builder: (context, airPodsState) {
+                            if (airPodsState.isListening) {
+                              final pushupCubit =
+                                  BlocProvider.of<PushupCubit>(context)
+                                    ..listenForPushupEvents(
+                                      airPodsState.currentMotionData,
+                                    );
+
+                              return PushupCounter(
+                                pushupCubit.getCurrentPushups(),
                               );
+                            }
 
-                        return PushupCounter(pushupCubit.getCurrentPushups());
-                      }
+                            if (started) {
+                              return const Text('Looking for airpods');
+                            }
 
-                      if (started) {
-                        return const Text('Looking for airpods');
-                      }
-
-                      return const SizedBox();
-                    },
-                  ),
-                  const Spacer(),
-                  StartPushupsButton(
-                    toggleListeningUpdates,
-                  ),
-                  const SizedBox(
-                    height: 40,
+                            return const SizedBox();
+                          },
+                        ),
+                        const Spacer(),
+                        StartPushupsButton(
+                          toggleListeningUpdates,
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

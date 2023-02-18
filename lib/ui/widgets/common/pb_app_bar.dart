@@ -1,9 +1,7 @@
-import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/closing_menu_button.dart';
-import 'package:pushup_bro/ui/widgets/common/menu/menu_tab.dart';
+import 'package:pushup_bro/ui/widgets/common/menu/menu_tabs.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/open_menu_button.dart';
 
 class PBAppBar extends StatefulWidget {
@@ -14,10 +12,27 @@ class PBAppBar extends StatefulWidget {
   State<PBAppBar> createState() => _PBAppBarState();
 }
 
-class _PBAppBarState extends State<PBAppBar>
-    with SingleTickerProviderStateMixin {
+class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
+  static const _menuTitles = [
+    'Declarative style',
+    'Premade widgets',
+    'Stateful hot reload',
+    'Native performance',
+    'Great community',
+  ];
+
   late final AnimationController _controller;
-  late final Animation<double> _expandAnimation;
+  late AnimationController _drawerController;
+  static const _initialDelayTime = Duration(milliseconds: 50);
+  static const _itemSlideTime = Duration(milliseconds: 250);
+  static const _staggerTime = Duration(milliseconds: 50);
+  static const _buttonDelayTime = Duration(milliseconds: 150);
+  static const _buttonTime = Duration(milliseconds: 500);
+  final _animationDuration = _initialDelayTime +
+      (_staggerTime * _menuTitles.length) +
+      _buttonDelayTime +
+      _buttonTime;
+  final List<Interval> _itemSlideIntervals = [];
   bool _open = false;
 
   @override
@@ -29,16 +44,17 @@ class _PBAppBarState extends State<PBAppBar>
       duration: const Duration(milliseconds: 250),
       vsync: this,
     );
-    _expandAnimation = CurvedAnimation(
-      curve: Curves.fastOutSlowIn,
-      reverseCurve: Curves.easeOutQuad,
-      parent: _controller,
+    _drawerController = AnimationController(
+      vsync: this,
+      duration: _animationDuration,
     );
+    _createAnimationIntervals();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _drawerController.dispose();
     super.dispose();
   }
 
@@ -47,35 +63,25 @@ class _PBAppBarState extends State<PBAppBar>
       _open = !_open;
       if (_open) {
         _controller.forward();
+        _drawerController.forward();
       } else {
         _controller.reverse();
+        _drawerController.reverse();
       }
     });
   }
 
-  List<Widget> _menuTabs() {
-    final menuTabs = <Widget>[];
-    const count = 3;
-    const step = 90.0 / (count - 1);
-    for (var i = 0, angleInDegrees = 0.0;
-        i < count;
-        i++, angleInDegrees += step) {
-      menuTabs.add(
-        MenuTab(
-          directionInDegrees: angleInDegrees,
-          maxDistance: 112,
-          progress: _expandAnimation,
-          child: FloatingActionButton(
-            enableFeedback: false,
-            backgroundColor: PBColors.background2,
-            onPressed: () {},
-            child: const Icon(CarbonIcons.menu),
-          ),
+  void _createAnimationIntervals() {
+    for (var i = 0; i < 5; ++i) {
+      final startTime = _initialDelayTime + (_staggerTime * i);
+      final endTime = startTime + _itemSlideTime;
+      _itemSlideIntervals.add(
+        Interval(
+          startTime.inMilliseconds / _animationDuration.inMilliseconds,
+          endTime.inMilliseconds / _animationDuration.inMilliseconds,
         ),
       );
     }
-
-    return menuTabs;
   }
 
   @override
@@ -91,7 +97,11 @@ class _PBAppBarState extends State<PBAppBar>
                 _toggle,
                 open: _open,
               ),
-              ..._menuTabs(),
+              MenuTabs(
+                _drawerController,
+                _menuTitles,
+                _itemSlideIntervals,
+              ),
               OpenMenuButton(
                 _toggle,
                 open: _open,
@@ -99,13 +109,16 @@ class _PBAppBarState extends State<PBAppBar>
             ],
           ),
         ),
-        Center(
-          child: Visibility(
-            visible: widget.title != null,
-            child: Text(
-              widget.title ?? '',
-              style: PBTextStyles.pageTitleTextStyle,
-            ),
+        Visibility(
+          visible: widget.title != null,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                widget.title ?? '',
+                style: PBTextStyles.pageTitleTextStyle,
+              ),
+            ],
           ),
         ),
       ],
