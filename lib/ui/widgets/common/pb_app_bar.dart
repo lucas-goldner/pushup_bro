@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/closing_menu_button.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/menu_tabs.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/open_menu_button.dart';
 
 class PBAppBar extends StatefulWidget {
-  const PBAppBar(this.title, {super.key});
+  const PBAppBar(this.title, this.toggelOpacity, {super.key});
   final String? title;
+  final VoidCallback toggelOpacity;
 
   @override
   State<PBAppBar> createState() => _PBAppBarState();
@@ -14,11 +15,10 @@ class PBAppBar extends StatefulWidget {
 
 class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
   static const _menuTitles = [
-    'Declarative style',
-    'Premade widgets',
-    'Stateful hot reload',
-    'Native performance',
-    'Great community',
+    'Home',
+    'Calendar',
+    'Settings',
+    'Info',
   ];
 
   late final AnimationController _controller;
@@ -69,6 +69,7 @@ class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
         _drawerController.reverse();
       }
     });
+    widget.toggelOpacity();
   }
 
   void _createAnimationIntervals() {

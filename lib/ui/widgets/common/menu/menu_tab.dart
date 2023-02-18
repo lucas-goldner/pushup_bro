@@ -1,42 +1,56 @@
-import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/ui/styles/pb_colors.dart';
+import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 
 class MenuTab extends StatelessWidget {
-  const MenuTab({
+  const MenuTab(
+    this._drawerController,
+    this._title,
+    this._itemSlideInterval, {
     super.key,
-    required this.directionInDegrees,
-    required this.maxDistance,
-    required this.progress,
-    required this.nthChild,
-    required this.child,
   });
-
-  final double directionInDegrees;
-  final double maxDistance;
-  final Animation<double> progress;
-  final int nthChild;
-  final Widget child;
+  final AnimationController _drawerController;
+  final Interval _itemSlideInterval;
+  final String _title;
 
   @override
-  Widget build(BuildContext context) {
-    final offset = Offset.fromDirection(
-      directionInDegrees * (math.pi / 180.0),
-      progress.value * maxDistance,
-    );
+  Widget build(BuildContext context) => AnimatedBuilder(
+        animation: _drawerController,
+        builder: (context, child) {
+          final animationPercent = Curves.easeOut.transform(
+            _itemSlideInterval.transform(_drawerController.value),
+          );
+          final opacity = animationPercent;
+          final slideDistance = (1.0 - animationPercent) * 150;
 
-    return AnimatedBuilder(
-      animation: progress,
-      builder: (context, child) => Positioned(
-        bottom: 4.0 - offset.dy * nthChild - maxDistance,
-        child: Transform.rotate(
-          angle: (1.0 - progress.value) * math.pi / 2,
-          child: child,
+          return Opacity(
+            opacity: opacity,
+            child: Transform.translate(
+              offset: Offset(slideDistance, 0),
+              child: child,
+            ),
+          );
+        },
+        child: Transform(
+          transform: Matrix4.skewY(-0.25),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: PBColors.background2,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                child: Text(
+                  _title,
+                  style: PBTextStyles.headerTextStyle
+                      .copyWith(color: CupertinoColors.white),
+                ),
+              ),
+            ),
+          ),
         ),
-      ),
-      child: FadeTransition(
-        opacity: progress,
-        child: child,
-      ),
-    );
-  }
+      );
 }

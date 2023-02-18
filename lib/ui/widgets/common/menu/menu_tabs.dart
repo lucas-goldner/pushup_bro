@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/ui/widgets/common/menu/menu_tab.dart';
 
 class MenuTabs extends StatefulWidget {
   const MenuTabs(
@@ -22,45 +23,19 @@ class _MenuState extends State<MenuTabs> with SingleTickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final listItems = <Widget>[];
-    for (var i = 0; i < widget._menuTitles.length; ++i) {
-      listItems.add(
-        AnimatedBuilder(
-          animation: widget._drawerController,
-          builder: (context, child) {
-            final animationPercent = Curves.easeOut.transform(
-              widget._itemSlideIntervals[i]
-                  .transform(widget._drawerController.value),
-            );
-            final opacity = animationPercent;
-            final slideDistance = (1.0 - animationPercent) * 150;
-
-            return Opacity(
-              opacity: opacity,
-              child: Transform.translate(
-                offset: Offset(slideDistance, 0),
-                child: child,
-              ),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
-            child: Text(
-              widget._menuTitles[i],
-              textAlign: TextAlign.left,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: 80),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            for (var i = 0; i < widget._menuTitles.length; ++i) ...[
+              MenuTab(
+                widget._drawerController,
+                widget._menuTitles[i],
+                widget._itemSlideIntervals[i],
+              )
+            ]
+          ],
         ),
       );
-    }
-
-    return Column(
-      children: listItems,
-    );
-  }
 }
