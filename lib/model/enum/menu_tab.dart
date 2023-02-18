@@ -37,13 +37,25 @@ extension MenuTabInfoExtension on MenuTabInfo {
 
     switch (this) {
       case MenuTabInfo.home:
-        return navigator.pushReplacementNamed(Home.routeName);
+        return navigator.pushReplacementNamed(
+          Home.routeName,
+          arguments: {context: context},
+        );
       case MenuTabInfo.calendar:
-        return navigator.pushReplacementNamed(Calendar.routeName);
+        return navigator.pushReplacementNamed(
+          Calendar.routeName,
+          arguments: {context: context},
+        );
       case MenuTabInfo.settings:
-        return navigator.pushReplacementNamed(Home.routeName);
+        return navigator.pushReplacementNamed(
+          Home.routeName,
+          arguments: {context: context},
+        );
       case MenuTabInfo.info:
-        return navigator.pushReplacementNamed(Home.routeName);
+        return navigator.pushReplacementNamed(
+          Home.routeName,
+          arguments: {context: context},
+        );
     }
   }
 }
