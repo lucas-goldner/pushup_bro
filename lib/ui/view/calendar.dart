@@ -8,6 +8,7 @@ import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_cubit.dar
 import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
+import 'package:pushup_bro/ui/widgets/calendar/calendar_event.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatefulWidget {
@@ -46,6 +47,7 @@ class _CalendarState extends State<Calendar> {
 
   @override
   Widget build(BuildContext context) => SafeArea(
+        bottom: false,
         child: BlocBuilder<DBCubit, DBState>(
           builder: (context, state) {
             // debugPrint(state.pushupSets.length.toString());
@@ -86,9 +88,27 @@ class _CalendarState extends State<Calendar> {
                       ),
                     ),
                     calendarBuilders: CalendarBuilders(
-                      defaultBuilder: (context, day, focusedDay) {
-                        return null;
-                      },
+                      selectedBuilder: (context, day, focusedDay) => Center(
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(40),
+                            ),
+                            border: Border.all(
+                              width: 2,
+                              color: PBColors.accentColor,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              DateFormat.d().format(day),
+                              style: PBTextStyles.defaultTextStyle,
+                            ),
+                          ),
+                        ),
+                      ),
                       todayBuilder: (context, day, focusedDay) => DecoratedBox(
                         decoration: const BoxDecoration(
                           color: PBColors.background2,
@@ -121,13 +141,18 @@ class _CalendarState extends State<Calendar> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 12,
+                ),
                 Expanded(
-                  child: Column(
-                    children: [
-                      for (int i = 0; i <= eventsPerDay.length - 1; i++) ...{
-                        const Text('Moin')
-                      }
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        for (int i = 0; i <= eventsPerDay.length - 1; i++) ...{
+                          CalendarEvent(eventsPerDay[i]),
+                        }
+                      ],
+                    ),
                   ),
                 ),
               ],
