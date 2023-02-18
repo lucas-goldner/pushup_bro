@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/provider/interface/db_provder_interface.dart';
 
@@ -12,7 +13,8 @@ class DBProvider implements DBProviderInterface {
 
   @override
   Future<void> loadDB() async {
-    db ??= await Isar.open([PushupSetSchema]);
+    final dir = await getApplicationSupportDirectory();
+    db ??= await Isar.open([PushupSetSchema], directory: dir.path);
   }
 
   @override
@@ -31,5 +33,5 @@ class DBProvider implements DBProviderInterface {
 
   @override
   Future<List<PushupSet>> getAllPushupSets() async =>
-      await db?.pushupSets.where().findAll() ?? [];
+      await db?.pushupSets.where(distinct: true).findAll() ?? [];
 }

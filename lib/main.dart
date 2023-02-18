@@ -65,6 +65,7 @@ class Main extends StatelessWidget {
   void _initConfig(
     SharedPreferencesProvider sharedPreferencesProvider,
     SharedPreferencesCubit sharedPreferencesCubit,
+    DBProvider dbProvider,
   ) {
     SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp],
@@ -79,6 +80,7 @@ class Main extends StatelessWidget {
       sharedPreferencesProvider,
       sharedPreferencesCubit,
     );
+    if (!dbProvider.initialized) dbProvider.loadDB();
   }
 
   @override
@@ -99,7 +101,11 @@ class Main extends StatelessWidget {
     final dbCubit = DBCubit(dbProvider);
 
     // Configuration
-    _initConfig(sharedPreferencesProvider, sharedPreferencesCubit);
+    _initConfig(
+      sharedPreferencesProvider,
+      sharedPreferencesCubit,
+      dbProvider,
+    );
 
     return MultiBlocProvider(
       providers: [
