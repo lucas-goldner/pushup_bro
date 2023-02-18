@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/widgets/common/pb_app_bar.dart';
 
 class PageContainer extends StatefulWidget {
-  const PageContainer(this.pageContent, {super.key});
+  const PageContainer(this.pageContent, {this.title, super.key});
   final Widget pageContent;
+  final String? title;
 
   @override
   State<PageContainer> createState() => _PageContainerState();
@@ -41,7 +41,7 @@ class _PageContainerState extends State<PageContainer> {
                 ),
               ),
               SafeArea(
-                child: PBAppBar(S.of(context).pushupBro, _changeOpacity),
+                child: PBAppBar(widget.title, _changeOpacity),
               ),
             ],
           ),

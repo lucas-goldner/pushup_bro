@@ -1,5 +1,7 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/generated/l10n.dart';
+import 'package:pushup_bro/model/navigation_parameter.dart';
 import 'package:pushup_bro/ui/view/calendar.dart';
 import 'package:pushup_bro/ui/view/home.dart';
 
@@ -39,22 +41,22 @@ extension MenuTabInfoExtension on MenuTabInfo {
       case MenuTabInfo.home:
         return navigator.pushReplacementNamed(
           Home.routeName,
-          arguments: {context: context},
+          arguments: NavigationParameter(S.of(context).pushupBro, context),
         );
       case MenuTabInfo.calendar:
         return navigator.pushReplacementNamed(
           Calendar.routeName,
-          arguments: {context: context},
+          arguments: NavigationParameter(S.of(context).pushupBro, context),
         );
       case MenuTabInfo.settings:
         return navigator.pushReplacementNamed(
           Home.routeName,
-          arguments: {context: context},
+          arguments: NavigationParameter(S.of(context).pushupBro, context),
         );
       case MenuTabInfo.info:
         return navigator.pushReplacementNamed(
           Home.routeName,
-          arguments: {context: context},
+          arguments: NavigationParameter(S.of(context).pushupBro, context),
         );
     }
   }

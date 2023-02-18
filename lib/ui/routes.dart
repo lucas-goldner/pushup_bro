@@ -1,5 +1,6 @@
 import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/model/navigation_parameter.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/view/calendar.dart';
 import 'package:pushup_bro/ui/view/home.dart';
@@ -12,12 +13,19 @@ class RouteGenerator {
   ) {
     switch (settings.name) {
       case Home.routeName:
-        return CupertinoPageRoute(
-          builder: (context) => const PageContainer(Home()),
+        final params = settings.arguments as NavigationParameter?;
+        return _revealCircular(
+          params?.context,
+          PageContainer(const Home(), title: params?.title),
         );
       case Calendar.routeName:
-        final context = settings.arguments as BuildContext?;
-        return _revealCircular(context, const PageContainer(Calendar()));
+        final params = settings.arguments as NavigationParameter?;
+        return _revealCircular(
+          params?.context,
+          const PageContainer(
+            Calendar(),
+          ),
+        );
       case Onboarding.routeName:
         final pushupsSet = settings.arguments as PushupSet?;
         if (pushupsSet == null) return null;
