@@ -22,17 +22,17 @@ class PushupSet {
   String translateEffort(BuildContext context) {
     switch (effort) {
       case 0:
-        return S.of(context).helloWorld;
+        return S.of(context).pushupBro;
       case 1:
-        return S.of(context).helloWorld;
+        return S.of(context).pushupBro;
       case 2:
-        return S.of(context).helloWorld;
+        return S.of(context).pushupBro;
       case 3:
-        return S.of(context).helloWorld;
+        return S.of(context).pushupBro;
       case 4:
-        return S.of(context).helloWorld;
+        return S.of(context).pushupBro;
       case 5:
-        return S.of(context).helloWorld;
+        return S.of(context).pushupBro;
     }
 
     return '';

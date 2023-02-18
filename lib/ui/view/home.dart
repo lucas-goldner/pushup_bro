@@ -5,10 +5,11 @@ import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_state.dart';
 import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
+import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
+import 'package:pushup_bro/ui/widgets/common/pb_app_bar.dart';
 import 'package:pushup_bro/ui/widgets/home/finished_set_bottom_sheet.dart';
-import 'package:pushup_bro/ui/widgets/home/home_app_bar.dart';
 import 'package:pushup_bro/ui/widgets/home/monkey.dart';
 import 'package:pushup_bro/ui/widgets/home/pushup_counter.dart';
 import 'package:pushup_bro/ui/widgets/home/start_pushups_button.dart';
@@ -69,7 +70,7 @@ class _HomeState extends State<Home> {
             SafeArea(
               child: Column(
                 children: [
-                  const HomeAppBar(),
+                  PBAppBar(S.of(context).pushupBro),
                   const Spacer(),
                   const Monkey(),
                   BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
