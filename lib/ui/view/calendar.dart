@@ -88,6 +88,26 @@ class _CalendarState extends State<Calendar> {
                       ),
                     ),
                     calendarBuilders: CalendarBuilders(
+                      markerBuilder: (context, day, events) {
+                        if (events.isNotEmpty) {
+                          return Center(
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(40),
+                                ),
+                                border: Border.all(
+                                  width: 2,
+                                  color: CupertinoColors.activeGreen,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                        return null;
+                      },
                       selectedBuilder: (context, day, focusedDay) => Center(
                         child: Container(
                           height: 40,
