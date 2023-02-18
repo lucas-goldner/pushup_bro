@@ -15,7 +15,7 @@ class _PageContainerState extends State<PageContainer> {
   double opacityLevel = 0;
 
   void _changeOpacity() {
-    setState(() => opacityLevel = opacityLevel == 0 ? 0.5 : 0.0);
+    setState(() => opacityLevel = opacityLevel == 0 ? 0.75 : 0.0);
   }
 
   @override

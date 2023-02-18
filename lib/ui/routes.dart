@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
+import 'package:pushup_bro/ui/view/calendar.dart';
 import 'package:pushup_bro/ui/view/home.dart';
 import 'package:pushup_bro/ui/view/onboarding.dart';
 import 'package:pushup_bro/ui/widgets/common/page_container.dart';
@@ -12,6 +13,10 @@ class RouteGenerator {
       case Home.routeName:
         return CupertinoPageRoute(
           builder: (context) => const PageContainer(Home()),
+        );
+      case Calendar.routeName:
+        return CupertinoPageRoute(
+          builder: (context) => const PageContainer(Calendar()),
         );
       case Onboarding.routeName:
         final pushupsSet = settings.arguments as PushupSet?;

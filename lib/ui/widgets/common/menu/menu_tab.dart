@@ -1,17 +1,18 @@
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/model/enum/menu_tab.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 
 class MenuTab extends StatelessWidget {
   const MenuTab(
     this._drawerController,
-    this._title,
+    this._menuInfo,
     this._itemSlideInterval, {
     super.key,
   });
   final AnimationController _drawerController;
   final Interval _itemSlideInterval;
-  final String _title;
+  final MenuTabInfo _menuInfo;
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
@@ -31,10 +32,10 @@ class MenuTab extends StatelessWidget {
             ),
           );
         },
-        child: Transform(
-          transform: Matrix4.skewY(-0.25),
+        child: GestureDetector(
+          onTap: () => _menuInfo.navigate(context),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.only(top: 16, right: 8),
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: PBColors.background2,
@@ -42,11 +43,19 @@ class MenuTab extends StatelessWidget {
               ),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-                child: Text(
-                  _title,
-                  style: PBTextStyles.headerTextStyle
-                      .copyWith(color: CupertinoColors.white),
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                child: Row(
+                  children: [
+                    Icon(_menuInfo.getIcon()),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Text(
+                      _menuInfo.getMenuTitle(context),
+                      style: PBTextStyles.headerTextStyle
+                          .copyWith(color: CupertinoColors.white),
+                    ),
+                  ],
                 ),
               ),
             ),

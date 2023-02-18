@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/model/enum/menu_tab.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/closing_menu_button.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/menu_tabs.dart';
@@ -14,11 +15,11 @@ class PBAppBar extends StatefulWidget {
 }
 
 class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
-  static const _menuTitles = [
-    'Home',
-    'Calendar',
-    'Settings',
-    'Info',
+  static const _menuTabInfo = [
+    MenuTabInfo.home,
+    MenuTabInfo.calendar,
+    MenuTabInfo.settings,
+    MenuTabInfo.info,
   ];
 
   late final AnimationController _controller;
@@ -29,7 +30,7 @@ class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
   static const _buttonDelayTime = Duration(milliseconds: 150);
   static const _buttonTime = Duration(milliseconds: 500);
   final _animationDuration = _initialDelayTime +
-      (_staggerTime * _menuTitles.length) +
+      (_staggerTime * _menuTabInfo.length) +
       _buttonDelayTime +
       _buttonTime;
   final List<Interval> _itemSlideIntervals = [];
@@ -100,7 +101,7 @@ class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
               ),
               MenuTabs(
                 _drawerController,
-                _menuTitles,
+                _menuTabInfo,
                 _itemSlideIntervals,
               ),
               OpenMenuButton(

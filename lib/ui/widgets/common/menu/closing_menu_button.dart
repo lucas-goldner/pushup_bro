@@ -1,4 +1,6 @@
+import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/ui/styles/pb_colors.dart';
 
 class ClosingMenuButton extends StatelessWidget {
   const ClosingMenuButton(this.toggle, {required this.open, super.key});
@@ -15,12 +17,13 @@ class ClosingMenuButton extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             elevation: 4,
             child: InkWell(
+              splashFactory: NoSplash.splashFactory,
               onTap: toggle,
-              child: Padding(
-                padding: const EdgeInsets.all(8),
+              child: const Padding(
+                padding: EdgeInsets.all(8),
                 child: Icon(
-                  Icons.close,
-                  color: Theme.of(context).primaryColor,
+                  CarbonIcons.close_outline,
+                  color: PBColors.accentColor,
                 ),
               ),
             ),
