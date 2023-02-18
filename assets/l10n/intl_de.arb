@@ -60,5 +60,6 @@
   "orLogin": "Or login",
   "email": "Email",
   "username": "Username",
-  "password": "Password"
+  "password": "Password",
+  "calendar": "Calendar"
 }

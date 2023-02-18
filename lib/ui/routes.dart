@@ -22,8 +22,9 @@ class RouteGenerator {
         final params = settings.arguments as NavigationParameter?;
         return _revealCircular(
           params?.context,
-          const PageContainer(
-            Calendar(),
+          PageContainer(
+            const Calendar(),
+            title: params?.title,
           ),
         );
       case Onboarding.routeName:

@@ -46,7 +46,7 @@ extension MenuTabInfoExtension on MenuTabInfo {
       case MenuTabInfo.calendar:
         return navigator.pushReplacementNamed(
           Calendar.routeName,
-          arguments: NavigationParameter(S.of(context).pushupBro, context),
+          arguments: NavigationParameter(S.of(context).calendar, context),
         );
       case MenuTabInfo.settings:
         return navigator.pushReplacementNamed(
