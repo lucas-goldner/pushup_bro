@@ -19,7 +19,6 @@ class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
     MenuTabInfo.home,
     MenuTabInfo.calendar,
     MenuTabInfo.settings,
-    MenuTabInfo.info,
   ];
 
   late final AnimationController _controller;

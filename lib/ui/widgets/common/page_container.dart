@@ -26,8 +26,11 @@ class _PageContainerState extends State<PageContainer> {
         children: [
           Stack(
             children: [
-              Center(
-                child: widget.pageContent,
+              IgnorePointer(
+                ignoring: opacityLevel != 0,
+                child: Center(
+                  child: widget.pageContent,
+                ),
               ),
               IgnorePointer(
                 child: AnimatedOpacity(

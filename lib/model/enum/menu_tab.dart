@@ -5,7 +5,7 @@ import 'package:pushup_bro/model/navigation_parameter.dart';
 import 'package:pushup_bro/ui/view/calendar.dart';
 import 'package:pushup_bro/ui/view/home.dart';
 
-enum MenuTabInfo { home, calendar, settings, info }
+enum MenuTabInfo { home, calendar, settings }
 
 extension MenuTabInfoExtension on MenuTabInfo {
   String getMenuTitle(BuildContext context) {
@@ -16,8 +16,6 @@ extension MenuTabInfoExtension on MenuTabInfo {
         return 'Calendar';
       case MenuTabInfo.settings:
         return 'Settings';
-      case MenuTabInfo.info:
-        return 'Info';
     }
   }
 
@@ -29,8 +27,6 @@ extension MenuTabInfoExtension on MenuTabInfo {
         return CarbonIcons.calendar;
       case MenuTabInfo.settings:
         return CarbonIcons.settings;
-      case MenuTabInfo.info:
-        return CarbonIcons.information;
     }
   }
 
@@ -49,11 +45,6 @@ extension MenuTabInfoExtension on MenuTabInfo {
           arguments: NavigationParameter(S.of(context).calendar, context),
         );
       case MenuTabInfo.settings:
-        return navigator.pushReplacementNamed(
-          Home.routeName,
-          arguments: NavigationParameter(S.of(context).pushupBro, context),
-        );
-      case MenuTabInfo.info:
         return navigator.pushReplacementNamed(
           Home.routeName,
           arguments: NavigationParameter(S.of(context).pushupBro, context),
