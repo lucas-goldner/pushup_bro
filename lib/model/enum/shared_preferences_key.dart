@@ -1,5 +1,6 @@
 enum SharedPreferencesKey {
   firstPushupDone,
   volume,
-  language;
+  language,
+  joined;
 }

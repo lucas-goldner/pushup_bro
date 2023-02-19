@@ -60,6 +60,8 @@ class Main extends StatelessWidget {
           ? Locale(selectedLanguage)
           : Locale(await findSystemLocale()),
     );
+
+    await sharedPreferencesCubit.setFirstJoined();
   }
 
   void _initConfig(
