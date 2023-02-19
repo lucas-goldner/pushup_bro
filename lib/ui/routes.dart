@@ -5,6 +5,7 @@ import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/view/calendar.dart';
 import 'package:pushup_bro/ui/view/home.dart';
 import 'package:pushup_bro/ui/view/onboarding.dart';
+import 'package:pushup_bro/ui/view/settings.dart';
 import 'package:pushup_bro/ui/widgets/common/page_container.dart';
 
 class RouteGenerator {
@@ -24,6 +25,15 @@ class RouteGenerator {
           params?.context,
           PageContainer(
             const Calendar(),
+            title: params?.title,
+          ),
+        );
+      case Settings.routeName:
+        final params = settings.arguments as NavigationParameter?;
+        return _revealCircular(
+          params?.context,
+          PageContainer(
+            const Settings(),
             title: params?.title,
           ),
         );

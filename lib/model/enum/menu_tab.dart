@@ -4,6 +4,7 @@ import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/navigation_parameter.dart';
 import 'package:pushup_bro/ui/view/calendar.dart';
 import 'package:pushup_bro/ui/view/home.dart';
+import 'package:pushup_bro/ui/view/settings.dart';
 
 enum MenuTabInfo { home, calendar, settings }
 
@@ -46,8 +47,8 @@ extension MenuTabInfoExtension on MenuTabInfo {
         );
       case MenuTabInfo.settings:
         return navigator.pushReplacementNamed(
-          Home.routeName,
-          arguments: NavigationParameter(S.of(context).pushupBro, context),
+          Settings.routeName,
+          arguments: NavigationParameter(S.of(context).settings, context),
         );
     }
   }

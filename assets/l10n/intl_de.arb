@@ -61,5 +61,6 @@
   "email": "Email",
   "username": "Username",
   "password": "Password",
-  "calendar": "Calendar"
+  "calendar": "Calendar",
+  "settings": "Settings"
 }
