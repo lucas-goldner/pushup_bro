@@ -4,6 +4,7 @@ import 'package:pushup_bro/provider/url_launch_provider.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/settings/info_item.dart';
 import 'package:pushup_bro/ui/widgets/settings/settings_item.dart';
+import 'package:pushup_bro/ui/widgets/settings/subpages/language_setting.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -19,6 +20,9 @@ class _SettingsState extends State<Settings> {
   void openBrowser(Uri uri) => _launchProvider.launchUri(uri);
 
   Uri createURI(String path) => Uri(scheme: 'https', path: path);
+
+  void navigateToSettingPage(String routeName) =>
+      Navigator.of(context).pushNamed(routeName);
 
   @override
   Widget build(BuildContext context) => SafeArea(
@@ -39,11 +43,19 @@ class _SettingsState extends State<Settings> {
             const SizedBox(
               height: 12,
             ),
-            const Settingsitem('Switch language', CarbonIcons.language),
+            Settingsitem(
+              'Switch language',
+              CarbonIcons.language,
+              () => navigateToSettingPage(LanguageSetting.routeName),
+            ),
             const SizedBox(
               height: 8,
             ),
-            const Settingsitem('Set volume', CarbonIcons.volume_up),
+            Settingsitem(
+              'Set volume',
+              CarbonIcons.volume_up,
+              () => navigateToSettingPage(LanguageSetting.routeName),
+            ),
             const SizedBox(
               height: 12,
             ),

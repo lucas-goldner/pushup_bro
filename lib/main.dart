@@ -23,6 +23,7 @@ import 'package:pushup_bro/provider/shared_preferences_provider.dart';
 import 'package:pushup_bro/ui/routes.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/utils/constants.dart';
+import 'package:pushup_bro/utils/extensions/string_extensions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,10 +56,11 @@ class Main extends StatelessWidget {
     final selectedLanguage = await sharedPreferencesProvider
         .getSharedPrefString(SharedPreferencesKey.language);
 
+    final systemLocale = await findSystemLocale();
     await sharedPreferencesCubit.setLanguage(
       selectedLanguage != null
           ? Locale(selectedLanguage)
-          : Locale(await findSystemLocale()),
+          : Locale(systemLocale.getLanguageCode()),
     );
 
     await sharedPreferencesCubit.setFirstJoined();
@@ -128,6 +130,7 @@ class Main extends StatelessWidget {
           BlocSelector<SharedPreferencesCubit, SharedPreferencesState, Locale?>(
         selector: (state) => state.language,
         builder: (builder, locale) {
+          debugPrint(locale?.languageCode ?? 'Nothing');
           return CupertinoApp(
             debugShowCheckedModeBanner:
                 Flavor.getCurrentEnvironment == Environment.dev.getFlavorName(),

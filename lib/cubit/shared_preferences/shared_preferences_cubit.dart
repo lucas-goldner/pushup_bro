@@ -5,6 +5,7 @@ import 'package:intl/intl_standalone.dart';
 import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_state.dart';
 import 'package:pushup_bro/model/enum/shared_preferences_key.dart';
 import 'package:pushup_bro/provider/interface/shared_preferences_interface.dart';
+import 'package:pushup_bro/utils/extensions/string_extensions.dart';
 
 class SharedPreferencesCubit extends Cubit<SharedPreferencesState> {
   SharedPreferencesCubit(this._sharedPreferencesProvider)
@@ -19,7 +20,7 @@ class SharedPreferencesCubit extends Cubit<SharedPreferencesState> {
 
     final systemLanguage = await findSystemLocale();
 
-    return selectedLanguage ?? systemLanguage;
+    return selectedLanguage ?? systemLanguage.getLanguageCode();
   }
 
   Future<bool> getFirstPushupCompleted() async {
@@ -36,6 +37,14 @@ class SharedPreferencesCubit extends Cubit<SharedPreferencesState> {
       SharedPreferencesKey.language,
       locale.toLanguageTag(),
     );
+
+    emit(
+      SharedPreferencesLoaded(
+        language: locale,
+        volumeLevel: state.volumeLevel,
+        firstPushupCompleted: state.firstPushupCompleted,
+      ),
+    );
   }
 
   Future<void> setVolume(double volume) async {
@@ -43,12 +52,28 @@ class SharedPreferencesCubit extends Cubit<SharedPreferencesState> {
       SharedPreferencesKey.volume,
       value: (volume * 10) as int,
     );
+
+    emit(
+      SharedPreferencesLoaded(
+        language: state.language,
+        volumeLevel: volume,
+        firstPushupCompleted: state.firstPushupCompleted,
+      ),
+    );
   }
 
   Future<void> setFirstPushupCompleted({required bool completed}) async {
     await _sharedPreferencesProvider.writeBoolToSharedPrefs(
       SharedPreferencesKey.firstPushupDone,
       value: completed,
+    );
+
+    emit(
+      SharedPreferencesLoaded(
+        language: state.language,
+        volumeLevel: state.volumeLevel,
+        firstPushupCompleted: completed,
+      ),
     );
   }
 

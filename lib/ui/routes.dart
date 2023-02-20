@@ -7,6 +7,7 @@ import 'package:pushup_bro/ui/view/home.dart';
 import 'package:pushup_bro/ui/view/onboarding.dart';
 import 'package:pushup_bro/ui/view/settings.dart';
 import 'package:pushup_bro/ui/widgets/common/page_container.dart';
+import 'package:pushup_bro/ui/widgets/settings/subpages/language_setting.dart';
 
 class RouteGenerator {
   Route<CupertinoPageRoute<Widget>>? onGenerateMainRoutes(
@@ -36,6 +37,10 @@ class RouteGenerator {
             const Settings(),
             title: params?.title,
           ),
+        );
+      case LanguageSetting.routeName:
+        return CupertinoPageRoute(
+          builder: (context) => const LanguageSetting(),
         );
       case Onboarding.routeName:
         final pushupsSet = settings.arguments as PushupSet?;
