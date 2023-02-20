@@ -20,6 +20,14 @@ class SharedPreferencesCubit extends Cubit<SharedPreferencesState> {
 
     final systemLanguage = await findSystemLocale();
 
+    emit(
+      SharedPreferencesLoaded(
+        language: Locale(selectedLanguage ?? systemLanguage.getLanguageCode()),
+        volumeLevel: state.volumeLevel,
+        firstPushupCompleted: state.firstPushupCompleted,
+      ),
+    );
+
     return selectedLanguage ?? systemLanguage.getLanguageCode();
   }
 
