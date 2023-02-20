@@ -87,5 +87,13 @@
   "twitter": "ツイッター",
   "privacyPolicy": "プライバシーポリシー",
   "termsOfService": "利用規約",
-  "setVolume": "音量設定"
+  "setVolume": "音量設定",
+  "volumeLevel": "音量は{xVolumeLevel}",
+  "@volumeLevel": {
+    "placeholders": {
+      "xVolumeLevel": {
+        "type": "int"
+      }
+    }
+  }
 }

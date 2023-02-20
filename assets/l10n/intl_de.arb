@@ -87,5 +87,13 @@
   "twitter": "Twitter",
   "privacyPolicy": "Datenschutzrichtlinie",
   "termsOfService": "Nutzungsbedingungen",
-  "setVolume": "Lautstärke einstellen"
+  "setVolume": "Lautstärke einstellen",
+  "volumeLevel": "Volumen: {xVolumeLevel}",
+  "@volumeLevel": {
+    "placeholders": {
+      "xVolumeLevel": {
+        "type": "int"
+      }
+    }
+  }
 }

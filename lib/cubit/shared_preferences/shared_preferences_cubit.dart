@@ -40,6 +40,15 @@ class SharedPreferencesCubit extends Cubit<SharedPreferencesState> {
     return firstPushupCompleted ?? false;
   }
 
+  Future<int> getVolume() async {
+    final volume = await _sharedPreferencesProvider.getSharedPrefInt(
+          SharedPreferencesKey.volume,
+        ) ??
+        10;
+
+    return volume;
+  }
+
   Future<void> setLanguage(Locale locale) async {
     await _sharedPreferencesProvider.writeStringToSharedPrefs(
       SharedPreferencesKey.language,
@@ -55,10 +64,10 @@ class SharedPreferencesCubit extends Cubit<SharedPreferencesState> {
     );
   }
 
-  Future<void> setVolume(double volume) async {
+  Future<void> setVolume(int volume) async {
     await _sharedPreferencesProvider.writeIntToSharedPrefs(
       SharedPreferencesKey.volume,
-      value: (volume * 10) as int,
+      value: volume,
     );
 
     emit(

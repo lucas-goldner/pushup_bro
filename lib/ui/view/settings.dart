@@ -6,6 +6,7 @@ import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/settings/info_item.dart';
 import 'package:pushup_bro/ui/widgets/settings/settings_item.dart';
 import 'package:pushup_bro/ui/widgets/settings/subpages/language_setting.dart';
+import 'package:pushup_bro/ui/widgets/settings/subpages/volume_setting.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -55,7 +56,7 @@ class _SettingsState extends State<Settings> {
             Settingsitem(
               S.of(context).setVolume,
               CarbonIcons.volume_up,
-              () => navigateToSettingPage(LanguageSetting.routeName),
+              () => navigateToSettingPage(VolumeSetting.routeName),
             ),
             const SizedBox(
               height: 12,

@@ -8,7 +8,7 @@ class SharedPreferencesState extends Equatable {
     this.firstPushupCompleted,
   });
   final Locale? language;
-  final double? volumeLevel;
+  final int? volumeLevel;
   final bool? firstPushupCompleted;
 
   @override
@@ -19,7 +19,7 @@ class SharedPreferencesInitial extends SharedPreferencesState {
   const SharedPreferencesInitial()
       : super(
           language: const Locale('en'),
-          volumeLevel: 1,
+          volumeLevel: 10,
           firstPushupCompleted: false,
         );
 }
@@ -27,7 +27,7 @@ class SharedPreferencesInitial extends SharedPreferencesState {
 class SharedPreferencesLoaded extends SharedPreferencesState {
   const SharedPreferencesLoaded({
     super.language = const Locale('en'),
-    super.volumeLevel = 0,
+    super.volumeLevel = 10,
     super.firstPushupCompleted = false,
   });
 }

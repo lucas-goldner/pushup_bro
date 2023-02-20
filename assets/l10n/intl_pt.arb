@@ -87,5 +87,13 @@
   "twitter": "Twitter",
   "privacyPolicy": "Política de Privacidade",
   "termsOfService": "Termos de Serviço",
-  "setVolume": "Configurar volume"
+  "setVolume": "Configurar volume",
+  "volumeLevel": "Volume: {xVolumeLevel}",
+  "@volumeLevel": {
+    "placeholders": {
+      "xVolumeLevel": {
+        "type": "int"
+      }
+    }
+  }
 }
