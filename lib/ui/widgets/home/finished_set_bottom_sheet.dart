@@ -1,4 +1,5 @@
 import 'package:carbon_icons/carbon_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/cubit/db/db_cubit.dart';
@@ -27,12 +28,43 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
     );
   }
 
-  Future<void> closeModal() async {
+  Future<void> closeModalAndSave() async {
     final navigator = Navigator.of(context);
     final sharedPrefsCubit = BlocProvider.of<SharedPreferencesCubit>(context);
     await savePushupSet();
     navigator.pop(
       await sharedPrefsCubit.getFirstPushupCompleted(),
+    );
+  }
+
+  void closeModal() {
+    showCupertinoDialog<Widget>(
+      context: context,
+      builder: (context) => CupertinoAlertDialog(
+        title: const Text('Close without saving?'),
+        content: const Text('If you quit now, the set will not be saved'),
+        actions: <Widget>[
+          CupertinoDialogAction(
+            child: const Text(
+              'Cancel',
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          CupertinoDialogAction(
+            child: const Text(
+              "Don't save",
+              style: TextStyle(
+                color: CupertinoColors.destructiveRed,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onPressed: () => {
+              Navigator.of(context).pop(),
+              Navigator.of(context).pop(),
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -46,12 +78,36 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 16, top: 16),
-              child: Text(
-                localized.congrats,
-                style: PBTextStyles.pageTitleTextStyle,
-              ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 16, top: 16),
+                  child: Text(
+                    localized.congrats,
+                    style: PBTextStyles.pageTitleTextStyle,
+                  ),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: PBColors.background2,
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    child: IconButton(
+                      onPressed: closeModal,
+                      icon: const Icon(
+                        CarbonIcons.close,
+                        color: CupertinoColors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 16,
+                )
+              ],
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 16),
@@ -134,7 +190,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
             ),
             PBButton(
               localized.saveSet,
-              callback: closeModal,
+              callback: closeModalAndSave,
             ),
           ],
         ),
