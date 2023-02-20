@@ -1,6 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,10 +25,11 @@ import 'package:pushup_bro/utils/extensions/string_extensions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await FirebaseAppCheck.instance.activate(
-    webRecaptchaSiteKey: 'recaptcha-v3-site-key',
-  );
+  // TODO(Firebase): Enable firebase when implemented
+  // await Firebase.initializeApp();
+  // await FirebaseAppCheck.instance.activate(
+  //   webRecaptchaSiteKey: 'recaptcha-v3-site-key',
+  // );
   await initializeDateFormatting().then((_) => runApp(const Main()));
 }
 
