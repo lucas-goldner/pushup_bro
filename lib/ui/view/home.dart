@@ -5,6 +5,7 @@ import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_state.dart';
 import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
+import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/widgets/home/finished_set_bottom_sheet.dart';
 import 'package:pushup_bro/ui/widgets/home/monkey.dart';
@@ -85,7 +86,7 @@ class _HomeState extends State<Home> {
                           }
 
                           if (started) {
-                            return const Text('Looking for airpods');
+                            return Text(S.of(context).lookingForAirpods);
                           }
 
                           return const SizedBox();

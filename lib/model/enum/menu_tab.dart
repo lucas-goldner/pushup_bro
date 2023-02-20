@@ -12,11 +12,11 @@ extension MenuTabInfoExtension on MenuTabInfo {
   String getMenuTitle(BuildContext context) {
     switch (this) {
       case MenuTabInfo.home:
-        return 'Home';
+        return S.of(context).home;
       case MenuTabInfo.calendar:
-        return 'Calendar';
+        return S.of(context).calendar;
       case MenuTabInfo.settings:
-        return 'Settings';
+        return S.of(context).settings;
     }
   }
 

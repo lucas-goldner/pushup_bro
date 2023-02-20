@@ -1,5 +1,6 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
@@ -30,7 +31,9 @@ class CalendarEvent extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Set of ${pushupSet.pushups.length}',
+                  S.of(context).setOfXOPushups(
+                        pushupSet.pushups.length.toString(),
+                      ),
                   style: PBTextStyles.headerTextStyle.copyWith(
                     color: CupertinoColors.white,
                   ),
@@ -51,7 +54,7 @@ class CalendarEvent extends StatelessWidget {
               ],
             ),
             Text(
-              'Stats:',
+              S.of(context).stats,
               style: PBTextStyles.buttonTextStyle.copyWith(
                 color: CupertinoColors.white,
               ),

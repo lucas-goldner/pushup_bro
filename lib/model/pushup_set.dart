@@ -22,20 +22,20 @@ class PushupSet {
   String translateEffort(BuildContext context) {
     switch (effort) {
       case 0:
-        return S.of(context).pushupBro;
+        return S.of(context).noEffort;
       case 1:
-        return S.of(context).pushupBro;
+        return S.of(context).superEasyEffort;
       case 2:
-        return S.of(context).pushupBro;
+        return S.of(context).easyEffort;
       case 3:
-        return S.of(context).pushupBro;
+        return S.of(context).mediumEffort;
       case 4:
-        return S.of(context).pushupBro;
+        return S.of(context).hardEffort;
       case 5:
-        return S.of(context).pushupBro;
+        return S.of(context).superHardEffort;
     }
 
-    return '';
+    return S.of(context).noEffort;
   }
 
   PushupSet copyWith({

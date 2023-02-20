@@ -1,5 +1,5 @@
 {
-  "pushupBro": "Pushup Bro EN",
+  "pushupBro": "Pushup Bro",
   "startPush": "Start pushin'",
   "pushupsCounter": "Pushups: ",
   "finishSet": "Finish",
@@ -62,5 +62,30 @@
   "username": "Username",
   "password": "Password",
   "calendar": "Calendar",
-  "settings": "Settings"
+  "settings": "Settings",
+  "home": "Home",
+  "noEffort": "Like it was nothing",
+  "superEasyEffort": "Piece of cake",
+  "easyEffort": "Easy",
+  "mediumEffort": "Moderate",
+  "hardEffort": "Pretty hard",
+  "superHardEffort": "Insane",
+  "switchLanguage": "Switch language",
+  "goBack": "Go back",
+  "setOfXOPushups": "Set of: {xPushupsOfSet}",
+  "@setOfXOPushups": {
+    "placeholders": {
+      "xPushupsOfSet": {
+        "type": "String"
+      }
+    }
+  },
+  "lookingForAirpods": "Looking for airpods",
+  "general": "General",
+  "info": "Info",
+  "website": "Website",
+  "twitter": "Twitter",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service",
+  "setVolume": "Set volume"
 }

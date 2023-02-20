@@ -52,9 +52,9 @@ class _LanguageSettingState extends State<LanguageSetting> {
               children: [
                 Column(
                   children: [
-                    const SingleChildScrollView(
+                    SingleChildScrollView(
                       child: Text(
-                        'Switch language',
+                        S.of(context).switchLanguage,
                         style: PBTextStyles.pageTitleTextStyle,
                       ),
                     ),
@@ -97,7 +97,7 @@ class _LanguageSettingState extends State<LanguageSetting> {
                     ),
                     const Spacer(),
                     PBButton(
-                      'Go back',
+                      S.of(context).goBack,
                       callback: () => Navigator.of(context).pop(),
                     ),
                   ],

@@ -62,5 +62,30 @@
   "username": "Benutzername",
   "password": "Passwort",
   "calendar": "Kalendar",
-  "settings": "Einstellungen"
+  "settings": "Einstellungen",
+  "home": "Startseite",
+  "noEffort": "Kein Aufwand",
+  "superEasyEffort": "Super einfach",
+  "easyEffort": "Einfach",
+  "mediumEffort": "Mittel",
+  "hardEffort": "Schwer",
+  "superHardEffort": "Super schwer",
+  "switchLanguage": "Sprache wechseln",
+  "goBack": "Zurück",
+  "setOfXOPushups": "Satz von: {xPushupsOfSet}",
+  "@setOfXOPushups": {
+    "placeholders": {
+      "xPushupsOfSet": {
+        "type": "String"
+      }
+    }
+  },
+  "lookingForAirpods": "Auf der Suche nach AirPods",
+  "general": "Allgemein",
+  "info": "Info",
+  "website": "Webseite",
+  "twitter": "Twitter",
+  "privacyPolicy": "Datenschutzrichtlinie",
+  "termsOfService": "Nutzungsbedingungen",
+  "setVolume": "Lautstärke einstellen"
 }

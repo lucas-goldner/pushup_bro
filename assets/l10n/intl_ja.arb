@@ -62,5 +62,30 @@
   "username": "ユーザー名",
   "password": "パスワード",
   "calendar": "カレンダー",
-  "settings": "設定"
+  "settings": "設定",
+  "home": "ホーム",
+  "noEffort": "努力なし",
+  "superEasyEffort": "超簡単",
+  "easyEffort": "簡単",
+  "mediumEffort": "普通",
+  "hardEffort": "難しい",
+  "superHardEffort": "超難しい",
+  "switchLanguage": "言語洗濯",
+  "goBack": "戻る",
+  "setOfXOPushups": "{xPushupsOfSet}回のセット",
+  "@setOfXOPushups": {
+    "placeholders": {
+      "xPushupsOfSet": {
+        "type": "String"
+      }
+    }
+  },
+  "lookingForAirpods": "AirPodsを探しています",
+  "general": "一般的な設定",
+  "info": "情報",
+  "website": "ウェブサイト",
+  "twitter": "ツイッター",
+  "privacyPolicy": "プライバシーポリシー",
+  "termsOfService": "利用規約",
+  "setVolume": "音量設定"
 }

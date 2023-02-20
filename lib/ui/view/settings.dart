@@ -1,5 +1,6 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/provider/url_launch_provider.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/settings/info_item.dart';
@@ -32,10 +33,10 @@ class _SettingsState extends State<Settings> {
             const SizedBox(
               height: 80,
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
               child: Text(
-                'General',
+                S.of(context).general,
                 style: PBTextStyles.headerTextStyle,
                 textAlign: TextAlign.start,
               ),
@@ -44,7 +45,7 @@ class _SettingsState extends State<Settings> {
               height: 12,
             ),
             Settingsitem(
-              'Switch language',
+              S.of(context).switchLanguage,
               CarbonIcons.language,
               () => navigateToSettingPage(LanguageSetting.routeName),
             ),
@@ -52,17 +53,17 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             Settingsitem(
-              'Set volume',
+              S.of(context).setVolume,
               CarbonIcons.volume_up,
               () => navigateToSettingPage(LanguageSetting.routeName),
             ),
             const SizedBox(
               height: 12,
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
               child: Text(
-                'Info',
+                S.of(context).info,
                 style: PBTextStyles.headerTextStyle,
                 textAlign: TextAlign.start,
               ),
@@ -71,7 +72,7 @@ class _SettingsState extends State<Settings> {
               height: 12,
             ),
             InfoItem(
-              'Website',
+              S.of(context).website,
               CarbonIcons.explore,
               () => openBrowser(createURI('lucas-goldner.com')),
             ),
@@ -79,7 +80,7 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             InfoItem(
-              'Twitter',
+              S.of(context).twitter,
               CarbonIcons.logo_twitter,
               () => openBrowser(createURI('twitter.lucas-goldner.com')),
             ),
@@ -87,7 +88,7 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             InfoItem(
-              'Privacy Policy',
+              S.of(context).privacyPolicy,
               CarbonIcons.virtual_private_cloud,
               () => openBrowser(createURI('lucas-goldner.com')),
             ),
@@ -95,7 +96,7 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             InfoItem(
-              'Terms of Service',
+              S.of(context).termsOfService,
               CarbonIcons.term,
               () => openBrowser(createURI('lucas-goldner.com')),
             ),
