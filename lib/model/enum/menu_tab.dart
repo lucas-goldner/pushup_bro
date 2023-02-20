@@ -38,17 +38,17 @@ extension MenuTabInfoExtension on MenuTabInfo {
       case MenuTabInfo.home:
         return navigator.pushReplacementNamed(
           Home.routeName,
-          arguments: NavigationParameter(S.of(context).pushupBro, context),
+          arguments: NavigationParameter(context),
         );
       case MenuTabInfo.calendar:
         return navigator.pushReplacementNamed(
           Calendar.routeName,
-          arguments: NavigationParameter(S.of(context).calendar, context),
+          arguments: NavigationParameter(context),
         );
       case MenuTabInfo.settings:
         return navigator.pushReplacementNamed(
           Settings.routeName,
-          arguments: NavigationParameter(S.of(context).settings, context),
+          arguments: NavigationParameter(context),
         );
     }
   }

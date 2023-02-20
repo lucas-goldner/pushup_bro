@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/model/enum/menu_tab.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/widgets/common/pb_app_bar.dart';
 
 class PageContainer extends StatefulWidget {
-  const PageContainer(this.pageContent, {this.title, super.key});
+  const PageContainer(this.pageContent, {this.menuTab, super.key});
   final Widget pageContent;
-  final String? title;
+  final MenuTabInfo? menuTab;
 
   @override
   State<PageContainer> createState() => _PageContainerState();
@@ -44,7 +45,10 @@ class _PageContainerState extends State<PageContainer> {
                 ),
               ),
               SafeArea(
-                child: PBAppBar(widget.title, _changeOpacity),
+                child: PBAppBar(
+                  widget.menuTab?.getMenuTitle(context) ?? '',
+                  _changeOpacity,
+                ),
               ),
             ],
           ),

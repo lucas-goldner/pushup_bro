@@ -22,8 +22,6 @@ import 'package:pushup_bro/provider/db_provider.dart';
 import 'package:pushup_bro/provider/shared_preferences_provider.dart';
 import 'package:pushup_bro/ui/routes.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
-import 'package:pushup_bro/ui/view/home.dart';
-import 'package:pushup_bro/ui/widgets/common/page_container.dart';
 import 'package:pushup_bro/utils/constants.dart';
 import 'package:pushup_bro/utils/extensions/string_extensions.dart';
 
@@ -152,17 +150,6 @@ class Main extends StatelessWidget {
           ),
           onGenerateRoute: (settings) =>
               RouteGenerator().onGenerateMainRoutes(settings),
-          initialRoute: '/',
-          onGenerateInitialRoutes: (initialRouteName) {
-            return [
-              CupertinoPageRoute<Widget>(
-                builder: (context) => PageContainer(
-                  const Home(),
-                  title: S.of(context).pushupBro,
-                ),
-              )
-            ];
-          },
         ),
       ),
     );

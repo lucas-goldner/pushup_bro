@@ -1,5 +1,6 @@
 import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/model/enum/menu_tab.dart';
 import 'package:pushup_bro/model/navigation_parameter.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/view/calendar.dart';
@@ -18,24 +19,27 @@ class RouteGenerator {
         final params = settings.arguments as NavigationParameter?;
         return _revealCircular(
           params?.context,
-          PageContainer(const Home(), title: params?.title),
+          const PageContainer(
+            Home(),
+            menuTab: MenuTabInfo.home,
+          ),
         );
       case Calendar.routeName:
         final params = settings.arguments as NavigationParameter?;
         return _revealCircular(
           params?.context,
-          PageContainer(
-            const Calendar(),
-            title: params?.title,
+          const PageContainer(
+            Calendar(),
+            menuTab: MenuTabInfo.calendar,
           ),
         );
       case Settings.routeName:
         final params = settings.arguments as NavigationParameter?;
         return _revealCircular(
           params?.context,
-          PageContainer(
-            const Settings(),
-            title: params?.title,
+          const PageContainer(
+            Settings(),
+            menuTab: MenuTabInfo.settings,
           ),
         );
       case LanguageSetting.routeName:
