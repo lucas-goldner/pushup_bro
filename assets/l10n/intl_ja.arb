@@ -1,15 +1,15 @@
 {
-  "pushupBro": "腕立て伏せ",
-  "startPush": "Start pushin'",
-  "pushupsCounter": "Pushups: ",
-  "finishSet": "Finish",
-  "congrats": "Congrats!",
-  "difficulty": "Difficulty",
-  "easyDifficulty": "Easy",
-  "middleDifficulty": "Moderate",
-  "hardDifficulty": "Exhausting",
-  "stats": "Stats",
-  "completedInXMinutes": "Completed in {XMinutes} min",
+  "pushupBro": "腕立て伏せ兄貴",
+  "startPush": "腕立て伏せを始める",
+  "pushupsCounter": "腕立て伏せ: ",
+  "finishSet": "終わる",
+  "congrats": "おめでとう!",
+  "difficulty": "難易度",
+  "easyDifficulty": "簡単",
+  "middleDifficulty": "普通",
+  "hardDifficulty": "難しい",
+  "stats": "統計",
+  "completedInXMinutes": "{XMinutes}分で終了",
   "@completedInXMinutes": {
     "placeholders": {
       "XMinutes": {
@@ -17,7 +17,7 @@
       }
     }
   },
-  "madeXPushups": "Did {xPushups} pushups",
+  "madeXPushups": "{xPushups}回の腕立て伏せ",
   "@madeXPushups": {
     "placeholders": {
       "xPushups": {
@@ -25,7 +25,7 @@
       }
     }
   },
-  "onAverage": "On average: {xPushupsPerMin} pushups/min",
+  "onAverage": "平均：{xPushupsPerMin}回/分",
   "@onAverage": {
     "placeholders": {
       "xPushupsPerMin": {
@@ -33,9 +33,9 @@
       }
     }
   },
-  "saveSet": "Save set",
-  "youDidIt": "You did it!",
-  "completedText": "Well done! You completed your first set of ${xPushups} pushups with Carlos the Gorilla. It seems like it was pretty ${xEffort}.\n\nKeep working towards building a higher and consistent pushup count.",
+  "saveSet": "セットを保存する",
+  "youDidIt": "やりました！",
+  "completedText": "素晴らしい！Carlos the Gorillaと一緒に初めてのセット（{xPushups}回）を完了しました。それはかなり{xEffort}ようです。\n\n高いかつ一貫した腕立て伏せ回数を目指し続けましょう。",
   "@completedText": {
     "placeholders": {
       "xPushups": {
@@ -46,21 +46,21 @@
       }
     }
   },
-  "features": "Features!",
-  "aidPodsFeature": "Track pushups using Airpods",
-  "calendarFeature": "Keep track of your sets in the calendar",
-  "dailyGoalFeature": "Set yourself a daily goal",
-  "friendsFeature": "Compete with your friends",
-  "syncFeature": "Keep your data synced across devices",
-  "comingSoon": "More coming soon...",
-  "moreIdeas": "More ideas? Head to the submit feature section and let me know",
-  "createAccount": "Create account",
-  "orCreateAccount": "Or create account",
-  "login": "Login",
-  "orLogin": "Or login",
-  "email": "Email",
-  "username": "Username",
-  "password": "Password",
-  "calendar": "Calendar",
-  "settings": "Settings"
+  "features": "機能",
+  "aidPodsFeature": "AirPodsで腕立て伏せをトラッキング",
+  "calendarFeature": "カレンダーでセットを記録",
+  "dailyGoalFeature": "毎日の目標を設定",
+  "friendsFeature": "友達と競争",
+  "syncFeature": "デバイス間でデータを同期",
+  "comingSoon": "もっと近日公開予定...",
+  "moreIdeas": "もっとアイデアがある？提出機能セクションに移動して教えてください。",
+  "createAccount": "アカウントを作成",
+  "orCreateAccount": "またはアカウントを作成",
+  "login": "ログイン",
+  "orLogin": "またはログイン",
+  "email": "メールアドレス",
+  "username": "ユーザー名",
+  "password": "パスワード",
+  "calendar": "カレンダー",
+  "settings": "設定"
 }

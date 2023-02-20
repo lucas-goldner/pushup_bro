@@ -1,15 +1,15 @@
 {
-  "pushupBro": "Pushup Bro DE",
-  "startPush": "Liegestützen starten",
-  "pushupsCounter": "Pushups: ",
-  "finishSet": "Finish",
-  "congrats": "Congrats!",
-  "difficulty": "Difficulty",
-  "easyDifficulty": "Easy",
-  "middleDifficulty": "Moderate",
-  "hardDifficulty": "Exhausting",
-  "stats": "Stats",
-  "completedInXMinutes": "Completed in {XMinutes} min",
+  "pushupBro": "Pushup-Kumpel",
+  "startPush": "Liegestütze beginnen",
+  "pushupsCounter": "Liegestütze: ",
+  "finishSet": "Beenden",
+  "congrats": "Glückwunsch!",
+  "difficulty": "Schwierigkeit",
+  "easyDifficulty": "Einfach",
+  "middleDifficulty": "Mäßig",
+  "hardDifficulty": "Anstrengend",
+  "stats": "Statistiken",
+  "completedInXMinutes": "Abgeschlossen in {XMinutes} Min",
   "@completedInXMinutes": {
     "placeholders": {
       "XMinutes": {
@@ -17,7 +17,7 @@
       }
     }
   },
-  "madeXPushups": "Did {xPushups} pushups",
+  "madeXPushups": "Du hast {xPushups} Liegestütze gemacht",
   "@madeXPushups": {
     "placeholders": {
       "xPushups": {
@@ -25,7 +25,7 @@
       }
     }
   },
-  "onAverage": "On average: {xPushupsPerMin} pushups/min",
+  "onAverage": "Durchschnittlich: {xPushupsPerMin} Liegestütze/Min",
   "@onAverage": {
     "placeholders": {
       "xPushupsPerMin": {
@@ -33,9 +33,9 @@
       }
     }
   },
-  "saveSet": "Save set",
-  "youDidIt": "You did it!",
-  "completedText": "Well done! You completed your first set of ${xPushups} pushups with Carlos the Gorilla. It seems like it was pretty ${xEffort}.\n\nKeep working towards building a higher and consistent pushup count.",
+  "saveSet": "Set speichern",
+  "youDidIt": "Du hast es geschafft!",
+  "completedText": "Gut gemacht! Du hast dein erstes Set von ${xPushups} Liegestützen mit Carlos dem Gorilla absolviert. Es scheint ziemlich ${xEffort} gewesen zu sein.\n\nArbeite weiter daran, eine höhere und konstante Anzahl von Liegestützen zu erreichen.",
   "@completedText": {
     "placeholders": {
       "xPushups": {
@@ -46,21 +46,21 @@
       }
     }
   },
-  "features": "Features!",
-  "aidPodsFeature": "Track pushups using Airpods",
-  "calendarFeature": "Keep track of your sets in the calendar",
-  "dailyGoalFeature": "Set yourself a daily goal",
-  "friendsFeature": "Compete with your friends",
-  "syncFeature": "Keep your data synced across devices",
-  "comingSoon": "More coming soon...",
-  "moreIdeas": "More ideas? Head to the submit feature section and let me know",
-  "createAccount": "Create account",
-  "orCreateAccount": "Or create account",
-  "login": "Login",
-  "orLogin": "Or login",
-  "email": "Email",
-  "username": "Username",
-  "password": "Password",
+  "features": "Funktionen!",
+  "aidPodsFeature": "Verfolge Liegestütze mit Airpods",
+  "calendarFeature": "Behalte deine Sets im Kalender im Blick",
+  "dailyGoalFeature": "Setze dir ein tägliches Ziel",
+  "friendsFeature": "Wettbewerb mit deinen Freunden",
+  "syncFeature": "Halte deine Daten auf verschiedenen Geräten synchronisiert",
+  "comingSoon": "Weitere Funktionen in Kürze...",
+  "moreIdeas": "Mehr Ideen? Gehe zum Abschnitt zur Einreichung von Funktionen und lass es mich wissen",
+  "createAccount": "Konto erstellen",
+  "orCreateAccount": "Oder Konto erstellen",
+  "login": "Anmelden",
+  "orLogin": "Oder anmelden",
+  "email": "E-Mail",
+  "username": "Benutzername",
+  "password": "Passwort",
   "calendar": "Kalendar",
   "settings": "Einstellungen"
 }

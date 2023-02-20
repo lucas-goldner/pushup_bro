@@ -132,41 +132,38 @@ class Main extends StatelessWidget {
       child:
           BlocSelector<SharedPreferencesCubit, SharedPreferencesState, Locale?>(
         selector: (state) => state.language,
-        builder: (builder, locale) {
-          debugPrint(locale?.languageCode);
-          return CupertinoApp(
-            debugShowCheckedModeBanner:
-                Flavor.getCurrentEnvironment == Environment.dev.getFlavorName(),
-            key: const Key('MainApp'),
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-            ],
-            locale: locale,
-            supportedLocales: S.delegate.supportedLocales,
-            theme: const CupertinoThemeData(
-              brightness: Brightness.dark,
-              textTheme: CupertinoTextThemeData(
-                textStyle: PBTextStyles.defaultTextStyle,
-              ),
+        builder: (builder, locale) => CupertinoApp(
+          debugShowCheckedModeBanner:
+              Flavor.getCurrentEnvironment == Environment.dev.getFlavorName(),
+          key: const Key('MainApp'),
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          locale: locale,
+          supportedLocales: S.delegate.supportedLocales,
+          theme: const CupertinoThemeData(
+            brightness: Brightness.dark,
+            textTheme: CupertinoTextThemeData(
+              textStyle: PBTextStyles.defaultTextStyle,
             ),
-            onGenerateRoute: (settings) =>
-                RouteGenerator().onGenerateMainRoutes(settings),
-            initialRoute: '/',
-            onGenerateInitialRoutes: (initialRouteName) {
-              return [
-                CupertinoPageRoute<Widget>(
-                  builder: (context) => PageContainer(
-                    const Home(),
-                    title: S.of(context).pushupBro,
-                  ),
-                )
-              ];
-            },
-          );
-        },
+          ),
+          onGenerateRoute: (settings) =>
+              RouteGenerator().onGenerateMainRoutes(settings),
+          initialRoute: '/',
+          onGenerateInitialRoutes: (initialRouteName) {
+            return [
+              CupertinoPageRoute<Widget>(
+                builder: (context) => PageContainer(
+                  const Home(),
+                  title: S.of(context).pushupBro,
+                ),
+              )
+            ];
+          },
+        ),
       ),
     );
   }
