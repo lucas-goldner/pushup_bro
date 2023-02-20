@@ -1,5 +1,7 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/navigation_parameter.dart';
 import 'package:pushup_bro/ui/view/calendar.dart';
@@ -33,6 +35,7 @@ extension MenuTabInfoExtension on MenuTabInfo {
 
   Future<void> navigate(BuildContext context) {
     final navigator = Navigator.of(context);
+    BlocProvider.of<PushupCubit>(context).resetAndReturnCurrentPushupSet();
 
     switch (this) {
       case MenuTabInfo.home:

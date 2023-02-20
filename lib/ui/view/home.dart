@@ -64,58 +64,56 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) => FutureBuilder(
         future: BlocProvider.of<SharedPreferencesCubit>(context).getVolume(),
-        builder: (context, future) {
-          return Stack(
-            children: [
-              SafeArea(
-                child: Stack(
-                  children: [
-                    Center(
-                      child: Column(
-                        children: [
-                          const Spacer(),
-                          const Monkey(),
-                          BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
-                            builder: (context, airPodsState) {
-                              if (airPodsState.isListening) {
-                                final pushupCubit =
-                                    BlocProvider.of<PushupCubit>(context)
-                                      ..listenForPushupEvents(
-                                        airPodsState.currentMotionData,
-                                        future.data ?? 10,
-                                      );
+        builder: (context, future) => Stack(
+          children: [
+            SafeArea(
+              child: Stack(
+                children: [
+                  Center(
+                    child: Column(
+                      children: [
+                        const Spacer(),
+                        const Monkey(),
+                        BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
+                          builder: (context, airPodsState) {
+                            if (airPodsState.isListening && started) {
+                              final pushupCubit =
+                                  BlocProvider.of<PushupCubit>(context)
+                                    ..listenForPushupEvents(
+                                      airPodsState.currentMotionData,
+                                      future.data ?? 10,
+                                    );
 
-                                return PushupCounter(
-                                  pushupCubit.getCurrentPushups(),
-                                );
-                              }
+                              return PushupCounter(
+                                pushupCubit.getCurrentPushups(),
+                              );
+                            }
 
-                              if (started) {
-                                return Text(S.of(context).lookingForAirpods);
-                              }
+                            if (started) {
+                              return Text(S.of(context).lookingForAirpods);
+                            }
 
-                              return const SizedBox();
-                            },
-                          ),
-                          const Spacer(),
-                          StartPushupsButton(
-                            toggleListeningUpdates,
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                        ],
-                      ),
+                            return const SizedBox();
+                          },
+                        ),
+                        const Spacer(),
+                        StartPushupsButton(
+                          toggleListeningUpdates,
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              if (finished)
-                IgnorePointer(
-                  child: Assets.rive.confetti.rive(),
-                ),
-            ],
-          );
-        },
+            ),
+            if (finished)
+              IgnorePointer(
+                child: Assets.rive.confetti.rive(),
+              ),
+          ],
+        ),
       );
 }
