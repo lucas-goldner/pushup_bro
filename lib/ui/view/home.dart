@@ -4,6 +4,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_state.dart';
 import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
+import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_cubit.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
@@ -61,54 +62,60 @@ class _HomeState extends State<Home> {
   }
 
   @override
-  Widget build(BuildContext context) => Stack(
-        children: [
-          SafeArea(
-            child: Stack(
-              children: [
-                Center(
-                  child: Column(
-                    children: [
-                      const Spacer(),
-                      const Monkey(),
-                      BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
-                        builder: (context, airPodsState) {
-                          if (airPodsState.isListening) {
-                            final pushupCubit =
-                                BlocProvider.of<PushupCubit>(context)
-                                  ..listenForPushupEvents(
-                                    airPodsState.currentMotionData,
-                                  );
+  Widget build(BuildContext context) => FutureBuilder(
+        future: BlocProvider.of<SharedPreferencesCubit>(context).getVolume(),
+        builder: (context, future) {
+          return Stack(
+            children: [
+              SafeArea(
+                child: Stack(
+                  children: [
+                    Center(
+                      child: Column(
+                        children: [
+                          const Spacer(),
+                          const Monkey(),
+                          BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
+                            builder: (context, airPodsState) {
+                              if (airPodsState.isListening) {
+                                final pushupCubit =
+                                    BlocProvider.of<PushupCubit>(context)
+                                      ..listenForPushupEvents(
+                                        airPodsState.currentMotionData,
+                                        future.data ?? 10,
+                                      );
 
-                            return PushupCounter(
-                              pushupCubit.getCurrentPushups(),
-                            );
-                          }
+                                return PushupCounter(
+                                  pushupCubit.getCurrentPushups(),
+                                );
+                              }
 
-                          if (started) {
-                            return Text(S.of(context).lookingForAirpods);
-                          }
+                              if (started) {
+                                return Text(S.of(context).lookingForAirpods);
+                              }
 
-                          return const SizedBox();
-                        },
+                              return const SizedBox();
+                            },
+                          ),
+                          const Spacer(),
+                          StartPushupsButton(
+                            toggleListeningUpdates,
+                          ),
+                          const SizedBox(
+                            height: 40,
+                          ),
+                        ],
                       ),
-                      const Spacer(),
-                      StartPushupsButton(
-                        toggleListeningUpdates,
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          if (finished)
-            IgnorePointer(
-              child: Assets.rive.confetti.rive(),
-            ),
-        ],
+              ),
+              if (finished)
+                IgnorePointer(
+                  child: Assets.rive.confetti.rive(),
+                ),
+            ],
+          );
+        },
       );
 }

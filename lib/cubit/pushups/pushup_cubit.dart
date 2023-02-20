@@ -19,7 +19,7 @@ class PushupCubit extends Cubit<PushupState> {
     return PushupSet(pushups, 0);
   }
 
-  void listenForPushupEvents(DeviceMotionData? deviceMotionData) {
+  void listenForPushupEvents(DeviceMotionData? deviceMotionData, int volume) {
     final userAccelerationY = deviceMotionData?.userAcceleration.y ?? 0;
 
     if (state.inPushup) {
@@ -28,8 +28,9 @@ class PushupCubit extends Cubit<PushupState> {
         final pushups = [...state.pushups, newPushup];
         final pushupSoundFilePath =
             Assets.audio.pushupSound.replaceFirstMapped('assets/', (_) => '');
+
         _audioPlayer
-          ..setVolumeLevel(1)
+          ..setVolumeLevel(volume / 10.toDouble())
           ..playSound(pushupSoundFilePath);
 
         emit(

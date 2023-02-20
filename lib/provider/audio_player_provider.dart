@@ -13,6 +13,6 @@ class AudioPlayerProvider implements AudioPlayerInterface {
 
   @override
   Future<void> setVolumeLevel(double volume) async {
-    await player.setVolume(1);
+    await player.setVolume(volume);
   }
 }
