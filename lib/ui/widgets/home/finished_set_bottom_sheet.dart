@@ -41,19 +41,19 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
     showCupertinoDialog<Widget>(
       context: context,
       builder: (context) => CupertinoAlertDialog(
-        title: const Text('Close without saving?'),
-        content: const Text('If you quit now, the set will not be saved'),
+        title: Text(S.of(context).closeWithoutSaving),
+        content: Text(S.of(context).closeExplanation),
         actions: <Widget>[
           CupertinoDialogAction(
-            child: const Text(
-              'Cancel',
+            child: Text(
+              S.of(context).cancel,
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
           CupertinoDialogAction(
-            child: const Text(
-              "Don't save",
-              style: TextStyle(
+            child: Text(
+              S.of(context).dontSave,
+              style: const TextStyle(
                 color: CupertinoColors.destructiveRed,
                 fontWeight: FontWeight.bold,
               ),

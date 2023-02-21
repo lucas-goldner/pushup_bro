@@ -95,5 +95,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "closeWithoutSaving": "Close without saving?",
+  "closeExplanation": "If you quit now, the set will not be saved",
+  "cancel": "Cancel",
+  "dontSave": "Don't save"
 }

@@ -95,5 +95,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "closeWithoutSaving": "保存せずに閉じますか？",
+  "closeExplanation": "今終了すると、設定は保存されません",
+  "cancel": "キャンセル",
+  "dontSave": "保存しない"
 }

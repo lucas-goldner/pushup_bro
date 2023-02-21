@@ -95,5 +95,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "closeWithoutSaving": "¿Cerrar sin guardar?",
+  "closeExplanation": "Si sales ahora, los cambios no serán guardados",
+  "cancel": "Cancelar",
+  "dontSave": "No guardar"
 }

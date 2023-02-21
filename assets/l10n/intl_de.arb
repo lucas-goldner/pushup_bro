@@ -95,5 +95,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "closeWithoutSaving": "Ohne Speichern verlassen?",
+  "closeExplanation": "Wenn du das Fenster verlässt, verlierst du dein aufgenommenen Satz",
+  "cancel": "Abbrechen",
+  "dontSave": "Nicht speichern"
 }
