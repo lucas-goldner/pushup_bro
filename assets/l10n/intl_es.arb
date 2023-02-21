@@ -1,0 +1,103 @@
+{
+  "pushupBro": "Compañero de flexiones",
+  "startPush": "Empezar a hacer",
+  "pushupsCounter": "Flexiones: ",
+  "finishSet": "Terminar",
+  "congrats": "¡Felicidades!",
+  "difficulty": "Dificultad",
+  "easyDifficulty": "Fácil",
+  "middleDifficulty": "Moderada",
+  "hardDifficulty": "Agotadora",
+  "stats": "Estadísticas",
+  "completedInXMinutes": "Completado en {XMinutes} min",
+  "@completedInXMinutes": {
+    "placeholders": {
+      "XMinutes": {
+        "type": "String"
+      }
+    }
+  },
+  "madeXPushups": "Hizo {xPushups} flexiones",
+  "@madeXPushups": {
+    "placeholders": {
+      "xPushups": {
+        "type": "String"
+      }
+    }
+  },
+  "onAverage": "En promedio: {xPushupsPerMin} flexiones/min",
+  "@onAverage": {
+    "placeholders": {
+      "xPushupsPerMin": {
+        "type": "String"
+      }
+    }
+  },
+  "saveSet": "Guardar serie",
+  "youDidIt": "¡Lo logró!",
+  "completedText": "¡Buen trabajo! Ha completado su primer conjunto de ${xPushups} flexiones con Carlos el Gorila. Parece que fue bastante ${xEffort}.\n\nSiga trabajando para aumentar su recuento de flexiones y mantenerlo constante.",
+  "@completedText": {
+    "placeholders": {
+      "xPushups": {
+        "type": "String"
+      },
+      "xEffort": {
+        "type": "String"
+      }
+    }
+  },
+  "features": "Funciones",
+  "aidPodsFeature": "Realice un seguimiento de las flexiones usando Airpods",
+  "calendarFeature": "Haga un seguimiento de sus conjuntos en el calendario",
+  "dailyGoalFeature": "Establezca una meta diaria",
+  "friendsFeature": "Compite con tus amigos",
+  "syncFeature": "Sincronice sus datos en diferentes dispositivos",
+  "comingSoon": "Próximamente...",
+  "moreIdeas": "¿Más ideas? Dirígete a la sección de envío de funciones y házmelo saber.",
+  "createAccount": "Crear cuenta",
+  "orCreateAccount": "O crear cuenta",
+  "login": "Iniciar sesión",
+  "orLogin": "O iniciar sesión",
+  "email": "Correo electrónico",
+  "username": "Nombre de usuario",
+  "password": "Contraseña",
+  "calendar": "Calendario",
+  "settings": "Configuraciones",
+  "home": "Inicio",
+  "noEffort": "Sin esfuerzo",
+  "superEasyEffort": "Súper fácil",
+  "easyEffort": "Fácil",
+  "mediumEffort": "Medio",
+  "hardEffort": "Difícil",
+  "superHardEffort": "Súper difícil",
+  "switchLanguage": "Cambiar idioma",
+  "goBack": "Volver",
+  "setOfXOPushups": "Conjunto de: {xPushupsOfSet}",
+  "@setOfXOPushups": {
+    "placeholders": {
+      "xPushupsOfSet": {
+        "type": "String"
+      }
+    }
+  },
+  "lookingForAirpods": "Buscando AirPods",
+  "general": "General",
+  "info": "Información",
+  "website": "Sitio web",
+  "twitter": "Twitter",
+  "privacyPolicy": "Política de privacidad",
+  "termsOfService": "Términos de servicio",
+  "setVolume": "Ajustar volumen",
+  "volumeLevel": "Volumen: {xVolumeLevel}",
+  "@volumeLevel": {
+    "placeholders": {
+      "xVolumeLevel": {
+        "type": "int"
+      }
+    }
+  },
+  "closeWithoutSaving": "¿Cerrar sin guardar?",
+  "closeExplanation": "Si sales ahora, los cambios no serán guardados",
+  "cancel": "Cancelar",
+  "dontSave": "No guardar"
+}

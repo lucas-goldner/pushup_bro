@@ -1,0 +1,103 @@
+{
+  "pushupBro": "Pushup Bro",
+  "startPush": "Start pushin'",
+  "pushupsCounter": "Pushups: ",
+  "finishSet": "Finish",
+  "congrats": "Congrats!",
+  "difficulty": "Difficulty",
+  "easyDifficulty": "Easy",
+  "middleDifficulty": "Moderate",
+  "hardDifficulty": "Exhausting",
+  "stats": "Stats",
+  "completedInXMinutes": "Completed in {XMinutes} min",
+  "@completedInXMinutes": {
+    "placeholders": {
+      "XMinutes": {
+        "type": "String"
+      }
+    }
+  },
+  "madeXPushups": "Did {xPushups} pushups",
+  "@madeXPushups": {
+    "placeholders": {
+      "xPushups": {
+        "type": "String"
+      }
+    }
+  },
+  "onAverage": "On average: {xPushupsPerMin} pushups/min",
+  "@onAverage": {
+    "placeholders": {
+      "xPushupsPerMin": {
+        "type": "String"
+      }
+    }
+  },
+  "saveSet": "Save set",
+  "youDidIt": "You did it!",
+  "completedText": "Well done! You completed your first set of ${xPushups} pushups with Carlos the Gorilla. It seems like it was pretty ${xEffort}.\n\nKeep working towards building a higher and consistent pushup count.",
+  "@completedText": {
+    "placeholders": {
+      "xPushups": {
+        "type": "String"
+      },
+      "xEffort": {
+        "type": "String"
+      }
+    }
+  },
+  "features": "Features!",
+  "aidPodsFeature": "Track pushups using Airpods",
+  "calendarFeature": "Keep track of your sets in the calendar",
+  "dailyGoalFeature": "Set yourself a daily goal",
+  "friendsFeature": "Compete with your friends",
+  "syncFeature": "Keep your data synced across devices",
+  "comingSoon": "More coming soon...",
+  "moreIdeas": "More ideas? Head to the submit feature section and let me know",
+  "createAccount": "Create account",
+  "orCreateAccount": "Or create account",
+  "login": "Login",
+  "orLogin": "Or login",
+  "email": "Email",
+  "username": "Username",
+  "password": "Password",
+  "calendar": "Calendar",
+  "settings": "Settings",
+  "home": "Home",
+  "noEffort": "Like it was nothing",
+  "superEasyEffort": "Piece of cake",
+  "easyEffort": "Easy",
+  "mediumEffort": "Moderate",
+  "hardEffort": "Pretty hard",
+  "superHardEffort": "Insane",
+  "switchLanguage": "Switch language",
+  "goBack": "Go back",
+  "setOfXOPushups": "Set of: {xPushupsOfSet}",
+  "@setOfXOPushups": {
+    "placeholders": {
+      "xPushupsOfSet": {
+        "type": "String"
+      }
+    }
+  },
+  "lookingForAirpods": "Looking for airpods",
+  "general": "General",
+  "info": "Info",
+  "website": "Website",
+  "twitter": "Twitter",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service",
+  "setVolume": "Lautstärke einstellen",
+  "volumeLevel": "Volume: {xVolumeLevel}",
+  "@volumeLevel": {
+    "placeholders": {
+      "xVolumeLevel": {
+        "type": "int"
+      }
+    }
+  },
+  "closeWithoutSaving": "Close without saving?",
+  "closeExplanation": "If you quit now, the set will not be saved",
+  "cancel": "Cancel",
+  "dontSave": "Don't save"
+}

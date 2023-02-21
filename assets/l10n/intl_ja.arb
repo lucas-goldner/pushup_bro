@@ -1,0 +1,103 @@
+{
+  "pushupBro": "腕立て伏せ兄貴",
+  "startPush": "腕立て伏せを始める",
+  "pushupsCounter": "腕立て伏せ: ",
+  "finishSet": "終わる",
+  "congrats": "おめでとう!",
+  "difficulty": "難易度",
+  "easyDifficulty": "簡単",
+  "middleDifficulty": "普通",
+  "hardDifficulty": "難しい",
+  "stats": "統計",
+  "completedInXMinutes": "{XMinutes}分で終了",
+  "@completedInXMinutes": {
+    "placeholders": {
+      "XMinutes": {
+        "type": "String"
+      }
+    }
+  },
+  "madeXPushups": "{xPushups}回の腕立て伏せ",
+  "@madeXPushups": {
+    "placeholders": {
+      "xPushups": {
+        "type": "String"
+      }
+    }
+  },
+  "onAverage": "平均：{xPushupsPerMin}回/分",
+  "@onAverage": {
+    "placeholders": {
+      "xPushupsPerMin": {
+        "type": "String"
+      }
+    }
+  },
+  "saveSet": "セットを保存する",
+  "youDidIt": "やりました！",
+  "completedText": "素晴らしい！Carlos the Gorillaと一緒に初めてのセット（{xPushups}回）を完了しました。それはかなり{xEffort}ようです。\n\n高いかつ一貫した腕立て伏せ回数を目指し続けましょう。",
+  "@completedText": {
+    "placeholders": {
+      "xPushups": {
+        "type": "String"
+      },
+      "xEffort": {
+        "type": "String"
+      }
+    }
+  },
+  "features": "機能",
+  "aidPodsFeature": "AirPodsで腕立て伏せをトラッキング",
+  "calendarFeature": "カレンダーでセットを記録",
+  "dailyGoalFeature": "毎日の目標を設定",
+  "friendsFeature": "友達と競争",
+  "syncFeature": "デバイス間でデータを同期",
+  "comingSoon": "もっと近日公開予定...",
+  "moreIdeas": "もっとアイデアがある？提出機能セクションに移動して教えてください。",
+  "createAccount": "アカウントを作成",
+  "orCreateAccount": "またはアカウントを作成",
+  "login": "ログイン",
+  "orLogin": "またはログイン",
+  "email": "メールアドレス",
+  "username": "ユーザー名",
+  "password": "パスワード",
+  "calendar": "カレンダー",
+  "settings": "設定",
+  "home": "ホーム",
+  "noEffort": "努力なし",
+  "superEasyEffort": "超簡単",
+  "easyEffort": "簡単",
+  "mediumEffort": "普通",
+  "hardEffort": "難しい",
+  "superHardEffort": "超難しい",
+  "switchLanguage": "言語洗濯",
+  "goBack": "戻る",
+  "setOfXOPushups": "{xPushupsOfSet}回のセット",
+  "@setOfXOPushups": {
+    "placeholders": {
+      "xPushupsOfSet": {
+        "type": "String"
+      }
+    }
+  },
+  "lookingForAirpods": "AirPodsを探しています",
+  "general": "一般的な設定",
+  "info": "情報",
+  "website": "ウェブサイト",
+  "twitter": "ツイッター",
+  "privacyPolicy": "プライバシーポリシー",
+  "termsOfService": "利用規約",
+  "setVolume": "音量設定",
+  "volumeLevel": "音量は{xVolumeLevel}",
+  "@volumeLevel": {
+    "placeholders": {
+      "xVolumeLevel": {
+        "type": "int"
+      }
+    }
+  },
+  "closeWithoutSaving": "保存せずに閉じますか？",
+  "closeExplanation": "今終了すると、設定は保存されません",
+  "cancel": "キャンセル",
+  "dontSave": "保存しない"
+}

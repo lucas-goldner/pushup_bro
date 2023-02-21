@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Lucas Goldner on 20.02.23.
+  
+*/
+
+CFBundleDisplayName = "Compañero de flexiones";

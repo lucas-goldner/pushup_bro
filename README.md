@@ -1,7 +1,7 @@
 # PushUpTracker
 
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
-[![CI](https://github.com/lucas-goldner/Pushup-Bro/actions/workflows/build_flutter_ios.yml/badge.svg?branch=main)](https://github.com/lucas-goldner/Pushup-Bro/actions/workflows/build_flutter_ios.yml)
+[![CI](https://github.com/lucas-goldner/Pushup-Bro/actions/workflows/build_flutter_ios.yml/badge.svg?branch=main&event=pull_request)](https://github.com/lucas-goldner/Pushup-Bro/actions/workflows/build_flutter_ios.yml)
 
 Track your pushups with ease using the sensors in your AirPods!
 
@@ -26,10 +26,22 @@ Simply start a workout session and place your AirPods in your ears. The app will
 
 Download PushUpTracker from the App Store today and start tracking your pushups with ease. Whether you're a seasoned athlete or just starting your fitness journey, PushUpTracker is the perfect companion to help you reach your goals.
 
+**Before running**, create a /config folder at the root of the /ios folder and
+add a /dev and a /prod folder inside of it, inside of each of those add your GoogleServiceInfo.plist.
+The paths should look like this at the end:
+/ios/config/prod/GoogleService-Info.plist
+/ios/config/dev/GoogleService-Info.plist
+
 To run the project use:
 
 ```
 $ flutter pub get
+# If fluttergen is not installed go here: https://pub.dev/packages/flutter_gen
+$ fluttergen
+# If language files were not generated
+$ flutter pub run intl_utils:generate
+# Create isar schemas
+$ flutter pub run build_runner build --delete-conflicting-outputs
 
 # For dev run
 $ flutter run --flavor dev -t lib/flavor/main_dev.dart

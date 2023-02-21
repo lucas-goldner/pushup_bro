@@ -1,0 +1,103 @@
+{
+  "pushupBro": "Pushup Kumpel",
+  "startPush": "Liegestützen beginnen",
+  "pushupsCounter": "Liegestützen: ",
+  "finishSet": "Beenden",
+  "congrats": "Glückwunsch!",
+  "difficulty": "Schwierigkeit",
+  "easyDifficulty": "Einfach",
+  "middleDifficulty": "Mäßig",
+  "hardDifficulty": "Anstrengend",
+  "stats": "Statistiken",
+  "completedInXMinutes": "Abgeschlossen in {XMinutes} Min",
+  "@completedInXMinutes": {
+    "placeholders": {
+      "XMinutes": {
+        "type": "String"
+      }
+    }
+  },
+  "madeXPushups": "Du hast {xPushups} Liegestütze gemacht",
+  "@madeXPushups": {
+    "placeholders": {
+      "xPushups": {
+        "type": "String"
+      }
+    }
+  },
+  "onAverage": "Durchschnittlich: {xPushupsPerMin} Liegestütze/Min",
+  "@onAverage": {
+    "placeholders": {
+      "xPushupsPerMin": {
+        "type": "String"
+      }
+    }
+  },
+  "saveSet": "Set speichern",
+  "youDidIt": "Du hast es geschafft!",
+  "completedText": "Gut gemacht! Du hast dein erstes Set von ${xPushups} Liegestützen mit Carlos dem Gorilla absolviert. Es scheint ziemlich ${xEffort} gewesen zu sein.\n\nArbeite weiter daran, eine höhere und konstante Anzahl von Liegestützen zu erreichen.",
+  "@completedText": {
+    "placeholders": {
+      "xPushups": {
+        "type": "String"
+      },
+      "xEffort": {
+        "type": "String"
+      }
+    }
+  },
+  "features": "Funktionen!",
+  "aidPodsFeature": "Verfolge Liegestütze mit Airpods",
+  "calendarFeature": "Behalte deine Sets im Kalender im Blick",
+  "dailyGoalFeature": "Setze dir ein tägliches Ziel",
+  "friendsFeature": "Wettbewerb mit deinen Freunden",
+  "syncFeature": "Halte deine Daten auf verschiedenen Geräten synchronisiert",
+  "comingSoon": "Weitere Funktionen in Kürze...",
+  "moreIdeas": "Mehr Ideen? Gehe zum Abschnitt zur Einreichung von Funktionen und lass es mich wissen",
+  "createAccount": "Konto erstellen",
+  "orCreateAccount": "Oder Konto erstellen",
+  "login": "Anmelden",
+  "orLogin": "Oder anmelden",
+  "email": "E-Mail",
+  "username": "Benutzername",
+  "password": "Passwort",
+  "calendar": "Kalendar",
+  "settings": "Einstellungen",
+  "home": "Startseite",
+  "noEffort": "Kein Aufwand",
+  "superEasyEffort": "Super einfach",
+  "easyEffort": "Einfach",
+  "mediumEffort": "Mittel",
+  "hardEffort": "Schwer",
+  "superHardEffort": "Super schwer",
+  "switchLanguage": "Sprache wechseln",
+  "goBack": "Zurück",
+  "setOfXOPushups": "Satz von: {xPushupsOfSet}",
+  "@setOfXOPushups": {
+    "placeholders": {
+      "xPushupsOfSet": {
+        "type": "String"
+      }
+    }
+  },
+  "lookingForAirpods": "Auf der Suche nach AirPods",
+  "general": "Allgemein",
+  "info": "Info",
+  "website": "Webseite",
+  "twitter": "Twitter",
+  "privacyPolicy": "Datenschutzrichtlinie",
+  "termsOfService": "Nutzungsbedingungen",
+  "setVolume": "Lautstärke einstellen",
+  "volumeLevel": "Volumen: {xVolumeLevel}",
+  "@volumeLevel": {
+    "placeholders": {
+      "xVolumeLevel": {
+        "type": "int"
+      }
+    }
+  },
+  "closeWithoutSaving": "Ohne Speichern verlassen?",
+  "closeExplanation": "Wenn du das Fenster verlässt, verlierst du dein aufgenommenen Satz",
+  "cancel": "Abbrechen",
+  "dontSave": "Nicht speichern"
+}
