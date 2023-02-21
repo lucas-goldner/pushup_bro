@@ -139,8 +139,7 @@ class LanguageLocal {
     'oc': {'name': 'Occitan', 'nativeName': 'Occitan'},
     'oj': {'name': 'Ojibwe, Ojibwa', 'nativeName': 'ᐊᓂᔑᓈᐯᒧᐎᓐ'},
     'cu': {
-      'name':
-          'Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic',
+      'name': 'Old Church Slavonic, Church Slavic',
       'nativeName': 'ѩзыкъ словѣньскъ'
     },
     'om': {'name': 'Oromo', 'nativeName': 'Afaan Oromoo'},

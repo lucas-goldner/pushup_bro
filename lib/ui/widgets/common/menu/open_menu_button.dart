@@ -24,6 +24,8 @@ class OpenMenuButton extends StatelessWidget {
             curve: const Interval(0.25, 1, curve: Curves.easeInOut),
             duration: const Duration(milliseconds: 250),
             child: FloatingActionButton(
+              splashColor: Colors.transparent,
+              hoverColor: Colors.transparent,
               enableFeedback: false,
               backgroundColor: PBColors.background2,
               onPressed: toggle,

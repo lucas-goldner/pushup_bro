@@ -19,7 +19,7 @@ class _MonkeyState extends State<Monkey> {
 
   void _onInit(Artboard art) {
     final ctrl = StateMachineController.fromArtboard(art, 'PushupState')
-      ?..isActive = false;
+      ?..isActive = true;
 
     if (ctrl != null) {
       art.addController(ctrl);
