@@ -87,7 +87,7 @@
   "twitter": "Twitter",
   "privacyPolicy": "Privacy Policy",
   "termsOfService": "Terms of Service",
-  "setVolume": "Lautstärke einstellen",
+  "setVolume": "Set volume",
   "volumeLevel": "Volume: {xVolumeLevel}",
   "@volumeLevel": {
     "placeholders": {

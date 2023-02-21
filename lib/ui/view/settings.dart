@@ -1,6 +1,7 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/generated/l10n.dart';
+import 'package:pushup_bro/model/enum/website_links.dart';
 import 'package:pushup_bro/provider/url_launch_provider.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/settings/info_item.dart';
@@ -75,7 +76,7 @@ class _SettingsState extends State<Settings> {
             InfoItem(
               S.of(context).website,
               CarbonIcons.explore,
-              () => openBrowser(createURI('lucas-goldner.com')),
+              () => openBrowser(createURI(WebsiteLinks.personalSite.link)),
             ),
             const SizedBox(
               height: 8,
@@ -83,7 +84,7 @@ class _SettingsState extends State<Settings> {
             InfoItem(
               S.of(context).twitter,
               CarbonIcons.logo_twitter,
-              () => openBrowser(createURI('twitter.lucas-goldner.com')),
+              () => openBrowser(createURI(WebsiteLinks.twitter.link)),
             ),
             const SizedBox(
               height: 8,
@@ -91,7 +92,7 @@ class _SettingsState extends State<Settings> {
             InfoItem(
               S.of(context).privacyPolicy,
               CarbonIcons.virtual_private_cloud,
-              () => openBrowser(createURI('lucas-goldner.com')),
+              () => openBrowser(createURI(WebsiteLinks.privacyPolicy.link)),
             ),
             const SizedBox(
               height: 8,
@@ -99,7 +100,7 @@ class _SettingsState extends State<Settings> {
             InfoItem(
               S.of(context).termsOfService,
               CarbonIcons.term,
-              () => openBrowser(createURI('lucas-goldner.com')),
+              () => openBrowser(createURI(WebsiteLinks.termsOfService.link)),
             ),
             const SizedBox(
               height: 8,
