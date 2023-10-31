@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:pushup_bro/model/enum/menu_tab.dart';
+import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/closing_menu_button.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/menu_tabs.dart';
@@ -20,7 +22,6 @@ class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
     MenuTabInfo.calendar,
     MenuTabInfo.settings,
   ];
-
   late final AnimationController _controller;
   late AnimationController _drawerController;
   static const _initialDelayTime = Duration(milliseconds: 50);
@@ -86,44 +87,48 @@ class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              ClosingMenuButton(
-                _toggle,
-                open: _open,
-              ),
-              MenuTabs(
-                _drawerController,
-                _menuTabInfo,
-                _itemSlideIntervals,
-                open: _open,
-              ),
-              OpenMenuButton(
-                _toggle,
-                open: _open,
-              ),
-            ],
+  Widget build(BuildContext context) => Stack(
+        children: [
+          SafeArea(
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      ClosingMenuButton(
+                        _toggle,
+                        open: _open,
+                      ),
+                      MenuTabs(
+                        _drawerController,
+                        _menuTabInfo,
+                        _itemSlideIntervals,
+                        open: _open,
+                      ),
+                      OpenMenuButton(
+                        _toggle,
+                        open: _open,
+                      ),
+                    ],
+                  ),
+                ),
+                Visibility(
+                  visible: widget.title != null,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.title ?? '',
+                        style: PBTextStyles.pageTitleTextStyle,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        Visibility(
-          visible: widget.title != null,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                widget.title ?? '',
-                style: PBTextStyles.pageTitleTextStyle,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
+        ],
+      );
 }

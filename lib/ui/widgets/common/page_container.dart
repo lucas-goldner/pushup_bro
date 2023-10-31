@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/model/enum/menu_tab.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
+import 'package:pushup_bro/ui/widgets/common/menu/menu_fading_background.dart';
 import 'package:pushup_bro/ui/widgets/common/pb_app_bar.dart';
 
 class PageContainer extends StatefulWidget {
@@ -44,11 +45,14 @@ class _PageContainerState extends State<PageContainer> {
                   ),
                 ),
               ),
-              SafeArea(
-                child: PBAppBar(
-                  widget.menuTab?.getMenuTitle(context) ?? '',
-                  _changeOpacity,
-                ),
+              Stack(
+                children: [
+                  MenuFadingBackground(opacityLevel),
+                  PBAppBar(
+                    widget.menuTab?.getMenuTitle(context) ?? '',
+                    _changeOpacity,
+                  ),
+                ],
               ),
             ],
           ),
