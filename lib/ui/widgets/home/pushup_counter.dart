@@ -8,11 +8,9 @@ class PushupCounter extends StatelessWidget {
   final int pushups;
 
   @override
-  Widget build(BuildContext context) {
-    return AnimatedFlipCounter(
-      value: pushups,
-      prefix: S.of(context).pushupsCounter,
-      textStyle: PBTextStyles.pushupTextStyle,
-    );
-  }
+  Widget build(BuildContext context) => AnimatedFlipCounter(
+        value: pushups,
+        prefix: S.of(context).pushupsCounter,
+        textStyle: PBTextStyles.pushupTextStyle,
+      );
 }

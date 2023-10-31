@@ -28,15 +28,12 @@ class _MonkeyState extends State<Monkey> {
     }
   }
 
-  // ignore: use_setters_to_change_properties
-  void _triggerPushupAnim(bool anim) => _bump?.value = anim;
-
   @override
   Widget build(BuildContext context) {
     return BlocSelector<PushupCubit, PushupState, bool>(
       selector: (state) => state.inPushup,
       builder: (context, pushupState) {
-        _triggerPushupAnim(pushupState);
+        _bump?.value = pushupState;
 
         return AnimatedContainer(
           duration: const Duration(seconds: 3),

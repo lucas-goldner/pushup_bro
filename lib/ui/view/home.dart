@@ -26,8 +26,8 @@ class _HomeState extends State<Home> {
   bool started = false;
 
   void toggleListeningUpdates() {
-    final airpodsCubit = BlocProvider.of<AirPodsTrackerCubit>(context);
-    final pushupCubit = BlocProvider.of<PushupCubit>(context);
+    final airpodsCubit = context.read<AirPodsTrackerCubit>();
+    final pushupCubit = context.read<PushupCubit>();
 
     if (started && pushupCubit.getCurrentPushups() >= 1) {
       airpodsCubit.stopListening();
@@ -40,15 +40,14 @@ class _HomeState extends State<Home> {
     }
   }
 
-  Future<void> openBottomSheet(PushupSet pushups) async {
-    await showCupertinoModalBottomSheet<bool>(
-      context: context,
-      useRootNavigator: true,
-      enableDrag: false,
-      isDismissible: false,
-      builder: (context) => FinishedSetBottomSheet(pushups),
-    );
-  }
+  Future<void> openBottomSheet(PushupSet pushups) async =>
+      showCupertinoModalBottomSheet<bool>(
+        context: context,
+        useRootNavigator: true,
+        enableDrag: false,
+        isDismissible: false,
+        builder: (context) => FinishedSetBottomSheet(pushups),
+      );
 
   @override
   Widget build(BuildContext context) => FutureBuilder(
@@ -63,18 +62,16 @@ class _HomeState extends State<Home> {
                       children: [
                         const Spacer(),
                         const Monkey(),
-                        BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
+                        BlocConsumer<AirPodsTrackerCubit, AirPodsTrackerState>(
+                          listener: (context, state) =>
+                              context.read<PushupCubit>().listenForPushupEvents(
+                                    state.currentMotionData,
+                                    future.data ?? 10,
+                                  ),
                           builder: (context, airPodsState) {
                             if (airPodsState.isListening && started) {
-                              final pushupCubit =
-                                  BlocProvider.of<PushupCubit>(context)
-                                    ..listenForPushupEvents(
-                                      airPodsState.currentMotionData,
-                                      future.data ?? 10,
-                                    );
-
                               return PushupCounter(
-                                pushupCubit.getCurrentPushups(),
+                                context.read<PushupCubit>().getCurrentPushups(),
                               );
                             }
 

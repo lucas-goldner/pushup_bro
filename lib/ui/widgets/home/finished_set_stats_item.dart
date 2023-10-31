@@ -12,35 +12,33 @@ class FinishedSetStatsItem extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        border: Border.all(color: PBColors.background2),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 8,
-          horizontal: 16,
+  Widget build(BuildContext context) => DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border.all(color: PBColors.background2),
+          borderRadius: BorderRadius.circular(10),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(
-              icon,
-              size: 28,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            Text(
-              text,
-              style: PBTextStyles.defaultTextStyle,
-              textAlign: TextAlign.start,
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 8,
+            horizontal: 16,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                icon,
+                size: 28,
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              Text(
+                text,
+                style: PBTextStyles.defaultTextStyle,
+                textAlign: TextAlign.start,
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }

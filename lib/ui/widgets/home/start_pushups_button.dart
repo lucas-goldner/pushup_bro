@@ -15,21 +15,14 @@ class _StartPushupsButtonState extends State<StartPushupsButton> {
   bool buttonPressed = false;
 
   void switchButtonState(BuildContext context) {
-    if (buttonPressed) {
-      widget.onButtontrigger.call();
-      setState(() => buttonPressed = false);
-    } else {
-      widget.onButtontrigger.call();
-      setState(() => buttonPressed = true);
-    }
+    widget.onButtontrigger.call();
+    setState(() => buttonPressed = !buttonPressed);
   }
 
   @override
-  Widget build(BuildContext context) {
-    return AnimatedButton(
-      text: buttonPressed ? S.of(context).finishSet : S.of(context).startPush,
-      icon: CarbonIcons.arrow_right,
-      callback: () => switchButtonState(context),
-    );
-  }
+  Widget build(BuildContext context) => AnimatedButton(
+        text: buttonPressed ? S.of(context).finishSet : S.of(context).startPush,
+        icon: CarbonIcons.arrow_right,
+        callback: () => switchButtonState(context),
+      );
 }
