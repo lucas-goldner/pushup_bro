@@ -7,15 +7,15 @@ class MenuFadingBackground extends StatelessWidget {
   final double opacity;
 
   @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-      decoration: BoxDecoration(
-        color: opacity == 0.75
-            ? PBColors.background2.withOpacity(0.5)
-            : Colors.transparent,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => IgnorePointer(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+          decoration: BoxDecoration(
+            color: opacity == 0.75
+                ? PBColors.background2.withOpacity(0.5)
+                : Colors.transparent,
+          ),
+        ),
+      );
 }
