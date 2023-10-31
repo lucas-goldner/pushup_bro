@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
-import 'package:pushup_bro/cubit/pushups/pushup_state.dart';
+import 'package:pushup_bro/features/pushups/cubit/pushup_cubit.dart';
+import 'package:pushup_bro/features/pushups/cubit/pushup_state.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 import 'package:rive/rive.dart';
 

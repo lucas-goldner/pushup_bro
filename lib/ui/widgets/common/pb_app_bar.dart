@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/model/enum/menu_tab.dart';
-import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/closing_menu_button.dart';
 import 'package:pushup_bro/ui/widgets/common/menu/menu_tabs.dart';

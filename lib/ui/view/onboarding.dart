@@ -1,7 +1,7 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:pushup_bro/model/pushup_set.dart';
+import 'package:pushup_bro/features/pushups/model/pushup_set.dart';
 import 'package:pushup_bro/ui/widgets/onboarding/onboarding_account.dart';
 import 'package:pushup_bro/ui/widgets/onboarding/onboarding_features.dart';
 import 'package:pushup_bro/ui/widgets/onboarding/onboarding_initial.dart';

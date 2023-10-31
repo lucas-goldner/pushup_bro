@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:pushup_bro/model/pushup_set.dart';
+import 'package:pushup_bro/features/pushups/model/pushup_set.dart';
 
 class DBState extends Equatable {
   const DBState(this.pushupSets);

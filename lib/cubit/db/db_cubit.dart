@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/cubit/db/db_state.dart';
-import 'package:pushup_bro/model/pushup_set.dart';
+import 'package:pushup_bro/features/pushups/model/pushup_set.dart';
 import 'package:pushup_bro/provider/db_provider.dart';
 
 class DBCubit extends Cubit<DBState> {

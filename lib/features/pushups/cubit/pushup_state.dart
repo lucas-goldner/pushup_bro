@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:pushup_bro/model/pushup.dart';
+import 'package:pushup_bro/features/pushups/model/pushup.dart';
 
 class PushupState extends Equatable {
   const PushupState({required this.pushups, required this.inPushup});

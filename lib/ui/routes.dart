@@ -1,8 +1,8 @@
 import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/features/pushups/model/pushup_set.dart';
 import 'package:pushup_bro/model/enum/menu_tab.dart';
 import 'package:pushup_bro/model/navigation_parameter.dart';
-import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/ui/view/calendar.dart';
 import 'package:pushup_bro/ui/view/home.dart';
 import 'package:pushup_bro/ui/view/onboarding.dart';

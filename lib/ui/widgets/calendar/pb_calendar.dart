@@ -1,7 +1,6 @@
-
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:pushup_bro/model/pushup_set.dart';
+import 'package:pushup_bro/features/pushups/model/pushup_set.dart';
 import 'package:pushup_bro/ui/styles/pb_colors.dart';
 import 'package:pushup_bro/ui/widgets/calendar/calendar_header/calendar_header.dart';
 import 'package:pushup_bro/ui/widgets/calendar/calendar_header/calendar_header_day_of_week.dart';

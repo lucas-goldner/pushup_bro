@@ -1,9 +1,9 @@
 import 'package:flutter_airpods/models/device_motion_data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pushup_bro/cubit/pushups/pushup_state.dart';
+import 'package:pushup_bro/features/pushups/cubit/pushup_state.dart';
+import 'package:pushup_bro/features/pushups/model/pushup.dart';
+import 'package:pushup_bro/features/pushups/model/pushup_set.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
-import 'package:pushup_bro/model/pushup.dart';
-import 'package:pushup_bro/model/pushup_set.dart';
 import 'package:pushup_bro/provider/audio_player_provider.dart';
 
 class PushupCubit extends Cubit<PushupState> {

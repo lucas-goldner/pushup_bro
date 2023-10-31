@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/cubit/db/db_cubit.dart';
 import 'package:pushup_bro/cubit/db/db_state.dart';
 import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_cubit.dart';
-import 'package:pushup_bro/model/pushup_set.dart';
+import 'package:pushup_bro/features/pushups/model/pushup_set.dart';
 import 'package:pushup_bro/ui/widgets/calendar/calendar_event.dart';
 import 'package:pushup_bro/ui/widgets/calendar/pb_calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
