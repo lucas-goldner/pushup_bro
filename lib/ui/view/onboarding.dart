@@ -51,7 +51,7 @@ class _OnboardingState extends State<Onboarding> {
         pages: [
           OnboardingInitial(widget.pushupSet),
           const OnboardingFeatures(),
-          const OnboardingAccount()
+          const OnboardingAccount(),
         ],
       ),
     );

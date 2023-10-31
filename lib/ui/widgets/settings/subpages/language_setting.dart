@@ -85,14 +85,14 @@ class _LanguageSettingState extends State<LanguageSetting> {
                                   const Icon(CarbonIcons.checkmark),
                                 const SizedBox(
                                   width: 16,
-                                )
+                                ),
                               ],
                             ),
                           ),
                           const Divider(
                             height: 2,
-                          )
-                        }
+                          ),
+                        },
                       ],
                     ),
                     const Spacer(),

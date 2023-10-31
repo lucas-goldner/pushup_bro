@@ -41,9 +41,6 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> openBottomSheet(PushupSet pushups) async {
-    // final navigator =
-    Navigator.of(context);
-    // final firstPushupCompleted =
     await showCupertinoModalBottomSheet<bool>(
       context: context,
       useRootNavigator: true,
@@ -51,14 +48,6 @@ class _HomeState extends State<Home> {
       isDismissible: false,
       builder: (context) => FinishedSetBottomSheet(pushups),
     );
-    // ?? false;
-    // TODO(Implement-onboarding): Reenable onboarding and finish feature
-    // if (!firstPushupCompleted) {
-    //   await navigator.pushNamed(
-    //     Onboarding.routeName,
-    //     arguments: PushupSet([], 0),
-    //   );
-    // }
   }
 
   @override

@@ -37,7 +37,7 @@ class FinishedSetStatsItem extends StatelessWidget {
               text,
               style: PBTextStyles.defaultTextStyle,
               textAlign: TextAlign.start,
-            )
+            ),
           ],
         ),
       ),

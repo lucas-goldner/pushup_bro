@@ -64,7 +64,7 @@ class _CalendarState extends State<Calendar> {
                       children: [
                         for (int i = 0; i <= eventsPerDay.length - 1; i++) ...{
                           CalendarEvent(eventsPerDay[i]),
-                        }
+                        },
                       ],
                     ),
                   ),

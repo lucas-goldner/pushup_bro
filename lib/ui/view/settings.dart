@@ -105,12 +105,6 @@ class _SettingsState extends State<Settings> {
             const SizedBox(
               height: 8,
             ),
-            // TODO(Credits): Reenable credits
-            // InfoItem(
-            //   'Credits',
-            //   CarbonIcons.credentials,
-            //   () => openBrowser(createURI('lucas-goldner.com')),
-            // ),
           ],
         ),
       );

@@ -25,11 +25,6 @@ import 'package:pushup_bro/utils/extensions/string_extensions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // TODO(Firebase): Enable firebase when implemented
-  // await Firebase.initializeApp();
-  // await FirebaseAppCheck.instance.activate(
-  //   webRecaptchaSiteKey: 'recaptcha-v3-site-key',
-  // );
   await initializeDateFormatting().then((_) => runApp(const Main()));
 }
 
