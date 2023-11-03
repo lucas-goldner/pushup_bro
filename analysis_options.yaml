@@ -18,7 +18,9 @@ analyzer:
 
 dart_code_metrics:
   anti-patterns:
-    - long-method
+    - long-method:
+        exclude:
+          - test/**
     - long-parameter-list
   metrics:
     cyclomatic-complexity: 20

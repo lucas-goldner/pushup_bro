@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
     final airpodsCubit = context.read<AirPodsTrackerCubit>();
     final pushupCubit = context.read<PushupCubit>();
 
-    if (started && pushupCubit.getCurrentPushups() >= 1) {
+    if (started && pushupCubit.getCurrentPushups >= 1) {
       airpodsCubit.stopListening();
       final pushups = pushupCubit.resetAndReturnCurrentPushupSet();
       setState(() => {finished = true, started = false});
@@ -71,7 +71,7 @@ class _HomeState extends State<Home> {
                           builder: (context, airPodsState) {
                             if (airPodsState.isListening && started) {
                               return PushupCounter(
-                                context.read<PushupCubit>().getCurrentPushups(),
+                                context.read<PushupCubit>().getCurrentPushups,
                               );
                             }
 

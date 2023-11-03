@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl_standalone.dart';
+import 'package:pushup_bro/core/service/audio_player_provider.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/cubit/db/db_cubit.dart';
 import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_cubit.dart';
@@ -15,7 +16,6 @@ import 'package:pushup_bro/generated/l10n.dart';
 import 'package:pushup_bro/model/enum/environment.dart';
 import 'package:pushup_bro/model/enum/shared_preferences_key.dart';
 import 'package:pushup_bro/provider/airpods_motion_provider.dart';
-import 'package:pushup_bro/provider/audio_player_provider.dart';
 import 'package:pushup_bro/provider/db_provider.dart';
 import 'package:pushup_bro/provider/shared_preferences_provider.dart';
 import 'package:pushup_bro/ui/routes.dart';
@@ -79,14 +79,14 @@ class Main extends StatelessWidget {
       sharedPreferencesCubit,
     );
     sharedPreferencesCubit.getLanguage();
-    if (!dbProvider.initialized) dbProvider.loadDB();
+    dbProvider.loadDB();
   }
 
   @override
   Widget build(BuildContext context) {
     // Providers
     final audioPlayer = AudioPlayer(playerId: Constants.audioPlayerId);
-    final audioPlayerProvider = AudioPlayerProvider(audioPlayer);
+    final audioPlayerProvider = AudioPlayerImpl(player: audioPlayer);
     final airpodsMotionProvider = AirPodsMotionProvider();
     final sharedPreferencesProvider = SharedPreferencesProvider()
       ..loadSharedPrefs();
