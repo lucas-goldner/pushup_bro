@@ -28,32 +28,36 @@ class _OnboardingState extends State<Onboarding> {
 
   void handlePageChange(int page) => page == 0
       ? setState(
-          () => {currentPage = page, iconColor = CupertinoColors.black},
+          () {
+            currentPage = page;
+            iconColor = CupertinoColors.black;
+          },
         )
       : setState(
-          () => {currentPage = page, iconColor = CupertinoColors.white},
+          () {
+            currentPage = page;
+            iconColor = CupertinoColors.white;
+          },
         );
 
   @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => Future(() => false),
-      child: LiquidSwipe(
-        slideIconWidget: Icon(
-          CarbonIcons.arrow_right,
-          color: iconColor,
+  Widget build(BuildContext context) => PopScope(
+        canPop: false,
+        child: LiquidSwipe(
+          slideIconWidget: Icon(
+            CarbonIcons.arrow_right,
+            color: iconColor,
+          ),
+          fullTransitionValue: 880,
+          enableSideReveal: true,
+          ignoreUserGestureWhileAnimating: true,
+          liquidController: liquidController,
+          onPageChangeCallback: handlePageChange,
+          pages: [
+            OnboardingInitial(widget.pushupSet),
+            const OnboardingFeatures(),
+            const OnboardingAccount(),
+          ],
         ),
-        fullTransitionValue: 880,
-        enableSideReveal: true,
-        ignoreUserGestureWhileAnimating: true,
-        liquidController: liquidController,
-        onPageChangeCallback: handlePageChange,
-        pages: [
-          OnboardingInitial(widget.pushupSet),
-          const OnboardingFeatures(),
-          const OnboardingAccount()
-        ],
-      ),
-    );
-  }
+      );
 }

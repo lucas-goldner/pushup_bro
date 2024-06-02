@@ -6,8 +6,7 @@ import 'package:rive/rive.dart';
 
 class AnimatedButton extends StatefulWidget {
   const AnimatedButton({
-    super.key,
-    required this.text,
+    required this.text, super.key,
     this.icon,
     this.callback,
   });

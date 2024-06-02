@@ -32,11 +32,11 @@ class _HomeState extends State<Home> {
     if (started && pushupCubit.getCurrentPushups() >= 1) {
       airpodsCubit.stopListening();
       final pushups = pushupCubit.resetAndReturnCurrentPushupSet();
-      setState(() => {finished = true, started = false});
+      setState(() {finished = true; started = false;});
       openBottomSheet(pushups);
     } else {
       airpodsCubit.getAirPodsMotionData();
-      setState(() => {finished = false, started = true});
+      setState(() {finished = false; started = true;});
     }
   }
 

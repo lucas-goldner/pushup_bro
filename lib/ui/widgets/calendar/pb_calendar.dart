@@ -1,4 +1,3 @@
-
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/model/pushup_set.dart';
@@ -12,10 +11,10 @@ import 'package:table_calendar/table_calendar.dart';
 
 class PBCalendar extends StatelessWidget {
   const PBCalendar({
-    this.language,
     required this.selectedDate,
     required this.updateSelectedDate,
     required this.getEventsPerDay,
+    this.language,
     super.key,
   });
   final String? language;

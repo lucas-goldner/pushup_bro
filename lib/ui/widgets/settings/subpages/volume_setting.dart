@@ -94,7 +94,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
                                     : _selectedVolume + 1,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),

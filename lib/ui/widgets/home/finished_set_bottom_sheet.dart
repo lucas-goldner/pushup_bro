@@ -106,7 +106,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
                 ),
                 const SizedBox(
                   width: 16,
-                )
+                ),
               ],
             ),
             Padding(
