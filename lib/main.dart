@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl_standalone.dart';
-import 'package:pushup_bro/core/service/audio_player_provider.dart';
+import 'package:pushup_bro/core/service/audio/audio_player_service_impl.dart';
 import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/cubit/db/db_cubit.dart';
 import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_cubit.dart';

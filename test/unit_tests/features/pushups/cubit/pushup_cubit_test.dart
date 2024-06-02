@@ -1,11 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:pushup_bro/core/service/audio_player_provider.dart';
+import 'package:pushup_bro/core/service/audio/audio_player_service_impl.dart';
+
 import 'package:pushup_bro/features/pushups/cubit/pushup_cubit.dart';
 
-import '../../../mock/mock_device_motion_data.dart';
-import '../../../mock/service/mock_audio_player_service.dart';
+import '../../../../mock/mock_device_motion_data.dart';
+import '../../../../mock/service/audio/mock_audio_player_service.dart';
 
 void main() {
   final audioPlayer = MockAudioPlayerService();

@@ -1,6 +1,6 @@
 import 'package:flutter_airpods/models/device_motion_data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pushup_bro/core/service/audio_player_service.dart';
+import 'package:pushup_bro/core/service/audio/audio_player_service.dart';
 import 'package:pushup_bro/features/pushups/cubit/pushup_state.dart';
 import 'package:pushup_bro/features/pushups/model/pushup.dart';
 import 'package:pushup_bro/features/pushups/model/pushup_set.dart';
