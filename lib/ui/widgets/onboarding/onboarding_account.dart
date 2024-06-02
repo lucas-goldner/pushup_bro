@@ -59,7 +59,7 @@ class _OnboardingAccountState extends State<OnboardingAccount> {
               thickness: 2,
               color: CupertinoColors.white,
             ),
-          )
+          ),
         ],
       ),
     );

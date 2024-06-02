@@ -37,15 +37,14 @@ class Main extends StatelessWidget {
   const Main({super.key});
 
   void setAudioContext() {
-    const audioContext = AudioContext(
+    final audioContext = AudioContext(
       iOS: AudioContextIOS(
-        options: [
+        options: const {
           AVAudioSessionOptions.mixWithOthers,
-        ],
+        },
       ),
     );
-    AudioPlayer.global.setGlobalAudioContext(audioContext);
-    AudioPlayer.global.changeLogLevel(LogLevel.none);
+    AudioPlayer.global.setAudioContext(audioContext);
   }
 
   Future<void> initializeSharedPreferences(
