@@ -1,13 +1,13 @@
-name: CI
+name: Pull Request
+
 on:
-  pull_request:
+  push:
     branches:
-      - main
       - release/*
 
 jobs:
   flutter_test:
-    name: Run flutter test, analyze and build for ios
+    name: Run flutter test, analyze (without build for iOS)
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,4 +24,3 @@ jobs:
       - run: dart run build_runner build --delete-conflicting-outputs
       - run: flutter analyze
       - run: flutter test
-      - run: flutter build ios --release --no-codesign --flavor prod -t lib/main_prod.dart
