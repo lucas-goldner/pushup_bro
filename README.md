@@ -44,8 +44,8 @@ $ dart pub global run intl_utils:generate
 $ dart run build_runner build --delete-conflicting-outputs
 
 # For dev run
-$ flutter run --flavor dev -t lib/flavor/main_dev.dart
+$ flutter run --flavor dev -t lib/main_dev.dart
 
 # For prod run
-$ flutter run --flavor prod -t lib/flavor/main_prod.dart
+$ flutter run --flavor prod -t lib/main_prod.dart
 ```

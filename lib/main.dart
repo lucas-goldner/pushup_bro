@@ -5,23 +5,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl_standalone.dart';
-import 'package:pushup_bro/cubit/airpods_tracker/airpods_tracker_cubit.dart';
-import 'package:pushup_bro/cubit/db/db_cubit.dart';
-import 'package:pushup_bro/cubit/pushups/pushup_cubit.dart';
-import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_cubit.dart';
-import 'package:pushup_bro/cubit/shared_preferences/shared_preferences_state.dart';
-import 'package:pushup_bro/flavor/flavor.dart';
+import 'package:pushup_bro/core/constants.dart';
+import 'package:pushup_bro/core/cubit/db_cubit.dart';
+import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
+import 'package:pushup_bro/core/cubit/shared_preferences_state.dart';
+import 'package:pushup_bro/core/extensions/string_ext.dart';
+import 'package:pushup_bro/core/flavor.dart';
+import 'package:pushup_bro/core/model/environment.dart';
+import 'package:pushup_bro/core/model/shared_preferences_key.dart';
+import 'package:pushup_bro/core/provider/audio_player_provider.dart';
+import 'package:pushup_bro/core/provider/shared_preferences_provider.dart';
+import 'package:pushup_bro/core/style/pb_text_styles.dart';
+import 'package:pushup_bro/features/menu/model/routes.dart';
+import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_cubit.dart';
+import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
+import 'package:pushup_bro/features/pushup_tracking/provider/airpods_motion_provider.dart';
+import 'package:pushup_bro/features/pushup_tracking/provider/db_provider.dart';
 import 'package:pushup_bro/generated/l10n.dart';
-import 'package:pushup_bro/model/enum/environment.dart';
-import 'package:pushup_bro/model/enum/shared_preferences_key.dart';
-import 'package:pushup_bro/provider/airpods_motion_provider.dart';
-import 'package:pushup_bro/provider/audio_player_provider.dart';
-import 'package:pushup_bro/provider/db_provider.dart';
-import 'package:pushup_bro/provider/shared_preferences_provider.dart';
-import 'package:pushup_bro/ui/routes.dart';
-import 'package:pushup_bro/ui/styles/pb_text_styles.dart';
-import 'package:pushup_bro/utils/constants.dart';
-import 'package:pushup_bro/utils/extensions/string_extensions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -89,7 +89,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Providers
-    final audioPlayer = AudioPlayer(playerId: Constants.audioPlayerId);
+    final audioPlayer = AudioPlayer(playerId: audioPlayerId);
     final audioPlayerProvider = AudioPlayerProvider(audioPlayer);
     final airpodsMotionProvider = AirPodsMotionProvider();
     final sharedPreferencesProvider = SharedPreferencesProvider()
