@@ -41,7 +41,7 @@ $ fluttergen
 # If language files were not generated
 $ dart pub global run intl_utils:generate
 # Create isar schemas
-$ dart run build_runner build
+$ dart run build_runner build --delete-conflicting-outputs
 
 # For dev run
 $ flutter run --flavor dev -t lib/main_dev.dart
