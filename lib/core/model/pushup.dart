@@ -1,6 +1,6 @@
 import 'package:isar/isar.dart';
 
-part './pushup.g.dart';
+part 'pushup.g.dart';
 
 @embedded
 class Pushup {

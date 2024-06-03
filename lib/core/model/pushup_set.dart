@@ -3,7 +3,7 @@ import 'package:isar/isar.dart';
 import 'package:pushup_bro/core/model/pushup.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 
-part './pushup_set.g.dart';
+part 'pushup_set.g.dart';
 
 @collection
 class PushupSet {
