@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/features/calendar/widgets/circular_dotted_border.dart';
 
-class PBCalendarEventMarker extends StatelessWidget {
-  const PBCalendarEventMarker({super.key});
+class PBCalendarEvent extends StatelessWidget {
+  const PBCalendarEvent({super.key});
 
   @override
   Widget build(BuildContext context) => Center(

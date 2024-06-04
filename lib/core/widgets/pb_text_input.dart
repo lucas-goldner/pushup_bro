@@ -11,7 +11,7 @@ class PBTextInput extends StatefulWidget {
 class _PBTextInputState extends State<PBTextInput> {
   @override
   Widget build(BuildContext context) => SizedBox(
-        width: MediaQuery.of(context).size.width / 1.25,
+        width: MediaQuery.sizeOf(context).width / 1.25,
         child: CupertinoTextField(
           controller: widget.textEditingController,
           padding: const EdgeInsets.all(20),
