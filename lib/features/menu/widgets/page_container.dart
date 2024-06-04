@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pushup_bro/core/style/pb_colors.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/widgets/pb_app_bar.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
 
@@ -15,45 +15,42 @@ class PageContainer extends StatefulWidget {
 class _PageContainerState extends State<PageContainer> {
   double opacityLevel = 0;
 
-  void _changeOpacity() {
-    setState(() => opacityLevel = opacityLevel == 0 ? 0.75 : 0.0);
-  }
+  void _changeOpacity() =>
+      setState(() => opacityLevel = opacityLevel == 0 ? 0.75 : 0.0);
 
   @override
-  Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      backgroundColor: background,
-      child: Stack(
-        children: [
-          Stack(
-            children: [
-              IgnorePointer(
-                ignoring: opacityLevel != 0,
-                child: Center(
-                  child: widget.pageContent,
-                ),
-              ),
-              IgnorePointer(
-                child: AnimatedOpacity(
-                  opacity: opacityLevel,
-                  duration: const Duration(milliseconds: 500),
-                  child: Container(
-                    width: MediaQuery.sizeOf(context).width,
-                    height: MediaQuery.sizeOf(context).height,
-                    color: CupertinoColors.black,
+  Widget build(BuildContext context) => CupertinoPageScaffold(
+        backgroundColor: context.colorScheme.background,
+        child: Stack(
+          children: [
+            Stack(
+              children: [
+                IgnorePointer(
+                  ignoring: opacityLevel != 0,
+                  child: Center(
+                    child: widget.pageContent,
                   ),
                 ),
-              ),
-              SafeArea(
-                child: PBAppBar(
-                  widget.menuTab?.getMenuTitle(context) ?? '',
-                  _changeOpacity,
+                IgnorePointer(
+                  child: AnimatedOpacity(
+                    opacity: opacityLevel,
+                    duration: const Duration(milliseconds: 500),
+                    child: Container(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: MediaQuery.sizeOf(context).height,
+                      color: context.colorScheme.onSurface,
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+                SafeArea(
+                  child: PBAppBar(
+                    widget.menuTab?.getMenuTitle(context) ?? '',
+                    _changeOpacity,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
 }

@@ -52,7 +52,7 @@ class MenuTab extends StatelessWidget {
                     Text(
                       _menuInfo.getMenuTitle(context),
                       style: context.textTheme.titleSmall?.copyWith(
-                        color: CupertinoColors.white,
+                        color: context.colorScheme.inversePrimary,
                       ),
                     ),
                   ],
