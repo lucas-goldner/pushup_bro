@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_state.dart';
-import 'package:pushup_bro/core/style/pb_colors.dart';
-import 'package:pushup_bro/core/style/pb_text_styles.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/utils/get_localized_language_name.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/generated/l10n.dart';
@@ -37,16 +36,14 @@ class _LanguageSettingState extends State<LanguageSetting> {
   Future<void> _updateLanguage(Locale lang) async {
     final sharedPrefCubit = BlocProvider.of<SharedPreferencesCubit>(context);
     await sharedPrefCubit.setLanguage(lang);
-    setState(() {
-      _selectedLocale = lang.languageCode;
-    });
+    setState(() => _selectedLocale = lang.languageCode);
   }
 
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<SharedPreferencesCubit, SharedPreferencesState>(
         builder: (context, state) => CupertinoPageScaffold(
-          backgroundColor: background,
+          backgroundColor: context.colorScheme.background,
           child: SafeArea(
             child: Stack(
               children: [
@@ -55,7 +52,7 @@ class _LanguageSettingState extends State<LanguageSetting> {
                     SingleChildScrollView(
                       child: Text(
                         S.of(context).switchLanguage,
-                        style: pageTitleTextStyle,
+                        style: context.textTheme.titleLarge,
                       ),
                     ),
                     Column(
@@ -67,19 +64,22 @@ class _LanguageSettingState extends State<LanguageSetting> {
                             onTap: () => _updateLanguage(supportedLanguages[i]),
                             child: Row(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(
-                                    16,
-                                  ),
-                                  child: Text(
-                                    LanguageLocal()
-                                        .getDisplayLanguage(
-                                          supportedLanguages[i].languageCode,
-                                        )
-                                        .toString(),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(
+                                      16,
+                                    ),
+                                    child: Text(
+                                      LanguageLocal()
+                                          .getDisplayLanguage(
+                                            supportedLanguages[i].languageCode,
+                                          )
+                                          .toString(),
+                                      overflow: TextOverflow.ellipsis,
+                                      style: context.textTheme.bodyMedium,
+                                    ),
                                   ),
                                 ),
-                                const Spacer(),
                                 if (_selectedLocale ==
                                     supportedLanguages[i].languageCode)
                                   const Icon(CarbonIcons.checkmark),
@@ -89,8 +89,9 @@ class _LanguageSettingState extends State<LanguageSetting> {
                               ],
                             ),
                           ),
-                          const Divider(
-                            height: 2,
+                          Divider(
+                            height: 1,
+                            color: context.colorScheme.shadow.withOpacity(0.05),
                           ),
                         },
                       ],
