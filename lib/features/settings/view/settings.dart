@@ -1,8 +1,8 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/website_links.dart';
 import 'package:pushup_bro/core/provider/url_launch_provider.dart';
-import 'package:pushup_bro/core/style/pb_text_styles.dart';
 import 'package:pushup_bro/features/settings/view/settings_language.dart';
 import 'package:pushup_bro/features/settings/view/settings_volume.dart';
 import 'package:pushup_bro/features/settings/widgets/info_item.dart';
@@ -39,7 +39,7 @@ class _SettingsState extends State<Settings> {
               padding: const EdgeInsets.only(left: 16),
               child: Text(
                 S.of(context).general,
-                style: PBTextStyles.headerTextStyle,
+                style: context.textTheme.titleSmall,
                 textAlign: TextAlign.start,
               ),
             ),
@@ -66,7 +66,7 @@ class _SettingsState extends State<Settings> {
               padding: const EdgeInsets.only(left: 16),
               child: Text(
                 S.of(context).info,
-                style: PBTextStyles.headerTextStyle,
+                style: context.textTheme.titleSmall,
                 textAlign: TextAlign.start,
               ),
             ),

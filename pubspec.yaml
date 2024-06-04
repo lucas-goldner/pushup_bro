@@ -5,7 +5,7 @@ publish_to: "none"
 version: 2.0.0+3
 
 environment:
-  sdk: ">=3.0.0"
+  sdk: ">=3.3.3"
 
 dependencies:
   animated_flip_counter: ^0.3.4

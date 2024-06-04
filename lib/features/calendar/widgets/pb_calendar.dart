@@ -1,12 +1,13 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
-import 'package:pushup_bro/core/style/pb_colors.dart';
 import 'package:pushup_bro/features/calendar/widgets/calendar_header/calendar_header.dart';
 import 'package:pushup_bro/features/calendar/widgets/calendar_header/calendar_header_day_of_week.dart';
-import 'package:pushup_bro/features/calendar/widgets/markers/pb_calendar_event_marker.dart';
-import 'package:pushup_bro/features/calendar/widgets/markers/pb_calendar_selected_marker.dart';
-import 'package:pushup_bro/features/calendar/widgets/markers/pb_calendar_today_marker.dart';
+import 'package:pushup_bro/features/calendar/widgets/markers/pb_calendar_default_day.dart';
+import 'package:pushup_bro/features/calendar/widgets/markers/pb_calendar_event.dart';
+import 'package:pushup_bro/features/calendar/widgets/markers/pb_calendar_selected.dart';
+import 'package:pushup_bro/features/calendar/widgets/markers/pb_calendar_today.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class PBCalendar extends StatelessWidget {
@@ -32,34 +33,33 @@ class PBCalendar extends StatelessWidget {
           DateTime.now().month + 3,
           DateTime.now().day,
         ),
-        selectedDayPredicate: (day) {
-          return isSameDay(selectedDate, day);
-        },
+        selectedDayPredicate: (day) => isSameDay(selectedDate, day),
         onDaySelected: (selectedDay, focusedDay) =>
             updateSelectedDate(selectedDay),
         focusedDay: DateTime.now(),
         daysOfWeekHeight: 32,
         startingDayOfWeek: StartingDayOfWeek.monday,
-        headerStyle: const HeaderStyle(
+        headerStyle: HeaderStyle(
           formatButtonVisible: false,
           leftChevronIcon: Icon(
             CarbonIcons.chevron_left,
-            color: PBColors.accentColor,
+            color: context.colorScheme.inversePrimary,
           ),
           rightChevronIcon: Icon(
             CarbonIcons.chevron_right,
-            color: PBColors.accentColor,
+            color: context.colorScheme.inversePrimary,
           ),
         ),
         calendarBuilders: CalendarBuilders(
           markerBuilder: (context, day, events) =>
-              events.isNotEmpty ? const PBCalendarEventMarker() : null,
+              events.isNotEmpty ? const PBCalendarEvent() : null,
           selectedBuilder: (context, day, focusedDay) =>
-              PBCalendarSelectedMarker(day),
-          todayBuilder: (context, day, focusedDay) =>
-              PBCalendarTodayMarker(day),
+              PBCalendarSelected(day),
+          todayBuilder: (context, day, focusedDay) => PBCalendarToday(day),
           headerTitleBuilder: (context, day) => CalendarHeader(day),
           dowBuilder: (context, day) => CalendarHeaderDayOfWeek(day),
+          defaultBuilder: (context, day, focusedDay) =>
+              PBCalendarDefaultDay(day),
         ),
       );
 }

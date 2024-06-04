@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_state.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
-import 'package:pushup_bro/core/style/pb_text_styles.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/settings/widgets/volume_displayer.dart';
 import 'package:pushup_bro/generated/l10n.dart';
@@ -41,7 +41,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
   Widget build(BuildContext context) =>
       BlocBuilder<SharedPreferencesCubit, SharedPreferencesState>(
         builder: (context, state) => CupertinoPageScaffold(
-          backgroundColor: PBColors.background,
+          backgroundColor: background,
           child: SafeArea(
             child: Stack(
               children: [
@@ -50,13 +50,13 @@ class _VolumeSettingState extends State<VolumeSetting> {
                     SingleChildScrollView(
                       child: Text(
                         S.of(context).setVolume,
-                        style: PBTextStyles.pageTitleTextStyle,
+                        style: context.textTheme.titleLarge,
                       ),
                     ),
                     const SizedBox(
                       height: 40,
                     ),
-                    const VolumeDisplayer(),
+                    VolumeDisplayer(_selectedVolume),
                     const SizedBox(
                       height: 20,
                     ),
@@ -81,7 +81,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
                             ),
                             child: Text(
                               S.of(context).volumeLevel(_selectedVolume),
-                              style: PBTextStyles.defaultTextStyle,
+                              style: context.textTheme.bodyMedium,
                             ),
                           ),
                           SizedBox(

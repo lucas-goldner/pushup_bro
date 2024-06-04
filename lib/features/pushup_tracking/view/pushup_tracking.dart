@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_state.dart';
@@ -95,7 +96,10 @@ class _PushupTrackingState extends State<PushupTracking> {
                             }
 
                             if (started) {
-                              return Text(S.of(context).lookingForAirpods);
+                              return Text(
+                                S.of(context).lookingForAirpods,
+                                style: context.textTheme.bodyMedium,
+                              );
                             }
 
                             return const SizedBox();

@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pushup_bro/core/style/pb_text_styles.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
 import 'package:pushup_bro/features/menu/widgets/closing_menu_button.dart';
 import 'package:pushup_bro/features/menu/widgets/menu_tabs.dart';
 import 'package:pushup_bro/features/menu/widgets/open_menu_button.dart';
+
+const _initialDelayTime = Duration(milliseconds: 50);
+const _itemSlideTime = Duration(milliseconds: 250);
+const _staggerTime = Duration(milliseconds: 50);
+const _buttonDelayTime = Duration(milliseconds: 150);
+const _buttonTime = Duration(milliseconds: 500);
 
 class PBAppBar extends StatefulWidget {
   const PBAppBar(this.title, this.toggelOpacity, {super.key});
@@ -15,21 +21,11 @@ class PBAppBar extends StatefulWidget {
 }
 
 class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
-  static const _menuTabInfo = [
-    MenuTabInfo.home,
-    MenuTabInfo.calendar,
-    MenuTabInfo.settings,
-  ];
-
   late final AnimationController _controller;
   late AnimationController _drawerController;
-  static const _initialDelayTime = Duration(milliseconds: 50);
-  static const _itemSlideTime = Duration(milliseconds: 250);
-  static const _staggerTime = Duration(milliseconds: 50);
-  static const _buttonDelayTime = Duration(milliseconds: 150);
-  static const _buttonTime = Duration(milliseconds: 500);
+
   final _animationDuration = _initialDelayTime +
-      (_staggerTime * _menuTabInfo.length) +
+      (_staggerTime * MenuTabInfo.values.length) +
       _buttonDelayTime +
       _buttonTime;
   final List<Interval> _itemSlideIntervals = [];
@@ -41,7 +37,7 @@ class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
     _open = false;
     _controller = AnimationController(
       value: _open ? 1.0 : 0.0,
-      duration: const Duration(milliseconds: 250),
+      duration: _itemSlideTime,
       vsync: this,
     );
     _drawerController = AnimationController(
@@ -86,44 +82,44 @@ class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              ClosingMenuButton(
-                _toggle,
-                open: _open,
-              ),
-              MenuTabs(
-                _drawerController,
-                _menuTabInfo,
-                _itemSlideIntervals,
-                open: _open,
-              ),
-              OpenMenuButton(
-                _toggle,
-                open: _open,
-              ),
-            ],
+  Widget build(BuildContext context) => Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                ClosingMenuButton(
+                  _toggle,
+                  open: _open,
+                ),
+                MenuTabs(
+                  _drawerController,
+                  MenuTabInfo.values,
+                  _itemSlideIntervals,
+                  open: _open,
+                ),
+                OpenMenuButton(
+                  _toggle,
+                  open: _open,
+                ),
+              ],
+            ),
           ),
-        ),
-        Visibility(
-          visible: widget.title != null,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                widget.title ?? '',
-                style: PBTextStyles.pageTitleTextStyle,
-              ),
-            ],
+          Visibility(
+            visible: widget.title != null,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  widget.title ?? '',
+                  style: context.textTheme.titleLarge?.copyWith(
+                    color: context.colorScheme.primary,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
-    );
-  }
+        ],
+      );
 }

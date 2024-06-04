@@ -3,7 +3,10 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 
 class CirularDottedBorder extends CustomPainter {
-  CirularDottedBorder({required this.dots, this.spaceLength = 10});
+  CirularDottedBorder({
+    required this.dots,
+    this.spaceLength = 10,
+  });
   final int dots;
   final int spaceLength;
   double startOfArcInDegree = 0;

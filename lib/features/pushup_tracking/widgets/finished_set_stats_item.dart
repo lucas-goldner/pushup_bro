@@ -15,7 +15,7 @@ class FinishedSetStatsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        border: Border.all(color: PBColors.background2),
+        border: Border.all(color: background2),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
@@ -35,7 +35,7 @@ class FinishedSetStatsItem extends StatelessWidget {
             ),
             Text(
               text,
-              style: PBTextStyles.defaultTextStyle,
+              style: defaultTextStyle,
               textAlign: TextAlign.start,
             ),
           ],

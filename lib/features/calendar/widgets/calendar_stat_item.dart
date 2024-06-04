@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pushup_bro/core/style/pb_colors.dart';
-import 'package:pushup_bro/core/style/pb_text_styles.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 
 class CalendarStatItem extends StatelessWidget {
   const CalendarStatItem(this.text, this.icon, {super.key});
@@ -8,23 +7,21 @@ class CalendarStatItem extends StatelessWidget {
   final IconData icon;
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          icon,
-          color: PBColors.accentColor,
-        ),
-        const SizedBox(
-          width: 8,
-        ),
-        Text(
-          text,
-          style: PBTextStyles.defaultTextStyle.copyWith(
-            color: CupertinoColors.white,
+  Widget build(BuildContext context) => Row(
+        children: [
+          Icon(
+            icon,
+            color: context.colorScheme.inversePrimary,
           ),
-        ),
-      ],
-    );
-  }
+          const SizedBox(
+            width: 8,
+          ),
+          Text(
+            text,
+            style: context.textTheme.bodyMedium?.copyWith(
+              color: context.colorScheme.surfaceBright,
+            ),
+          ),
+        ],
+      );
 }
