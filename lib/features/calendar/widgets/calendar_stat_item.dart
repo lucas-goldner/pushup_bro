@@ -13,14 +13,14 @@ class CalendarStatItem extends StatelessWidget {
       children: [
         Icon(
           icon,
-          color: PBColors.accentColor,
+          color: accentColor,
         ),
         const SizedBox(
           width: 8,
         ),
         Text(
           text,
-          style: PBTextStyles.defaultTextStyle.copyWith(
+          style: defaultTextStyle.copyWith(
             color: CupertinoColors.white,
           ),
         ),

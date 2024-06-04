@@ -14,7 +14,7 @@ class VolumeDisplayer extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: PBColors.background2,
+          color: background2,
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),

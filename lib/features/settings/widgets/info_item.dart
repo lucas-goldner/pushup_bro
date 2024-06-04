@@ -19,7 +19,7 @@ class InfoItem extends StatelessWidget {
         ),
         child: DecoratedBox(
           decoration: const BoxDecoration(
-            color: PBColors.background2,
+            color: background2,
             borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           child: Padding(
@@ -35,8 +35,7 @@ class InfoItem extends StatelessWidget {
                 ),
                 Text(
                   name,
-                  style: PBTextStyles.buttonTextStyle
-                      .copyWith(color: CupertinoColors.white),
+                  style: buttonTextStyle.copyWith(color: CupertinoColors.white),
                 ),
                 const Spacer(),
                 const Icon(CarbonIcons.link, color: CupertinoColors.white),

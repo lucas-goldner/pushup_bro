@@ -19,13 +19,13 @@ class PBCalendarSelectedMarker extends StatelessWidget {
           ),
           border: Border.all(
             width: 2,
-            color: PBColors.accentColor,
+            color: accentColor,
           ),
         ),
         child: Center(
           child: Text(
             DateFormat.d().format(day),
-            style: PBTextStyles.defaultTextStyle,
+            style: defaultTextStyle,
           ),
         ),
       ),

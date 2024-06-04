@@ -11,7 +11,7 @@ class CalendarHeaderDayOfWeek extends StatelessWidget {
     return Center(
       child: Text(
         DateFormat.E().format(day),
-        style: PBTextStyles.headerTextStyle,
+        style: headerTextStyle,
       ),
     );
   }

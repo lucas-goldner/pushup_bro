@@ -44,11 +44,11 @@ class PBCalendar extends StatelessWidget {
           formatButtonVisible: false,
           leftChevronIcon: Icon(
             CarbonIcons.chevron_left,
-            color: PBColors.accentColor,
+            color: accentColor,
           ),
           rightChevronIcon: Icon(
             CarbonIcons.chevron_right,
-            color: PBColors.accentColor,
+            color: accentColor,
           ),
         ),
         calendarBuilders: CalendarBuilders(

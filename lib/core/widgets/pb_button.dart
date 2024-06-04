@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pushup_bro/core/style/pb_colors.dart';
-import 'package:pushup_bro/core/style/pb_text_styles.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 
 class PBButton extends StatelessWidget {
   const PBButton(this.text, {this.callback, super.key});
@@ -8,29 +7,27 @@ class PBButton extends StatelessWidget {
   final VoidCallback? callback;
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        children: [
-          Expanded(
-            child: ElevatedButton(
-              onPressed: () => callback?.call(),
-              style: ElevatedButton.styleFrom(
-                splashFactory: NoSplash.splashFactory,
-                backgroundColor: PBColors.primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Row(
+          children: [
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () => callback?.call(),
+                style: ElevatedButton.styleFrom(
+                  splashFactory: NoSplash.splashFactory,
+                  backgroundColor: context.colorScheme.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Text(
+                  text,
+                  style: context.textTheme.labelLarge,
                 ),
               ),
-              child: Text(
-                text,
-                style: PBTextStyles.buttonTextStyle,
-              ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
+          ],
+        ),
+      );
 }

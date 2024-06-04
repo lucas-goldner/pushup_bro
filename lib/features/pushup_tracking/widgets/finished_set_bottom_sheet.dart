@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
 import 'package:pushup_bro/core/style/pb_text_styles.dart';
@@ -53,14 +54,15 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
           CupertinoDialogAction(
             child: Text(
               S.of(context).dontSave,
-              style: const TextStyle(
-                color: CupertinoColors.destructiveRed,
+              style: TextStyle(
+                color: context.colorScheme.error,
                 fontWeight: FontWeight.bold,
               ),
             ),
             onPressed: () => {
-              Navigator.of(context).pop(),
-              Navigator.of(context).pop(),
+              Navigator.of(context)
+                ..pop()
+                ..pop(),
             },
           ),
         ],
@@ -84,7 +86,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
                   padding: const EdgeInsets.only(left: 16, top: 16),
                   child: Text(
                     localized.congrats,
-                    style: PBTextStyles.pageTitleTextStyle,
+                    style: pageTitleTextStyle,
                   ),
                 ),
                 const Spacer(),
@@ -92,14 +94,14 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
                   padding: const EdgeInsets.only(top: 16),
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: PBColors.background2,
+                      color: background2,
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: IconButton(
                       onPressed: closeModal,
-                      icon: const Icon(
+                      icon: Icon(
                         CarbonIcons.close,
-                        color: CupertinoColors.white,
+                        color: context.colorScheme.surface,
                       ),
                     ),
                   ),
@@ -113,13 +115,13 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
               padding: const EdgeInsets.only(left: 16, top: 16),
               child: Text(
                 localized.difficulty,
-                style: PBTextStyles.headerTextStyle,
+                style: context.textTheme.titleSmall,
               ),
             ),
             Slider(
               value: currentSliderValue,
-              activeColor: PBColors.accentColor,
-              inactiveColor: PBColors.secondaryColor,
+              activeColor: context.colorScheme.inversePrimary,
+              inactiveColor: context.colorScheme.secondary,
               max: 5,
               divisions: 5,
               label: currentSliderValue.round().toString(),
@@ -130,15 +132,15 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
               children: [
                 Text(
                   S.of(context).easyDifficulty,
-                  style: PBTextStyles.defaultTextStyle,
+                  style: context.textTheme.bodyMedium,
                 ),
                 Text(
                   S.of(context).middleDifficulty,
-                  style: PBTextStyles.defaultTextStyle,
+                  style: context.textTheme.bodyMedium,
                 ),
                 Text(
                   S.of(context).hardDifficulty,
-                  style: PBTextStyles.defaultTextStyle,
+                  style: context.textTheme.bodyMedium,
                 ),
               ],
             ),
@@ -146,7 +148,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
               padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
               child: Text(
                 S.of(context).stats,
-                style: PBTextStyles.headerTextStyle,
+                style: context.textTheme.titleSmall,
               ),
             ),
             SingleChildScrollView(

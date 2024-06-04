@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pushup_bro/core/style/pb_colors.dart';
-import 'package:pushup_bro/core/style/pb_text_styles.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
 
 class MenuTab extends StatelessWidget {
@@ -38,7 +37,7 @@ class MenuTab extends StatelessWidget {
             padding: const EdgeInsets.only(top: 16, right: 8),
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: PBColors.background2,
+                color: context.colorScheme.onSecondary,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Padding(
@@ -52,8 +51,9 @@ class MenuTab extends StatelessWidget {
                     ),
                     Text(
                       _menuInfo.getMenuTitle(context),
-                      style: PBTextStyles.headerTextStyle
-                          .copyWith(color: CupertinoColors.white),
+                      style: context.textTheme.titleSmall?.copyWith(
+                        color: CupertinoColors.white,
+                      ),
                     ),
                   ],
                 ),

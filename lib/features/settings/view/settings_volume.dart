@@ -41,7 +41,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
   Widget build(BuildContext context) =>
       BlocBuilder<SharedPreferencesCubit, SharedPreferencesState>(
         builder: (context, state) => CupertinoPageScaffold(
-          backgroundColor: PBColors.background,
+          backgroundColor: background,
           child: SafeArea(
             child: Stack(
               children: [
@@ -50,7 +50,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
                     SingleChildScrollView(
                       child: Text(
                         S.of(context).setVolume,
-                        style: PBTextStyles.pageTitleTextStyle,
+                        style: pageTitleTextStyle,
                       ),
                     ),
                     const SizedBox(
@@ -81,7 +81,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
                             ),
                             child: Text(
                               S.of(context).volumeLevel(_selectedVolume),
-                              style: PBTextStyles.defaultTextStyle,
+                              style: defaultTextStyle,
                             ),
                           ),
                           SizedBox(

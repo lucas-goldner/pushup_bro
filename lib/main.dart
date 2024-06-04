@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,7 +16,7 @@ import 'package:pushup_bro/core/model/environment.dart';
 import 'package:pushup_bro/core/model/shared_preferences_key.dart';
 import 'package:pushup_bro/core/provider/audio_player_provider.dart';
 import 'package:pushup_bro/core/provider/shared_preferences_provider.dart';
-import 'package:pushup_bro/core/style/pb_text_styles.dart';
+import 'package:pushup_bro/core/style/theme.dart';
 import 'package:pushup_bro/features/menu/model/routes.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
@@ -128,26 +129,22 @@ class Main extends StatelessWidget {
       child:
           BlocSelector<SharedPreferencesCubit, SharedPreferencesState, Locale?>(
         selector: (state) => state.language,
-        builder: (builder, locale) => CupertinoApp(
-          debugShowCheckedModeBanner:
-              Flavor.getCurrentEnvironment == Environment.dev.getFlavorName(),
-          key: const Key('MainApp'),
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          locale: locale,
-          supportedLocales: S.delegate.supportedLocales,
-          theme: const CupertinoThemeData(
-            brightness: Brightness.dark,
-            textTheme: CupertinoTextThemeData(
-              textStyle: PBTextStyles.defaultTextStyle,
-            ),
+        builder: (builder, locale) => Theme(
+          data: theme,
+          child: CupertinoApp(
+            debugShowCheckedModeBanner:
+                Flavor.getCurrentEnvironment == Environment.dev.getFlavorName(),
+            key: const Key('MainApp'),
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            locale: locale,
+            supportedLocales: S.delegate.supportedLocales,
+            onGenerateRoute: generateRoutes,
           ),
-          onGenerateRoute: (settings) =>
-              RouteGenerator().onGenerateMainRoutes(settings),
         ),
       ),
     );

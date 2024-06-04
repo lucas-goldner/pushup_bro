@@ -39,7 +39,7 @@ class _SettingsState extends State<Settings> {
               padding: const EdgeInsets.only(left: 16),
               child: Text(
                 S.of(context).general,
-                style: PBTextStyles.headerTextStyle,
+                style: headerTextStyle,
                 textAlign: TextAlign.start,
               ),
             ),
@@ -66,7 +66,7 @@ class _SettingsState extends State<Settings> {
               padding: const EdgeInsets.only(left: 16),
               child: Text(
                 S.of(context).info,
-                style: PBTextStyles.headerTextStyle,
+                style: headerTextStyle,
                 textAlign: TextAlign.start,
               ),
             ),

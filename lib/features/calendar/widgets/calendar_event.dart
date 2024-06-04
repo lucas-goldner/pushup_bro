@@ -22,7 +22,7 @@ class CalendarEvent extends StatelessWidget {
         height: 100,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: PBColors.background2,
+          color: background2,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -34,7 +34,7 @@ class CalendarEvent extends StatelessWidget {
                   S.of(context).setOfXOPushups(
                         pushupSet.pushups.length.toString(),
                       ),
-                  style: PBTextStyles.headerTextStyle.copyWith(
+                  style: headerTextStyle.copyWith(
                     color: CupertinoColors.white,
                   ),
                 ),
@@ -43,11 +43,11 @@ class CalendarEvent extends StatelessWidget {
                 ),
                 const Icon(
                   CarbonIcons.fire,
-                  color: PBColors.accentColor,
+                  color: accentColor,
                 ),
                 Text(
                   pushupSet.translateEffort(context),
-                  style: PBTextStyles.defaultTextStyle.copyWith(
+                  style: defaultTextStyle.copyWith(
                     color: CupertinoColors.white,
                   ),
                 ),
@@ -55,7 +55,7 @@ class CalendarEvent extends StatelessWidget {
             ),
             Text(
               S.of(context).stats,
-              style: PBTextStyles.buttonTextStyle.copyWith(
+              style: buttonTextStyle.copyWith(
                 color: CupertinoColors.white,
               ),
             ),

@@ -22,7 +22,7 @@ class _PageContainerState extends State<PageContainer> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: PBColors.background,
+      backgroundColor: background,
       child: Stack(
         children: [
           Stack(

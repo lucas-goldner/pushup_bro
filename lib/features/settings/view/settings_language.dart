@@ -46,7 +46,7 @@ class _LanguageSettingState extends State<LanguageSetting> {
   Widget build(BuildContext context) =>
       BlocBuilder<SharedPreferencesCubit, SharedPreferencesState>(
         builder: (context, state) => CupertinoPageScaffold(
-          backgroundColor: PBColors.background,
+          backgroundColor: background,
           child: SafeArea(
             child: Stack(
               children: [
@@ -55,7 +55,7 @@ class _LanguageSettingState extends State<LanguageSetting> {
                     SingleChildScrollView(
                       child: Text(
                         S.of(context).switchLanguage,
-                        style: PBTextStyles.pageTitleTextStyle,
+                        style: pageTitleTextStyle,
                       ),
                     ),
                     Column(
