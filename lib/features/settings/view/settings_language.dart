@@ -43,7 +43,7 @@ class _LanguageSettingState extends State<LanguageSetting> {
   Widget build(BuildContext context) =>
       BlocBuilder<SharedPreferencesCubit, SharedPreferencesState>(
         builder: (context, state) => CupertinoPageScaffold(
-          backgroundColor: context.colorScheme.background,
+          backgroundColor: context.colorScheme.surface,
           child: SafeArea(
             child: Stack(
               children: [

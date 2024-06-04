@@ -101,7 +101,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
                       onPressed: closeModal,
                       icon: Icon(
                         CarbonIcons.close,
-                        color: context.colorScheme.surface,
+                        color: context.colorScheme.surfaceBright,
                       ),
                     ),
                   ),

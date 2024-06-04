@@ -37,13 +37,13 @@ class Settingsitem extends StatelessWidget {
                   Text(
                     name,
                     style: buttonTextStyle.copyWith(
-                      color: context.colorScheme.surface,
+                      color: context.colorScheme.surfaceBright,
                     ),
                   ),
                   const Spacer(),
                   Icon(
                     CarbonIcons.arrow_right,
-                    color: context.colorScheme.surface,
+                    color: context.colorScheme.surfaceBright,
                   ),
                   const SizedBox(
                     width: 16,

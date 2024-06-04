@@ -20,7 +20,7 @@ class _PageContainerState extends State<PageContainer> {
 
   @override
   Widget build(BuildContext context) => CupertinoPageScaffold(
-        backgroundColor: context.colorScheme.background,
+        backgroundColor: context.colorScheme.surface,
         child: Stack(
           children: [
             Stack(
@@ -38,7 +38,7 @@ class _PageContainerState extends State<PageContainer> {
                     child: Container(
                       width: MediaQuery.sizeOf(context).width,
                       height: MediaQuery.sizeOf(context).height,
-                      color: context.colorScheme.onSurface,
+                      color: context.colorScheme.surfaceDim,
                     ),
                   ),
                 ),

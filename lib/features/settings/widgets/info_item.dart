@@ -37,13 +37,13 @@ class InfoItem extends StatelessWidget {
                   Text(
                     name,
                     style: buttonTextStyle.copyWith(
-                      color: context.colorScheme.surface,
+                      color: context.colorScheme.surfaceBright,
                     ),
                   ),
                   const Spacer(),
                   Icon(
                     CarbonIcons.link,
-                    color: context.colorScheme.surface,
+                    color: context.colorScheme.surfaceBright,
                   ),
                   const SizedBox(
                     width: 16,

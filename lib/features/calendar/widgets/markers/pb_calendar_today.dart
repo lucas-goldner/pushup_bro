@@ -18,7 +18,7 @@ class PBCalendarToday extends StatelessWidget {
           child: Text(
             DateFormat.d().format(day),
             style: context.textTheme.titleSmall?.copyWith(
-              color: context.colorScheme.surface,
+              color: context.colorScheme.surfaceBright,
             ),
           ),
         ),

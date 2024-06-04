@@ -19,7 +19,7 @@ class CalendarStatItem extends StatelessWidget {
           Text(
             text,
             style: context.textTheme.bodyMedium?.copyWith(
-              color: context.colorScheme.surface,
+              color: context.colorScheme.surfaceBright,
             ),
           ),
         ],

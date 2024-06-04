@@ -33,7 +33,7 @@ class CalendarEvent extends StatelessWidget {
                           pushupSet.pushups.length.toString(),
                         ),
                     style: context.textTheme.titleSmall?.copyWith(
-                      color: context.colorScheme.surface,
+                      color: context.colorScheme.surfaceBright,
                     ),
                   ),
                   const SizedBox(
@@ -46,7 +46,7 @@ class CalendarEvent extends StatelessWidget {
                   Text(
                     pushupSet.translateEffort(context),
                     style: context.textTheme.titleSmall?.copyWith(
-                      color: context.colorScheme.surface,
+                      color: context.colorScheme.surfaceBright,
                     ),
                   ),
                 ],
@@ -54,7 +54,7 @@ class CalendarEvent extends StatelessWidget {
               Text(
                 S.of(context).stats,
                 style: context.textTheme.labelLarge?.copyWith(
-                  color: context.colorScheme.surface,
+                  color: context.colorScheme.surfaceBright,
                 ),
               ),
               Row(
