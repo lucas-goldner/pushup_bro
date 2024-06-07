@@ -88,7 +88,7 @@
   "privacyPolicy": "Datenschutzrichtlinie",
   "termsOfService": "Nutzungsbedingungen",
   "setVolume": "Lautstärke einstellen",
-  "volumeLevel": "Volumen: {xVolumeLevel}",
+  "volumeLevel": "Lautstärke: {xVolumeLevel}",
   "@volumeLevel": {
     "placeholders": {
       "xVolumeLevel": {
@@ -99,5 +99,15 @@
   "closeWithoutSaving": "Ohne Speichern verlassen?",
   "closeExplanation": "Wenn du das Fenster verlässt, verlierst du dein aufgenommenen Satz",
   "cancel": "Abbrechen",
-  "dontSave": "Nicht speichern"
+  "dontSave": "Nicht speichern",
+  "progress": "Dein Fortschritt",
+  "dayStreak": "Tage Streak",
+  "level": "Level {xLevel}",
+  "@level": {
+    "placeholders": {
+      "xLevel": {
+        "type": "int"
+      }
+    }
+  }
 }

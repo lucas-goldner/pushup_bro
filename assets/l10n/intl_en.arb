@@ -99,5 +99,15 @@
   "closeWithoutSaving": "Close without saving?",
   "closeExplanation": "If you quit now, the set will not be saved",
   "cancel": "Cancel",
-  "dontSave": "Don't save"
+  "dontSave": "Don't save",
+  "progress": "Your Progress",
+  "dayStreak": "Days Streak",
+  "level": "Level {xLevel}",
+  "@level": {
+    "placeholders": {
+      "xLevel": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -10,7 +10,6 @@ import 'package:pushup_bro/core/style/pb_colors.dart';
 import 'package:pushup_bro/core/style/pb_text_styles.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/finished_set_stats_item.dart';
-import 'package:pushup_bro/generated/l10n.dart';
 
 class FinishedSetBottomSheet extends StatefulWidget {
   const FinishedSetBottomSheet(this.pushupSet, {super.key});
@@ -42,18 +41,18 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
     showCupertinoDialog<Widget>(
       context: context,
       builder: (context) => CupertinoAlertDialog(
-        title: Text(S.of(context).closeWithoutSaving),
-        content: Text(S.of(context).closeExplanation),
+        title: Text(context.l10n.closeWithoutSaving),
+        content: Text(context.l10n.closeExplanation),
         actions: <Widget>[
           CupertinoDialogAction(
             child: Text(
-              S.of(context).cancel,
+              context.l10n.cancel,
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
           CupertinoDialogAction(
             child: Text(
-              S.of(context).dontSave,
+              context.l10n.dontSave,
               style: TextStyle(
                 color: context.colorScheme.error,
                 fontWeight: FontWeight.bold,
@@ -72,7 +71,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final localized = S.of(context);
+    final localized = context.l10n;
 
     return Material(
       child: SafeArea(
@@ -131,15 +130,15 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  S.of(context).easyDifficulty,
+                  context.l10n.easyDifficulty,
                   style: context.textTheme.bodyMedium,
                 ),
                 Text(
-                  S.of(context).middleDifficulty,
+                  context.l10n.middleDifficulty,
                   style: context.textTheme.bodyMedium,
                 ),
                 Text(
-                  S.of(context).hardDifficulty,
+                  context.l10n.hardDifficulty,
                   style: context.textTheme.bodyMedium,
                 ),
               ],
@@ -147,7 +146,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
               child: Text(
-                S.of(context).stats,
+                context.l10n.stats,
                 style: context.textTheme.titleSmall,
               ),
             ),
@@ -161,27 +160,27 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet> {
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: FinishedSetStatsItem(
                       icon: CarbonIcons.time,
-                      text: S.of(context).completedInXMinutes(
-                            widget.pushupSet.timeSpent.toString(),
-                          ),
+                      text: context.l10n.completedInXMinutes(
+                        widget.pushupSet.timeSpent.toString(),
+                      ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: FinishedSetStatsItem(
                       icon: CarbonIcons.add_alt,
-                      text: S.of(context).madeXPushups(
-                            widget.pushupSet.pushups.length.toString(),
-                          ),
+                      text: context.l10n.madeXPushups(
+                        widget.pushupSet.pushups.length.toString(),
+                      ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: FinishedSetStatsItem(
                       icon: CarbonIcons.chart_average,
-                      text: S.of(context).onAverage(
-                            '${widget.pushupSet.pushups.length}/${widget.pushupSet.timeSpent}',
-                          ),
+                      text: context.l10n.onAverage(
+                        '${widget.pushupSet.pushups.length}/${widget.pushupSet.timeSpent}',
+                      ),
                     ),
                   ),
                 ],

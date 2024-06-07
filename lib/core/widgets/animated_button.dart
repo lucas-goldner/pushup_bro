@@ -70,6 +70,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
 
   @override
   void dispose() {
+    _arrowAnimController.dispose();
     _riveController.dispose();
     _riveAnim?.dispose();
     super.dispose();

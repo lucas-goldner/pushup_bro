@@ -9,11 +9,15 @@ class DBProvider implements DBProviderInterface {
   Isar? db;
 
   @override
-  bool get initialized => db != null;
+  bool get initialized => Isar.getInstance() != null;
 
   @override
   Future<void> loadDB() async {
     final dir = await getApplicationSupportDirectory();
+    if (initialized) {
+      db = Isar.getInstance();
+      return;
+    }
     db ??= await Isar.open([PushupSetSchema], directory: dir.path);
   }
 

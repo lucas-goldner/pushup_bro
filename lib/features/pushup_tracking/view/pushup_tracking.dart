@@ -12,7 +12,6 @@ import 'package:pushup_bro/features/pushup_tracking/widgets/monkey.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_counter.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/start_pushups_button.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
-import 'package:pushup_bro/generated/l10n.dart';
 
 class PushupTracking extends StatefulWidget {
   const PushupTracking({super.key});
@@ -97,7 +96,7 @@ class _PushupTrackingState extends State<PushupTracking> {
 
                             if (started) {
                               return Text(
-                                S.of(context).lookingForAirpods,
+                                context.l10n.lookingForAirpods,
                                 style: context.textTheme.bodyMedium,
                               );
                             }

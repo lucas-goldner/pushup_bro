@@ -1,7 +1,7 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/widgets/animated_button.dart';
-import 'package:pushup_bro/generated/l10n.dart';
 
 class StartPushupsButton extends StatefulWidget {
   const StartPushupsButton(this.onButtontrigger, {super.key});
@@ -21,7 +21,7 @@ class _StartPushupsButtonState extends State<StartPushupsButton> {
 
   @override
   Widget build(BuildContext context) => AnimatedButton(
-        text: buttonPressed ? S.of(context).finishSet : S.of(context).startPush,
+        text: buttonPressed ? context.l10n.finishSet : context.l10n.startPush,
         icon: CarbonIcons.arrow_right,
         callback: () => switchButtonState(context),
         isPressed: buttonPressed,

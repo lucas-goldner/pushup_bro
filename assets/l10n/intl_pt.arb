@@ -99,5 +99,15 @@
   "closeWithoutSaving": "Fechar sem salvar?",
   "closeExplanation": "Se sair agora, as alterações não serão salvas",
   "cancel": "Cancelar",
-  "dontSave": "Não salvar"
+  "dontSave": "Não salvar",
+  "progress": "Seu progresso",
+  "dayStreak": "Dias Streak",
+  "level": "Nível {xLevel}",
+  "@level": {
+    "placeholders": {
+      "xLevel": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
 import 'package:pushup_bro/core/style/pb_text_styles.dart';
+import 'package:pushup_bro/core/style/progress_theme_extensions.dart';
 import 'package:pushup_bro/generated/fonts.gen.dart';
 
 final theme = ThemeData(
@@ -28,4 +29,24 @@ final theme = ThemeData(
     bodyMedium: defaultTextStyle,
   ),
   fontFamily: FontFamily.satoshi,
+  extensions: [
+    ProgressThemeExtension(
+      levelBarGradient: const LinearGradient(
+        begin: Alignment.center,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color.fromARGB(204, 128, 255, 165),
+          Color.fromARGB(204, 1, 191, 236),
+        ],
+      ),
+      streakStarGradient: const LinearGradient(
+        begin: Alignment.center,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color.fromARGB(204, 255, 191, 0),
+          Color.fromARGB(204, 224, 62, 76),
+        ],
+      ),
+    ),
+  ],
 );

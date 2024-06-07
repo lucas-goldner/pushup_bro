@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/features/calendar/widgets/calendar_stat_item.dart';
-import 'package:pushup_bro/generated/l10n.dart';
 
 class CalendarEvent extends StatelessWidget {
   const CalendarEvent(this.pushupSet, {super.key});
@@ -29,9 +28,9 @@ class CalendarEvent extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    S.of(context).setOfXOPushups(
-                          pushupSet.pushups.length.toString(),
-                        ),
+                    context.l10n.setOfXOPushups(
+                      pushupSet.pushups.length.toString(),
+                    ),
                     style: context.textTheme.titleSmall?.copyWith(
                       color: context.colorScheme.surfaceBright,
                     ),
@@ -52,7 +51,7 @@ class CalendarEvent extends StatelessWidget {
                 ],
               ),
               Text(
-                S.of(context).stats,
+                context.l10n.stats,
                 style: context.textTheme.labelLarge?.copyWith(
                   color: context.colorScheme.surfaceBright,
                 ),

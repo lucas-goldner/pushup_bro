@@ -99,5 +99,15 @@
   "closeWithoutSaving": "保存せずに閉じますか？",
   "closeExplanation": "今終了すると、設定は保存されません",
   "cancel": "キャンセル",
-  "dontSave": "保存しない"
+  "dontSave": "保存しない",
+  "progress": "あなたの進捗",
+  "dayStreak": "日連続",
+  "level": "レベル {xLevel}",
+  "@level": {
+    "placeholders": {
+      "xLevel": {
+        "type": "int"
+      }
+    }
+  }
 }

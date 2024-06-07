@@ -7,7 +7,6 @@ import 'package:pushup_bro/features/settings/view/settings_language.dart';
 import 'package:pushup_bro/features/settings/view/settings_volume.dart';
 import 'package:pushup_bro/features/settings/widgets/info_item.dart';
 import 'package:pushup_bro/features/settings/widgets/settings_item.dart';
-import 'package:pushup_bro/generated/l10n.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -38,7 +37,7 @@ class _SettingsState extends State<Settings> {
             Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Text(
-                S.of(context).general,
+                context.l10n.general,
                 style: context.textTheme.titleSmall,
                 textAlign: TextAlign.start,
               ),
@@ -47,7 +46,7 @@ class _SettingsState extends State<Settings> {
               height: 12,
             ),
             Settingsitem(
-              S.of(context).switchLanguage,
+              context.l10n.switchLanguage,
               CarbonIcons.language,
               () => navigateToSettingPage(LanguageSetting.routeName),
             ),
@@ -55,7 +54,7 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             Settingsitem(
-              S.of(context).setVolume,
+              context.l10n.setVolume,
               CarbonIcons.volume_up,
               () => navigateToSettingPage(VolumeSetting.routeName),
             ),
@@ -65,7 +64,7 @@ class _SettingsState extends State<Settings> {
             Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Text(
-                S.of(context).info,
+                context.l10n.info,
                 style: context.textTheme.titleSmall,
                 textAlign: TextAlign.start,
               ),
@@ -74,7 +73,7 @@ class _SettingsState extends State<Settings> {
               height: 12,
             ),
             InfoItem(
-              S.of(context).website,
+              context.l10n.website,
               CarbonIcons.explore,
               () => openBrowser(createURI(WebsiteLinks.personalSite.link)),
             ),
@@ -82,7 +81,7 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             InfoItem(
-              S.of(context).twitter,
+              context.l10n.twitter,
               CarbonIcons.logo_twitter,
               () => openBrowser(createURI(WebsiteLinks.twitter.link)),
             ),
@@ -90,7 +89,7 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             InfoItem(
-              S.of(context).privacyPolicy,
+              context.l10n.privacyPolicy,
               CarbonIcons.virtual_private_cloud,
               () => openBrowser(createURI(WebsiteLinks.privacyPolicy.link)),
             ),
@@ -98,7 +97,7 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             InfoItem(
-              S.of(context).termsOfService,
+              context.l10n.termsOfService,
               CarbonIcons.term,
               () => openBrowser(createURI(WebsiteLinks.termsOfService.link)),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/pushup.dart';
-import 'package:pushup_bro/generated/l10n.dart';
 
 part 'pushup_set.g.dart';
 
@@ -19,24 +19,15 @@ class PushupSet {
     return difference == 0 ? 1 : difference;
   }
 
-  String translateEffort(BuildContext context) {
-    switch (effort) {
-      case 0:
-        return S.of(context).noEffort;
-      case 1:
-        return S.of(context).superEasyEffort;
-      case 2:
-        return S.of(context).easyEffort;
-      case 3:
-        return S.of(context).mediumEffort;
-      case 4:
-        return S.of(context).hardEffort;
-      case 5:
-        return S.of(context).superHardEffort;
-    }
-
-    return S.of(context).noEffort;
-  }
+  String translateEffort(BuildContext context) => switch (effort) {
+        0 => context.l10n.noEffort,
+        1 => context.l10n.superEasyEffort,
+        2 => context.l10n.easyEffort,
+        3 => context.l10n.mediumEffort,
+        4 => context.l10n.hardEffort,
+        5 => context.l10n.superHardEffort,
+        _ => context.l10n.noEffort
+      };
 
   PushupSet copyWith({
     List<Pushup>? pushups,
