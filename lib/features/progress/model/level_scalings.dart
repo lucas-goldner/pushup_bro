@@ -7,16 +7,11 @@ class LevelScaler {
     5: 160,
   };
 
-  static num getLevelScaling(int level) => levelScaling[level] ?? 0;
+  num getLevelScaling(int level) => levelScaling[level] ?? 0;
 
-  double getBarWidth(int level, int currentExperience) =>
+  double getCurrentExperienceRelativeToLevel(
+    int level,
+    int currentExperience,
+  ) =>
       currentExperience / getLevelScaling(level);
-
-  int getExperienceForNextLevel(int level) {
-    if (levelScaling.containsKey(level + 1)) {
-      return levelScaling[level + 1] ?? 0;
-    } else {
-      return 0;
-    }
-  }
 }

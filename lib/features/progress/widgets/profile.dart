@@ -59,7 +59,7 @@ class Profile extends StatelessWidget {
                       const SizedBox(width: 16),
                       Row(
                         children: [
-                          const StreakStar(10),
+                          const StreakStar(2),
                           const SizedBox(width: 8),
                           Text(
                             context.l10n.dayStreak,
