@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/core/style/pb_shadow.dart';
 import 'package:pushup_bro/core/style/progress_theme_extensions.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 
@@ -11,4 +12,5 @@ extension BuildContextExtension on BuildContext {
   ProgressThemeExtension get progressTheme =>
       extension<ProgressThemeExtension>();
   S get l10n => S.of(this);
+  BoxShadow get shadow => getFinalBoxShadow(this);
 }

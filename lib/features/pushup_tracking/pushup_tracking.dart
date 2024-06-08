@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
@@ -10,7 +11,7 @@ import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/finished_set_bottom_sheet.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/monkey.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_counter.dart';
-import 'package:pushup_bro/features/pushup_tracking/widgets/start_pushups_button.dart';
+import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_tracking_bottom_row.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 
 class PushupTracking extends StatefulWidget {
@@ -77,7 +78,7 @@ class _PushupTrackingState extends State<PushupTracking> {
                   Center(
                     child: Column(
                       children: [
-                        const Spacer(),
+                        const Spacer(flex: 3),
                         const Monkey(),
                         BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
                           builder: (context, airPodsState) {
@@ -104,9 +105,9 @@ class _PushupTrackingState extends State<PushupTracking> {
                             return const SizedBox();
                           },
                         ),
-                        const Spacer(),
-                        StartPushupsButton(
-                          toggleListeningUpdates,
+                        const Spacer(flex: 2),
+                        PushupTrackingBottomRow(
+                          toggleListeningUpdates: toggleListeningUpdates,
                         ),
                         const SizedBox(
                           height: 40,

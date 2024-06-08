@@ -20,6 +20,7 @@ final theme = ThemeData(
     shadow: shadowDark,
     error: CupertinoColors.destructiveRed,
   ),
+  splashFactory: NoSplash.splashFactory,
   textTheme: const TextTheme(
     titleLarge: pageTitleTextStyle,
     titleMedium: secondaryPageTitleTextStyle,
