@@ -2,9 +2,9 @@ import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
 import 'package:pushup_bro/features/menu/widgets/page_container.dart';
-import 'package:pushup_bro/features/progress/view/progress.dart';
-import 'package:pushup_bro/features/pushup_tracking/view/pushup_tracking.dart';
-import 'package:pushup_bro/features/settings/view/settings.dart';
+import 'package:pushup_bro/features/progress/progress.dart';
+import 'package:pushup_bro/features/pushup_tracking/pushup_tracking.dart';
+import 'package:pushup_bro/features/settings/settings.dart';
 import 'package:pushup_bro/features/settings/view/settings_language.dart';
 import 'package:pushup_bro/features/settings/view/settings_volume.dart';
 

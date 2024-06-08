@@ -54,6 +54,7 @@ flutter:
   assets:
     - assets/audio/
     - assets/fonts/
+    - assets/images/
     - assets/rive/
 
   fonts:

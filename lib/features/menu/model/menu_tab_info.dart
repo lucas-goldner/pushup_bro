@@ -2,10 +2,10 @@ import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
-import 'package:pushup_bro/features/progress/view/progress.dart';
+import 'package:pushup_bro/features/progress/progress.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
-import 'package:pushup_bro/features/pushup_tracking/view/pushup_tracking.dart';
-import 'package:pushup_bro/features/settings/view/settings.dart';
+import 'package:pushup_bro/features/pushup_tracking/pushup_tracking.dart';
+import 'package:pushup_bro/features/settings/settings.dart';
 
 enum MenuTabInfo {
   pushupTracking,

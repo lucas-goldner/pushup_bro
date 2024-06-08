@@ -31,14 +31,6 @@ final theme = ThemeData(
   fontFamily: FontFamily.satoshi,
   extensions: [
     ProgressThemeExtension(
-      levelBarGradient: const LinearGradient(
-        begin: Alignment.center,
-        end: Alignment.bottomCenter,
-        colors: [
-          Color.fromARGB(204, 128, 255, 165),
-          Color.fromARGB(204, 1, 191, 236),
-        ],
-      ),
       streakStarGradient: const LinearGradient(
         begin: Alignment.center,
         end: Alignment.bottomCenter,
