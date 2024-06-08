@@ -14,16 +14,48 @@ class ItemMenuItem extends StatelessWidget {
   final BoosterItems item;
 
   @override
-  Widget build(BuildContext context) => DecoratedBox(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: item.getBackgroundColor(),
-          boxShadow: [context.shadow],
-        ),
-        child: IconButton(
-          onPressed: onPressed,
-          icon: item.getIcon().image(width: 48, height: 48),
-          color: context.colorScheme.onSecondary,
-        ),
+  Widget build(BuildContext context) => Stack(
+        clipBehavior: Clip.none,
+        children: [
+          DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: item.getBackgroundColor(),
+              boxShadow: [context.shadow],
+            ),
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              onPressed: onPressed,
+              icon: item.getIcon().image(width: 48, height: 48),
+              color: context.colorScheme.onSecondary,
+            ),
+          ),
+          Positioned(
+            right: -8,
+            bottom: -4,
+            child: Container(
+              constraints: const BoxConstraints(
+                minWidth: 32,
+                minHeight: 32,
+              ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: context.colorScheme.onTertiary,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(4),
+                child: Center(
+                  child: Text(
+                    '1',
+                    style: context.textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       );
 }
