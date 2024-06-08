@@ -1,5 +1,5 @@
 {
-  "pushupBro": "Compañero de flexiones",
+  "pushupBro": "Bro de flexiones",
   "startPush": "Empezar a hacer",
   "pushupsCounter": "Flexiones: ",
   "finishSet": "Terminar",
@@ -102,12 +102,29 @@
   "dontSave": "No guardar",
   "progress": "Tú progreso",
   "dayStreak": "Días Streak",
-  "level": "Nivel {xLevel}",
+  "level": "Bro Nivel {xLevel}",
   "@level": {
     "placeholders": {
       "xLevel": {
         "type": "int"
       }
     }
-  }
+  },
+  "pointsReceived": "¡Recibiste {xPoints} puntos de bro!",
+  "@pointsReceived": {
+    "placeholders": {
+      "xPoints": {
+        "type": "int"
+      }
+    }
+  },
+  "levelReached": "¡Llego a Bro Nivel {xLevel}!",
+  "@levelReached": {
+    "placeholders": {
+      "xLevel": {
+        "type": "int"
+      }
+    }
+  },
+  "monkeyConfirm": "uh uh ok!"
 }

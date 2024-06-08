@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
-import 'package:pushup_bro/features/pushup_tracking/provider/db_provder_interface.dart';
+import 'package:pushup_bro/core/provider/db_provder_interface.dart';
 
 class DBProvider implements DBProviderInterface {
   @visibleForTesting

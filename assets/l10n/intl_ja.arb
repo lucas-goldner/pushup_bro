@@ -53,7 +53,7 @@
   "friendsFeature": "友達と競争",
   "syncFeature": "デバイス間でデータを同期",
   "comingSoon": "もっと近日公開予定...",
-  "moreIdeas": "もっとアイデアがある？提出機能セクションに移動して教えてください。",
+  "moreIdeas": "いいアイデアがある？提出機能セクションに移動して教えてください。",
   "createAccount": "アカウントを作成",
   "orCreateAccount": "またはアカウントを作成",
   "login": "ログイン",
@@ -102,12 +102,29 @@
   "dontSave": "保存しない",
   "progress": "あなたの進捗",
   "dayStreak": "日連続",
-  "level": "レベル {xLevel}",
+  "level": "兄貴レベル {xLevel}",
   "@level": {
     "placeholders": {
       "xLevel": {
         "type": "int"
       }
     }
-  }
+  },
+  "pointsReceived": "{xPoints} 兄貴ポイントもらった",
+  "@pointsReceived": {
+    "placeholders": {
+      "xPoints": {
+        "type": "int"
+      }
+    }
+  },
+  "levelReached": "兄貴レベル{xLevel}上がった!",
+  "@levelReached": {
+    "placeholders": {
+      "xLevel": {
+        "type": "int"
+      }
+    }
+  },
+  "monkeyConfirm": "キーキーオーケー!"
 }

@@ -102,12 +102,29 @@
   "dontSave": "Don't save",
   "progress": "Your Progress",
   "dayStreak": "Days Streak",
-  "level": "Level {xLevel}",
+  "level": "Bro Level {xLevel}",
   "@level": {
     "placeholders": {
       "xLevel": {
         "type": "int"
       }
     }
-  }
+  },
+  "pointsReceived": "{xPoints} Bro Points received",
+  "@pointsReceived": {
+    "placeholders": {
+      "xPoints": {
+        "type": "int"
+      }
+    }
+  },
+  "levelReached": "Reached Bro Level {xLevel}",
+  "@levelReached": {
+    "placeholders": {
+      "xLevel": {
+        "type": "int"
+      }
+    }
+  },
+  "monkeyConfirm": "oo oo ok!"
 }

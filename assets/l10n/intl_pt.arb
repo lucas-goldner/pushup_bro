@@ -1,5 +1,5 @@
 {
-  "pushupBro": "Flexirmão",
+  "pushupBro": "Flexões Mano",
   "startPush": "Começar flexões",
   "pushupsCounter": "Flexões: ",
   "finishSet": "Terminar",
@@ -102,12 +102,21 @@
   "dontSave": "Não salvar",
   "progress": "Seu progresso",
   "dayStreak": "Dias Streak",
-  "level": "Nível {xLevel}",
+  "level": "Nível Mano {xLevel}",
   "@level": {
     "placeholders": {
       "xLevel": {
         "type": "int"
       }
     }
-  }
+  },
+  "levelReached": "Você alcançou o Nível Mano {xLevel}!",
+  "@levelReached": {
+    "placeholders": {
+      "xLevel": {
+        "type": "int"
+      }
+    }
+  },
+  "monkeyConfirm": "uh uh bom!"
 }

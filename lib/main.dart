@@ -21,7 +21,7 @@ import 'package:pushup_bro/features/menu/model/routes.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/provider/airpods_motion_provider.dart';
-import 'package:pushup_bro/features/pushup_tracking/provider/db_provider.dart';
+import 'package:pushup_bro/core/provider/db_provider.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 
 void main() async {

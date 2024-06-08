@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/db_state.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
-import 'package:pushup_bro/features/pushup_tracking/provider/db_provider.dart';
+import 'package:pushup_bro/core/provider/db_provider.dart';
 
 class DBCubit extends Cubit<DBState> {
   DBCubit(this._dbProvider) : super(DBStateInitial());

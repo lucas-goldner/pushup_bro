@@ -86,3 +86,15 @@ class LevelBar extends StatelessWidget {
     );
   }
 }
+
+
+  // Padding(
+  //             padding: const EdgeInsets.symmetric(horizontal: 16),
+  //             child: LinearProgressIndicator(
+  //               value: widget.pushupSet.pushups.length / 100,
+  //               backgroundColor: context.colorScheme.surface,
+  //               valueColor: AlwaysStoppedAnimation<Color>(
+  //                 context.colorScheme.primary,
+  //               ),
+  //             ),
+  //           ),
