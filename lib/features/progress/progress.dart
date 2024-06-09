@@ -1,7 +1,7 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
-import 'package:pushup_bro/core/model/friend.dart';
+import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/progress/widgets/profile.dart';
 
@@ -16,14 +16,17 @@ class Progress extends StatefulWidget {
 class _ProgressState extends State<Progress> {
   int selectedTab = 0;
 
-  final List<LeaderBoardUser> leaderBoardUsers = [
+  final List<User> leaderBoardUsers = [
     ...List.generate(
       100,
-      (index) => LeaderBoardUser(
+      (index) => User(
         name: 'User $index',
         image: 'https://picsum.photos/200',
         streak: 0,
         longestStreak: 0,
+        friends: [],
+        level: 0,
+        xp: index,
       ),
     ),
   ];

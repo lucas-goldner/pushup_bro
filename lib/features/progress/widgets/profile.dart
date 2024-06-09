@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
-import 'package:pushup_bro/features/progress/widgets/level_bar.dart';
 import 'package:pushup_bro/core/widgets/profile_image_box.dart';
 import 'package:pushup_bro/core/widgets/streak_star.dart';
+import 'package:pushup_bro/features/progress/widgets/level_bar.dart';
 
 class Profile extends StatelessWidget {
   const Profile({

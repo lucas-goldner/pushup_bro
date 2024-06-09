@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:pushup_bro/core/model/friend.dart';
+import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/features/leaderboard/widgets/leaderboard_profile.dart';
 
 class Leaderboard extends StatelessWidget {
   Leaderboard({super.key});
   static const routeName = '/leaderboard';
 
-  final List<LeaderBoardUser> leaderBoardUsers = [
+  final List<User> leaderBoardUsers = [
     ...List.generate(
       100,
-      (index) => LeaderBoardUser(
+      (index) => User(
         name: 'User $index',
-        image: 'https://picsum.photos/200',
+        image: '',
         streak: 0,
         longestStreak: 0,
+        level: 0,
+        xp: 0,
+        friends: [],
       ),
     ),
   ];
@@ -27,15 +30,25 @@ class Leaderboard extends StatelessWidget {
           ),
           child: Column(
             children: [
+              const SizedBox(height: 64),
               Flexible(
-                child: Flexible(
-                  child: ListView.builder(
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: LeaderboardProfile(leaderBoardUsers[index]),
+                child: ListView(
+                  children: [
+                    ...leaderBoardUsers.map(
+                      (user) => Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: LeaderboardProfile(user),
+                          ),
+                          const Divider(
+                            indent: 60,
+                            endIndent: 16,
+                          ),
+                        ],
+                      ),
                     ),
-                    itemCount: leaderBoardUsers.length,
-                  ),
+                  ],
                 ),
               ),
             ],

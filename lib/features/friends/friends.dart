@@ -13,12 +13,16 @@ class Friends extends StatelessWidget {
       image: 'https://picsum.photos/200',
       streak: 12,
       longestStreak: 0,
+      sharedStreak: 1,
+      longestSharedStreak: 0,
     ),
     Friend(
       name: 'Friend 2',
       image: 'https://picsum.photos/200',
       streak: 3,
       longestStreak: 0,
+      sharedStreak: 20,
+      longestSharedStreak: 0,
     ),
     ...List.generate(
       8,
@@ -27,6 +31,8 @@ class Friends extends StatelessWidget {
         image: '',
         streak: 0,
         longestStreak: 0,
+        sharedStreak: 0,
+        longestSharedStreak: 0,
       ),
     ),
   ];

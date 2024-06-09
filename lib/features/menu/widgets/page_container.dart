@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/widgets/pb_app_bar.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
@@ -18,6 +21,8 @@ class _PageContainerState extends State<PageContainer> {
   void _changeOpacity() =>
       setState(() => opacityLevel = opacityLevel == 0 ? 0.75 : 0.0);
 
+  bool get isVisible => opacityLevel != 0;
+
   @override
   Widget build(BuildContext context) => CupertinoPageScaffold(
         backgroundColor: context.colorScheme.surface,
@@ -26,9 +31,26 @@ class _PageContainerState extends State<PageContainer> {
             Stack(
               children: [
                 IgnorePointer(
-                  ignoring: opacityLevel != 0,
-                  child: Center(
-                    child: widget.pageContent,
+                  ignoring: isVisible,
+                  child: Stack(
+                    children: [
+                      widget.pageContent,
+                      Visibility(
+                        visible: isVisible,
+                        child: ClipRect(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                              sigmaX: 10,
+                              sigmaY: 10,
+                            ),
+                            child: SizedBox(
+                              width: MediaQuery.sizeOf(context).width,
+                              height: MediaQuery.sizeOf(context).height,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 IgnorePointer(
@@ -44,7 +66,9 @@ class _PageContainerState extends State<PageContainer> {
                 ),
                 SafeArea(
                   child: PBAppBar(
-                    widget.menuTab?.getMenuTitle(context) ?? '',
+                    isVisible
+                        ? ''
+                        : widget.menuTab?.getMenuTitle(context) ?? '',
                     _changeOpacity,
                   ),
                 ),
