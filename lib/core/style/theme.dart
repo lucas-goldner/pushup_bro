@@ -40,6 +40,9 @@ final theme = ThemeData(
     thickness: 1,
     space: 0,
   ),
+  searchBarTheme: SearchBarThemeData(
+    hintStyle: WidgetStateProperty.all<TextStyle>(defaultTextStyle),
+  ),
   extensions: [
     ProgressThemeExtension(
       streakStarGradient: const LinearGradient(

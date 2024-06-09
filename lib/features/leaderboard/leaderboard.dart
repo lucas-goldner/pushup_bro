@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/core/extensions/list_ext.dart';
 import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/features/leaderboard/widgets/leaderboard_profile.dart';
 
@@ -31,15 +32,21 @@ class Leaderboard extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 64),
+              const SearchBar(
+                hintText: 'Search',
+              ),
               Flexible(
                 child: ListView(
                   children: [
-                    ...leaderBoardUsers.map(
-                      (user) => Column(
+                    ...leaderBoardUsers.mapIndexed(
+                      (index, user) => Column(
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16),
-                            child: LeaderboardProfile(user),
+                            child: LeaderboardProfile(
+                              user: user,
+                              ranking: index + 1,
+                            ),
                           ),
                           const Divider(
                             indent: 60,
