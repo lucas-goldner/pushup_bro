@@ -126,5 +126,11 @@
       }
     }
   },
-  "monkeyConfirm": "oo oo ok!"
+  "monkeyConfirm": "oo oo ok!",
+  "shareProfile": "Share profile",
+  "friends": "Friends",
+  "leaderboard": "Leaderboard",
+  "sharedStreak": "Shared streak",
+  "sendChallenge": "Send challenge",
+  "acceptChallenge": "Accept challenge"
 }

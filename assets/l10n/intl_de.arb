@@ -126,5 +126,11 @@
       }
     }
   },
-  "monkeyConfirm": "Huh-huh-gut!"
+  "monkeyConfirm": "Huh-huh-gut!",
+  "shareProfile": "Profil teilen",
+  "friends": "Freunde",
+  "leaderboard": "Rangliste",
+  "sharedStreak": "Geteile Streak",
+  "sendChallenge": "Herausforderung senden",
+  "acceptChallenge": "Herausforderung annehmen"
 }

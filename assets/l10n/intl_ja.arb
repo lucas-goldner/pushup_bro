@@ -126,5 +126,11 @@
       }
     }
   },
-  "monkeyConfirm": "キーキーオーケー!"
+  "monkeyConfirm": "キーキーオーケー!",
+  "shareProfile": "プロフィールを共有",
+  "friends": "友達",
+  "leaderboard": "リーダーボード",
+  "sharedStreak": "共有した連続",
+  "sendChallenge": "友達に挑戦を送る",
+  "acceptChallenge": "挑戦を受け入れる"
 }

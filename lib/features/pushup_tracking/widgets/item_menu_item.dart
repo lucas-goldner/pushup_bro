@@ -41,7 +41,7 @@ class ItemMenuItem extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colorScheme.onTertiary,
+                color: context.colorScheme.tertiary,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(4),

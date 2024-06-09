@@ -1,19 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
-import 'package:pushup_bro/features/progress/widgets/level_bar.dart';
+import 'package:pushup_bro/core/model/friend.dart';
+import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/progress/widgets/profile_image_box.dart';
 import 'package:pushup_bro/features/progress/widgets/streak_star.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({
-    required this.name,
-    required this.imageUrl,
-    super.key,
-  });
-
-  final String name;
-  final String imageUrl;
+class FriendProfile extends StatelessWidget {
+  const FriendProfile(this.friend, {super.key});
+  final Friend friend;
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
@@ -32,14 +26,16 @@ class Profile extends StatelessWidget {
                       color: context.colorScheme.onPrimary,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: ProfileImageBox(imageUrl),
+                    child: ProfileImageBox(
+                      friend.image,
+                    ),
                   ),
                   const SizedBox(width: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        name,
+                        friend.name,
                         style: context.textTheme.headlineLarge?.copyWith(
                           color: context.colorScheme.onPrimary,
                         ),
@@ -51,7 +47,7 @@ class Profile extends StatelessWidget {
                           const StreakStar(2),
                           const SizedBox(width: 8),
                           Text(
-                            context.l10n.dayStreak,
+                            context.l10n.sharedStreak,
                             style: context.textTheme.bodyMedium?.copyWith(
                               color: context.colorScheme.onPrimary,
                             ),
@@ -63,15 +59,10 @@ class Profile extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: LevelBar(level: 2, experience: 30),
-            ),
-            const SizedBox(
-              height: 20,
+            PBButton(
+              friend.image.isNotEmpty
+                  ? context.l10n.sendChallenge
+                  : context.l10n.acceptChallenge,
             ),
           ],
         ),

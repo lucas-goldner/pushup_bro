@@ -20,7 +20,7 @@ class StreakStar extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 3,
+            top: 4,
             left: 0,
             right: 0,
             bottom: 0,
@@ -30,6 +30,7 @@ class StreakStar extends StatelessWidget {
                   '$days',
                   style: context.textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.bold,
+                    color: context.colorScheme.onPrimary,
                   ),
                 ),
               ),

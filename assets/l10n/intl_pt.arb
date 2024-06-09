@@ -118,5 +118,11 @@
       }
     }
   },
-  "monkeyConfirm": "uh uh bom!"
+  "monkeyConfirm": "uh uh bom!",
+  "shareProfile": "Compartilhar perfil",
+  "friends": "Amigos",
+  "leaderboard": "Tabela de classificação",
+  "sharedStreak": "Streak compartilhado",
+  "sendChallenge": "Enviar desafio",
+  "acceptChallenge": "Aceitar desafio"
 }

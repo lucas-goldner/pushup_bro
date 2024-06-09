@@ -22,9 +22,9 @@ class LevelBar extends StatelessWidget {
       children: [
         LinearProgressIndicator(
           value: _barWidth,
-          backgroundColor: context.colorScheme.secondary,
+          backgroundColor: context.colorScheme.onPrimary,
           valueColor: AlwaysStoppedAnimation<Color>(
-            context.colorScheme.primary,
+            context.colorScheme.inversePrimary,
           ),
         ),
         const SizedBox(height: 8),
@@ -34,12 +34,15 @@ class LevelBar extends StatelessWidget {
               context.l10n.level(level),
               style: context.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.bold,
+                color: context.colorScheme.onPrimary,
               ),
             ),
             const Spacer(),
             Text(
-              '$experience / ${LevelScaler().getLevelScaling(level)} XP',
-              style: context.textTheme.bodyMedium,
+              '$experience / ${LevelScaler().getLevelScaling(level)}',
+              style: context.textTheme.bodyMedium?.copyWith(
+                color: context.colorScheme.onPrimary,
+              ),
             ),
           ],
         ),
