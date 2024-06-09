@@ -2,6 +2,8 @@ import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
+import 'package:pushup_bro/features/friends/friends.dart';
+import 'package:pushup_bro/features/leaderboard/leaderboard.dart';
 import 'package:pushup_bro/features/progress/progress.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/pushup_tracking.dart';
@@ -11,7 +13,9 @@ enum MenuTabInfo {
   pushupTracking,
   progress,
   // calendar,
-  settings,
+  friends,
+  leaderbaord,
+  settings;
 }
 
 extension MenuTabInfoExtension on MenuTabInfo {
@@ -19,13 +23,17 @@ extension MenuTabInfoExtension on MenuTabInfo {
         MenuTabInfo.pushupTracking => context.l10n.home,
         MenuTabInfo.progress => context.l10n.progress,
         // MenuTabInfo.calendar => context.l10n.calendar,
-        MenuTabInfo.settings => context.l10n.settings
+        MenuTabInfo.friends => context.l10n.friends,
+        MenuTabInfo.leaderbaord => context.l10n.leaderboard,
+        MenuTabInfo.settings => context.l10n.settings,
       };
 
-  IconData getIcon() => switch (this) {
+  IconData get icon => switch (this) {
         MenuTabInfo.pushupTracking => CarbonIcons.home,
         MenuTabInfo.progress => CarbonIcons.skill_level,
         // MenuTabInfo.calendar => CarbonIcons.calendar,
+        MenuTabInfo.friends => CarbonIcons.group,
+        MenuTabInfo.leaderbaord => CarbonIcons.list_numbered,
         MenuTabInfo.settings => CarbonIcons.settings,
       };
 
@@ -46,6 +54,14 @@ extension MenuTabInfoExtension on MenuTabInfo {
       //     Calendar.routeName,
       //     arguments: context,
       //   ),
+      MenuTabInfo.friends => navigator.pushReplacementNamed(
+          Friends.routeName,
+          arguments: context,
+        ),
+      MenuTabInfo.leaderbaord => navigator.pushReplacementNamed(
+          Leaderboard.routeName,
+          arguments: context,
+        ),
       MenuTabInfo.settings => navigator.pushReplacementNamed(
           Settings.routeName,
           arguments: context,

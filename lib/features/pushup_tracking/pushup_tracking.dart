@@ -16,7 +16,7 @@ import 'package:pushup_bro/generated/assets.gen.dart';
 
 class PushupTracking extends StatefulWidget {
   const PushupTracking({super.key});
-  static const routeName = '/';
+  static const String routeName = '/';
 
   @override
   State<PushupTracking> createState() => _PushupTrackingState();

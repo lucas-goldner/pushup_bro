@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/friend.dart';
-import 'package:pushup_bro/features/progress/widgets/profile_image_box.dart';
+import 'package:pushup_bro/core/widgets/profile_image_box.dart';
 
 class LeaderboardProfile extends StatelessWidget {
   const LeaderboardProfile(this.leaderBoardUser, {super.key});

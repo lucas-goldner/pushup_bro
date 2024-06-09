@@ -45,7 +45,7 @@ class MenuTab extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 child: Row(
                   children: [
-                    Icon(_menuInfo.getIcon()),
+                    Icon(_menuInfo.icon),
                     const SizedBox(
                       width: 12,
                     ),

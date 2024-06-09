@@ -1,5 +1,7 @@
 import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/features/friends/friends.dart';
+import 'package:pushup_bro/features/leaderboard/leaderboard.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
 import 'package:pushup_bro/features/menu/widgets/page_container.dart';
 import 'package:pushup_bro/features/progress/progress.dart';
@@ -23,6 +25,20 @@ Route<CupertinoPageRoute<Widget>> generateRoutes(
           settings.arguments as BuildContext?,
           const PageContainer(
             Progress(),
+            menuTab: MenuTabInfo.progress,
+          ),
+        ),
+      Friends.routeName => _revealCircular(
+          settings.arguments as BuildContext?,
+          PageContainer(
+            Friends(),
+            menuTab: MenuTabInfo.progress,
+          ),
+        ),
+      Leaderboard.routeName => _revealCircular(
+          settings.arguments as BuildContext?,
+          PageContainer(
+            Leaderboard(),
             menuTab: MenuTabInfo.progress,
           ),
         ),

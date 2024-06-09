@@ -29,6 +29,11 @@ final theme = ThemeData(
     bodyLarge: pushupTextStyle,
     bodyMedium: defaultTextStyle,
   ),
+  iconButtonTheme: IconButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: WidgetStateProperty.all<Color>(ternaryColor),
+    ),
+  ),
   fontFamily: FontFamily.satoshi,
   extensions: [
     ProgressThemeExtension(

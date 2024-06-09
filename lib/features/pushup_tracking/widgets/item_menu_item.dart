@@ -26,6 +26,9 @@ class ItemMenuItem extends StatelessWidget {
             child: IconButton(
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
+              style: IconButton.styleFrom(
+                backgroundColor: item.getBackgroundColor(),
+              ),
               onPressed: onPressed,
               icon: item.getIcon().image(width: 48, height: 48),
               color: context.colorScheme.onSecondary,

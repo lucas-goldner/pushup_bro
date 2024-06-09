@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/friend.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
-import 'package:pushup_bro/features/progress/widgets/profile_image_box.dart';
-import 'package:pushup_bro/features/progress/widgets/streak_star.dart';
+import 'package:pushup_bro/core/widgets/profile_image_box.dart';
+import 'package:pushup_bro/core/widgets/streak_star.dart';
 
 class FriendProfile extends StatelessWidget {
   const FriendProfile(this.friend, {super.key});
