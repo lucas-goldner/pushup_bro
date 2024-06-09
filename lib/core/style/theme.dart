@@ -31,10 +31,15 @@ final theme = ThemeData(
   ),
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: WidgetStateProperty.all<Color>(ternaryColor),
+      backgroundColor: WidgetStateProperty.all<Color>(background2),
     ),
   ),
   fontFamily: FontFamily.satoshi,
+  dividerTheme: const DividerThemeData(
+    color: background3,
+    thickness: 1,
+    space: 0,
+  ),
   extensions: [
     ProgressThemeExtension(
       streakStarGradient: const LinearGradient(

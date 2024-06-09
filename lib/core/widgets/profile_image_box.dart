@@ -5,11 +5,14 @@ class ProfileImageBox extends StatelessWidget {
   const ProfileImageBox(
     this.profileImage, {
     Size? size,
+    double? iconSize,
     super.key,
-  }) : _size = size ?? const Size(100, 100);
+  })  : _size = size ?? const Size(100, 100),
+        _iconSize = iconSize ?? 48;
 
   final String profileImage;
   final Size _size;
+  final double _iconSize;
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -24,9 +27,9 @@ class ProfileImageBox extends StatelessWidget {
                   width: _size.width,
                 ),
               )
-            : const Icon(
+            : Icon(
                 CarbonIcons.user,
-                size: 48,
+                size: _iconSize,
               ),
       );
 }

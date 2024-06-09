@@ -131,6 +131,15 @@
   "friends": "Friends",
   "leaderboard": "Leaderboard",
   "sharedStreak": "Shared streak",
-  "sendChallenge": "Send challenge",
-  "acceptChallenge": "Accept challenge"
+  "openChallenges": "{xChallenges} Open challenges",
+  "@openChallenges": {
+    "placeholders": {
+      "xChallenges": {
+        "type": "int"
+      }
+    }
+  },
+  "sendChallenge": "Challenge",
+  "acceptChallenge": "Accept challenge",
+  "longestStreak": "Längste Streak"
 }

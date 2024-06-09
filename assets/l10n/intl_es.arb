@@ -131,6 +131,15 @@
   "friends": "Amigos",
   "leaderboard": "Tabla de clasificación",
   "sharedStreak": "Streak compartido",
-  "sendChallenge": "Enviar desafío",
-  "acceptChallenge": "Aceptar desafío"
+  "openChallenges": "{xChallenges} Desafíos abiertos",
+  "@openChallenges": {
+    "placeholders": {
+      "xChallenges": {
+        "type": "int"
+      }
+    }
+  },
+  "sendChallenge": "Desafiar",
+  "acceptChallenge": "Aceptar desafío",
+  "longestStreak": "Streak más largo"
 }

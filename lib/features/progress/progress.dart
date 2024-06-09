@@ -22,7 +22,8 @@ class _ProgressState extends State<Progress> {
       (index) => LeaderBoardUser(
         name: 'User $index',
         image: 'https://picsum.photos/200',
-        progress: (level: 0, points: 0),
+        streak: 0,
+        longestStreak: 0,
       ),
     ),
   ];

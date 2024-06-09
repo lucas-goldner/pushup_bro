@@ -31,7 +31,6 @@ class ItemMenuItem extends StatelessWidget {
               ),
               onPressed: onPressed,
               icon: item.getIcon().image(width: 48, height: 48),
-              color: context.colorScheme.onSecondary,
             ),
           ),
           Positioned(
@@ -44,7 +43,7 @@ class ItemMenuItem extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colorScheme.tertiary,
+                color: context.colorScheme.onSecondary,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(4),

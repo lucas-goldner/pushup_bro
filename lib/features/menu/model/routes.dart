@@ -32,14 +32,14 @@ Route<CupertinoPageRoute<Widget>> generateRoutes(
           settings.arguments as BuildContext?,
           PageContainer(
             Friends(),
-            menuTab: MenuTabInfo.progress,
+            menuTab: MenuTabInfo.friends,
           ),
         ),
       Leaderboard.routeName => _revealCircular(
           settings.arguments as BuildContext?,
           PageContainer(
             Leaderboard(),
-            menuTab: MenuTabInfo.progress,
+            menuTab: MenuTabInfo.leaderbaord,
           ),
         ),
       Settings.routeName => _revealCircular(

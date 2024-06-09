@@ -131,6 +131,15 @@
   "friends": "友達",
   "leaderboard": "リーダーボード",
   "sharedStreak": "共有した連続",
-  "sendChallenge": "友達に挑戦を送る",
-  "acceptChallenge": "挑戦を受け入れる"
+  "openChallenges": "{xChallenges} オープンチャレンジ",
+  "@openChallenges": {
+    "placeholders": {
+      "xChallenges": {
+        "type": "int"
+      }
+    }
+  },
+  "sendChallenge": "友達にチャレンジを送る",
+  "acceptChallenge": "チャレンジを受け入れる",
+  "longestStreak": "最長連続"
 }

@@ -130,7 +130,16 @@
   "shareProfile": "Profil teilen",
   "friends": "Freunde",
   "leaderboard": "Rangliste",
+  "openChallenges": "{xChallenges} Offene Herausforderungen",
+  "@openChallenges": {
+    "placeholders": {
+      "xChallenges": {
+        "type": "int"
+      }
+    }
+  },
   "sharedStreak": "Geteile Streak",
-  "sendChallenge": "Herausforderung senden",
-  "acceptChallenge": "Herausforderung annehmen"
+  "sendChallenge": "Herausfordern",
+  "acceptChallenge": "Herausforderung annehmen",
+  "longestStreak": "Longest Streak"
 }

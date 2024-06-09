@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/friend.dart';
 import 'package:pushup_bro/features/friends/widgets/friend_profile.dart';
 
@@ -10,19 +11,22 @@ class Friends extends StatelessWidget {
     Friend(
       name: 'Friend 1',
       image: 'https://picsum.photos/200',
-      progress: (level: 0, points: 0),
+      streak: 12,
+      longestStreak: 0,
     ),
     Friend(
       name: 'Friend 2',
-      image: '',
-      progress: (level: 2, points: 30),
+      image: 'https://picsum.photos/200',
+      streak: 3,
+      longestStreak: 0,
     ),
     ...List.generate(
       8,
       (index) => Friend(
         name: 'Friend $index',
-        image: 'https://picsum.photos/200',
-        progress: (level: index, points: 10),
+        image: '',
+        streak: 0,
+        longestStreak: 0,
       ),
     ),
   ];
@@ -36,13 +40,50 @@ class Friends extends StatelessWidget {
           ),
           child: Column(
             children: [
+              const SizedBox(height: 64),
               Flexible(
-                child: ListView.builder(
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: FriendProfile(friends[index]),
-                  ),
-                  itemCount: friends.length,
+                child: ListView(
+                  children: [
+                    Text(
+                      context.l10n.openChallenges(2),
+                      style: context.textTheme.titleLarge,
+                    ),
+                    ...friends.take(2).map(
+                          (friend) => Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                child: FriendProfile(friend),
+                              ),
+                              const Divider(
+                                indent: 60,
+                                endIndent: 16,
+                              ),
+                            ],
+                          ),
+                        ),
+                    const SizedBox(height: 32),
+                    Text(
+                      context.l10n.friends,
+                      style: context.textTheme.titleLarge,
+                    ),
+                    ...friends.skip(2).map(
+                          (friend) => Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                child: FriendProfile(friend),
+                              ),
+                              const Divider(
+                                indent: 60,
+                                endIndent: 16,
+                              ),
+                            ],
+                          ),
+                        ),
+                  ],
                 ),
               ),
             ],
