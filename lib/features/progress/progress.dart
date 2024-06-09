@@ -4,6 +4,7 @@ import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/friend.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/progress/widgets/friend_profile.dart';
+import 'package:pushup_bro/features/progress/widgets/leaderboard_profile.dart';
 import 'package:pushup_bro/features/progress/widgets/profile.dart';
 
 class Progress extends StatefulWidget {
@@ -30,9 +31,20 @@ class _ProgressState extends State<Progress> {
     ...List.generate(
       8,
       (index) => Friend(
-        name: 'Friend 3',
+        name: 'Friend $index',
         image: 'https://picsum.photos/200',
         progress: (level: index, points: 10),
+      ),
+    ),
+  ];
+
+  final List<LeaderBoardUser> leaderBoardUsers = [
+    ...List.generate(
+      100,
+      (index) => LeaderBoardUser(
+        name: 'User $index',
+        image: 'https://picsum.photos/200',
+        progress: (level: 0, points: 0),
       ),
     ),
   ];
@@ -85,17 +97,27 @@ class _ProgressState extends State<Progress> {
                 onValueChanged: (val) => changeTab(val ?? 0),
               ),
               const SizedBox(height: 12),
-              Flexible(
-                child: ListView.builder(
-                  itemBuilder: (context, index) => selectedTab == 0
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          child: FriendProfile(friends[index]),
-                        )
-                      : Text('$index Page2'),
-                  itemCount: 10,
-                ),
-              ),
+              switch (selectedTab) {
+                0 => Flexible(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: FriendProfile(friends[index]),
+                      ),
+                      itemCount: friends.length,
+                    ),
+                  ),
+                1 => Flexible(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: LeaderboardProfile(leaderBoardUsers[index]),
+                      ),
+                      itemCount: leaderBoardUsers.length,
+                    ),
+                  ),
+                _ => const SizedBox(),
+              },
             ],
           ),
         ),

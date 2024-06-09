@@ -12,3 +12,5 @@ class Friend {
   final String image;
   final ({int level, int points}) progress;
 }
+
+typedef LeaderBoardUser = Friend;
