@@ -10,6 +10,7 @@ import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_state.
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/finished_set_bottom_sheet.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/monkey.dart';
+import 'package:pushup_bro/features/pushup_tracking/widgets/news_banner.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_counter.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_tracking_bottom_row.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
@@ -78,6 +79,8 @@ class _PushupTrackingState extends State<PushupTracking> {
                   Center(
                     child: Column(
                       children: [
+                        const Spacer(flex: 2),
+                        const NewsBanner(),
                         const Spacer(flex: 3),
                         const Monkey(),
                         BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(

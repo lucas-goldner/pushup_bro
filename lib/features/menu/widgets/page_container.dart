@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/widgets/pb_app_bar.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
