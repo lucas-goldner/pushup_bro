@@ -128,7 +128,7 @@
   },
   "monkeyConfirm": "キーキーオーケー!",
   "shareProfile": "プロフィールを共有",
-  "friends": "友達",
+  "friends": "兄貴",
   "leaderboard": "リーダーボード",
   "sharedStreak": "共有した連続",
   "openChallenges": "{xChallenges} オープンチャレンジ",
@@ -141,5 +141,7 @@
   },
   "sendChallenge": "友達にチャレンジを送る",
   "acceptChallenge": "チャレンジを受け入れる",
-  "longestStreak": "最長連続"
+  "longestStreak": "最長連続",
+  "doublePoints": "ダブル兄貴ポイント",
+  "friendBoost": "兄貴ブースト"
 }

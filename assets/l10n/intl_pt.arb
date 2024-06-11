@@ -110,7 +110,15 @@
       }
     }
   },
-  "levelReached": "Você alcançou o Nível Mano {xLevel}!",
+  "pointsReceived": "Recebeu {xPoints} Mano pontos!",
+  "@pointsReceived": {
+    "placeholders": {
+      "xPoints": {
+        "type": "int"
+      }
+    }
+  },
+  "levelReached": "Você alcançou o Mano Nível {xLevel}!",
   "@levelReached": {
     "placeholders": {
       "xLevel": {
@@ -133,5 +141,7 @@
   },
   "sendChallenge": "Desafiar",
   "acceptChallenge": "Aceitar desafio",
-  "longestStreak": "Maior streak"
+  "longestStreak": "Maior streak",
+  "doublePoints": "Mano pontos duplos",
+  "friendBoost": "Impulso do mano"
 }

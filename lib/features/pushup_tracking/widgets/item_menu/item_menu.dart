@@ -2,7 +2,10 @@ import 'dart:math' as math;
 
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
+import 'package:pushup_bro/core/model/active_effects.dart';
 import 'package:pushup_bro/core/model/booster_items.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/item_menu/item_menu_item.dart';
 
@@ -10,7 +13,15 @@ class ItemMenu extends StatelessWidget {
   const ItemMenu({super.key});
 
   void _showAction(BuildContext context, BoosterItems item) {
-    print(item.getLocalizedName(context));
+    switch (item) {
+      case BoosterItems.doublePoints:
+        BlocProvider.of<ActiveEffectsCubit>(context).addEffect(
+          ActiveEffects.itemDoublePoints,
+        );
+        return;
+      case BoosterItems.friendBoost:
+        return;
+    }
   }
 
   @override

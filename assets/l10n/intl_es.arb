@@ -1,5 +1,5 @@
 {
-  "pushupBro": "Bro de flexiones",
+  "pushupBro": "Bro flexiones",
   "startPush": "Empezar a hacer",
   "pushupsCounter": "Flexiones: ",
   "finishSet": "Terminar",
@@ -110,7 +110,7 @@
       }
     }
   },
-  "pointsReceived": "¡Recibiste {xPoints} puntos de bro!",
+  "pointsReceived": "¡Recibiste {xPoints} puntos Bro!",
   "@pointsReceived": {
     "placeholders": {
       "xPoints": {
@@ -128,7 +128,7 @@
   },
   "monkeyConfirm": "uh uh ok!",
   "shareProfile": "Compartir perfil",
-  "friends": "Amigos",
+  "friends": "Bros",
   "leaderboard": "Tabla de clasificación",
   "sharedStreak": "Streak compartido",
   "openChallenges": "{xChallenges} Desafíos abiertos",
@@ -141,5 +141,7 @@
   },
   "sendChallenge": "Desafiar",
   "acceptChallenge": "Aceptar desafío",
-  "longestStreak": "Streak más largo"
+  "longestStreak": "Streak más largo",
+  "doublePoints": "Doble puntos Bro",
+  "friendBoost": "Bro Boost"
 }

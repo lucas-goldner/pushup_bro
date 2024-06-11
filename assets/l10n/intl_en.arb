@@ -128,7 +128,7 @@
   },
   "monkeyConfirm": "oo oo ok!",
   "shareProfile": "Share profile",
-  "friends": "Friends",
+  "friends": "Bros",
   "leaderboard": "Leaderboard",
   "sharedStreak": "Shared streak",
   "openChallenges": "{xChallenges} Open challenges",
@@ -141,5 +141,7 @@
   },
   "sendChallenge": "Challenge",
   "acceptChallenge": "Accept challenge",
-  "longestStreak": "Längste Streak"
+  "longestStreak": "Longest Streak",
+  "doublePoints": "Double Bro Points",
+  "friendBoost": "Bro Boost"
 }
