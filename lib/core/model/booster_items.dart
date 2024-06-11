@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 
 enum BoosterItems {
@@ -17,8 +18,10 @@ extension BoosterItemsExtension on BoosterItems {
         BoosterItems.friendBoost => Assets.images.itemConnect,
       };
 
-  Color getBackgroundColor() => switch (this) {
-        BoosterItems.doubleBoost => const Color(0xFFfffcfc),
-        BoosterItems.friendBoost => const Color(0xFFffecc4),
-      };
+  Color getBackgroundColor(BuildContext context) =>
+      switch (this) {
+        BoosterItems.doubleBoost => context.itemColorsTheme.doubleBoost,
+        BoosterItems.friendBoost => context.itemColorsTheme.friendBoost,
+      } ??
+      Colors.transparent;
 }

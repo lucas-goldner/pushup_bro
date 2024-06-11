@@ -1,6 +1,8 @@
+import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/features/pushup_tracking/model/news.dart';
+import 'package:pushup_bro/generated/assets.gen.dart';
 
 class NewsBannerItem extends StatelessWidget {
   const NewsBannerItem({
@@ -23,17 +25,16 @@ class NewsBannerItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: SizedBox(
             height: 25 + (factor * 30),
+            width: double.infinity,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: context.theme.colorScheme.primary,
                 borderRadius: BorderRadius.circular(12),
+                color: news.getColor(context),
                 boxShadow: [
                   context.shadow,
                 ],
               ),
-              child: Center(
-                child: content,
-              ),
+              child: Center(child: content),
             ),
           ),
         ),
@@ -43,9 +44,7 @@ class NewsBannerItem extends StatelessWidget {
   Widget build(BuildContext context) => switch (news.type) {
         NewsType.update => _buildBasicCard(
             context,
-            _UpdateCard(
-              news,
-            ),
+            _UpdateCard(news),
           ),
         NewsType.friendBoost => _buildBasicCard(
             context,
@@ -63,9 +62,24 @@ class _UpdateCard extends StatelessWidget {
   final News news;
 
   @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  Widget build(BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            CarbonIcons.upgrade,
+            color: context.colorScheme.onPrimary,
+          ),
+          const SizedBox(
+            width: 12,
+          ),
+          Text(
+            news.title,
+            style: context.textTheme.labelLarge?.copyWith(
+              color: context.colorScheme.onPrimary,
+            ),
+          ),
+        ],
+      );
 }
 
 class _FriendBoostCard extends StatelessWidget {
@@ -73,9 +87,21 @@ class _FriendBoostCard extends StatelessWidget {
   final News news;
 
   @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  Widget build(BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Assets.images.itemConnect.image(width: 52, height: 52),
+          const SizedBox(
+            width: 12,
+          ),
+          Text(
+            news.title,
+            style: context.textTheme.labelLarge?.copyWith(
+              color: context.colorScheme.primary,
+            ),
+          ),
+        ],
+      );
 }
 
 class _EventDayCard extends StatelessWidget {
@@ -83,7 +109,19 @@ class _EventDayCard extends StatelessWidget {
   final News news;
 
   @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  Widget build(BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Assets.images.itemDouble.image(width: 52, height: 52),
+          const SizedBox(
+            width: 12,
+          ),
+          Text(
+            news.title,
+            style: context.textTheme.labelLarge?.copyWith(
+              color: context.colorScheme.primary,
+            ),
+          ),
+        ],
+      );
 }

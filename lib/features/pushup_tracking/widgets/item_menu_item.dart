@@ -20,14 +20,16 @@ class ItemMenuItem extends StatelessWidget {
           DecoratedBox(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: item.getBackgroundColor(),
+              color: item.getBackgroundColor(context),
               boxShadow: [context.shadow],
             ),
             child: IconButton(
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               style: IconButton.styleFrom(
-                backgroundColor: item.getBackgroundColor(),
+                backgroundColor: item.getBackgroundColor(
+                  context,
+                ),
               ),
               onPressed: onPressed,
               icon: item.getIcon().image(width: 48, height: 48),

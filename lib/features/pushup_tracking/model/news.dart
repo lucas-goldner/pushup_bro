@@ -1,13 +1,20 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 
 enum NewsType {
-  update(Color(0xFFE6E6E6)),
-  friendBoost(Color(0xFFE6E6E6)),
-  eventDay(Color(0xFFE6E6E6));
+  update,
+  friendBoost,
+  eventDay;
+}
 
-  const NewsType(this.color);
-
-  final Color color;
+extension NewsTypeExtension on NewsType {
+  Color getColor(BuildContext context) =>
+      switch (this) {
+        NewsType.update => context.colorScheme.primary,
+        NewsType.friendBoost => context.itemColorsTheme.friendBoost,
+        NewsType.eventDay => context.itemColorsTheme.doubleBoost,
+      } ??
+      Colors.transparent;
 }
 
 class News {
@@ -22,4 +29,5 @@ class News {
   final String description;
   final NewsType type;
   final DateTime date;
+  Color getColor(BuildContext context) => type.getColor(context);
 }

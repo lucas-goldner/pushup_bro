@@ -16,16 +16,24 @@ class _NewsBannerState extends State<NewsBanner> {
 
   final List<News> news = [
     News(
-      title: 'Lucas gave you a boost',
+      title: 'Lucas gave you a boost!',
       description: 'description',
-      type: NewsType.update,
+      type: NewsType.friendBoost,
       date: DateTime.now(),
     ),
     News(
-      title: 'Double Bro Points',
-      description: 'description',
-      type: NewsType.update,
+      title: 'Double Bro Points Day!',
+      description: 'Today you get double bro points for each pushup',
+      type: NewsType.eventDay,
       date: DateTime.now(),
+    ),
+    News(
+      title: 'New Update',
+      description: 'Enjoy the new features',
+      type: NewsType.update,
+      date: DateTime.now().subtract(
+        const Duration(days: 1),
+      ),
     ),
   ];
 
