@@ -73,12 +73,18 @@ class _PushupTrackingState extends State<PushupTracking> {
     // }
   }
 
+  void toggleNewsVisibility() => setState(() => newsVisible = !newsVisible);
+
+  @override
+  void initState() {
+    super.initState();
+    newsVisible = false;
+  }
+
   @override
   void didUpdateWidget(covariant PushupTracking oldWidget) {
     super.didUpdateWidget(oldWidget);
   }
-
-  void toggleNewsVisibility() => setState(() => newsVisible = !newsVisible);
 
   @override
   Widget build(BuildContext context) => FutureBuilder(

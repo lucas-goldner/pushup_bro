@@ -62,6 +62,8 @@ class _NewsBannerState extends State<NewsBanner>
   @override
   void didUpdateWidget(covariant NewsBanner oldWidget) {
     super.didUpdateWidget(oldWidget);
+    print('newsVisible: ${widget.newsVisible}');
+    print('old newsVisible: ${oldWidget.newsVisible}');
     if (oldWidget.newsVisible == widget.newsVisible) {
       return;
     }
