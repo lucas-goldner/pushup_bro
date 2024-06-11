@@ -29,5 +29,6 @@ class News {
   final String description;
   final NewsType type;
   final DateTime date;
+  bool get isActive => date.isAfter(DateTime.now());
   Color getColor(BuildContext context) => type.getColor(context);
 }

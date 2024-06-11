@@ -7,6 +7,7 @@ import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_state.dart';
+import 'package:pushup_bro/features/pushup_tracking/cubit/news_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/finished_pushup_sheet/finished_set_bottom_sheet.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/monkey.dart';
@@ -79,6 +80,7 @@ class _PushupTrackingState extends State<PushupTracking> {
   void initState() {
     super.initState();
     newsVisible = false;
+    context.read<NewsCubit>().getNews();
   }
 
   @override

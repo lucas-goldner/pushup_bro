@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pushup_bro/features/pushup_tracking/model/news.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/features/pushup_tracking/cubit/news_cubit.dart';
+import 'package:pushup_bro/features/pushup_tracking/cubit/news_state.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/news_banner/news_banner_item.dart';
 
 class NewsBanner extends StatefulWidget {
@@ -21,29 +23,6 @@ class _NewsBannerState extends State<NewsBanner>
   late final AnimationController _animController;
   late final Animation<double> _scaleAnimation;
   double factor = 1;
-
-  final List<News> news = [
-    News(
-      title: 'Lucas gave you a boost!',
-      description: 'description',
-      type: NewsType.friendBoost,
-      date: DateTime.now(),
-    ),
-    News(
-      title: 'Double Bro Points Day!',
-      description: 'Today you get double bro points for each pushup',
-      type: NewsType.eventDay,
-      date: DateTime.now(),
-    ),
-    News(
-      title: 'New Update',
-      description: 'Enjoy the new features',
-      type: NewsType.update,
-      date: DateTime.now().subtract(
-        const Duration(days: 1),
-      ),
-    ),
-  ];
 
   @override
   void initState() {
@@ -90,22 +69,24 @@ class _NewsBannerState extends State<NewsBanner>
             alignment: Alignment.topCenter,
             child: SizedBox(
               height: 120,
-              child: PageView.builder(
-                itemCount: news.length,
-                controller: _pageController,
-                itemBuilder: (context, index) => ListenableBuilder(
-                  listenable: _pageController,
-                  builder: (context, child) {
-                    if (_pageController.position.hasContentDimensions) {
-                      factor = 1 - (_pageController.page! - index).abs();
-                    }
+              child: BlocBuilder<NewsCubit, NewsState>(
+                builder: (context, state) => PageView.builder(
+                  itemCount: state.news.length,
+                  controller: _pageController,
+                  itemBuilder: (context, index) => ListenableBuilder(
+                    listenable: _pageController,
+                    builder: (context, child) {
+                      if (_pageController.position.hasContentDimensions) {
+                        factor = 1 - (_pageController.page! - index).abs();
+                      }
 
-                    return NewsBannerItem(
-                      factor: factor,
-                      index: index,
-                      news: news[index],
-                    );
-                  },
+                      return NewsBannerItem(
+                        factor: factor,
+                        index: index,
+                        news: state.news[index],
+                      );
+                    },
+                  ),
                 ),
               ),
             ),

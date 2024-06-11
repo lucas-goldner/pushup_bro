@@ -22,6 +22,7 @@ import 'package:pushup_bro/core/provider/shared_preferences_provider.dart';
 import 'package:pushup_bro/core/style/theme.dart';
 import 'package:pushup_bro/features/menu/model/routes.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_cubit.dart';
+import 'package:pushup_bro/features/pushup_tracking/cubit/news_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/provider/airpods_motion_provider.dart';
 import 'package:pushup_bro/generated/l10n.dart';
@@ -107,6 +108,7 @@ class Main extends StatelessWidget {
     final dbCubit = DBCubit(dbProvider);
     final activeEffectsCubit = ActiveEffectsCubit();
     final boosterItemsCubit = BoosterItemCubit();
+    final newsCubit = NewsCubit();
 
     // Configuration
     _initConfig(
@@ -134,6 +136,9 @@ class Main extends StatelessWidget {
         ),
         BlocProvider<BoosterItemCubit>(
           create: (context) => boosterItemsCubit,
+        ),
+        BlocProvider<NewsCubit>(
+          create: (context) => newsCubit,
         ),
       ],
       child:
