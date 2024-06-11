@@ -30,7 +30,7 @@ class BoosterItemCubit extends Cubit<BoosterItemState> {
       return;
     }
     final itemsAmount = currentState.items[item];
-    if (itemsAmount == null) {
+    if (itemsAmount == null || itemsAmount == 0) {
       return;
     }
     final newItemsAmount = itemsAmount - 1;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
+import 'package:pushup_bro/core/model/active_effects.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 
 enum BoosterItems {
@@ -24,4 +25,9 @@ extension BoosterItemsExtension on BoosterItems {
         BoosterItems.friendBoost => context.itemColorsTheme.friendBoost,
       } ??
       Colors.transparent;
+
+  ActiveEffects getCorrespondingEffect() => switch (this) {
+        BoosterItems.doublePoints => ActiveEffects.itemDoublePoints,
+        BoosterItems.friendBoost => ActiveEffects.itemFriendSharedBoostReceived,
+      };
 }

@@ -4,6 +4,7 @@ import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
+import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/active_effects.dart';
 import 'package:pushup_bro/core/model/booster_items.dart';
@@ -12,14 +13,26 @@ import 'package:pushup_bro/features/pushup_tracking/widgets/item_menu/item_menu_
 class ItemMenu extends StatelessWidget {
   const ItemMenu({super.key});
 
-  void _showAction(BuildContext context, BoosterItems item) {
+  void _triggerItem(BuildContext context, BoosterItems item) {
+    final activeEffectsCubit = context.read<ActiveEffectsCubit>();
+    final boosterItemCubit = context.read<BoosterItemCubit>();
+
     switch (item) {
       case BoosterItems.doublePoints:
-        BlocProvider.of<ActiveEffectsCubit>(context).addEffect(
+        activeEffectsCubit.addEffect(
           ActiveEffects.itemDoublePoints,
+        );
+        boosterItemCubit.consumeItem(
+          item: BoosterItems.doublePoints,
         );
         return;
       case BoosterItems.friendBoost:
+        activeEffectsCubit.addEffect(
+          ActiveEffects.itemFriendSharedBoostReceived,
+        );
+        boosterItemCubit.consumeItem(
+          item: BoosterItems.friendBoost,
+        );
         return;
     }
   }
@@ -30,7 +43,7 @@ class ItemMenu extends StatelessWidget {
         children: BoosterItems.values
             .map(
               (item) => ItemMenuItem(
-                onPressed: () => _showAction(context, item),
+                onPressed: () => _triggerItem(context, item),
                 item: item,
               ),
             )

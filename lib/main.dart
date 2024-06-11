@@ -8,6 +8,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:pushup_bro/core/constants.dart';
 import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
+import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_state.dart';
@@ -105,6 +106,7 @@ class Main extends StatelessWidget {
         SharedPreferencesCubit(sharedPreferencesProvider);
     final dbCubit = DBCubit(dbProvider);
     final activeEffectsCubit = ActiveEffectsCubit();
+    final boosterItemsCubit = BoosterItemCubit();
 
     // Configuration
     _initConfig(
@@ -129,6 +131,9 @@ class Main extends StatelessWidget {
         ),
         BlocProvider<ActiveEffectsCubit>(
           create: (context) => activeEffectsCubit,
+        ),
+        BlocProvider<BoosterItemCubit>(
+          create: (context) => boosterItemsCubit,
         ),
       ],
       child:
