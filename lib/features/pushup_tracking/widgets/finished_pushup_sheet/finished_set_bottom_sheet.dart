@@ -11,7 +11,7 @@ import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
 import 'package:pushup_bro/core/style/pb_text_styles.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
-import 'package:pushup_bro/features/pushup_tracking/widgets/finished_set_stats_item.dart';
+import 'package:pushup_bro/features/pushup_tracking/widgets/finished_pushup_sheet/finished_set_stats_item.dart';
 
 class FinishedSetBottomSheet extends StatefulWidget {
   const FinishedSetBottomSheet(this.pushupSet, {super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/features/pushup_tracking/model/news.dart';
-import 'package:pushup_bro/features/pushup_tracking/widgets/news_banner_item.dart';
+import 'package:pushup_bro/features/pushup_tracking/widgets/news_banner/news_banner_item.dart';
 
 class NewsBanner extends StatefulWidget {
   const NewsBanner({
@@ -62,8 +62,6 @@ class _NewsBannerState extends State<NewsBanner>
   @override
   void didUpdateWidget(covariant NewsBanner oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('newsVisible: ${widget.newsVisible}');
-    print('old newsVisible: ${oldWidget.newsVisible}');
     if (oldWidget.newsVisible == widget.newsVisible) {
       return;
     }
