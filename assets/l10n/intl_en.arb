@@ -143,5 +143,6 @@
   "acceptChallenge": "Accept challenge",
   "longestStreak": "Longest Streak",
   "doublePoints": "Double Bro Points",
-  "friendBoost": "Bro Boost"
+  "friendBoost": "Bro Boost",
+  "sendBoost": "Send Boost"
 }

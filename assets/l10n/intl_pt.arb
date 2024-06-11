@@ -143,5 +143,6 @@
   "acceptChallenge": "Aceitar desafio",
   "longestStreak": "Maior streak",
   "doublePoints": "Mano pontos duplos",
-  "friendBoost": "Impulso do mano"
+  "friendBoost": "Impulso do mano",
+  "sendBoost": "Enviar impulso"
 }

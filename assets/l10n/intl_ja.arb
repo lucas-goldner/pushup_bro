@@ -143,5 +143,6 @@
   "acceptChallenge": "チャレンジを受け入れる",
   "longestStreak": "最長連続",
   "doublePoints": "ダブル兄貴ポイント",
-  "friendBoost": "兄貴ブースト"
+  "friendBoost": "兄貴ブースト",
+  "sendBoost": "励ます"
 }

@@ -143,5 +143,6 @@
   "acceptChallenge": "Herausforderung annehmen",
   "longestStreak": "Longest Streak",
   "doublePoints": "Doppelte Bro Punkte",
-  "friendBoost": "Bro Boost"
+  "friendBoost": "Bro Boost",
+  "sendBoost": "Boost senden"
 }

@@ -37,7 +37,7 @@ class MinimizedProfile extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             const Spacer(),
-            leadingItem ?? const SizedBox.shrink(),
+            if (leadingItem != null) leadingItem ?? const SizedBox.shrink(),
           ],
         ),
       );

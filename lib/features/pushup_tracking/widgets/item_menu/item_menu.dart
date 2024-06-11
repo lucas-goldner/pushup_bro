@@ -1,19 +1,22 @@
 import 'dart:math' as math;
 
 import 'package:carbon_icons/carbon_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
 import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/active_effects.dart';
 import 'package:pushup_bro/core/model/booster_items.dart';
+import 'package:pushup_bro/features/pushup_tracking/widgets/item_menu/item_friend_menu.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/item_menu/item_menu_item.dart';
 
 class ItemMenu extends StatelessWidget {
   const ItemMenu({super.key});
 
-  void _triggerItem(BuildContext context, BoosterItems item) {
+  Future<void> _triggerItem(BuildContext context, BoosterItems item) async {
     final activeEffectsCubit = context.read<ActiveEffectsCubit>();
     final boosterItemCubit = context.read<BoosterItemCubit>();
 
@@ -27,11 +30,11 @@ class ItemMenu extends StatelessWidget {
         );
         return;
       case BoosterItems.friendBoost:
-        activeEffectsCubit.addEffect(
-          ActiveEffects.itemFriendSharedBoostReceived,
-        );
-        boosterItemCubit.consumeItem(
-          item: BoosterItems.friendBoost,
+        await showCupertinoModalBottomSheet<bool>(
+          backgroundColor: context.colorScheme.surface,
+          context: context,
+          useRootNavigator: true,
+          builder: (context) => const ItemFriendMenu(),
         );
         return;
     }

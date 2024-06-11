@@ -79,18 +79,19 @@ class _PBButtonIcon extends PBButton {
                 ),
                 child: Row(
                   children: [
-                    Text(
-                      text,
-                      style: context.textTheme.labelLarge,
-                    ),
-                    const SizedBox(width: 8),
+                    if (text.isNotEmpty)
+                      Text(
+                        text,
+                        style: context.textTheme.labelLarge,
+                      ),
+                    if (text.isNotEmpty) const SizedBox(width: 8),
                     Flexible(
                       child: Icon(
                         icon,
                         color: context.colorScheme.onPrimary,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    if (text.isNotEmpty) const SizedBox(width: 8),
                   ],
                 ),
               ),

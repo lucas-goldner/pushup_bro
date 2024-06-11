@@ -9,6 +9,7 @@ class Friends extends StatelessWidget {
 
   final List<Friend> friends = [
     Friend(
+      id: 1,
       name: 'Friend 1',
       image: 'https://picsum.photos/200',
       streak: 12,
@@ -17,6 +18,7 @@ class Friends extends StatelessWidget {
       longestSharedStreak: 0,
     ),
     Friend(
+      id: 2,
       name: 'Friend 2',
       image: 'https://picsum.photos/200',
       streak: 3,
@@ -27,6 +29,7 @@ class Friends extends StatelessWidget {
     ...List.generate(
       8,
       (index) => Friend(
+        id: index,
         name: 'Friend $index',
         image: '',
         streak: 0,
