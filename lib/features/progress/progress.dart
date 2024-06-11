@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
+import 'package:pushup_bro/features/progress/widgets/last_seven_day_pushups.dart';
 import 'package:pushup_bro/features/progress/widgets/profile.dart';
 
 class Progress extends StatefulWidget {
@@ -57,6 +58,7 @@ class _ProgressState extends State<Progress> {
                   ),
                 ],
               ),
+              const Expanded(child: LastSevenDayPushups()),
             ],
           ),
         ),
