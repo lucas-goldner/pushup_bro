@@ -23,11 +23,11 @@ class MenuTabs extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (var i = 0; i < menuTabs.length; ++i) ...[
+              for (var i = 0; i < MenuTabInfo.values.length; ++i) ...[
                 MenuTab(
-                  drawerController,
-                  menuTabs[i],
-                  itemSlideIntervals[i],
+                  drawerController: drawerController,
+                  menuInfo: menuTabs[i],
+                  itemSlideInterval: itemSlideIntervals[i],
                 ),
               ],
             ],

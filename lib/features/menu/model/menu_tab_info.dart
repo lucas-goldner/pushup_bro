@@ -2,6 +2,7 @@ import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
+import 'package:pushup_bro/features/debug/debug.dart';
 import 'package:pushup_bro/features/friends/friends.dart';
 import 'package:pushup_bro/features/leaderboard/leaderboard.dart';
 import 'package:pushup_bro/features/progress/progress.dart';
@@ -15,7 +16,8 @@ enum MenuTabInfo {
   // calendar,
   friends,
   leaderbaord,
-  settings;
+  settings,
+  debug;
 }
 
 extension MenuTabInfoExtension on MenuTabInfo {
@@ -26,6 +28,7 @@ extension MenuTabInfoExtension on MenuTabInfo {
         MenuTabInfo.friends => context.l10n.friends,
         MenuTabInfo.leaderbaord => context.l10n.leaderboard,
         MenuTabInfo.settings => context.l10n.settings,
+        MenuTabInfo.debug => 'Debug',
       };
 
   IconData get icon => switch (this) {
@@ -35,6 +38,7 @@ extension MenuTabInfoExtension on MenuTabInfo {
         MenuTabInfo.friends => CarbonIcons.group,
         MenuTabInfo.leaderbaord => CarbonIcons.list_numbered,
         MenuTabInfo.settings => CarbonIcons.settings,
+        MenuTabInfo.debug => CarbonIcons.debug,
       };
 
   Future<void> navigate(BuildContext context) {
@@ -64,6 +68,10 @@ extension MenuTabInfoExtension on MenuTabInfo {
         ),
       MenuTabInfo.settings => navigator.pushReplacementNamed(
           Settings.routeName,
+          arguments: context,
+        ),
+      MenuTabInfo.debug => navigator.pushReplacementNamed(
+          Debug.routeName,
           arguments: context,
         ),
     };

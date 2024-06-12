@@ -23,7 +23,6 @@ class PBAppBar extends StatefulWidget {
 class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
   late final AnimationController _controller;
   late AnimationController _drawerController;
-
   final _animationDuration = _initialDelayTime +
       (_staggerTime * MenuTabInfo.values.length) +
       _buttonDelayTime +
@@ -69,7 +68,7 @@ class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
   }
 
   void _createAnimationIntervals() {
-    for (var i = 0; i < 5; ++i) {
+    for (var i = 0; i < MenuTabInfo.values.length; ++i) {
       final startTime = _initialDelayTime + (_staggerTime * i);
       final endTime = startTime + _itemSlideTime;
       _itemSlideIntervals.add(

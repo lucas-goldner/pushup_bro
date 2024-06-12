@@ -7,7 +7,7 @@ part 'pushup_set.g.dart';
 
 @collection
 class PushupSet {
-  PushupSet(this.pushups, this.effort);
+  PushupSet({required this.pushups, required this.effort});
   final Id id = Isar.autoIncrement;
   final List<Pushup> pushups;
   final int effort;
@@ -34,8 +34,8 @@ class PushupSet {
     int? effort,
   }) {
     return PushupSet(
-      pushups ?? this.pushups,
-      effort ?? this.effort,
+      pushups: pushups ?? this.pushups,
+      effort: effort ?? this.effort,
     );
   }
 }

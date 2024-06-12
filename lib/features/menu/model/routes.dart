@@ -1,5 +1,6 @@
 import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pushup_bro/features/debug/debug.dart';
 import 'package:pushup_bro/features/friends/friends.dart';
 import 'package:pushup_bro/features/leaderboard/leaderboard.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
@@ -47,6 +48,13 @@ Route<CupertinoPageRoute<Widget>> generateRoutes(
           const PageContainer(
             Settings(),
             menuTab: MenuTabInfo.settings,
+          ),
+        ),
+      Debug.routeName => _revealCircular(
+          settings.arguments as BuildContext?,
+          const PageContainer(
+            Debug(),
+            menuTab: MenuTabInfo.debug,
           ),
         ),
       LanguageSetting.routeName => CupertinoPageRoute(

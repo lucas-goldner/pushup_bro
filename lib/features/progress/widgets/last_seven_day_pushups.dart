@@ -1,5 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 
 class LastSevenDayPushups extends StatefulWidget {
@@ -18,38 +20,43 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
   bool showAvg = false;
 
   @override
-  Widget build(BuildContext context) => Stack(
-        children: <Widget>[
-          AspectRatio(
-            aspectRatio: 1.70,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                right: 18,
-                left: 12,
-                top: 24,
-                bottom: 12,
-              ),
-              child: LineChart(
-                showAvg ? avgData() : mainData(),
+  Widget build(BuildContext context) {
+    final pushups = context.watch<DBCubit>().state.pushupSets;
+    print(pushups);
+
+    return Stack(
+      children: <Widget>[
+        AspectRatio(
+          aspectRatio: 1.70,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              right: 18,
+              left: 12,
+              top: 24,
+              bottom: 12,
+            ),
+            child: LineChart(
+              showAvg ? avgData() : mainData(),
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 60,
+          height: 34,
+          child: TextButton(
+            onPressed: () => setState(() => showAvg = !showAvg),
+            child: Text(
+              'Total',
+              style: TextStyle(
+                fontSize: 12,
+                color: context.colorScheme.primary,
               ),
             ),
           ),
-          SizedBox(
-            width: 60,
-            height: 34,
-            child: TextButton(
-              onPressed: () => setState(() => showAvg = !showAvg),
-              child: Text(
-                'Total',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: context.colorScheme.primary,
-                ),
-              ),
-            ),
-          ),
-        ],
-      );
+        ),
+      ],
+    );
+  }
 
   Widget bottomTitleWidgets(
     BuildContext context,
