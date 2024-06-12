@@ -19,17 +19,18 @@ class _DebugState extends State<Debug> {
   Future<void> addPushups() async {
     final pushupSet = PushupSet(
       effort: math.Random().nextInt(5),
-      pushups: [
-        Pushup(
+      pushups: List<Pushup>.generate(
+        math.Random().nextInt(40),
+        (index) => Pushup(
           completedAt: DateTime(
             2024,
             math.Random().nextInt(12),
             math.Random().nextInt(30),
           ),
         ),
-      ],
+      ),
     );
-    print(pushupSet);
+
     await context.read<DBCubit>().writeNewPushupsetToDB(pushupSet);
     final newPushups = await context.read<DBCubit>().getAllPushupSets();
     print(newPushups);

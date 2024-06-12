@@ -1,7 +1,6 @@
 import 'package:isar/isar.dart';
 import 'package:pushup_bro/core/model/minimized_user.dart';
 
-@embedded
 class Friend {
   Friend({
     required this.id,

@@ -58,6 +58,7 @@ class _ProgressState extends State<Progress> {
                   ),
                 ],
               ),
+              const SizedBox(height: 12),
               const Expanded(child: LastSevenDayPushups()),
             ],
           ),
