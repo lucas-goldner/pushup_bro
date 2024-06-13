@@ -18,8 +18,7 @@ class Debug extends StatefulWidget {
 class _DebugState extends State<Debug> {
   Future<void> addPushups() async {
     final pushupSet = PushupSet(
-      effort: math.Random().nextInt(5),
-      pushups: List<Pushup>.generate(
+      List<Pushup>.generate(
         math.Random().nextInt(40),
         (index) => Pushup(
           completedAt: DateTime(
@@ -29,6 +28,7 @@ class _DebugState extends State<Debug> {
           ),
         ),
       ),
+      math.Random().nextInt(5),
     );
 
     await context.read<DBCubit>().writeNewPushupsetToDB(pushupSet);
@@ -38,7 +38,6 @@ class _DebugState extends State<Debug> {
     final dbCubit = context.read<DBCubit>();
     final pushups = await context.read<DBCubit>().getAllPushupSets();
     final pushupIds = pushups.map((e) => e.id).toList();
-    print(pushupIds);
     for (final id in pushupIds) {
       await dbCubit.deletePushupSetFromDB(id);
     }

@@ -19,33 +19,24 @@ class _ItemFriendMenuState extends State<ItemFriendMenu> {
   final List<Friend> friends = [];
   final List<Friend> friendsData = [
     Friend(
-      id: 1,
+      id: '1',
       name: 'Friend 1',
       image: 'https://picsum.photos/200',
       streak: 12,
-      longestStreak: 0,
       sharedStreak: 1,
-      longestSharedStreak: 0,
     ),
     Friend(
-      id: 2,
+      id: '2',
       name: 'Friend 2',
       image: 'https://picsum.photos/200',
       streak: 3,
-      longestStreak: 0,
       sharedStreak: 20,
-      longestSharedStreak: 0,
     ),
     ...List.generate(
       8,
       (index) => Friend(
-        id: index + 3,
+        id: '${index + 3}',
         name: 'Friend $index',
-        image: '',
-        streak: 0,
-        longestStreak: 0,
-        sharedStreak: 0,
-        longestSharedStreak: 0,
       ),
     ),
   ];

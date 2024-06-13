@@ -2,6 +2,9 @@ import 'package:isar/isar.dart';
 import 'package:pushup_bro/core/model/friend.dart';
 import 'package:pushup_bro/core/model/minimized_user.dart';
 
+part 'user.g.dart';
+
+@collection
 class User {
   User({
     required this.level,
