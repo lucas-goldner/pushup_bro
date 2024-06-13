@@ -144,5 +144,7 @@
   "longestStreak": "Longest Streak",
   "doublePoints": "Doppelte Bro Punkte",
   "friendBoost": "Bro Boost",
-  "sendBoost": "Boost senden"
+  "sendBoost": "Boost senden",
+  "lastSevenDays": "Letzte 7 Tage",
+  "total": "Insgesamt"
 }

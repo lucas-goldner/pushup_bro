@@ -32,8 +32,16 @@ class _DebugState extends State<Debug> {
     );
 
     await context.read<DBCubit>().writeNewPushupsetToDB(pushupSet);
-    final newPushups = await context.read<DBCubit>().getAllPushupSets();
-    print(newPushups);
+  }
+
+  Future<void> resetPushups() async {
+    final dbCubit = context.read<DBCubit>();
+    final pushups = await context.read<DBCubit>().getAllPushupSets();
+    final pushupIds = pushups.map((e) => e.id).toList();
+    print(pushupIds);
+    for (final id in pushupIds) {
+      await dbCubit.deletePushupSetFromDB(id);
+    }
   }
 
   @override
@@ -51,6 +59,10 @@ class _DebugState extends State<Debug> {
                 callback: addPushups,
               ),
               const SizedBox(height: 12),
+              PBButton(
+                'Reset pushups',
+                callback: resetPushups,
+              ),
             ],
           ),
         ),

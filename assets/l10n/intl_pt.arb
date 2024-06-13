@@ -144,5 +144,7 @@
   "longestStreak": "Maior streak",
   "doublePoints": "Mano pontos duplos",
   "friendBoost": "Impulso do mano",
-  "sendBoost": "Enviar impulso"
+  "sendBoost": "Enviar impulso",
+  "lastSevenDays": "Últimos 7 dias",
+  "total": "Total"
 }

@@ -144,5 +144,7 @@
   "longestStreak": "最長連続",
   "doublePoints": "ダブル兄貴ポイント",
   "friendBoost": "兄貴ブースト",
-  "sendBoost": "応援する"
+  "sendBoost": "応援する",
+  "lastSevenDays": "過去7日間",
+  "total": "合計"
 }

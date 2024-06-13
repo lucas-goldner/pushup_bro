@@ -41,8 +41,11 @@ class PushupSet {
   }
 }
 
+typedef MonthlyPushups = ({int month, int pushups});
+typedef DailyPushups = ({int day, int pushups});
+
 extension PushupSetListExtension on List<PushupSet> {
-  List<({int month, int pushups})> get stackedPerMonth {
+  List<MonthlyPushups> get stackedPerMonth {
     final pushupsStackedPerMonth = <({int month, int pushups})>[];
     final monthlyPushups = <int, int>{};
 
@@ -66,29 +69,31 @@ extension PushupSetListExtension on List<PushupSet> {
     return pushupsStackedPerMonth;
   }
 
-  List<({int day, int pushups})> get lastSevenDaysPushups {
-    final pushupsStackedPerDay = <({int day, int pushups})>[];
+  MonthlyPushups get monthWithMostPushups {
+    final pushupsByMonth = stackedPerMonth;
+    return pushupsByMonth.reduce(
+      (max, element) => element.pushups > max.pushups ? element : max,
+    );
+  }
+
+  List<DailyPushups> get lastSevenDaysPushups {
     final dailyPushups = <DateTime, int>{};
-    final sevenDaysAgo = DateTime.now().subtract(const Duration(days: 7));
+    final now = DateTime.now();
+    final sevenDaysAgo = now.subtract(const Duration(days: 7));
 
     for (final pushupSet in this) {
       for (final pushup in pushupSet.pushups) {
         if (pushup.completedAt != null &&
             pushup.completedAt!.isAfter(sevenDaysAgo)) {
-          final day = pushup.completedAt?.toLocal().date ?? DateTime.now();
-          if (dailyPushups.containsKey(day)) {
-            dailyPushups[day] = dailyPushups[day]! + 1;
-          } else {
-            dailyPushups[day] = 1;
-          }
+          final day = pushup.completedAt!.date;
+          dailyPushups[day] = (dailyPushups[day] ?? 0) + 1;
         }
       }
     }
 
-    dailyPushups.forEach((day, pushups) {
-      pushupsStackedPerDay.add((day: day.day, pushups: pushups));
-    });
-    pushupsStackedPerDay.sort((a, b) => a.day.compareTo(b.day));
-    return pushupsStackedPerDay;
+    return List.generate(7, (index) {
+      final targetDay = now.subtract(Duration(days: index)).date;
+      return (day: targetDay.day, pushups: dailyPushups[targetDay] ?? 0);
+    }).reversed.toList();
   }
 }

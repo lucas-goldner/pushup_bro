@@ -29,7 +29,7 @@ class DBProvider implements DBProviderInterface {
   }
 
   @override
-  Future<void> deletePushupSet(int id) async {
+  Future<void> deletePushupSet(Id id) async {
     await db?.writeTxn(() async {
       await db?.pushupSets.delete(id);
     });
