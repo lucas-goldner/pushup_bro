@@ -101,6 +101,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
                     PBButton(
                       context.l10n.goBack,
                       callback: () => Navigator.of(context).pop(),
+                      expanded: true,
                     ),
                   ],
                 ),

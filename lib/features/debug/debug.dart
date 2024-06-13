@@ -57,11 +57,13 @@ class _DebugState extends State<Debug> {
               PBButton(
                 'Add pushups',
                 callback: addPushups,
+                expanded: true,
               ),
               const SizedBox(height: 12),
               PBButton(
                 'Reset pushups',
                 callback: resetPushups,
+                expanded: true,
               ),
             ],
           ),

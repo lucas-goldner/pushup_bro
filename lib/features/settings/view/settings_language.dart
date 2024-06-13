@@ -100,6 +100,7 @@ class _LanguageSettingState extends State<LanguageSetting> {
                     PBButton(
                       context.l10n.goBack,
                       callback: () => Navigator.of(context).pop(),
+                      expanded: true,
                     ),
                   ],
                 ),

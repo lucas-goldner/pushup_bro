@@ -283,17 +283,14 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
                             const SizedBox(
                               height: 20,
                             ),
-                            SizedBox(
-                              width: 200,
-                              child: PBButton(
-                                localized.monkeyConfirm,
-                                callback: () => setState(() {
-                                  levelUpVisible = false;
-                                  _controller
-                                    ..reset()
-                                    ..animateTo(0.1);
-                                }),
-                              ),
+                            PBButton(
+                              localized.monkeyConfirm,
+                              callback: () => setState(() {
+                                levelUpVisible = false;
+                                _controller
+                                  ..reset()
+                                  ..animateTo(0.1);
+                              }),
                             ),
                           ],
                         ),

@@ -49,12 +49,10 @@ class _ProgressState extends State<Progress> {
               Row(
                 children: [
                   const Spacer(),
-                  Flexible(
-                    child: PBButton.icon(
-                      context.l10n.shareProfile,
-                      icon: CarbonIcons.share,
-                      callback: () => {},
-                    ),
+                  PBButton.icon(
+                    context.l10n.shareProfile,
+                    icon: CarbonIcons.share,
+                    callback: () => {},
                   ),
                 ],
               ),

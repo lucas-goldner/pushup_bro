@@ -39,9 +39,17 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
                 ),
               ),
               const SizedBox(height: 20),
-              PBButton(
-                showTotal ? context.l10n.lastSevenDays : context.l10n.total,
-                callback: () => setState(() => showTotal = !showTotal),
+              Row(
+                children: [
+                  Expanded(
+                    child: PBButton(
+                      showTotal
+                          ? context.l10n.lastSevenDays
+                          : context.l10n.total,
+                      callback: () => setState(() => showTotal = !showTotal),
+                    ),
+                  ),
+                ],
               ),
             ],
           );
