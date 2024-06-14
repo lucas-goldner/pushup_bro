@@ -8,6 +8,7 @@ import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_state.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
+import 'package:pushup_bro/core/extensions/int_ext.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
@@ -133,8 +134,9 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
     final sharedPrefsCubit = BlocProvider.of<SharedPreferencesCubit>(context);
     final dbCubit = BlocProvider.of<DBCubit>(context);
     final finished = await sharedPrefsCubit.getFirstPushupCompleted();
-    final leftOverXP =
-        (LevelScaler().getLevelScaling(level) * _animation.value).toInt();
+    final leftOverXP = (LevelScaler().getLevelScaling(level) * _animation.value)
+        .toInt()
+        .toNextEvenNumber();
 
     if (!finished) {
       await dbCubit.createUser(level: level, xp: leftOverXP);

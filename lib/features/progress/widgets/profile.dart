@@ -22,67 +22,65 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocSelector<DBCubit, DBState, User>(
         selector: (state) => state.user,
-        builder: (context, user) {
-          return DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: context.colorScheme.onSecondary,
-            ),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Row(
-                    children: [
-                      DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: context.colorScheme.onPrimary,
-                          borderRadius: BorderRadius.circular(12),
+        builder: (context, user) => DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: context.colorScheme.onSecondary,
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Row(
+                  children: [
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: context.colorScheme.onPrimary,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: ProfileImageBox(imageUrl),
+                    ),
+                    const SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          name,
+                          style: context.textTheme.headlineLarge?.copyWith(
+                            color: context.colorScheme.onPrimary,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        child: ProfileImageBox(imageUrl),
-                      ),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            name,
-                            style: context.textTheme.headlineLarge?.copyWith(
-                              color: context.colorScheme.onPrimary,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(width: 16),
-                          Row(
-                            children: [
-                              const StreakStar(2),
-                              const SizedBox(width: 8),
-                              Text(
-                                context.l10n.dayStreak,
-                                style: context.textTheme.bodyMedium?.copyWith(
-                                  color: context.colorScheme.onPrimary,
-                                ),
+                        const SizedBox(width: 16),
+                        Row(
+                          children: [
+                            const StreakStar(2),
+                            const SizedBox(width: 8),
+                            Text(
+                              context.l10n.dayStreak,
+                              style: context.textTheme.bodyMedium?.copyWith(
+                                color: context.colorScheme.onPrimary,
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: LevelBar(level: 1, experience: 0),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-              ],
-            ),
-          );
-        },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: LevelBar(level: user.level, experience: user.xp),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
+        ),
       );
 }

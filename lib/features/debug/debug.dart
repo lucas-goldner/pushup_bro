@@ -43,6 +43,8 @@ class _DebugState extends State<Debug> {
     }
   }
 
+  Future<void> wiperUser() async => context.read<DBCubit>().wipeUser();
+
   @override
   Widget build(BuildContext context) => SafeArea(
         bottom: false,
@@ -62,6 +64,12 @@ class _DebugState extends State<Debug> {
               PBButton(
                 'Reset pushups',
                 callback: resetPushups,
+                expanded: true,
+              ),
+              const SizedBox(height: 12),
+              PBButton(
+                'Wiper user',
+                callback: wiperUser,
                 expanded: true,
               ),
             ],

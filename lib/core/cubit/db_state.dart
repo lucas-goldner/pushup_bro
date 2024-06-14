@@ -7,7 +7,7 @@ sealed class DBState extends Equatable {
   final List<PushupSet> pushupSets;
   final User user;
 
-  DBState copyWith({
+  DBStateLoaded copyWith({
     List<PushupSet>? pushupSets,
     User? user,
   }) =>
@@ -17,7 +17,7 @@ sealed class DBState extends Equatable {
       );
 
   @override
-  List<Object?> get props => [pushupSets];
+  List<Object?> get props => [pushupSets, user];
 }
 
 class DBStateInitial extends DBState {

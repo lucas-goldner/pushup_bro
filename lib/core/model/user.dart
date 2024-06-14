@@ -62,4 +62,7 @@ class User {
         name: name,
         image: image,
       );
+
+  @override
+  String toString() => 'User(level: $level, xp: $xp, name: $name)';
 }
