@@ -1,5 +1,7 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
@@ -35,31 +37,36 @@ class _ProgressState extends State<Progress> {
   void changeTab(int index) => setState(() => selectedTab = index);
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 80),
-              const Profile(name: 'Your name', imageUrl: ''),
-              const SizedBox(height: 12),
-              Row(
+  Widget build(BuildContext context) => FutureBuilder<void>(
+        future: BlocProvider.of<DBCubit>(context).getUser(),
+        builder: (context, snapshot) {
+          return SafeArea(
+            bottom: false,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              child: Column(
                 children: [
-                  const Spacer(),
-                  PBButton.icon(
-                    context.l10n.shareProfile,
-                    icon: CarbonIcons.share,
-                    callback: () => {},
+                  const SizedBox(height: 80),
+                  const Profile(name: 'Your name', imageUrl: ''),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      const Spacer(),
+                      PBButton.icon(
+                        context.l10n.shareProfile,
+                        icon: CarbonIcons.share,
+                        callback: () => {},
+                      ),
+                    ],
                   ),
+                  const SizedBox(height: 12),
+                  const Expanded(child: LastSevenDayPushups()),
                 ],
               ),
-              const SizedBox(height: 12),
-              const Expanded(child: LastSevenDayPushups()),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       );
 }

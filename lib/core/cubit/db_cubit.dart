@@ -19,7 +19,23 @@ class DBCubit extends Cubit<DBState> {
 
   Future<List<PushupSet>> getAllPushupSets() async {
     final pushupsets = await _dbProvider.getAllPushupSets();
-    emit(DBStateLoaded(pushupsets));
+    emit(state.copyWith(pushupSets: pushupsets));
     return pushupsets;
+  }
+
+  Future<void> getUser() async {
+    final user = await _dbProvider.getUser();
+    emit(state.copyWith(user: user));
+  }
+
+  Future<void> createUser({int xp = 0, int level = 1}) async {
+    final user = await _dbProvider.createUser();
+    emit(state.copyWith(user: user));
+  }
+
+  Future<void> updateUser({int xp = 0, int level = 1}) async {
+    final userToUpdate = state.user.copyWith(xp: xp, level: level);
+    await _dbProvider.updateUser(userToUpdate);
+    emit(state.copyWith(user: userToUpdate));
   }
 }

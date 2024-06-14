@@ -1,5 +1,6 @@
 import 'package:isar/isar.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
+import 'package:pushup_bro/core/model/user.dart';
 
 abstract class DBProviderInterface {
   bool get initialized;
@@ -7,4 +8,7 @@ abstract class DBProviderInterface {
   Future<List<PushupSet>> getAllPushupSets();
   Future<void> addNewPushupSet(PushupSet pushupSet);
   Future<void> deletePushupSet(Id id);
+  Future<User> createUser({int xp = 0, int level = 1});
+  Future<void> updateUser(User user);
+  Future<User> getUser();
 }

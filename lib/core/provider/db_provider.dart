@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
+import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/core/provider/db_provder_interface.dart';
 
 class DBProvider implements DBProviderInterface {
@@ -18,7 +19,36 @@ class DBProvider implements DBProviderInterface {
       db = Isar.getInstance();
       return;
     }
-    db ??= await Isar.open([PushupSetSchema], directory: dir.path);
+    db ??= await Isar.open([PushupSetSchema, UserSchema], directory: dir.path);
+  }
+
+  @override
+  Future<User> getUser() async =>
+      await db?.users.get(User.userId) ?? User.emptyUser();
+
+  @override
+  Future<User> createUser({int xp = 0, int level = 1}) async {
+    final user = User(
+      xp: xp,
+      level: level,
+      name: '',
+      image: '',
+      friends: [],
+      streak: 1,
+      longestStreak: 1,
+    );
+    await db?.writeTxn(() async {
+      await db?.users.put(user);
+    });
+
+    return user;
+  }
+
+  @override
+  Future<void> updateUser(User user) async {
+    await db?.writeTxn(() async {
+      await db?.users.put(user);
+    });
   }
 
   @override

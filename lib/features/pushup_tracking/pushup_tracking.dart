@@ -64,6 +64,7 @@ class _PushupTrackingState extends State<PushupTracking> {
       isDismissible: false,
       builder: (context) => FinishedSetBottomSheet(pushups),
     );
+
     // ?? false;
     // TODO(Implement-onboarding): Reenable onboarding and finish feature
     // if (!firstPushupCompleted) {
