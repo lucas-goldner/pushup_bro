@@ -4,11 +4,14 @@ import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
+import 'package:pushup_bro/core/cubit/active_effects_state.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_state.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/extensions/int_ext.dart';
+import 'package:pushup_bro/core/model/active_effects.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
@@ -32,28 +35,56 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
   double difficultySliderValue = 0;
   bool levelUpVisible = false;
   int level = 1;
+  int amountOfXP = 0;
 
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
     );
 
-    final amountOfXP = widget.pushupSet.pushups.length * 2;
+    if (BlocProvider.of<ActiveEffectsCubit>(context).state
+        is ActiveEffectsStateActivated) {
+      final activeEffectsFactors = BlocProvider.of<ActiveEffectsCubit>(context)
+          .state
+          .effects
+          .map((effect) => effect.factor)
+          .reduce((value, element) => value + element);
+
+      amountOfXP = widget.pushupSet.pushups.length * 2 * activeEffectsFactors;
+    } else {
+      amountOfXP = widget.pushupSet.pushups.length * 2;
+    }
     final user = BlocProvider.of<DBCubit>(context).state.user;
     level = user.level;
     final initialScaling = LevelScaler().getCurrentExperienceRelativeToLevel(
       user.level,
+      level,
       user.xp,
     );
+    _animation =
+        Tween<double>(begin: initialScaling, end: 1).animate(_controller);
+    Future.delayed(
+      const Duration(seconds: 1),
+      () => calculateLevelUps(initialScaling, user),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void calculateLevelUps(double initialScaling, User user) {
     final levelScaling = LevelScaler().getCurrentExperienceRelativeToLevel(
       user.level,
+      level,
       user.xp + amountOfXP,
     );
-
+    print(levelScaling);
     final levelUps =
         splitDouble(levelScaling).where((element) => element == 1).toList();
     final xpLeftOver =
@@ -100,12 +131,6 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
 
       _controller.animateTo(1, duration: const Duration(seconds: 1));
     }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   List<double> splitDouble(double number) {
@@ -302,6 +327,9 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
                         ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: Row(
@@ -332,6 +360,47 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
                     ),
                     const SizedBox(
                       height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                context.l10n.pointsReceived(amountOfXP),
+                                style: context.textTheme.titleSmall,
+                              ),
+                              BlocBuilder<ActiveEffectsCubit,
+                                  ActiveEffectsState>(
+                                builder: (context, state) {
+                                  if (state is ActiveEffectsStateActivated) {
+                                    return Column(
+                                      children: [
+                                        ...state.effects.map(
+                                          (effect) => Text(
+                                            effect.getLocalizedWithFactor(
+                                              context,
+                                            ),
+                                            style: context.textTheme.titleSmall,
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }
+
+                                  return const SizedBox.shrink();
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
                     ),
                     PBButton(
                       localized.saveSet,

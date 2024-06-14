@@ -9,6 +9,7 @@ class LevelBar extends StatelessWidget {
     super.key,
   }) : _barWidth = LevelScaler().getCurrentExperienceRelativeToLevel(
           level,
+          level,
           experience,
         );
 
