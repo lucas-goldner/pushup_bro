@@ -45,11 +45,16 @@ class _ItemFriendMenuState extends State<ItemFriendMenu> {
       friends.map((friendData) => friendData.id).contains(friend.id);
 
   void _addFriendToList(Friend newFriendData, BuildContext context) {
+    final boosterItemCubit = context.read<BoosterItemCubit>();
+    if (boosterItemCubit.state.items[BoosterItems.friendBoost] == 0) {
+      return;
+    }
+
     if (!_isFriendInList(newFriendData)) {
       setState(() => friends.add(newFriendData));
-      context.read<BoosterItemCubit>().consumeItem(
-            item: BoosterItems.friendBoost,
-          );
+      boosterItemCubit.consumeItem(
+        item: BoosterItems.friendBoost,
+      );
     }
   }
 
