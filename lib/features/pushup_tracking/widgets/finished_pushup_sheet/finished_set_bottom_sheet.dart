@@ -84,7 +84,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
       level,
       user.xp + amountOfXP,
     );
-    print(levelScaling);
+
     final levelUps =
         splitDouble(levelScaling).where((element) => element == 1).toList();
     final xpLeftOver =

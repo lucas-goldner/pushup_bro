@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
+import 'package:pushup_bro/core/model/active_effects.dart';
 
-enum NewsType {
-  update,
-  friendBoost,
-  eventDay;
-}
+enum NewsType { update, friendBoost, doublePoinstEvent }
 
 extension NewsTypeExtension on NewsType {
   Color getColor(BuildContext context) =>
       switch (this) {
         NewsType.update => context.colorScheme.primary,
         NewsType.friendBoost => context.itemColorsTheme.friendBoost,
-        NewsType.eventDay => context.itemColorsTheme.doubleBoost,
+        NewsType.doublePoinstEvent => context.itemColorsTheme.doubleBoost,
       } ??
       Colors.transparent;
+
+  ActiveEffects? get correspondingEffect => switch (this) {
+        NewsType.friendBoost => ActiveEffects.itemFriendSharedBoostReceived,
+        NewsType.doublePoinstEvent => ActiveEffects.eventDoublePoints,
+        _ => null,
+      };
 }
 
 class News {

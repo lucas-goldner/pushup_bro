@@ -6,9 +6,7 @@ sealed class ActiveEffectsState extends Equatable {
 
   final List<ActiveEffects> effects;
 
-  bool isActive(ActiveEffects effect) {
-    return effects.contains(effect);
-  }
+  bool isActive(ActiveEffects? effect) => effects.contains(effect);
 
   @override
   List<Object?> get props => [effects];

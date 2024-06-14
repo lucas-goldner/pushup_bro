@@ -26,8 +26,8 @@ extension BoosterItemsExtension on BoosterItems {
       } ??
       Colors.transparent;
 
-  ActiveEffects getCorrespondingEffect() => switch (this) {
+  ActiveEffects? getCorrespondingEffect() => switch (this) {
         BoosterItems.doublePoints => ActiveEffects.itemDoublePoints,
-        BoosterItems.friendBoost => ActiveEffects.itemFriendSharedBoostReceived,
+        _ => null
       };
 }

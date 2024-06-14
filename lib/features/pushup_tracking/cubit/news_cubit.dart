@@ -19,7 +19,7 @@ class NewsCubit extends Cubit<NewsState> {
         News(
           title: 'Double Bro Points Day!',
           description: 'Today you get double bro points for each pushup',
-          type: NewsType.eventDay,
+          type: NewsType.doublePoinstEvent,
           date: DateTime.now(),
         ),
         News(

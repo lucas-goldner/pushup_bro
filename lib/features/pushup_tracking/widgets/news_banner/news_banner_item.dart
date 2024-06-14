@@ -50,7 +50,7 @@ class NewsBannerItem extends StatelessWidget {
             context,
             _FriendBoostCard(news),
           ),
-        NewsType.eventDay => _buildBasicCard(
+        NewsType.doublePoinstEvent => _buildBasicCard(
             context,
             _EventDayCard(news),
           ),
