@@ -6,30 +6,24 @@ class BoosterItemCubit extends Cubit<BoosterItemState> {
   BoosterItemCubit() : super(BoosterItemStateInitial());
 
   void addItems({required BoosterItems item, required int amount}) {
-    final currentState = state;
-    if (currentState is! BoosterItemStateLoaded) {
-      return;
-    }
-    final itemsAmount = currentState.items[item];
+    final itemsAmount = state.items[item];
     if (itemsAmount == null) {
       return;
     }
     final newItemsAmount = itemsAmount + amount;
 
+    print(state.items);
+
     emit(
       BoosterItemStateLoaded({
-        ...currentState.items,
+        ...state.items,
         item: newItemsAmount,
       }),
     );
   }
 
   void consumeItem({required BoosterItems item}) {
-    final currentState = state;
-    if (currentState is! BoosterItemStateLoaded) {
-      return;
-    }
-    final itemsAmount = currentState.items[item];
+    final itemsAmount = state.items[item];
     if (itemsAmount == null || itemsAmount == 0) {
       return;
     }
@@ -37,7 +31,7 @@ class BoosterItemCubit extends Cubit<BoosterItemState> {
 
     emit(
       BoosterItemStateLoaded({
-        ...currentState.items,
+        ...state.items,
         item: newItemsAmount,
       }),
     );

@@ -158,6 +158,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
     final navigator = Navigator.of(context);
     final sharedPrefsCubit = BlocProvider.of<SharedPreferencesCubit>(context);
     final dbCubit = BlocProvider.of<DBCubit>(context);
+    final activeEffectsCubit = context.read<ActiveEffectsCubit>();
     final finished = await sharedPrefsCubit.getFirstPushupCompleted();
     final leftOverXP = (LevelScaler().getLevelScaling(level) * _animation.value)
         .toInt()
@@ -169,7 +170,9 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
     } else {
       await dbCubit.updateUser(level: level, xp: leftOverXP);
     }
+
     await savePushupSet();
+    activeEffectsCubit.clearEffects();
     navigator.pop(finished);
   }
 

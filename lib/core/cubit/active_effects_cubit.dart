@@ -10,11 +10,7 @@ class ActiveEffectsCubit extends Cubit<ActiveEffectsState> {
     emit(ActiveEffectsStateActivated([...state.effects, effect]));
   }
 
-  void removeEffect(ActiveEffects effect) => emit(
-        ActiveEffectsStateActivated(
-          state.effects
-              .where((effectElement) => effectElement != effect)
-              .toList(),
-        ),
+  void clearEffects() => emit(
+        const ActiveEffectsStateActivated([]),
       );
 }

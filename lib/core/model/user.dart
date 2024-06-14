@@ -6,6 +6,7 @@ part 'user.g.dart';
 
 const Id _userId = 1;
 
+// TODO(items): Move items also into user object
 @collection
 class User {
   User({

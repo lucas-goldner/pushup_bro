@@ -19,6 +19,10 @@ class ItemMenu extends StatelessWidget {
     final activeEffectsCubit = context.read<ActiveEffectsCubit>();
     final boosterItemCubit = context.read<BoosterItemCubit>();
 
+    if (boosterItemCubit.state.items[item] == 0) {
+      return;
+    }
+
     switch (item) {
       case BoosterItems.doublePoints:
         activeEffectsCubit.addEffect(

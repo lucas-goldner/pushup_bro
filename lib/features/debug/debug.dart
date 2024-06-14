@@ -2,7 +2,9 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
+import 'package:pushup_bro/core/model/booster_items.dart';
 import 'package:pushup_bro/core/model/pushup.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
@@ -45,6 +47,16 @@ class _DebugState extends State<Debug> {
 
   Future<void> wiperUser() async => context.read<DBCubit>().wipeUser();
 
+  void addBoosterItem() => context.read<BoosterItemCubit>().addItems(
+        item: BoosterItems.doublePoints,
+        amount: 1,
+      );
+
+  void addFriendShareItem() => context.read<BoosterItemCubit>().addItems(
+        item: BoosterItems.friendBoost,
+        amount: 1,
+      );
+
   @override
   Widget build(BuildContext context) => SafeArea(
         bottom: false,
@@ -70,6 +82,21 @@ class _DebugState extends State<Debug> {
               PBButton(
                 'Wiper user',
                 callback: wiperUser,
+                expanded: true,
+              ),
+              const SizedBox(height: 12),
+              PBButton(
+                'Add Booster Item',
+                callback: () {
+                  print('LOL');
+                  addBoosterItem();
+                },
+                expanded: true,
+              ),
+              const SizedBox(height: 12),
+              PBButton(
+                'Add Friendshare Item',
+                callback: addFriendShareItem,
                 expanded: true,
               ),
             ],
