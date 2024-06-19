@@ -149,5 +149,6 @@
   "friendBoost": "Bro Boost",
   "sendBoost": "Send Boost",
   "lastSevenDays": "Last 7 days",
-  "total": "Total"
+  "total": "Total",
+  "search": "Search"
 }
