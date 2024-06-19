@@ -17,9 +17,19 @@ class LeaderboardProfile extends StatelessWidget {
         user.toMinimizedUser(),
         leadingItem: Padding(
           padding: const EdgeInsets.only(right: 8),
-          child: Text(
-            '#$ranking',
-            style: context.textTheme.bodyLarge,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                '#$ranking',
+                style: context.textTheme.bodyLarge,
+              ),
+              Text(
+                context.l10n.level(user.level),
+                style: context.textTheme.bodyMedium
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
         ),
       );

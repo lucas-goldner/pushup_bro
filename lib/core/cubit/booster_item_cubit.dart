@@ -12,8 +12,6 @@ class BoosterItemCubit extends Cubit<BoosterItemState> {
     }
     final newItemsAmount = itemsAmount + amount;
 
-    print(state.items);
-
     emit(
       BoosterItemStateLoaded({
         ...state.items,

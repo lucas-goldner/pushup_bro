@@ -1,6 +1,9 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
+import 'package:pushup_bro/features/pushup_tracking/cubit/news_cubit.dart';
+import 'package:pushup_bro/features/pushup_tracking/cubit/news_state.dart';
 
 class PushupTrackingTopRow extends StatelessWidget {
   const PushupTrackingTopRow({
@@ -54,10 +57,12 @@ class PushupTrackingTopRow extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(4),
                         child: Center(
-                          child: Text(
-                            '1',
-                            style: context.textTheme.labelLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
+                          child: BlocBuilder<NewsCubit, NewsState>(
+                            builder: (context, state) => Text(
+                              state.news.length.toString(),
+                              style: context.textTheme.labelLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
