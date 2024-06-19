@@ -98,7 +98,7 @@ class _DebugState extends State<Debug> {
               ),
               const SizedBox(height: 12),
               PBButton(
-                'Switch to gamiified app',
+                'Switch to gamified app',
                 callback: switchToGamified,
                 expanded: true,
               ),

@@ -94,7 +94,6 @@ class _PBAppBarState extends State<PBAppBar> with TickerProviderStateMixin {
                 ),
                 MenuTabs(
                   _drawerController,
-                  MenuTabInfo.values,
                   _itemSlideIntervals,
                   open: _open,
                 ),
