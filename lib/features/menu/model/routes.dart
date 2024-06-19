@@ -38,7 +38,7 @@ Route<CupertinoPageRoute<Widget>> generateRoutes(
         ),
       Leaderboard.routeName => _revealCircular(
           settings.arguments as BuildContext?,
-          PageContainer(
+          const PageContainer(
             Leaderboard(),
             menuTab: MenuTabInfo.leaderbaord,
           ),

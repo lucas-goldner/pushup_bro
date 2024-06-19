@@ -87,10 +87,7 @@ class _DebugState extends State<Debug> {
               const SizedBox(height: 12),
               PBButton(
                 'Add Booster Item',
-                callback: () {
-                  print('LOL');
-                  addBoosterItem();
-                },
+                callback: addBoosterItem,
                 expanded: true,
               ),
               const SizedBox(height: 12),
