@@ -10,6 +10,7 @@ import 'package:pushup_bro/core/constants.dart';
 import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
 import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
+import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_state.dart';
 import 'package:pushup_bro/core/extensions/string_ext.dart';
@@ -111,6 +112,7 @@ class Main extends StatelessWidget {
     final activeEffectsCubit = ActiveEffectsCubit();
     final boosterItemsCubit = BoosterItemCubit();
     final newsCubit = NewsCubit();
+    final featureSwitchCubit = FeatureSwitchCubit();
 
     return MultiBlocProvider(
       providers: [
@@ -134,6 +136,9 @@ class Main extends StatelessWidget {
         ),
         BlocProvider<NewsCubit>(
           create: (context) => newsCubit,
+        ),
+        BlocProvider<FeatureSwitchCubit>(
+          create: (context) => featureSwitchCubit,
         ),
       ],
       child:
