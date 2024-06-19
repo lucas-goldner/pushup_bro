@@ -1,25 +1,44 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pushup_bro/features/calendar/view/calendar.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
+import 'package:pushup_bro/features/debug/debug.dart';
+import 'package:pushup_bro/features/friends/friends.dart';
+import 'package:pushup_bro/features/leaderboard/leaderboard.dart';
+import 'package:pushup_bro/features/progress/progress.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
-import 'package:pushup_bro/features/pushup_tracking/view/pushup_tracking.dart';
-import 'package:pushup_bro/features/settings/view/settings.dart';
-import 'package:pushup_bro/generated/l10n.dart';
+import 'package:pushup_bro/features/pushup_tracking/pushup_tracking.dart';
+import 'package:pushup_bro/features/settings/settings.dart';
 
-enum MenuTabInfo { pushupTracking, calendar, settings }
+enum MenuTabInfo {
+  pushupTracking,
+  progress,
+  // calendar,
+  friends,
+  leaderbaord,
+  settings,
+  debug;
+}
 
 extension MenuTabInfoExtension on MenuTabInfo {
   String getMenuTitle(BuildContext context) => switch (this) {
-        MenuTabInfo.pushupTracking => S.of(context).home,
-        MenuTabInfo.calendar => S.of(context).calendar,
-        MenuTabInfo.settings => S.of(context).settings
+        MenuTabInfo.pushupTracking => context.l10n.home,
+        MenuTabInfo.progress => context.l10n.progress,
+        // MenuTabInfo.calendar => context.l10n.calendar,
+        MenuTabInfo.friends => context.l10n.friends,
+        MenuTabInfo.leaderbaord => context.l10n.leaderboard,
+        MenuTabInfo.settings => context.l10n.settings,
+        MenuTabInfo.debug => 'Debug',
       };
 
-  IconData getIcon() => switch (this) {
+  IconData get icon => switch (this) {
         MenuTabInfo.pushupTracking => CarbonIcons.home,
-        MenuTabInfo.calendar => CarbonIcons.calendar,
+        MenuTabInfo.progress => CarbonIcons.skill_level,
+        // MenuTabInfo.calendar => CarbonIcons.calendar,
+        MenuTabInfo.friends => CarbonIcons.group,
+        MenuTabInfo.leaderbaord => CarbonIcons.list_numbered,
         MenuTabInfo.settings => CarbonIcons.settings,
+        MenuTabInfo.debug => CarbonIcons.debug,
       };
 
   Future<void> navigate(BuildContext context) {
@@ -31,14 +50,30 @@ extension MenuTabInfoExtension on MenuTabInfo {
           PushupTracking.routeName,
           arguments: context,
         ),
-      MenuTabInfo.calendar => navigator.pushReplacementNamed(
-          Calendar.routeName,
+      MenuTabInfo.progress => navigator.pushReplacementNamed(
+          Progress.routeName,
+          arguments: context,
+        ),
+      // MenuTabInfo.calendar => navigator.pushReplacementNamed(
+      //     Calendar.routeName,
+      //     arguments: context,
+      //   ),
+      MenuTabInfo.friends => navigator.pushReplacementNamed(
+          Friends.routeName,
+          arguments: context,
+        ),
+      MenuTabInfo.leaderbaord => navigator.pushReplacementNamed(
+          Leaderboard.routeName,
           arguments: context,
         ),
       MenuTabInfo.settings => navigator.pushReplacementNamed(
           Settings.routeName,
           arguments: context,
-        )
+        ),
+      MenuTabInfo.debug => navigator.pushReplacementNamed(
+          Debug.routeName,
+          arguments: context,
+        ),
     };
   }
 }

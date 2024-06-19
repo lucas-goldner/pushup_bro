@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
+import 'package:pushup_bro/core/extensions/datetime_ext.dart';
 import 'package:pushup_bro/core/model/pushup.dart';
-import 'package:pushup_bro/generated/l10n.dart';
 
 part 'pushup_set.g.dart';
 
@@ -19,24 +20,15 @@ class PushupSet {
     return difference == 0 ? 1 : difference;
   }
 
-  String translateEffort(BuildContext context) {
-    switch (effort) {
-      case 0:
-        return S.of(context).noEffort;
-      case 1:
-        return S.of(context).superEasyEffort;
-      case 2:
-        return S.of(context).easyEffort;
-      case 3:
-        return S.of(context).mediumEffort;
-      case 4:
-        return S.of(context).hardEffort;
-      case 5:
-        return S.of(context).superHardEffort;
-    }
-
-    return S.of(context).noEffort;
-  }
+  String translateEffort(BuildContext context) => switch (effort) {
+        0 => context.l10n.noEffort,
+        1 => context.l10n.superEasyEffort,
+        2 => context.l10n.easyEffort,
+        3 => context.l10n.mediumEffort,
+        4 => context.l10n.hardEffort,
+        5 => context.l10n.superHardEffort,
+        _ => context.l10n.noEffort
+      };
 
   PushupSet copyWith({
     List<Pushup>? pushups,
@@ -46,5 +38,62 @@ class PushupSet {
       pushups ?? this.pushups,
       effort ?? this.effort,
     );
+  }
+}
+
+typedef MonthlyPushups = ({int month, int pushups});
+typedef DailyPushups = ({int day, int pushups});
+
+extension PushupSetListExtension on List<PushupSet> {
+  List<MonthlyPushups> get stackedPerMonth {
+    final pushupsStackedPerMonth = <({int month, int pushups})>[];
+    final monthlyPushups = <int, int>{};
+
+    for (final pushupSet in this) {
+      for (final pushup in pushupSet.pushups) {
+        if (pushup.completedAt != null) {
+          final month = pushup.completedAt!.month;
+          if (monthlyPushups.containsKey(month)) {
+            monthlyPushups[month] = monthlyPushups[month]! + 1;
+          } else {
+            monthlyPushups[month] = 1;
+          }
+        }
+      }
+    }
+
+    monthlyPushups.forEach((month, pushups) {
+      pushupsStackedPerMonth.add((month: month, pushups: pushups));
+    });
+    pushupsStackedPerMonth.sort((a, b) => a.month.compareTo(b.month));
+    return pushupsStackedPerMonth;
+  }
+
+  MonthlyPushups get monthWithMostPushups {
+    final pushupsByMonth = stackedPerMonth;
+    return pushupsByMonth.reduce(
+      (max, element) => element.pushups > max.pushups ? element : max,
+    );
+  }
+
+  List<DailyPushups> get lastSevenDaysPushups {
+    final dailyPushups = <DateTime, int>{};
+    final now = DateTime.now();
+    final sevenDaysAgo = now.subtract(const Duration(days: 7));
+
+    for (final pushupSet in this) {
+      for (final pushup in pushupSet.pushups) {
+        if (pushup.completedAt != null &&
+            pushup.completedAt!.isAfter(sevenDaysAgo)) {
+          final day = pushup.completedAt!.date;
+          dailyPushups[day] = (dailyPushups[day] ?? 0) + 1;
+        }
+      }
+    }
+
+    return List.generate(7, (index) {
+      final targetDay = now.subtract(Duration(days: index)).date;
+      return (day: targetDay.day, pushups: dailyPushups[targetDay] ?? 0);
+    }).reversed.toList();
   }
 }

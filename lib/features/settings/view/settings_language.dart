@@ -51,7 +51,7 @@ class _LanguageSettingState extends State<LanguageSetting> {
                   children: [
                     SingleChildScrollView(
                       child: Text(
-                        S.of(context).switchLanguage,
+                        context.l10n.switchLanguage,
                         style: context.textTheme.titleLarge,
                       ),
                     ),
@@ -98,8 +98,9 @@ class _LanguageSettingState extends State<LanguageSetting> {
                     ),
                     const Spacer(),
                     PBButton(
-                      S.of(context).goBack,
+                      context.l10n.goBack,
                       callback: () => Navigator.of(context).pop(),
+                      expanded: true,
                     ),
                   ],
                 ),

@@ -6,7 +6,6 @@ import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/settings/widgets/volume_displayer.dart';
-import 'package:pushup_bro/generated/l10n.dart';
 
 class VolumeSetting extends StatefulWidget {
   const VolumeSetting({super.key});
@@ -49,7 +48,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
                   children: [
                     SingleChildScrollView(
                       child: Text(
-                        S.of(context).setVolume,
+                        context.l10n.setVolume,
                         style: context.textTheme.titleLarge,
                       ),
                     ),
@@ -80,7 +79,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
                               horizontal: 16,
                             ),
                             child: Text(
-                              S.of(context).volumeLevel(_selectedVolume),
+                              context.l10n.volumeLevel(_selectedVolume),
                               style: context.textTheme.bodyMedium,
                             ),
                           ),
@@ -100,8 +99,9 @@ class _VolumeSettingState extends State<VolumeSetting> {
                     ),
                     const Spacer(),
                     PBButton(
-                      S.of(context).goBack,
+                      context.l10n.goBack,
                       callback: () => Navigator.of(context).pop(),
+                      expanded: true,
                     ),
                   ],
                 ),

@@ -3,22 +3,23 @@ import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
 
 class MenuTab extends StatelessWidget {
-  const MenuTab(
-    this._drawerController,
-    this._menuInfo,
-    this._itemSlideInterval, {
+  const MenuTab({
+    required this.drawerController,
+    required this.menuInfo,
+    required this.itemSlideInterval,
     super.key,
   });
-  final AnimationController _drawerController;
-  final Interval _itemSlideInterval;
-  final MenuTabInfo _menuInfo;
+
+  final AnimationController drawerController;
+  final Interval itemSlideInterval;
+  final MenuTabInfo menuInfo;
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
-        animation: _drawerController,
+        animation: drawerController,
         builder: (context, child) {
           final animationPercent = Curves.easeOut.transform(
-            _itemSlideInterval.transform(_drawerController.value),
+            itemSlideInterval.transform(drawerController.value),
           );
           final opacity = animationPercent;
           final slideDistance = (1.0 - animationPercent) * 150;
@@ -32,7 +33,7 @@ class MenuTab extends StatelessWidget {
           );
         },
         child: GestureDetector(
-          onTap: () => _menuInfo.navigate(context),
+          onTap: () => menuInfo.navigate(context),
           child: Padding(
             padding: const EdgeInsets.only(top: 16, right: 8),
             child: DecoratedBox(
@@ -45,12 +46,12 @@ class MenuTab extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 child: Row(
                   children: [
-                    Icon(_menuInfo.getIcon()),
+                    Icon(menuInfo.icon),
                     const SizedBox(
                       width: 12,
                     ),
                     Text(
-                      _menuInfo.getMenuTitle(context),
+                      menuInfo.getMenuTitle(context),
                       style: context.textTheme.titleSmall?.copyWith(
                         color: context.colorScheme.surfaceBright,
                       ),

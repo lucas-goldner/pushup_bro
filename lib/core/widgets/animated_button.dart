@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/style/theme.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 import 'package:rive/rive.dart';
@@ -70,6 +71,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
 
   @override
   void dispose() {
+    _arrowAnimController.dispose();
     _riveController.dispose();
     _riveAnim?.dispose();
     super.dispose();
@@ -87,13 +89,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            boxShadow: [
-              BoxShadow(
-                color: theme.colorScheme.shadow.withOpacity(0.2),
-                blurRadius: 10,
-                offset: const Offset(1, 10),
-              ),
-            ],
+            boxShadow: [context.shadow],
           ),
           child: GestureDetector(
             onTap: _onTap,

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
@@ -6,17 +7,19 @@ import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_state.dart';
+import 'package:pushup_bro/features/pushup_tracking/cubit/news_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
-import 'package:pushup_bro/features/pushup_tracking/widgets/finished_set_bottom_sheet.dart';
+import 'package:pushup_bro/features/pushup_tracking/widgets/finished_pushup_sheet/finished_set_bottom_sheet.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/monkey.dart';
+import 'package:pushup_bro/features/pushup_tracking/widgets/news_banner/news_banner.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_counter.dart';
-import 'package:pushup_bro/features/pushup_tracking/widgets/start_pushups_button.dart';
+import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_tracking_bottom_row.dart';
+import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_tracking_top_row.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
-import 'package:pushup_bro/generated/l10n.dart';
 
 class PushupTracking extends StatefulWidget {
   const PushupTracking({super.key});
-  static const routeName = '/';
+  static const String routeName = '/';
 
   @override
   State<PushupTracking> createState() => _PushupTrackingState();
@@ -25,6 +28,7 @@ class PushupTracking extends StatefulWidget {
 class _PushupTrackingState extends State<PushupTracking> {
   bool finished = false;
   bool started = false;
+  bool newsVisible = true;
 
   void toggleListeningUpdates() {
     final airpodsCubit = BlocProvider.of<AirPodsTrackerCubit>(context);
@@ -40,6 +44,9 @@ class _PushupTrackingState extends State<PushupTracking> {
       openBottomSheet(pushups);
     } else {
       airpodsCubit.getAirPodsMotionData();
+      if (newsVisible == true) {
+        setState(() => newsVisible = false);
+      }
       setState(() {
         finished = false;
         started = true;
@@ -57,6 +64,7 @@ class _PushupTrackingState extends State<PushupTracking> {
       isDismissible: false,
       builder: (context) => FinishedSetBottomSheet(pushups),
     );
+
     // ?? false;
     // TODO(Implement-onboarding): Reenable onboarding and finish feature
     // if (!firstPushupCompleted) {
@@ -67,6 +75,20 @@ class _PushupTrackingState extends State<PushupTracking> {
     // }
   }
 
+  void toggleNewsVisibility() => setState(() => newsVisible = !newsVisible);
+
+  @override
+  void initState() {
+    super.initState();
+    newsVisible = false;
+    context.read<NewsCubit>().getNews();
+  }
+
+  @override
+  void didUpdateWidget(covariant PushupTracking oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
   @override
   Widget build(BuildContext context) => FutureBuilder(
         future: BlocProvider.of<SharedPreferencesCubit>(context).getVolume(),
@@ -75,49 +97,53 @@ class _PushupTrackingState extends State<PushupTracking> {
             SafeArea(
               child: Stack(
                 children: [
-                  Center(
-                    child: Column(
-                      children: [
-                        const Spacer(),
-                        const Monkey(),
-                        BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
-                          builder: (context, airPodsState) {
-                            if (airPodsState.isListening && started) {
-                              final pushupCubit =
-                                  BlocProvider.of<PushupCubit>(context)
-                                    ..listenForPushupEvents(
-                                      airPodsState.currentMotionData,
-                                      future.data ?? 10,
-                                    );
+                  Column(
+                    children: [
+                      PushupTrackingTopRow(
+                        toggleNewsVisibility: toggleNewsVisibility,
+                      ),
+                      const Spacer(
+                        flex: 4,
+                      ),
+                      const Monkey(),
+                      BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
+                        builder: (context, airPodsState) {
+                          if (airPodsState.isListening && started) {
+                            final pushupCubit =
+                                BlocProvider.of<PushupCubit>(context)
+                                  ..listenForPushupEvents(
+                                    airPodsState.currentMotionData,
+                                    future.data ?? 10,
+                                  );
 
-                              return PushupCounter(
-                                pushupCubit.getCurrentPushups(),
-                              );
-                            }
+                            return PushupCounter(
+                              pushupCubit.getCurrentPushups(),
+                            );
+                          }
 
-                            if (started) {
-                              return Text(
-                                S.of(context).lookingForAirpods,
-                                style: context.textTheme.bodyMedium,
-                              );
-                            }
+                          if (started) {
+                            return Text(
+                              context.l10n.lookingForAirpods,
+                              style: context.textTheme.bodyMedium,
+                            );
+                          }
 
-                            return const SizedBox();
-                          },
-                        ),
-                        const Spacer(),
-                        StartPushupsButton(
-                          toggleListeningUpdates,
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                      ],
-                    ),
+                          return const SizedBox();
+                        },
+                      ),
+                      const Spacer(flex: 2),
+                      PushupTrackingBottomRow(
+                        toggleListeningUpdates: toggleListeningUpdates,
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
+            NewsBanner(newsVisible: newsVisible),
             if (finished)
               IgnorePointer(
                 child: Assets.rive.confetti.rive(),

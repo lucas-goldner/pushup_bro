@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
 import 'package:pushup_bro/features/menu/widgets/menu_tab.dart';
 
-class MenuTabs extends StatefulWidget {
+class MenuTabs extends StatelessWidget {
   const MenuTabs(
     this.drawerController,
     this.menuTabs,
@@ -16,28 +16,18 @@ class MenuTabs extends StatefulWidget {
   final bool open;
 
   @override
-  State<MenuTabs> createState() => _MenuState();
-}
-
-class _MenuState extends State<MenuTabs> with SingleTickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) => IgnorePointer(
-        ignoring: !widget.open,
+        ignoring: !open,
         child: Padding(
           padding: const EdgeInsets.only(top: 80),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (var i = 0; i < widget.menuTabs.length; ++i) ...[
+              for (var i = 0; i < MenuTabInfo.values.length; ++i) ...[
                 MenuTab(
-                  widget.drawerController,
-                  widget.menuTabs[i],
-                  widget.itemSlideIntervals[i],
+                  drawerController: drawerController,
+                  menuInfo: menuTabs[i],
+                  itemSlideInterval: itemSlideIntervals[i],
                 ),
               ],
             ],
