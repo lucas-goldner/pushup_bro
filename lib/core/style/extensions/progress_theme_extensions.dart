@@ -5,15 +5,27 @@ class ProgressThemeExtension extends ThemeExtension<ProgressThemeExtension> {
     required this.streakStarGradient,
   });
 
-  final Gradient? streakStarGradient;
+  factory ProgressThemeExtension.build() {
+    return ProgressThemeExtension(
+      streakStarGradient: const LinearGradient(
+        begin: Alignment.center,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color.fromARGB(204, 255, 191, 0),
+          Color.fromARGB(204, 224, 62, 76),
+        ],
+      ),
+    );
+  }
+
+  final Gradient streakStarGradient;
 
   @override
   ThemeExtension<ProgressThemeExtension> copyWith({
-    Gradient? levelBarGradient,
     Gradient? streakStarGradient,
   }) =>
       ProgressThemeExtension(
-        streakStarGradient: streakStarGradient,
+        streakStarGradient: streakStarGradient ?? this.streakStarGradient,
       );
 
   @override
@@ -26,10 +38,11 @@ class ProgressThemeExtension extends ThemeExtension<ProgressThemeExtension> {
     }
     return ProgressThemeExtension(
       streakStarGradient: Gradient.lerp(
-        streakStarGradient,
-        other.streakStarGradient,
-        t,
-      ),
+            streakStarGradient,
+            other.streakStarGradient,
+            t,
+          ) ??
+          streakStarGradient,
     );
   }
 }

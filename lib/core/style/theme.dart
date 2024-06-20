@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/core/style/extensions/game_colors_theme_extension.dart';
 import 'package:pushup_bro/core/style/extensions/item_colors_theme_extensions.dart';
 import 'package:pushup_bro/core/style/extensions/progress_theme_extensions.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
@@ -45,19 +46,8 @@ final theme = ThemeData(
     hintStyle: WidgetStateProperty.all<TextStyle>(defaultTextStyle),
   ),
   extensions: [
-    ProgressThemeExtension(
-      streakStarGradient: const LinearGradient(
-        begin: Alignment.center,
-        end: Alignment.bottomCenter,
-        colors: [
-          Color.fromARGB(204, 255, 191, 0),
-          Color.fromARGB(204, 224, 62, 76),
-        ],
-      ),
-    ),
-    const ItemColorsThemeExtensions(
-      doubleBoost: Color(0xFFfffcfc),
-      friendBoost: Color(0xFFffecc4),
-    ),
+    ProgressThemeExtension.build(),
+    ItemColorsThemeExtensions.build(),
+    GameColorsThemeExtension.build(),
   ],
 );
