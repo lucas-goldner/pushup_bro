@@ -29,6 +29,7 @@ class MenuTabs extends StatelessWidget {
     ];
     final featuresForGamification = [
       MenuTabInfo.pushupTracking,
+      MenuTabInfo.island,
       MenuTabInfo.settings,
       MenuTabInfo.debug,
     ];

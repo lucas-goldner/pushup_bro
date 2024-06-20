@@ -28,14 +28,14 @@ import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/provider/airpods_motion_provider.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // TODO(Firebase): Enable firebase when implemented
   // await Firebase.initializeApp();
   // await FirebaseAppCheck.instance.activate(
   //   webRecaptchaSiteKey: 'recaptcha-v3-site-key',
   // );
-  await initializeDateFormatting().then((_) => runApp(const Main()));
+  runApp(const Main());
 }
 
 class Main extends StatelessWidget {
@@ -75,6 +75,7 @@ class Main extends StatelessWidget {
     DBProvider dbProvider,
     DBCubit dbCubit,
   ) async {
+    await initializeDateFormatting();
     await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp],
     );

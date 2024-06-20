@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/features/debug/debug.dart';
 import 'package:pushup_bro/features/friends/friends.dart';
+import 'package:pushup_bro/features/island/island.dart';
 import 'package:pushup_bro/features/leaderboard/leaderboard.dart';
 import 'package:pushup_bro/features/progress/progress.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
@@ -17,6 +18,7 @@ enum MenuTabInfo {
   friends,
   leaderbaord,
   settings,
+  island,
   debug;
 }
 
@@ -29,6 +31,7 @@ extension MenuTabInfoExtension on MenuTabInfo {
         MenuTabInfo.leaderbaord => context.l10n.leaderboard,
         MenuTabInfo.settings => context.l10n.settings,
         MenuTabInfo.debug => 'Debug',
+        MenuTabInfo.island => context.l10n.island,
       };
 
   IconData get icon => switch (this) {
@@ -39,6 +42,7 @@ extension MenuTabInfoExtension on MenuTabInfo {
         MenuTabInfo.leaderbaord => CarbonIcons.list_numbered,
         MenuTabInfo.settings => CarbonIcons.settings,
         MenuTabInfo.debug => CarbonIcons.debug,
+        MenuTabInfo.island => CarbonIcons.airport_location,
       };
 
   Future<void> navigate(BuildContext context) {
@@ -72,6 +76,10 @@ extension MenuTabInfoExtension on MenuTabInfo {
         ),
       MenuTabInfo.debug => navigator.pushReplacementNamed(
           Debug.routeName,
+          arguments: context,
+        ),
+      MenuTabInfo.island => navigator.pushReplacementNamed(
+          Island.routeName,
           arguments: context,
         ),
     };
