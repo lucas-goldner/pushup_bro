@@ -8,13 +8,14 @@ class Ground extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: [
           Flexible(
+            flex: 4,
             child: ColoredBox(
               color: context.gameColorsTheme.grass,
               child: const SizedBox.expand(),
             ),
           ),
           Flexible(
-            flex: 2,
+            flex: 5,
             child: ColoredBox(
               color: context.gameColorsTheme.sand,
               child: const SizedBox.expand(),

@@ -27,11 +27,11 @@ class _WalkingMonkeyState extends State<WalkingMonkey>
         Tween<double>(begin: animationPath.begin, end: animationPath.end)
             .animate(_controller)
           ..addListener(() {
-            if (_animation.value >= (animationPath.end! - 0.1)) {
+            if (_animation.value >= (animationPath.end! - 0.2)) {
               setState(() => turningDirection = TurningDirection.left);
             }
 
-            if (_animation.value <= (animationPath.begin! + 0.1)) {
+            if (_animation.value <= (animationPath.begin! + 0.2)) {
               setState(() => turningDirection = TurningDirection.right);
             }
           });

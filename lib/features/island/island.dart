@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/features/island/widgets/beach_overlay.dart';
+import 'package:pushup_bro/features/island/widgets/grass_overlay.dart';
 import 'package:pushup_bro/features/island/widgets/ground.dart';
 import 'package:pushup_bro/features/island/widgets/walking_monkey.dart';
 
@@ -15,6 +17,8 @@ class _IslandState extends State<Island> {
   Widget build(BuildContext context) => const Stack(
         children: [
           Ground(),
+          GrassOverlay(),
+          BeachOverlay(),
           WalkingMonkey(),
         ],
       );
