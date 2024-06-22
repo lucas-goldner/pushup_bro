@@ -81,6 +81,17 @@ Route<CupertinoPageRoute<Widget>> generateRoutes(
         ),
     };
 
+Route<CupertinoPageRoute<Widget>> navigateToPushupTracking(
+  BuildContext context,
+) =>
+    _revealCircular(
+      context,
+      const PageContainer(
+        PushupTracking(),
+        menuTab: MenuTabInfo.pushupTracking,
+      ),
+    );
+
 Route<CupertinoPageRoute<Widget>> _revealCircular(
   BuildContext? context,
   Widget widget,

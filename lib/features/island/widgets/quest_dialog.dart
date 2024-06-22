@@ -4,6 +4,7 @@ import 'package:pushup_bro/features/island/model/quest_type.dart';
 import 'package:pushup_bro/features/island/widgets/daily_login.dart';
 import 'package:pushup_bro/features/island/widgets/quests/community_quest.dart';
 import 'package:pushup_bro/features/island/widgets/quests/intro_quest.dart';
+import 'package:pushup_bro/features/island/widgets/quests/jungle_quest.dart';
 
 class QuestDialog extends StatelessWidget {
   const QuestDialog({
@@ -67,6 +68,9 @@ class QuestDialog extends StatelessWidget {
                             onClose: onClose,
                           ),
                         QuestType.dailyLogin => DailyLogin(
+                            onClose: onClose,
+                          ),
+                        QuestType.jungleQuest => JungleQuest(
                             onClose: onClose,
                           ),
                         _ => const SizedBox.shrink()

@@ -89,7 +89,7 @@ class _IslandState extends State<Island> {
   Widget build(BuildContext context) => Stack(
         children: [
           const Ground(),
-          const GrassOverlay(),
+          GrassOverlay(openQuest),
           const BeachOverlay(),
           const WalkingMonkey(),
           Shop(

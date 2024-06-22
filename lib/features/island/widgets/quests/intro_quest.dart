@@ -1,5 +1,6 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 
@@ -39,7 +40,7 @@ class _IntroQuestState extends State<IntroQuest> {
 Welcome to your new island!
 In the past it used to be inhibited by various monkeys.
 ''',
-            image: Assets.images.island.quests.introQuest.part1.image(
+            image: Assets.images.island.quests.intro.part1.image(
               width: 160,
               height: 160,
             ),
@@ -48,7 +49,7 @@ In the past it used to be inhibited by various monkeys.
             text: '''
 Due to a mysterious storm all the monkeys have disappeared.
 ''',
-            image: Assets.images.island.quests.introQuest.part2.image(
+            image: Assets.images.island.quests.intro.part2.image(
               width: 160,
               height: 160,
             ),
@@ -60,7 +61,7 @@ Help him restore his lively island
 by earning bananas through pushups 
 to buy buildings and decorations.
 ''',
-            image: Assets.images.island.quests.introQuest.part3.image(
+            image: Assets.images.island.quests.intro.part3.image(
               width: 160,
               height: 160,
             ),
@@ -87,6 +88,7 @@ to buy buildings and decorations.
               Text(
                 text,
                 textAlign: TextAlign.left,
+                style: context.textTheme.bodyMedium,
               ),
               if (showArrow)
                 GestureDetector(

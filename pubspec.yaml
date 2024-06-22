@@ -58,7 +58,8 @@ flutter:
     - assets/images/
     - assets/images/island/
     - assets/images/island/quests/
-    - assets/images/island/quests/intro_quest/
+    - assets/images/island/quests/intro/
+    - assets/images/island/quests/jungle/
     - assets/rive/
 
   fonts:
