@@ -6,6 +6,7 @@ import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_state.dart';
+import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/booster_items.dart';
 import 'package:pushup_bro/core/model/feature_variants.dart';
@@ -65,9 +66,15 @@ class _DebugState extends State<Debug> {
         FeatureVariants.hookmodel,
       );
 
-  void switchToGamified() => context.read<FeatureSwitchCubit>().switchFeature(
-        FeatureVariants.gamification,
-      );
+  Future<void> switchToGamified() async {
+    final sharedPrefsCubit = context.read<SharedPreferencesCubit>();
+    final featuredSwitchCubit = context.read<FeatureSwitchCubit>();
+
+    await sharedPrefsCubit.setFirstTimeIslandVisited(isFirstVisit: true);
+    featuredSwitchCubit.switchFeature(
+      FeatureVariants.gamification,
+    );
+  }
 
   @override
   Widget build(BuildContext context) => SafeArea(

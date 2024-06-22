@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/features/island/model/game_menu_type.dart';
 import 'package:pushup_bro/features/island/model/quest_type.dart';
@@ -31,7 +32,6 @@ class _IslandState extends State<Island> {
   void setMenu(GameMenuType gameMenuType) =>
       setState(() => _gameMenuType = gameMenuType);
   void firstTimeVisiting() {
-    print('First time visiting');
     setState(() {
       _firstTimeVisiting = false;
       _menuVisible = false;
@@ -39,6 +39,7 @@ class _IslandState extends State<Island> {
     context
         .read<SharedPreferencesCubit>()
         .setFirstTimeIslandVisited(isFirstVisit: false);
+    context.read<GameInventoryCubit>().createInventory();
   }
 
   @override
@@ -48,7 +49,6 @@ class _IslandState extends State<Island> {
         context.read<SharedPreferencesCubit>().state.firstTimeIslandVisited ??
             true;
 
-    print('First time visiting: $_firstTimeVisiting');
     if (_firstTimeVisiting) {
       _menuVisible = true;
     }
