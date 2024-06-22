@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 enum QuestType {
   intro,
+  community,
   fastPushups,
   longPushups;
 
@@ -9,7 +10,7 @@ enum QuestType {
 
   String getLocalizedTitle(BuildContext context) => switch (this) {
         intro => 'Intro Quest',
-        fastPushups => 'Fast pushups',
-        longPushups => 'LongPushups',
+        community => 'Coming together',
+        _ => 'Nothingburger',
       };
 }

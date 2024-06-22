@@ -25,12 +25,34 @@ class Island extends StatefulWidget {
 
 class _IslandState extends State<Island> {
   bool _menuVisible = false;
+  bool _questVisible = false;
   GameMenuType _gameMenuType = GameMenuType.shop;
+  QuestType _quest = QuestType.intro;
   bool _firstTimeVisiting = false;
 
-  void toggleMenu() => setState(() => _menuVisible = !_menuVisible);
-  void setMenu(GameMenuType gameMenuType) =>
-      setState(() => _gameMenuType = gameMenuType);
+  void openMenu(GameMenuType gameMenuType) => setState(() {
+        _gameMenuType = gameMenuType;
+        _menuVisible = true;
+      });
+
+  void closeMenu() => setState(() {
+        _menuVisible = false;
+      });
+
+  void openQuest({
+    required GameMenuType gameMenuType,
+    required QuestType questType,
+  }) =>
+      setState(() {
+        _quest = questType;
+        _gameMenuType = gameMenuType;
+        _questVisible = true;
+      });
+
+  void closeQuest() => setState(() {
+        _questVisible = false;
+      });
+
   void firstTimeVisiting() {
     setState(() {
       _firstTimeVisiting = false;
@@ -62,14 +84,21 @@ class _IslandState extends State<Island> {
           const BeachOverlay(),
           const WalkingMonkey(),
           Shop(
-            onQuestMenuOpen: toggleMenu,
+            onQuestMenuOpen: openMenu,
           ),
           GameMenu(
-            onQuestMenuOpen: toggleMenu,
+            closeMenu: closeMenu,
             menuVisible: _menuVisible,
             menuType: _gameMenuType,
           ),
-          if (!_firstTimeVisiting || _menuVisible) const IslandTopBar(),
+          if (!_firstTimeVisiting || _menuVisible)
+            IslandTopBar(openQuest: openQuest),
+          if (_questVisible)
+            QuestDialog(
+              questVisible: _questVisible,
+              onClose: closeQuest,
+              questType: _quest,
+            ),
           if (_firstTimeVisiting)
             QuestDialog(
               questVisible: _menuVisible,

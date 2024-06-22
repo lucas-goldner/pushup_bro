@@ -12,30 +12,28 @@ class BananaCounter extends StatelessWidget {
   Widget build(BuildContext context) =>
       BlocSelector<GameInventoryCubit, GameInventoryState, int>(
         selector: (state) => state.inventory.bananas,
-        builder: (context, count) {
-          return DecoratedBox(
-            decoration: BoxDecoration(
-              color: context.colorScheme.surface,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(12),
+        builder: (context, count) => DecoratedBox(
+          decoration: BoxDecoration(
+            color: context.colorScheme.surface,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(12),
+            ),
+          ),
+          child: Row(
+            children: [
+              const SizedBox(width: 8),
+              Text(
+                '$count x',
+                style: context.textTheme.labelLarge?.copyWith(
+                  color: context.colorScheme.primary,
+                ),
               ),
-            ),
-            child: Row(
-              children: [
-                const SizedBox(width: 8),
-                Text(
-                  '$count x',
-                  style: context.textTheme.labelLarge?.copyWith(
-                    color: context.colorScheme.primary,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Assets.images.island.banana.image(
-                  width: 48,
-                ),
-              ],
-            ),
-          );
-        },
+              const SizedBox(width: 8),
+              Assets.images.island.banana.image(
+                width: 48,
+              ),
+            ],
+          ),
+        ),
       );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/features/island/model/quest_type.dart';
+import 'package:pushup_bro/features/island/widgets/quests/community_quest.dart';
 import 'package:pushup_bro/features/island/widgets/quests/intro_quest.dart';
 
 class QuestDialog extends StatelessWidget {
@@ -47,7 +48,6 @@ class QuestDialog extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(
                             left: 20,
-                            right: 20,
                             top: 20,
                           ),
                           child: Text(
@@ -62,6 +62,9 @@ class QuestDialog extends StatelessWidget {
                     Expanded(
                       child: switch (questType) {
                         QuestType.intro => IntroQuest(onClose: onClose),
+                        QuestType.community => CommunityQuest(
+                            onClose: onClose,
+                          ),
                         _ => const SizedBox.shrink()
                       },
                     ),

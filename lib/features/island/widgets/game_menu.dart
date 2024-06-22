@@ -6,13 +6,13 @@ import 'package:pushup_bro/features/island/widgets/shop_menu.dart';
 
 class GameMenu extends StatelessWidget {
   const GameMenu({
-    required this.onQuestMenuOpen,
+    required this.closeMenu,
     required this.menuVisible,
     required this.menuType,
     super.key,
   });
 
-  final VoidCallback onQuestMenuOpen;
+  final VoidCallback closeMenu;
   final bool menuVisible;
   final GameMenuType menuType;
 
@@ -53,13 +53,15 @@ class GameMenu extends StatelessWidget {
                           ),
                         ),
                         const Spacer(),
-                        const BananaCounter(),
+                        if (menuType != GameMenuType.quest)
+                          const BananaCounter(),
                         const SizedBox(width: 8),
                       ],
                     ),
                     switch (menuType) {
-                      GameMenuType.shop =>
-                        ShopMenu(onQuestMenuOpen: onQuestMenuOpen),
+                      GameMenuType.shop => ShopMenu(
+                          onQuestMenuOpen: () => closeMenu,
+                        ),
                       GameMenuType.quest => const SizedBox.shrink(),
                     },
                     const Spacer(),
@@ -69,7 +71,7 @@ class GameMenu extends StatelessWidget {
                         Column(
                           children: [
                             GestureDetector(
-                              onTap: onQuestMenuOpen,
+                              onTap: closeMenu,
                               child: Padding(
                                 padding: const EdgeInsets.all(20),
                                 child: Text(
