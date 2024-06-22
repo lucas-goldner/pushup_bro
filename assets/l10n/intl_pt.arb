@@ -151,5 +151,13 @@
   "lastSevenDays": "Últimos 7 dias",
   "total": "Total",
   "search": "Pesquisar",
-  "island": "Ilha"
+  "island": "Ilha",
+  "bananasEarned": "Bananas ganhas: {xBananas}",
+  "@bananasEarned": {
+    "placeholders": {
+      "xBananas": {
+        "type": "int"
+      }
+    }
+  }
 }

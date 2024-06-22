@@ -9,11 +9,13 @@ import 'package:pushup_bro/core/cubit/active_effects_state.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_state.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/extensions/int_ext.dart';
 import 'package:pushup_bro/core/model/active_effects.dart';
 import 'package:pushup_bro/core/model/feature_variants.dart';
+import 'package:pushup_bro/core/model/game_inventory.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
@@ -21,6 +23,7 @@ import 'package:pushup_bro/core/style/pb_text_styles.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/progress/model/level_scalings.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/finished_pushup_sheet/finished_set_stats_item.dart';
+import 'package:pushup_bro/generated/assets.gen.dart';
 
 class FinishedSetBottomSheet extends StatefulWidget {
   const FinishedSetBottomSheet(this.pushupSet, {super.key});
@@ -160,6 +163,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
     final navigator = Navigator.of(context);
     final sharedPrefsCubit = BlocProvider.of<SharedPreferencesCubit>(context);
     final dbCubit = BlocProvider.of<DBCubit>(context);
+    final gameInventoryCubit = BlocProvider.of<GameInventoryCubit>(context);
     final activeEffectsCubit = context.read<ActiveEffectsCubit>();
     final finished = await sharedPrefsCubit.getFirstPushupCompleted();
     final leftOverXP = (LevelScaler().getLevelScaling(level) * _animation.value)
@@ -173,6 +177,14 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
       await dbCubit.updateUser(level: level, xp: leftOverXP);
     }
 
+    await gameInventoryCubit.fetchInventory();
+    final currentInventory = gameInventoryCubit.state.inventory;
+    await gameInventoryCubit.updateInventory(
+      GameInventory(
+        bananas: currentInventory.bananas + widget.pushupSet.pushups.length,
+        boughtItems: currentInventory.boughtItems,
+      ),
+    );
     await savePushupSet();
     activeEffectsCubit.clearEffects();
     navigator.pop(finished);
@@ -469,8 +481,32 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
                             ),
                           ],
                         ),
-                      FeatureVariants.gamification => const SizedBox(
-                          height: 20,
+                      FeatureVariants.gamification => Column(
+                          children: [
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 16, right: 8),
+                                  child: Text(
+                                    context.l10n.bananasEarned(
+                                      widget.pushupSet.pushups.length,
+                                    ),
+                                    style: context.textTheme.titleSmall,
+                                  ),
+                                ),
+                                Assets.images.island.banana.image(
+                                  height: 40,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                          ],
                         ),
                     },
                     PBButton(
