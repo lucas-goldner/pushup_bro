@@ -35,12 +35,15 @@ class Shop extends StatelessWidget {
                     width: 2,
                   ),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
                   ),
-                  child: Text('SHOP'),
+                  child: Text(
+                    'Shop'.toUpperCase(),
+                    style: context.textTheme.bodyMedium,
+                  ),
                 ),
               ),
             ),

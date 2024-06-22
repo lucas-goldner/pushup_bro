@@ -29,6 +29,7 @@ class _IslandState extends State<Island> {
   GameMenuType _gameMenuType = GameMenuType.shop;
   QuestType _quest = QuestType.intro;
   bool _firstTimeVisiting = false;
+  bool _isNewDayVisible = false;
 
   void openMenu(GameMenuType gameMenuType) => setState(() {
         _gameMenuType = gameMenuType;
@@ -53,6 +54,10 @@ class _IslandState extends State<Island> {
         _questVisible = false;
       });
 
+  void closeDailyLogin() => setState(() {
+        _isNewDayVisible = false;
+      });
+
   void firstTimeVisiting() {
     setState(() {
       _firstTimeVisiting = false;
@@ -73,6 +78,10 @@ class _IslandState extends State<Island> {
 
     if (_firstTimeVisiting) {
       _menuVisible = true;
+    }
+    const newDay = true;
+    if (newDay) {
+      _isNewDayVisible = true;
     }
   }
 
@@ -98,6 +107,12 @@ class _IslandState extends State<Island> {
               questVisible: _questVisible,
               onClose: closeQuest,
               questType: _quest,
+            ),
+          if (_isNewDayVisible)
+            QuestDialog(
+              questVisible: _isNewDayVisible,
+              onClose: closeDailyLogin,
+              questType: QuestType.dailyLogin,
             ),
           if (_firstTimeVisiting)
             QuestDialog(

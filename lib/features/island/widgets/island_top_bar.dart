@@ -26,7 +26,7 @@ class IslandTopBar extends StatelessWidget {
                 questType: QuestType.community,
               ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 8),
             const BananaCounter(),
             const SizedBox(width: 16),
           ],
