@@ -4,9 +4,9 @@ import 'package:pushup_bro/features/island/model/game_menu_type.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 
 class Shop extends StatelessWidget {
-  const Shop({required this.onQuestMenuOpen, super.key});
+  const Shop({required this.onMenuOpen, super.key});
 
-  final void Function(GameMenuType) onQuestMenuOpen;
+  final void Function(GameMenuType) onMenuOpen;
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -15,7 +15,7 @@ class Shop extends StatelessWidget {
             bottom: 200,
             right: 0,
             child: GestureDetector(
-              onTap: () => onQuestMenuOpen(GameMenuType.shop),
+              onTap: () => onMenuOpen(GameMenuType.shop),
               child: Assets.images.island.shop.image(
                 height: 200,
               ),
@@ -25,7 +25,7 @@ class Shop extends StatelessWidget {
             bottom: 232,
             right: 56,
             child: GestureDetector(
-              onTap: () => onQuestMenuOpen(GameMenuType.shop),
+              onTap: () => onMenuOpen(GameMenuType.shop),
               child: Container(
                 decoration: BoxDecoration(
                   color: context.colorScheme.surface,

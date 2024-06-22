@@ -69,7 +69,7 @@ class _BeachOverlayState extends State<BeachOverlay>
         clipBehavior: Clip.none,
         children: [
           Positioned(
-            bottom: 140,
+            bottom: 120,
             left: MediaQuery.of(context).size.width / 4,
             child: Assets.images.island.stone1.image(
               width: 100,
@@ -83,7 +83,7 @@ class _BeachOverlayState extends State<BeachOverlay>
             ),
           ),
           Positioned(
-            bottom: 300,
+            bottom: 320,
             left: 0,
             child: Assets.images.island.stone3.image(
               width: 80,

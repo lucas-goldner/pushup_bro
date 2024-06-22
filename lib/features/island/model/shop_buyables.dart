@@ -18,9 +18,9 @@ enum ShopBuyables {
 
   int get price => switch (this) {
         ShopBuyables.accessoriesShop => 50,
-        ShopBuyables.airport => 199,
-        ShopBuyables.gym => 299,
-        ShopBuyables.monkeyAdoption => 399,
+        ShopBuyables.airport => 500,
+        ShopBuyables.gym => 1000,
+        ShopBuyables.monkeyAdoption => 2000,
       };
 
   AssetGenImage get genImg => switch (this) {

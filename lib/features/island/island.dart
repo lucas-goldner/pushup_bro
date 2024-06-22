@@ -8,7 +8,7 @@ import 'package:pushup_bro/features/island/model/game_menu_type.dart';
 import 'package:pushup_bro/features/island/model/quest_type.dart';
 import 'package:pushup_bro/features/island/widgets/beach_overlay.dart';
 import 'package:pushup_bro/features/island/widgets/game_menu.dart';
-import 'package:pushup_bro/features/island/widgets/game_objects/shop.dart';
+import 'package:pushup_bro/features/island/widgets/game_objects.dart';
 import 'package:pushup_bro/features/island/widgets/grass_overlay.dart';
 import 'package:pushup_bro/features/island/widgets/ground.dart';
 import 'package:pushup_bro/features/island/widgets/island_top_bar.dart';
@@ -92,9 +92,7 @@ class _IslandState extends State<Island> {
           GrassOverlay(openQuest),
           const BeachOverlay(),
           const WalkingMonkey(),
-          Shop(
-            onQuestMenuOpen: openMenu,
-          ),
+          GameObjects(onMenuOpen: openMenu),
           GameMenu(
             closeMenu: closeMenu,
             menuVisible: _menuVisible,

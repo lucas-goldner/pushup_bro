@@ -60,30 +60,28 @@ class GameMenu extends StatelessWidget {
                     ),
                     switch (menuType) {
                       GameMenuType.shop => ShopMenu(
-                          onQuestMenuOpen: () => closeMenu,
+                          closeMenu: closeMenu,
                         ),
-                      GameMenuType.quest => const SizedBox.shrink(),
+                      _ => const SizedBox.shrink(),
                     },
                     const Spacer(),
                     Row(
                       children: [
                         const Spacer(),
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: closeMenu,
-                              child: Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: Text(
-                                  'Close',
-                                  style:
-                                      context.textTheme.displaySmall?.copyWith(
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
+                        GestureDetector(
+                          onTap: closeMenu,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              right: 16,
+                              bottom: 16,
+                            ),
+                            child: Text(
+                              'Close',
+                              style: context.textTheme.displaySmall?.copyWith(
+                                decoration: TextDecoration.underline,
                               ),
                             ),
-                          ],
+                          ),
                         ),
                       ],
                     ),
