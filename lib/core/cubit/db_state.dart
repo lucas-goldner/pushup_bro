@@ -21,7 +21,7 @@ sealed class DBState extends Equatable {
 }
 
 class DBStateInitial extends DBState {
-  DBStateInitial() : super([], User.emptyUser());
+  DBStateInitial() : super([], User.empty());
 }
 
 class DBStateLoaded extends DBState {

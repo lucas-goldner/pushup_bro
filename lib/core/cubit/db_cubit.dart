@@ -41,7 +41,7 @@ class DBCubit extends Cubit<DBState> {
   }
 
   Future<void> wipeUser() async {
-    await _dbProvider.updateUser(User.emptyUser());
-    emit(state.copyWith(user: User.emptyUser()));
+    await _dbProvider.updateUser(User.empty());
+    emit(state.copyWith(user: User.empty()));
   }
 }

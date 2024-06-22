@@ -11,6 +11,7 @@ import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
 import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_state.dart';
 import 'package:pushup_bro/core/extensions/string_ext.dart';
@@ -90,6 +91,7 @@ class Main extends StatelessWidget {
       sharedPreferencesCubit,
     );
     await sharedPreferencesCubit.getLanguage();
+    await sharedPreferencesCubit.getFirstTimeIslandVisited();
     await dbProvider.loadDB();
     await dbCubit.getUser();
   }
@@ -114,6 +116,7 @@ class Main extends StatelessWidget {
     final boosterItemsCubit = BoosterItemCubit();
     final newsCubit = NewsCubit();
     final featureSwitchCubit = FeatureSwitchCubit();
+    final gameInventoryCubit = GameInventoryCubit(dbProvider);
 
     return MultiBlocProvider(
       providers: [
@@ -140,6 +143,9 @@ class Main extends StatelessWidget {
         ),
         BlocProvider<FeatureSwitchCubit>(
           create: (context) => featureSwitchCubit,
+        ),
+        BlocProvider<GameInventoryCubit>(
+          create: (context) => gameInventoryCubit,
         ),
       ],
       child:
