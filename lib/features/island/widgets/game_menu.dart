@@ -29,10 +29,10 @@ class GameMenu extends StatelessWidget {
               ),
             ),
             Positioned.fill(
-              top: 200,
-              left: 50,
-              right: 50,
-              bottom: 200,
+              top: context.sizeOf.height * 0.2,
+              left: 20,
+              right: 20,
+              bottom: context.sizeOf.height * 0.1,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: context.gameColorsTheme.map,

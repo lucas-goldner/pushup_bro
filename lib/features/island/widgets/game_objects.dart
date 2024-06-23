@@ -26,7 +26,10 @@ class GameObjects extends StatelessWidget {
             Shop(
               onMenuOpen: onMenuOpen,
             ),
-            if (boughtItems.hasAccessories) const AccessoriesShop(),
+            if (boughtItems.hasAccessories)
+              AccessoriesShop(
+                onMenuOpen: onMenuOpen,
+              ),
           ],
         ),
       );

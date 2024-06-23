@@ -1,6 +1,5 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_state.dart';
@@ -69,7 +68,7 @@ class _ShopMenuState extends State<ShopMenu> {
     final gameInvCubit = context.read<GameInventoryCubit>();
     await gameInvCubit.fetchInventory();
     final inventory = gameInvCubit.state.inventory;
-    final boughItem = selectBuyable ?? ShopBuyables.accessoriesShop;
+    final boughItem = selectBuyable ?? ShopBuyables.accessories;
     await gameInvCubit.updateInventory(
       GameInventory(
         bananas: inventory.bananas - boughItem.price,
