@@ -38,8 +38,8 @@ class _GrassOverlayState extends State<GrassOverlay>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   void openJungleQuest() {

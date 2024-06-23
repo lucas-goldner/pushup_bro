@@ -75,6 +75,7 @@ class Main extends StatelessWidget {
     SharedPreferencesCubit sharedPreferencesCubit,
     DBProvider dbProvider,
     DBCubit dbCubit,
+    GameInventoryCubit gameInventoryCubit,
   ) async {
     await initializeDateFormatting();
     await SystemChrome.setPreferredOrientations(
@@ -94,6 +95,7 @@ class Main extends StatelessWidget {
     await sharedPreferencesCubit.getFirstTimeIslandVisited();
     await dbProvider.loadDB();
     await dbCubit.getUser();
+    await gameInventoryCubit.fetchInventory();
   }
 
   @override
@@ -148,34 +150,33 @@ class Main extends StatelessWidget {
           create: (context) => gameInventoryCubit,
         ),
       ],
-      child:
-          BlocSelector<SharedPreferencesCubit, SharedPreferencesState, Locale?>(
-        selector: (state) => state.language,
-        builder: (builder, locale) => Theme(
-          data: theme,
-          child: FutureBuilder(
-            future: _initConfig(
-              sharedPreferencesProvider,
-              sharedPreferencesCubit,
-              dbProvider,
-              dbCubit,
+      child: FutureBuilder(
+        future: _initConfig(
+          sharedPreferencesProvider,
+          sharedPreferencesCubit,
+          dbProvider,
+          dbCubit,
+          gameInventoryCubit,
+        ),
+        builder: (context, snapshot) => BlocSelector<SharedPreferencesCubit,
+            SharedPreferencesState, Locale?>(
+          selector: (state) => state.language,
+          builder: (builder, locale) => Theme(
+            data: theme,
+            child: CupertinoApp(
+              debugShowCheckedModeBanner: Flavor.getCurrentEnvironment ==
+                  Environment.dev.getFlavorName(),
+              key: const Key('MainApp'),
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              locale: locale,
+              supportedLocales: S.delegate.supportedLocales,
+              onGenerateRoute: generateRoutes,
             ),
-            builder: (context, snapshot) {
-              return CupertinoApp(
-                debugShowCheckedModeBanner: Flavor.getCurrentEnvironment ==
-                    Environment.dev.getFlavorName(),
-                key: const Key('MainApp'),
-                localizationsDelegates: const [
-                  S.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                ],
-                locale: locale,
-                supportedLocales: S.delegate.supportedLocales,
-                onGenerateRoute: generateRoutes,
-              );
-            },
           ),
         ),
       ),

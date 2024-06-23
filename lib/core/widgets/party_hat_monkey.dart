@@ -19,6 +19,7 @@ class PartyHatMonkey extends StatefulWidget {
 }
 
 class _PartyHatMonkeyState extends State<PartyHatMonkey> {
+  StateMachineController? _stateMachineController;
   SMIBool? _bump;
   SMIBool? _accessory;
   double height = 250;
@@ -29,15 +30,31 @@ class _PartyHatMonkeyState extends State<PartyHatMonkey> {
       ?..isActive = true;
 
     if (ctrl != null) {
-      art.addController(ctrl);
-      final pushupTrigger = ctrl.findInput<bool>('pushup') as SMIBool?;
+      _stateMachineController = ctrl;
+      art.addController(_stateMachineController!);
+      final pushupTrigger =
+          _stateMachineController!.findInput<bool>('pushup') as SMIBool?;
       _bump = pushupTrigger;
 
-      final partyHatTrigger = ctrl.findInput<bool>('party_hat') as SMIBool?;
+      final partyHatTrigger =
+          _stateMachineController!.findInput<bool>('party_hat') as SMIBool?;
       _accessory = partyHatTrigger;
     }
   }
 
+  @override
+  void dispose() {
+    _stateMachineController?.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant PartyHatMonkey oldWidget) {
+    Future.microtask(_setAccessory);
+    super.didUpdateWidget(oldWidget);
+  }
+
+  // ignore: use_setters_to_change_properties
   void _triggerPushupAnim(bool anim) => _bump?.value = anim;
   void _setAccessory() => _accessory?.value =
       widget.equipedAccessory == ShopBuyables.accessoryPartyHat;
@@ -48,7 +65,7 @@ class _PartyHatMonkeyState extends State<PartyHatMonkey> {
         selector: (state) => state.inPushup,
         builder: (context, pushupState) {
           _triggerPushupAnim(pushupState);
-          _setAccessory();
+
           return AnimatedContainer(
             duration: const Duration(seconds: 3),
             child: SizedBox(

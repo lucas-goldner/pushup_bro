@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_state.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/widgets/party_hat_monkey.dart';
 import 'package:pushup_bro/features/island/model/adoptable_monkey.dart';
 import 'package:pushup_bro/features/island/model/game_menu_type.dart';
@@ -27,7 +28,7 @@ class _WalkingMonkeyState extends State<WalkingMonkey>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 10),
+      duration: const Duration(seconds: 1),
       vsync: this,
     )..repeat(reverse: true);
     _animation =
@@ -48,30 +49,31 @@ class _WalkingMonkeyState extends State<WalkingMonkey>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) =>
       BlocSelector<GameInventoryCubit, GameInventoryState, AdoptableMonkey>(
         selector: (state) => state.inventory.monkeys.first,
-        builder: (context, monkey) => AnimatedBuilder(
-          animation: _animation,
-          builder: (context, child) => Positioned(
-            left: _animation.value,
-            top: MediaQuery.of(context).size.height / 3,
-            child: GestureDetector(
-              onTap: () => widget.onMenuOpen(GameMenuType.monkey),
-              child: Transform.scale(
-                scale: 0.5,
-                child: Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.rotationY(
-                    turningDirection == TurningDirection.right ? 3.1416 : 0.0,
-                  ),
-                  child: PartyHatMonkey(monkey.accessory),
+        builder: (context, monkey) => AnimatedPositioned(
+          duration: const Duration(
+            seconds: 10,
+          ),
+          curve: Curves.easeInOut,
+          left: _animation.value,
+          top: context.sizeOf.height / 3,
+          child: GestureDetector(
+            onTap: () => widget.onMenuOpen(GameMenuType.monkey),
+            child: Transform.scale(
+              scale: 0.5,
+              child: Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.rotationY(
+                  turningDirection == TurningDirection.right ? 0.0 : 3.1416,
                 ),
+                child: PartyHatMonkey(monkey.accessory),
               ),
             ),
           ),
