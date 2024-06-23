@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/features/island/model/quest_type.dart';
-import 'package:pushup_bro/features/island/widgets/quests/daily_login.dart';
 import 'package:pushup_bro/features/island/widgets/quests/community_quest.dart';
+import 'package:pushup_bro/features/island/widgets/quests/daily_login.dart';
 import 'package:pushup_bro/features/island/widgets/quests/intro_quest.dart';
 import 'package:pushup_bro/features/island/widgets/quests/jungle_quest.dart';
 

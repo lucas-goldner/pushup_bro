@@ -118,11 +118,8 @@ class _PushupTrackingState extends State<PushupTracking> {
                                 GameInventoryState, AdoptableMonkey>(
                               selector: (state) =>
                                   state.inventory.monkeys.first,
-                              builder: (context, monkey) {
-                                print(monkey.accessory);
-
-                                return PartyHatMonkey(monkey.accessory);
-                              },
+                              builder: (context, monkey) =>
+                                  PartyHatMonkey(monkey.accessory),
                             );
                           }
 
