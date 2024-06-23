@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
-import 'package:pushup_bro/core/model/game_inventory.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 
 class DailyLogin extends StatelessWidget {
@@ -29,9 +28,8 @@ class DailyLogin extends StatelessWidget {
     await gameInvCubit.fetchInventory();
     final inv = gameInvCubit.state.inventory;
     await gameInvCubit.updateInventory(
-      GameInventory(
+      inv.copyWith(
         bananas: inv.bananas + 10,
-        boughtItems: inv.boughtItems,
       ),
     );
     onClose();

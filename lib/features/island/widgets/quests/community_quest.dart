@@ -33,7 +33,7 @@ Let's work together to reach the goal of 10,000 bananas!
 If we reach the goal, we will unlock a new area on the island!
 ''',
                 textAlign: TextAlign.left,
-                style: context.textTheme.bodyMedium,
+                style: context.textTheme.headlineSmall,
               ),
             ),
           ],

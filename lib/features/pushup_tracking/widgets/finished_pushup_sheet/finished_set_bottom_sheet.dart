@@ -15,7 +15,6 @@ import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/extensions/int_ext.dart';
 import 'package:pushup_bro/core/model/active_effects.dart';
 import 'package:pushup_bro/core/model/feature_variants.dart';
-import 'package:pushup_bro/core/model/game_inventory.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
@@ -180,9 +179,8 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
     await gameInventoryCubit.fetchInventory();
     final currentInventory = gameInventoryCubit.state.inventory;
     await gameInventoryCubit.updateInventory(
-      GameInventory(
+      currentInventory.copyWith(
         bananas: currentInventory.bananas + widget.pushupSet.pushups.length,
-        boughtItems: currentInventory.boughtItems,
       ),
     );
     await savePushupSet();

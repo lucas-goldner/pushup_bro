@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_state.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
-import 'package:pushup_bro/core/model/game_inventory.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/island/model/shop_buyables.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
@@ -70,7 +69,7 @@ class _AccessoryMenuState extends State<AccessoryMenu> {
     final inventory = gameInvCubit.state.inventory;
     final boughItem = selectBuyable ?? ShopBuyables.accessories;
     await gameInvCubit.updateInventory(
-      GameInventory(
+      inventory.copyWith(
         bananas: inventory.bananas - boughItem.price,
         boughtItems: [...inventory.boughtItems, boughItem],
       ),

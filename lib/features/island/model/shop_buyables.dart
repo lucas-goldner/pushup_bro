@@ -6,7 +6,8 @@ enum ShopBuyables {
   airport,
   gym,
   monkeyAdoption,
-  accessoryPartyHat;
+  accessoryPartyHat,
+  none;
 
   const ShopBuyables();
 
@@ -27,6 +28,7 @@ enum ShopBuyables {
         ShopBuyables.gym => 'Gym',
         ShopBuyables.monkeyAdoption => 'Monkey Adoption',
         ShopBuyables.accessoryPartyHat => 'Party Hat',
+        ShopBuyables.none => throw UnimplementedError(),
       };
 
   int get price => switch (this) {
@@ -35,6 +37,7 @@ enum ShopBuyables {
         ShopBuyables.gym => 1000,
         ShopBuyables.monkeyAdoption => 2000,
         ShopBuyables.accessoryPartyHat => 50,
+        ShopBuyables.none => 0,
       };
 
   AssetGenImage get genImg => switch (this) {
@@ -44,5 +47,6 @@ enum ShopBuyables {
         ShopBuyables.monkeyAdoption => Assets.images.island.monkeyAdoption,
         ShopBuyables.accessoryPartyHat =>
           Assets.images.island.accessories.partyHat,
+        ShopBuyables.none => Assets.images.island.bush1,
       };
 }

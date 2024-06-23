@@ -91,15 +91,21 @@ class _IslandState extends State<Island> {
           const Ground(),
           GrassOverlay(openQuest),
           const BeachOverlay(),
-          const WalkingMonkey(),
-          GameObjects(onMenuOpen: openMenu),
+          WalkingMonkey(
+            onMenuOpen: openMenu,
+          ),
+          GameObjects(
+            onMenuOpen: openMenu,
+          ),
           GameMenu(
             closeMenu: closeMenu,
             menuVisible: _menuVisible,
             menuType: _gameMenuType,
           ),
           if (!_firstTimeVisiting && !_menuVisible && !_isNewDayVisible)
-            IslandTopBar(openQuest: openQuest),
+            IslandTopBar(
+              openQuest: openQuest,
+            ),
           if (_questVisible)
             QuestDialog(
               questVisible: _questVisible,

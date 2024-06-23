@@ -6,6 +6,7 @@ import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_state.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/booster_items.dart';
@@ -60,6 +61,14 @@ class _DebugState extends State<Debug> {
   void addFriendShareItem() => context.read<BoosterItemCubit>().addItems(
         item: BoosterItems.friendBoost,
         amount: 1,
+      );
+
+  void add100Bananas() => context.read<GameInventoryCubit>().updateInventory(
+        context.read<GameInventoryCubit>().state.inventory.copyWith(
+              bananas:
+                  context.read<GameInventoryCubit>().state.inventory.bananas +
+                      100,
+            ),
       );
 
   void switchToHookModel() => context.read<FeatureSwitchCubit>().switchFeature(
@@ -142,6 +151,17 @@ class _DebugState extends State<Debug> {
               PBButton(
                 'Add Friendshare Item',
                 callback: addFriendShareItem,
+                expanded: true,
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'Gamification Debug',
+                style: context.textTheme.titleLarge,
+              ),
+              const SizedBox(height: 12),
+              PBButton(
+                'Add 100 Bananas',
+                callback: add100Bananas,
                 expanded: true,
               ),
             ],

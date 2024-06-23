@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:pushup_bro/core/model/game_inventory.dart';
+import 'package:pushup_bro/features/island/model/adoptable_monkey.dart';
 
 sealed class GameInventoryState extends Equatable {
   const GameInventoryState(this.inventory);
@@ -11,13 +12,29 @@ sealed class GameInventoryState extends Equatable {
 }
 
 class GameInventoryStateInitial extends GameInventoryState {
-  const GameInventoryStateInitial()
-      : super(const GameInventory(bananas: 0, boughtItems: []));
+  GameInventoryStateInitial()
+      : super(
+          GameInventory(
+            bananas: 0,
+            boughtItems: const [],
+            monkeys: [
+              AdoptableMonkey.carlos(),
+            ],
+          ),
+        );
 }
 
 class GameInventoryFetching extends GameInventoryState {
-  const GameInventoryFetching()
-      : super(const GameInventory(bananas: 0, boughtItems: []));
+  GameInventoryFetching()
+      : super(
+          GameInventory(
+            bananas: 0,
+            boughtItems: const [],
+            monkeys: [
+              AdoptableMonkey.carlos(),
+            ],
+          ),
+        );
 }
 
 class GameInventoryLoaded extends GameInventoryState {

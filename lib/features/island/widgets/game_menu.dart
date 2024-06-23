@@ -3,6 +3,7 @@ import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/features/island/model/game_menu_type.dart';
 import 'package:pushup_bro/features/island/widgets/banana_counter.dart';
 import 'package:pushup_bro/features/island/widgets/game_menus/accessory_menu.dart';
+import 'package:pushup_bro/features/island/widgets/game_menus/monkey_menu.dart';
 import 'package:pushup_bro/features/island/widgets/game_menus/shop_menu.dart';
 
 class GameMenu extends StatelessWidget {
@@ -64,6 +65,9 @@ class GameMenu extends StatelessWidget {
                           closeMenu: closeMenu,
                         ),
                       GameMenuType.accessories => AccessoryMenu(
+                          closeMenu: closeMenu,
+                        ),
+                      GameMenuType.monkey => MonkeyMenu(
                           closeMenu: closeMenu,
                         ),
                       _ => const SizedBox.shrink(),

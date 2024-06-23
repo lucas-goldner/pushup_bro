@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pushup_bro/core/widgets/monkey.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_state.dart';
+import 'package:pushup_bro/core/widgets/party_hat_monkey.dart';
+import 'package:pushup_bro/features/island/model/adoptable_monkey.dart';
+import 'package:pushup_bro/features/island/model/game_menu_type.dart';
 import 'package:pushup_bro/features/island/model/turning_direction.dart';
 
 class WalkingMonkey extends StatefulWidget {
-  const WalkingMonkey({super.key});
+  const WalkingMonkey({required this.onMenuOpen, super.key});
+
+  final void Function(GameMenuType gameMenuType) onMenuOpen;
 
   @override
   State<WalkingMonkey> createState() => _WalkingMonkeyState();
@@ -26,15 +33,17 @@ class _WalkingMonkeyState extends State<WalkingMonkey>
     _animation =
         Tween<double>(begin: animationPath.begin, end: animationPath.end)
             .animate(_controller)
-          ..addListener(() {
-            if (_animation.value >= (animationPath.end! - 0.2)) {
-              setState(() => turningDirection = TurningDirection.left);
-            }
+          ..addListener(
+            () {
+              if (_animation.value >= (animationPath.end! - 0.2)) {
+                setState(() => turningDirection = TurningDirection.left);
+              }
 
-            if (_animation.value <= (animationPath.begin! + 0.2)) {
-              setState(() => turningDirection = TurningDirection.right);
-            }
-          });
+              if (_animation.value <= (animationPath.begin! + 0.2)) {
+                setState(() => turningDirection = TurningDirection.right);
+              }
+            },
+          );
   }
 
   @override
@@ -44,19 +53,26 @@ class _WalkingMonkeyState extends State<WalkingMonkey>
   }
 
   @override
-  Widget build(BuildContext context) => AnimatedBuilder(
-        animation: _animation,
-        builder: (context, child) => Positioned(
-          left: _animation.value,
-          top: MediaQuery.of(context).size.height / 3,
-          child: Transform.scale(
-            scale: 0.5,
-            child: Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.rotationY(
-                turningDirection == TurningDirection.right ? 3.1416 : 0.0,
+  Widget build(BuildContext context) =>
+      BlocSelector<GameInventoryCubit, GameInventoryState, AdoptableMonkey>(
+        selector: (state) => state.inventory.monkeys.first,
+        builder: (context, monkey) => AnimatedBuilder(
+          animation: _animation,
+          builder: (context, child) => Positioned(
+            left: _animation.value,
+            top: MediaQuery.of(context).size.height / 3,
+            child: GestureDetector(
+              onTap: () => widget.onMenuOpen(GameMenuType.monkey),
+              child: Transform.scale(
+                scale: 0.5,
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationY(
+                    turningDirection == TurningDirection.right ? 3.1416 : 0.0,
+                  ),
+                  child: PartyHatMonkey(monkey.accessory),
+                ),
               ),
-              child: const Monkey(),
             ),
           ),
         ),

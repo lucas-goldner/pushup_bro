@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 enum GameMenuType {
   shop,
   quest,
-  accessories;
+  accessories,
+  monkey;
 
   const GameMenuType();
 
@@ -11,5 +12,6 @@ enum GameMenuType {
         GameMenuType.shop => 'Shop',
         GameMenuType.quest => 'Quest',
         GameMenuType.accessories => 'Accessories',
+        GameMenuType.monkey => 'Monkey',
       };
 }
