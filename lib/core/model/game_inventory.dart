@@ -6,7 +6,7 @@ part 'game_inventory.g.dart';
 
 const Id _gameInventoryId = 1;
 
-@collection
+@Collection(inheritance: false)
 class GameInventory extends Equatable {
   const GameInventory({
     required this.bananas,
@@ -32,5 +32,6 @@ class GameInventory extends Equatable {
       );
 
   @override
+  @ignore
   List<Object?> get props => [bananas, boughtItems, id];
 }

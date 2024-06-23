@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/features/island/model/quest_type.dart';
-import 'package:pushup_bro/features/island/widgets/daily_login.dart';
+import 'package:pushup_bro/features/island/widgets/quests/daily_login.dart';
 import 'package:pushup_bro/features/island/widgets/quests/community_quest.dart';
 import 'package:pushup_bro/features/island/widgets/quests/intro_quest.dart';
 import 'package:pushup_bro/features/island/widgets/quests/jungle_quest.dart';
@@ -63,7 +63,9 @@ class QuestDialog extends StatelessWidget {
                     ),
                     Expanded(
                       child: switch (questType) {
-                        QuestType.intro => IntroQuest(onClose: onClose),
+                        QuestType.intro => IntroQuest(
+                            onClose: onClose,
+                          ),
                         QuestType.community => CommunityQuest(
                             onClose: onClose,
                           ),

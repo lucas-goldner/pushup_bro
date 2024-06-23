@@ -9,8 +9,8 @@ import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/island/model/shop_buyables.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 
-class ShopMenu extends StatefulWidget {
-  const ShopMenu({
+class AccessoryMenu extends StatefulWidget {
+  const AccessoryMenu({
     required this.closeMenu,
     super.key,
   });
@@ -18,10 +18,10 @@ class ShopMenu extends StatefulWidget {
   final VoidCallback closeMenu;
 
   @override
-  State<ShopMenu> createState() => _ShopMenuState();
+  State<AccessoryMenu> createState() => _AccessoryMenuState();
 }
 
-class _ShopMenuState extends State<ShopMenu> {
+class _AccessoryMenuState extends State<AccessoryMenu> {
   bool _showBuyConfirmation = false;
   ShopBuyables? selectBuyable;
   bool cantBuy = false;
@@ -87,7 +87,7 @@ class _ShopMenuState extends State<ShopMenu> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: ShopBuyables.values
+                children: ShopBuyables.accessoriesShopBuyables
                     .map(
                       (buyable) => GestureDetector(
                         onTap: () => selectItem(buyable),

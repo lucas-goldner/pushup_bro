@@ -48,6 +48,7 @@ class DailyLogin extends StatelessWidget {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: getNextThreeDaysDaytimes()
                 .map(
                   (day) => Padding(

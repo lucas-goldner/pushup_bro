@@ -98,7 +98,7 @@ class _IslandState extends State<Island> {
             menuVisible: _menuVisible,
             menuType: _gameMenuType,
           ),
-          if (!_firstTimeVisiting && !_menuVisible)
+          if (!_firstTimeVisiting && !_menuVisible && !_isNewDayVisible)
             IslandTopBar(openQuest: openQuest),
           if (_questVisible)
             QuestDialog(

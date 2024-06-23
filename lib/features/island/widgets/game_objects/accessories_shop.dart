@@ -22,7 +22,7 @@ class AccessoriesShop extends StatelessWidget {
               transform: Matrix4.rotationY(3.14),
               child: GestureDetector(
                 onTap: () => onMenuOpen(GameMenuType.accessories),
-                child: Assets.images.island.accessories.image(
+                child: Assets.images.island.accessoriesShop.image(
                   height: 200,
                 ),
               ),
