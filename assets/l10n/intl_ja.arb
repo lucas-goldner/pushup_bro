@@ -150,5 +150,14 @@
   "sendBoost": "応援する",
   "lastSevenDays": "過去7日間",
   "total": "合計",
-  "search": "検索"
+  "search": "検索",
+  "island": "島",
+  "bananasEarned": "{xBananas}バナナをもらった",
+  "@bananasEarned": {
+    "placeholders": {
+      "xBananas": {
+        "type": "int"
+      }
+    }
+  }
 }

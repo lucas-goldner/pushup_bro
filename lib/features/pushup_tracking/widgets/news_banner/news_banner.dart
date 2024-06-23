@@ -64,9 +64,9 @@ class _NewsBannerState extends State<NewsBanner>
 
   @override
   void dispose() {
-    super.dispose();
     _pageController.dispose();
     _animController.dispose();
+    super.dispose();
   }
 
   @override

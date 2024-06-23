@@ -10,6 +10,8 @@ import 'package:pushup_bro/core/constants.dart';
 import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
 import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
+import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_state.dart';
 import 'package:pushup_bro/core/extensions/string_ext.dart';
@@ -27,14 +29,14 @@ import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/provider/airpods_motion_provider.dart';
 import 'package:pushup_bro/generated/l10n.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // TODO(Firebase): Enable firebase when implemented
   // await Firebase.initializeApp();
   // await FirebaseAppCheck.instance.activate(
   //   webRecaptchaSiteKey: 'recaptcha-v3-site-key',
   // );
-  await initializeDateFormatting().then((_) => runApp(const Main()));
+  runApp(const Main());
 }
 
 class Main extends StatelessWidget {
@@ -73,7 +75,9 @@ class Main extends StatelessWidget {
     SharedPreferencesCubit sharedPreferencesCubit,
     DBProvider dbProvider,
     DBCubit dbCubit,
+    GameInventoryCubit gameInventoryCubit,
   ) async {
+    await initializeDateFormatting();
     await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp],
     );
@@ -88,8 +92,10 @@ class Main extends StatelessWidget {
       sharedPreferencesCubit,
     );
     await sharedPreferencesCubit.getLanguage();
+    await sharedPreferencesCubit.getFirstTimeIslandVisited();
     await dbProvider.loadDB();
     await dbCubit.getUser();
+    await gameInventoryCubit.fetchInventory();
   }
 
   @override
@@ -111,6 +117,8 @@ class Main extends StatelessWidget {
     final activeEffectsCubit = ActiveEffectsCubit();
     final boosterItemsCubit = BoosterItemCubit();
     final newsCubit = NewsCubit();
+    final featureSwitchCubit = FeatureSwitchCubit();
+    final gameInventoryCubit = GameInventoryCubit(dbProvider);
 
     return MultiBlocProvider(
       providers: [
@@ -135,35 +143,40 @@ class Main extends StatelessWidget {
         BlocProvider<NewsCubit>(
           create: (context) => newsCubit,
         ),
+        BlocProvider<FeatureSwitchCubit>(
+          create: (context) => featureSwitchCubit,
+        ),
+        BlocProvider<GameInventoryCubit>(
+          create: (context) => gameInventoryCubit,
+        ),
       ],
-      child:
-          BlocSelector<SharedPreferencesCubit, SharedPreferencesState, Locale?>(
-        selector: (state) => state.language,
-        builder: (builder, locale) => Theme(
-          data: theme,
-          child: FutureBuilder(
-            future: _initConfig(
-              sharedPreferencesProvider,
-              sharedPreferencesCubit,
-              dbProvider,
-              dbCubit,
+      child: FutureBuilder(
+        future: _initConfig(
+          sharedPreferencesProvider,
+          sharedPreferencesCubit,
+          dbProvider,
+          dbCubit,
+          gameInventoryCubit,
+        ),
+        builder: (context, snapshot) => BlocSelector<SharedPreferencesCubit,
+            SharedPreferencesState, Locale?>(
+          selector: (state) => state.language,
+          builder: (builder, locale) => Theme(
+            data: theme,
+            child: CupertinoApp(
+              debugShowCheckedModeBanner: Flavor.getCurrentEnvironment ==
+                  Environment.dev.getFlavorName(),
+              key: const Key('MainApp'),
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              locale: locale,
+              supportedLocales: S.delegate.supportedLocales,
+              onGenerateRoute: generateRoutes,
             ),
-            builder: (context, snapshot) {
-              return CupertinoApp(
-                debugShowCheckedModeBanner: Flavor.getCurrentEnvironment ==
-                    Environment.dev.getFlavorName(),
-                key: const Key('MainApp'),
-                localizationsDelegates: const [
-                  S.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                ],
-                locale: locale,
-                supportedLocales: S.delegate.supportedLocales,
-                onGenerateRoute: generateRoutes,
-              );
-            },
           ),
         ),
       ),

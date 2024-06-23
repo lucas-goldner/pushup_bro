@@ -3,12 +3,19 @@ import 'package:flutter/material.dart';
 class ItemColorsThemeExtensions
     extends ThemeExtension<ItemColorsThemeExtensions> {
   const ItemColorsThemeExtensions({
-    this.doubleBoost,
-    this.friendBoost,
+    required this.doubleBoost,
+    required this.friendBoost,
   });
 
-  final Color? doubleBoost;
-  final Color? friendBoost;
+  factory ItemColorsThemeExtensions.build() {
+    return const ItemColorsThemeExtensions(
+      doubleBoost: Color(0xFFfffcfc),
+      friendBoost: Color(0xFFffecc4),
+    );
+  }
+
+  final Color doubleBoost;
+  final Color friendBoost;
 
   @override
   ThemeExtension<ItemColorsThemeExtensions> copyWith() =>
@@ -27,8 +34,8 @@ class ItemColorsThemeExtensions
     }
 
     return ItemColorsThemeExtensions(
-      doubleBoost: Color.lerp(doubleBoost, other.doubleBoost, t),
-      friendBoost: Color.lerp(friendBoost, other.friendBoost, t),
+      doubleBoost: Color.lerp(doubleBoost, other.doubleBoost, t) ?? doubleBoost,
+      friendBoost: Color.lerp(friendBoost, other.friendBoost, t) ?? friendBoost,
     );
   }
 }

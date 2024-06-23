@@ -2,15 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
+import 'package:pushup_bro/core/cubit/feature_switch_state.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_state.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
+import 'package:pushup_bro/core/widgets/monkey.dart';
+import 'package:pushup_bro/core/widgets/party_hat_monkey.dart';
+import 'package:pushup_bro/features/island/model/adoptable_monkey.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_state.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/news_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/finished_pushup_sheet/finished_set_bottom_sheet.dart';
-import 'package:pushup_bro/features/pushup_tracking/widgets/monkey.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/news_banner/news_banner.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_counter.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_tracking_bottom_row.dart';
@@ -105,7 +111,21 @@ class _PushupTrackingState extends State<PushupTracking> {
                       const Spacer(
                         flex: 4,
                       ),
-                      const Monkey(),
+                      BlocBuilder<FeatureSwitchCubit, FeatureSwitchState>(
+                        builder: (context, state) {
+                          if (state is FeatureSwitchStateGamification) {
+                            return BlocSelector<GameInventoryCubit,
+                                GameInventoryState, AdoptableMonkey>(
+                              selector: (state) =>
+                                  state.inventory.monkeys.first,
+                              builder: (context, monkey) =>
+                                  PartyHatMonkey(monkey.accessory),
+                            );
+                          }
+
+                          return const Monkey();
+                        },
+                      ),
                       BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
                         builder: (context, airPodsState) {
                           if (airPodsState.isListening && started) {

@@ -36,10 +36,13 @@ To run the project use:
 
 ```
 $ flutter pub get
+
 # If fluttergen is not installed go here: https://pub.dev/packages/flutter_gen
 $ fluttergen
+
 # If language files were not generated
 $ dart pub global run intl_utils:generate
+
 # Create isar schemas
 $ dart run build_runner build --delete-conflicting-outputs
 

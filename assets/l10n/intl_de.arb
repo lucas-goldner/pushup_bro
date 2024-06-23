@@ -150,5 +150,14 @@
   "sendBoost": "Boost senden",
   "lastSevenDays": "Letzte 7 Tage",
   "total": "Insgesamt",
-  "search": "Suche"
+  "search": "Suche",
+  "island": "Insel",
+  "bananasEarned": "Du hast {xBananas} Bananen erhalten!",
+  "@bananasEarned": {
+    "placeholders": {
+      "xBananas": {
+        "type": "int"
+      }
+    }
+  }
 }

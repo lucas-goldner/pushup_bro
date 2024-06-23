@@ -2,5 +2,6 @@ enum SharedPreferencesKey {
   firstPushupDone,
   volume,
   language,
-  joined;
+  joined,
+  firstTimeIslandVisited;
 }

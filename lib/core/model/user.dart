@@ -20,7 +20,7 @@ class User {
     this.id = _userId,
   });
 
-  factory User.emptyUser() => User(
+  factory User.empty() => User(
         level: 1,
         xp: 0,
         name: '',

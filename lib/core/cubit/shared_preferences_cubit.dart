@@ -121,4 +121,27 @@ class SharedPreferencesCubit extends Cubit<SharedPreferencesState> {
     }
     return null;
   }
+
+  Future<void> setFirstTimeIslandVisited({required bool isFirstVisit}) async {
+    await _sharedPreferencesProvider.writeBoolToSharedPrefs(
+      SharedPreferencesKey.firstTimeIslandVisited,
+      value: isFirstVisit,
+    );
+    emit(
+      SharedPreferencesLoaded(firstTimeIslandVisited: isFirstVisit),
+    );
+  }
+
+  Future<bool> getFirstTimeIslandVisited() async {
+    final isFirstVisit = await _sharedPreferencesProvider.getSharedPrefBool(
+          SharedPreferencesKey.firstTimeIslandVisited,
+        ) ??
+        true;
+
+    emit(
+      SharedPreferencesLoaded(firstTimeIslandVisited: isFirstVisit),
+    );
+
+    return isFirstVisit;
+  }
 }

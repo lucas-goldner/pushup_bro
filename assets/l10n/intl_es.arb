@@ -150,5 +150,14 @@
   "sendBoost": "Enviar Boost",
   "lastSevenDays": "Últimos 7 días",
   "total": "Total",
-  "search": "Buscar"
+  "search": "Buscar",
+  "island": "Isla",
+  "bananasEarned": "Plátanos ganados: {xBananas}",
+  "@bananasEarned": {
+    "placeholders": {
+      "xBananas": {
+        "type": "int"
+      }
+    }
+  }
 }

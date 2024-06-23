@@ -2,6 +2,7 @@ import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pushup_bro/features/debug/debug.dart';
 import 'package:pushup_bro/features/friends/friends.dart';
+import 'package:pushup_bro/features/island/island.dart';
 import 'package:pushup_bro/features/leaderboard/leaderboard.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
 import 'package:pushup_bro/features/menu/widgets/page_container.dart';
@@ -50,6 +51,14 @@ Route<CupertinoPageRoute<Widget>> generateRoutes(
             menuTab: MenuTabInfo.settings,
           ),
         ),
+      Island.routeName => _revealCircular(
+          settings.arguments as BuildContext?,
+          const PageContainer(
+            Island(),
+            menuTab: MenuTabInfo.island,
+            showTitle: false,
+          ),
+        ),
       Debug.routeName => _revealCircular(
           settings.arguments as BuildContext?,
           const PageContainer(
@@ -71,6 +80,17 @@ Route<CupertinoPageRoute<Widget>> generateRoutes(
           ),
         ),
     };
+
+Route<CupertinoPageRoute<Widget>> navigateToPushupTracking(
+  BuildContext context,
+) =>
+    _revealCircular(
+      context,
+      const PageContainer(
+        PushupTracking(),
+        menuTab: MenuTabInfo.pushupTracking,
+      ),
+    );
 
 Route<CupertinoPageRoute<Widget>> _revealCircular(
   BuildContext? context,

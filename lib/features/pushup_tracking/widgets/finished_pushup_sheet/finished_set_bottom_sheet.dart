@@ -8,10 +8,13 @@ import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
 import 'package:pushup_bro/core/cubit/active_effects_state.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_state.dart';
+import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/extensions/int_ext.dart';
 import 'package:pushup_bro/core/model/active_effects.dart';
+import 'package:pushup_bro/core/model/feature_variants.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/core/style/pb_colors.dart';
@@ -19,6 +22,7 @@ import 'package:pushup_bro/core/style/pb_text_styles.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/progress/model/level_scalings.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/finished_pushup_sheet/finished_set_stats_item.dart';
+import 'package:pushup_bro/generated/assets.gen.dart';
 
 class FinishedSetBottomSheet extends StatefulWidget {
   const FinishedSetBottomSheet(this.pushupSet, {super.key});
@@ -158,6 +162,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
     final navigator = Navigator.of(context);
     final sharedPrefsCubit = BlocProvider.of<SharedPreferencesCubit>(context);
     final dbCubit = BlocProvider.of<DBCubit>(context);
+    final gameInventoryCubit = BlocProvider.of<GameInventoryCubit>(context);
     final activeEffectsCubit = context.read<ActiveEffectsCubit>();
     final finished = await sharedPrefsCubit.getFirstPushupCompleted();
     final leftOverXP = (LevelScaler().getLevelScaling(level) * _animation.value)
@@ -171,6 +176,13 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
       await dbCubit.updateUser(level: level, xp: leftOverXP);
     }
 
+    await gameInventoryCubit.fetchInventory();
+    final currentInventory = gameInventoryCubit.state.inventory;
+    await gameInventoryCubit.updateInventory(
+      currentInventory.copyWith(
+        bananas: currentInventory.bananas + widget.pushupSet.pushups.length,
+      ),
+    );
     await savePushupSet();
     activeEffectsCubit.clearEffects();
     navigator.pop(finished);
@@ -209,6 +221,8 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
   @override
   Widget build(BuildContext context) {
     final localized = context.l10n;
+    final featureVariant =
+        context.read<FeatureSwitchCubit>().state.featureVariant;
 
     return BlocSelector<DBCubit, DBState, User>(
       selector: (state) => state.user,
@@ -330,133 +344,175 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Row(
-                        children: [
-                          Text(
-                            context.l10n.progress,
-                            style: context.textTheme.titleSmall,
-                          ),
-                          const Spacer(),
-                          Text(
-                            context.l10n.level(level),
-                            style: context.textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
+                    switch (featureVariant) {
+                      FeatureVariants.hookmodel => Column(
+                          children: [
+                            const SizedBox(
+                              height: 20,
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: LinearProgressIndicator(
-                        value: _animation.value,
-                        backgroundColor: context.colorScheme.surface,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          context.colorScheme.primary,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                context.l10n.pointsReceived(amountOfXP),
-                                style: context.textTheme.titleSmall,
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    context.l10n.progress,
+                                    style: context.textTheme.titleSmall,
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    context.l10n.level(level),
+                                    style:
+                                        context.textTheme.titleSmall?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              BlocBuilder<ActiveEffectsCubit,
-                                  ActiveEffectsState>(
-                                builder: (context, state) {
-                                  if (state is ActiveEffectsStateActivated) {
-                                    return Column(
-                                      children: [
-                                        ...state.effects.map(
-                                          (effect) => Text(
-                                            effect.getLocalizedWithFactor(
-                                              context,
-                                            ),
-                                            style: context.textTheme.titleSmall,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: LinearProgressIndicator(
+                                value: _animation.value,
+                                backgroundColor: context.colorScheme.surface,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  context.colorScheme.primary,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Row(
+                                children: [
+                                  const Spacer(),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        context.l10n.pointsReceived(amountOfXP),
+                                        style: context.textTheme.titleSmall,
+                                      ),
+                                      BlocBuilder<ActiveEffectsCubit,
+                                          ActiveEffectsState>(
+                                        builder: (context, state) {
+                                          if (state
+                                              is ActiveEffectsStateActivated) {
+                                            return Column(
+                                              children: [
+                                                ...state.effects.map(
+                                                  (effect) => Text(
+                                                    effect
+                                                        .getLocalizedWithFactor(
+                                                      context,
+                                                    ),
+                                                    style: context
+                                                        .textTheme.titleSmall,
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          }
 
-                                  return const SizedBox.shrink();
-                                },
+                                          return const SizedBox.shrink();
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Visibility(
+                              visible: levelUpVisible,
+                              child: Positioned.fill(
+                                child: BackdropFilter(
+                                  filter:
+                                      ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                                  child: Center(
+                                    child: DecoratedBox(
+                                      decoration: const BoxDecoration(
+                                        color: background,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(20),
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(20),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(
+                                              CarbonIcons.trophy,
+                                              size: 100,
+                                              color: ternaryColor,
+                                            ),
+                                            const SizedBox(
+                                              height: 16,
+                                            ),
+                                            Text(
+                                              context.l10n.levelReached(level),
+                                              style:
+                                                  context.textTheme.titleLarge,
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            PBButton(
+                                              localized.monkeyConfirm,
+                                              callback: () => setState(
+                                                () => levelUpVisible = false,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      FeatureVariants.gamification => Column(
+                          children: [
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 16, right: 8),
+                                  child: Text(
+                                    context.l10n.bananasEarned(
+                                      widget.pushupSet.pushups.length,
+                                    ),
+                                    style: context.textTheme.titleSmall,
+                                  ),
+                                ),
+                                Assets.images.island.banana.image(
+                                  height: 40,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                          ],
+                        ),
+                    },
                     PBButton(
                       localized.saveSet,
                       callback: closeModalAndSave,
                       expanded: true,
                     ),
                   ],
-                ),
-                Visibility(
-                  visible: levelUpVisible,
-                  child: Positioned.fill(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                      child: Center(
-                        child: DecoratedBox(
-                          decoration: const BoxDecoration(
-                            color: background,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(
-                                  CarbonIcons.trophy,
-                                  size: 100,
-                                  color: ternaryColor,
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                Text(
-                                  context.l10n.levelReached(level),
-                                  style: context.textTheme.titleLarge,
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                PBButton(
-                                  localized.monkeyConfirm,
-                                  callback: () =>
-                                      setState(() => levelUpVisible = false),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),

@@ -43,7 +43,7 @@ class _MonkeyState extends State<Monkey> {
           child: SizedBox(
             height: height,
             width: width,
-            child: Assets.rive.monkeyPushup.rive(
+            child: Assets.rive.partyMonkeyPushup.rive(
               fit: BoxFit.contain,
               onInit: _onInit,
             ),

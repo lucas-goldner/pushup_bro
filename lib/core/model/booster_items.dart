@@ -19,12 +19,10 @@ extension BoosterItemsExtension on BoosterItems {
         BoosterItems.friendBoost => Assets.images.itemConnect,
       };
 
-  Color getBackgroundColor(BuildContext context) =>
-      switch (this) {
+  Color getBackgroundColor(BuildContext context) => switch (this) {
         BoosterItems.doublePoints => context.itemColorsTheme.doubleBoost,
         BoosterItems.friendBoost => context.itemColorsTheme.friendBoost,
-      } ??
-      Colors.transparent;
+      };
 
   ActiveEffects? getCorrespondingEffect() => switch (this) {
         BoosterItems.doublePoints => ActiveEffects.itemDoublePoints,

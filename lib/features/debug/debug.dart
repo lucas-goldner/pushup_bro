@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
+import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
+import 'package:pushup_bro/core/cubit/feature_switch_state.dart';
+import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
+import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
+import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/booster_items.dart';
+import 'package:pushup_bro/core/model/feature_variants.dart';
 import 'package:pushup_bro/core/model/pushup.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
@@ -57,6 +63,28 @@ class _DebugState extends State<Debug> {
         amount: 1,
       );
 
+  void add100Bananas() => context.read<GameInventoryCubit>().updateInventory(
+        context.read<GameInventoryCubit>().state.inventory.copyWith(
+              bananas:
+                  context.read<GameInventoryCubit>().state.inventory.bananas +
+                      100,
+            ),
+      );
+
+  void switchToHookModel() => context.read<FeatureSwitchCubit>().switchFeature(
+        FeatureVariants.hookmodel,
+      );
+
+  Future<void> switchToGamified() async {
+    final sharedPrefsCubit = context.read<SharedPreferencesCubit>();
+    final featuredSwitchCubit = context.read<FeatureSwitchCubit>();
+
+    await sharedPrefsCubit.setFirstTimeIslandVisited(isFirstVisit: true);
+    featuredSwitchCubit.switchFeature(
+      FeatureVariants.gamification,
+    );
+  }
+
   @override
   Widget build(BuildContext context) => SafeArea(
         bottom: false,
@@ -67,6 +95,35 @@ class _DebugState extends State<Debug> {
           child: Column(
             children: [
               const SizedBox(height: 64),
+              Text(
+                'General App Debug',
+                style: context.textTheme.titleLarge,
+              ),
+              const SizedBox(height: 12),
+              BlocBuilder<FeatureSwitchCubit, FeatureSwitchState>(
+                builder: (context, state) => Text(
+                  'Current app ${state.featureVariant.name}',
+                  style: context.textTheme.titleLarge,
+                ),
+              ),
+              const SizedBox(height: 12),
+              PBButton(
+                'Switch to hook model',
+                callback: switchToHookModel,
+                expanded: true,
+              ),
+              const SizedBox(height: 12),
+              PBButton(
+                'Switch to gamified app',
+                callback: switchToGamified,
+                expanded: true,
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'Hook Model Debug',
+                style: context.textTheme.titleLarge,
+              ),
+              const SizedBox(height: 12),
               PBButton(
                 'Add pushups',
                 callback: addPushups,
@@ -94,6 +151,17 @@ class _DebugState extends State<Debug> {
               PBButton(
                 'Add Friendshare Item',
                 callback: addFriendShareItem,
+                expanded: true,
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'Gamification Debug',
+                style: context.textTheme.titleLarge,
+              ),
+              const SizedBox(height: 12),
+              PBButton(
+                'Add 100 Bananas',
+                callback: add100Bananas,
                 expanded: true,
               ),
             ],

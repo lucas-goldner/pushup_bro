@@ -6,9 +6,16 @@ import 'package:pushup_bro/core/widgets/pb_app_bar.dart';
 import 'package:pushup_bro/features/menu/model/menu_tab_info.dart';
 
 class PageContainer extends StatefulWidget {
-  const PageContainer(this.pageContent, {this.menuTab, super.key});
+  const PageContainer(
+    this.pageContent, {
+    this.menuTab,
+    bool? showTitle,
+    super.key,
+  }) : _showTitle = showTitle ?? true;
+
   final Widget pageContent;
   final MenuTabInfo? menuTab;
+  final bool _showTitle;
 
   @override
   State<PageContainer> createState() => _PageContainerState();
@@ -20,7 +27,8 @@ class _PageContainerState extends State<PageContainer> {
   void _changeOpacity() =>
       setState(() => opacityLevel = opacityLevel == 0 ? 0.75 : 0.0);
 
-  bool get isVisible => opacityLevel != 0;
+  bool get menuIsVisible => opacityLevel == 0;
+  bool get titleVisible => widget._showTitle && opacityLevel == 0;
 
   @override
   Widget build(BuildContext context) => CupertinoPageScaffold(
@@ -30,12 +38,12 @@ class _PageContainerState extends State<PageContainer> {
             Stack(
               children: [
                 IgnorePointer(
-                  ignoring: isVisible,
+                  ignoring: !menuIsVisible,
                   child: Stack(
                     children: [
                       widget.pageContent,
                       Visibility(
-                        visible: isVisible,
+                        visible: !menuIsVisible,
                         child: ClipRect(
                           child: BackdropFilter(
                             filter: ImageFilter.blur(
@@ -65,9 +73,7 @@ class _PageContainerState extends State<PageContainer> {
                 ),
                 SafeArea(
                   child: PBAppBar(
-                    isVisible
-                        ? ''
-                        : widget.menuTab?.getMenuTitle(context) ?? '',
+                    titleVisible ? widget.menuTab?.getMenuTitle(context) : '',
                     _changeOpacity,
                   ),
                 ),
