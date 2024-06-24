@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/core/cubit/day_cubit.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_state.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
+import 'package:pushup_bro/core/provider/data_for_day.dart';
 import 'package:pushup_bro/generated/assets.gen.dart';
 
 class CommunityGoal extends StatelessWidget {
@@ -15,7 +17,8 @@ class CommunityGoal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const todaysBananas = 1000;
+    final todaysBananas =
+        getCommunityGoalOfDay(context.read<DayCubit>().state.day);
     const goal = 10000;
     double getProgress(int userBananas) => (userBananas + todaysBananas) / goal;
 

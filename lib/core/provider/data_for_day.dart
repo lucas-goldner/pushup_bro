@@ -1,8 +1,12 @@
 import 'dart:math' as math;
 
+import 'package:flutter/material.dart';
 import 'package:pushup_bro/core/model/booster_items.dart';
 import 'package:pushup_bro/core/model/friend.dart';
 import 'package:pushup_bro/core/model/user.dart';
+import 'package:pushup_bro/features/island/widgets/quests/double_value_quest.dart';
+import 'package:pushup_bro/features/island/widgets/quests/fast_pushups_quest.dart';
+import 'package:pushup_bro/features/island/widgets/quests/long_pushups_quest.dart';
 import 'package:pushup_bro/features/pushup_tracking/model/news.dart';
 
 List<News> getNewsForDay(int day) => switch (day) {
@@ -155,4 +159,18 @@ List<User> getLeaderboardProfilesForDay(int day) => switch (day) {
           ),
         ],
       _ => [],
+    };
+
+Widget getJungleQuestOfDay(int day) => switch (day) {
+      1 => const FastPushupsQuest(),
+      2 => const DoubleValueQuest(),
+      3 => const LongPushupsQuest(),
+      _ => const DoubleValueQuest(),
+    };
+
+int getCommunityGoalOfDay(int day) => switch (day) {
+      1 => 1000,
+      2 => 3000,
+      3 => 8000,
+      _ => 1000,
     };

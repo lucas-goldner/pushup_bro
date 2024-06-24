@@ -78,7 +78,7 @@ class _IntroQuestState extends State<IntroQuest> {
               Text(
                 text,
                 textAlign: TextAlign.left,
-                style: context.textTheme.bodyMedium,
+                style: context.textTheme.titleSmall,
               ),
               if (showArrow)
                 GestureDetector(

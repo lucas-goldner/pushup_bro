@@ -72,9 +72,7 @@ class QuestDialog extends StatelessWidget {
                         QuestType.dailyLogin => DailyLogin(
                             onClose: onClose,
                           ),
-                        QuestType.jungleQuest => JungleQuest(
-                            onClose: onClose,
-                          ),
+                        QuestType.jungleQuest => const JungleQuest(),
                         _ => const SizedBox.shrink()
                       },
                     ),

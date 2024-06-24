@@ -72,10 +72,14 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
     );
     _animation =
         Tween<double>(begin: initialScaling, end: 1).animate(_controller);
-    Future.delayed(
-      const Duration(seconds: 1),
-      () => calculateLevelUps(initialScaling, user),
-    );
+
+    if (context.read<FeatureSwitchCubit>().state.featureVariant ==
+        FeatureVariants.hookmodel) {
+      Future.delayed(
+        const Duration(seconds: 1),
+        () => calculateLevelUps(initialScaling, user),
+      );
+    }
   }
 
   @override

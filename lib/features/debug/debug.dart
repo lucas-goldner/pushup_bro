@@ -96,6 +96,7 @@ class _DebugState extends State<Debug> {
   }
 
   Future<void> resetDay() async {
+    final sharedPrefsCubit = context.read<SharedPreferencesCubit>();
     final dayCubit = context.read<DayCubit>()..reset();
     final day = dayCubit.state.day;
     final newsCubit = context.read<NewsCubit>();
@@ -103,6 +104,7 @@ class _DebugState extends State<Debug> {
 
     await newsCubit.getNews(day);
     boosterItemCubit.fetchItems(day);
+    await sharedPrefsCubit.setFirstTimeIslandVisited(isFirstVisit: true);
     await wipeUser();
     await resetPushups();
   }
