@@ -3,12 +3,14 @@ import 'dart:ui';
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
 import 'package:pushup_bro/core/cubit/active_effects_state.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_state.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
+import 'package:pushup_bro/core/cubit/feature_switch_state.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
@@ -226,299 +228,299 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
 
     return BlocSelector<DBCubit, DBState, User>(
       selector: (state) => state.user,
-      builder: (context, user) {
-        return Material(
-          child: SafeArea(
-            child: Stack(
-              children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, top: 16),
-                          child: Text(
-                            localized.congrats,
-                            style: pageTitleTextStyle,
-                          ),
+      builder: (context, user) => Material(
+        child: SafeArea(
+          child: Stack(
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16, top: 16),
+                        child: Text(
+                          localized.congrats,
+                          style: pageTitleTextStyle,
                         ),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16),
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: background2,
-                              borderRadius: BorderRadius.circular(40),
-                            ),
-                            child: IconButton(
-                              onPressed: closeModal,
-                              icon: Icon(
-                                CarbonIcons.close,
-                                color: context.colorScheme.surfaceBright,
-                              ),
+                      ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: background2,
+                            borderRadius: BorderRadius.circular(40),
+                          ),
+                          child: IconButton(
+                            onPressed: closeModal,
+                            icon: Icon(
+                              CarbonIcons.close,
+                              color: context.colorScheme.surfaceBright,
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16, top: 16),
-                      child: Text(
-                        localized.difficulty,
-                        style: context.textTheme.titleSmall,
                       ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, top: 16),
+                    child: Text(
+                      localized.difficulty,
+                      style: context.textTheme.titleSmall,
                     ),
-                    Slider(
-                      value: difficultySliderValue,
-                      activeColor: context.colorScheme.inversePrimary,
-                      inactiveColor: context.colorScheme.secondary,
-                      max: 5,
-                      divisions: 5,
-                      label: difficultySliderValue.round().toString(),
-                      onChanged: (value) =>
-                          setState(() => difficultySliderValue = value),
+                  ),
+                  Slider(
+                    value: difficultySliderValue,
+                    activeColor: context.colorScheme.inversePrimary,
+                    inactiveColor: context.colorScheme.secondary,
+                    max: 5,
+                    divisions: 5,
+                    label: difficultySliderValue.round().toString(),
+                    onChanged: (value) =>
+                        setState(() => difficultySliderValue = value),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        context.l10n.easyDifficulty,
+                        style: context.textTheme.bodyMedium,
+                      ),
+                      Text(
+                        context.l10n.middleDifficulty,
+                        style: context.textTheme.bodyMedium,
+                      ),
+                      Text(
+                        context.l10n.hardDifficulty,
+                        style: context.textTheme.bodyMedium,
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+                    child: Text(
+                      context.l10n.stats,
+                      style: context.textTheme.titleSmall,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          context.l10n.easyDifficulty,
-                          style: context.textTheme.bodyMedium,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: FinishedSetStatsItem(
+                            icon: CarbonIcons.time,
+                            text: context.l10n.completedInXMinutes(
+                              widget.pushupSet.timeSpent.toString(),
+                            ),
+                          ),
                         ),
-                        Text(
-                          context.l10n.middleDifficulty,
-                          style: context.textTheme.bodyMedium,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: FinishedSetStatsItem(
+                            icon: CarbonIcons.add_alt,
+                            text: context.l10n.madeXPushups(
+                              widget.pushupSet.pushups.length.toString(),
+                            ),
+                          ),
                         ),
-                        Text(
-                          context.l10n.hardDifficulty,
-                          style: context.textTheme.bodyMedium,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: FinishedSetStatsItem(
+                            icon: CarbonIcons.chart_average,
+                            text: context.l10n.onAverage(
+                              '${widget.pushupSet.pushups.length}/${widget.pushupSet.timeSpent}',
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 16, top: 16, bottom: 16),
-                      child: Text(
-                        context.l10n.stats,
-                        style: context.textTheme.titleSmall,
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                  ),
+                  switch (featureVariant) {
+                    FeatureVariants.hookmodel => Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: FinishedSetStatsItem(
-                              icon: CarbonIcons.time,
-                              text: context.l10n.completedInXMinutes(
-                                widget.pushupSet.timeSpent.toString(),
-                              ),
-                            ),
+                          const SizedBox(
+                            height: 20,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: FinishedSetStatsItem(
-                              icon: CarbonIcons.add_alt,
-                              text: context.l10n.madeXPushups(
-                                widget.pushupSet.pushups.length.toString(),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: FinishedSetStatsItem(
-                              icon: CarbonIcons.chart_average,
-                              text: context.l10n.onAverage(
-                                '${widget.pushupSet.pushups.length}/${widget.pushupSet.timeSpent}',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    switch (featureVariant) {
-                      FeatureVariants.hookmodel => Column(
-                          children: [
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    context.l10n.progress,
-                                    style: context.textTheme.titleSmall,
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    context.l10n.level(level),
-                                    style:
-                                        context.textTheme.titleSmall?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: LinearProgressIndicator(
-                                value: _animation.value,
-                                backgroundColor: context.colorScheme.surface,
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  context.colorScheme.primary,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: Row(
-                                children: [
-                                  const Spacer(),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        context.l10n.pointsReceived(amountOfXP),
-                                        style: context.textTheme.titleSmall,
-                                      ),
-                                      BlocBuilder<ActiveEffectsCubit,
-                                          ActiveEffectsState>(
-                                        builder: (context, state) {
-                                          if (state
-                                              is ActiveEffectsStateActivated) {
-                                            return Column(
-                                              children: [
-                                                ...state.effects.map(
-                                                  (effect) => Text(
-                                                    effect
-                                                        .getLocalizedWithFactor(
-                                                      context,
-                                                    ),
-                                                    style: context
-                                                        .textTheme.titleSmall,
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          }
-
-                                          return const SizedBox.shrink();
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Visibility(
-                              visible: levelUpVisible,
-                              child: Positioned.fill(
-                                child: BackdropFilter(
-                                  filter:
-                                      ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                                  child: Center(
-                                    child: DecoratedBox(
-                                      decoration: const BoxDecoration(
-                                        color: background,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(20),
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(20),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const Icon(
-                                              CarbonIcons.trophy,
-                                              size: 100,
-                                              color: ternaryColor,
-                                            ),
-                                            const SizedBox(
-                                              height: 16,
-                                            ),
-                                            Text(
-                                              context.l10n.levelReached(level),
-                                              style:
-                                                  context.textTheme.titleLarge,
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            PBButton(
-                                              localized.monkeyConfirm,
-                                              callback: () => setState(
-                                                () => levelUpVisible = false,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      FeatureVariants.gamification => Column(
-                          children: [
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Row(
+                            padding: const EdgeInsets.all(16),
+                            child: Row(
                               children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 16, right: 8),
-                                  child: Text(
-                                    context.l10n.bananasEarned(
-                                      widget.pushupSet.pushups.length,
-                                    ),
-                                    style: context.textTheme.titleSmall,
-                                  ),
+                                Text(
+                                  context.l10n.progress,
+                                  style: context.textTheme.titleSmall,
                                 ),
-                                Assets.images.island.banana.image(
-                                  height: 40,
+                                const Spacer(),
+                                Text(
+                                  context.l10n.level(level),
+                                  style: context.textTheme.titleSmall?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 16,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
                             ),
-                          ],
+                            child: LinearProgressIndicator(
+                              value: _animation.value,
+                              backgroundColor: context.colorScheme.surface,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                context.colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                            ),
+                            child: Row(
+                              children: [
+                                const Spacer(),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      context.l10n.pointsReceived(amountOfXP),
+                                      style: context.textTheme.titleSmall,
+                                    ),
+                                    BlocBuilder<ActiveEffectsCubit,
+                                        ActiveEffectsState>(
+                                      builder: (context, state) {
+                                        if (state
+                                            is ActiveEffectsStateActivated) {
+                                          return Column(
+                                            children: [
+                                              ...state.effects.map(
+                                                (effect) => Text(
+                                                  effect.getLocalizedWithFactor(
+                                                    context,
+                                                  ),
+                                                  style: context
+                                                      .textTheme.titleSmall,
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        }
+
+                                        return const SizedBox.shrink();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                        ],
+                      ),
+                    FeatureVariants.gamification => Column(
+                        children: [
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 16, right: 8),
+                                child: Text(
+                                  context.l10n.bananasEarned(
+                                    widget.pushupSet.pushups.length,
+                                  ),
+                                  style: context.textTheme.titleSmall,
+                                ),
+                              ),
+                              Assets.images.island.banana.image(
+                                height: 40,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                        ],
+                      ),
+                  },
+                  PBButton(
+                    localized.saveSet,
+                    callback: closeModalAndSave,
+                    expanded: true,
+                  ),
+                ],
+              ),
+              Positioned(
+                bottom: 40,
+                left: 20,
+                right: 20,
+                child: BlocBuilder<FeatureSwitchCubit, FeatureSwitchState>(
+                  builder: (context, state) => Visibility(
+                    visible:
+                        state is FeatureSwitchStateHookmodel && levelUpVisible,
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                      child: DecoratedBox(
+                        decoration: const BoxDecoration(
+                          color: background,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
                         ),
-                    },
-                    PBButton(
-                      localized.saveSet,
-                      callback: closeModalAndSave,
-                      expanded: true,
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                CarbonIcons.trophy,
+                                size: 100,
+                                color: ternaryColor,
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              Text(
+                                context.l10n.levelReached(level),
+                                style: context.textTheme.titleLarge,
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              PBButton(
+                                localized.monkeyConfirm,
+                                callback: () => setState(
+                                  () => levelUpVisible = false,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                  ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

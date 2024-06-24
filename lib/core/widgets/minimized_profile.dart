@@ -16,6 +16,7 @@ class MinimizedProfile extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(8),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             DecoratedBox(
               decoration: BoxDecoration(
@@ -29,14 +30,15 @@ class MinimizedProfile extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
-            Text(
-              user.name,
-              style: context.textTheme.headlineLarge?.copyWith(
-                color: context.colorScheme.onSecondary,
+            Expanded(
+              child: Text(
+                user.name,
+                style: context.textTheme.headlineLarge?.copyWith(
+                  color: context.colorScheme.onSecondary,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
-              overflow: TextOverflow.ellipsis,
             ),
-            const Spacer(),
             if (leadingItem != null) leadingItem ?? const SizedBox.shrink(),
           ],
         ),

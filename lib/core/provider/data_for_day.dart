@@ -1,5 +1,8 @@
+import 'dart:math' as math;
+
 import 'package:pushup_bro/core/model/booster_items.dart';
 import 'package:pushup_bro/core/model/friend.dart';
+import 'package:pushup_bro/core/model/user.dart';
 import 'package:pushup_bro/features/pushup_tracking/model/news.dart';
 
 List<News> getNewsForDay(int day) => switch (day) {
@@ -76,6 +79,79 @@ List<Friend> brosForDay(int day) => switch (day) {
             image: _lucasImage,
             streak: 31,
             sharedStreak: 2,
+          ),
+        ],
+      _ => [],
+    };
+
+List<User> getLeaderboardProfilesForDay(int day) => switch (day) {
+      1 => [
+          ...List.generate(
+            30,
+            (index) => User(
+              name: 'User $index',
+              image: '',
+              streak: 0,
+              longestStreak: 0,
+              level: math.Random().nextInt(3),
+              xp: 0,
+              friends: [],
+            ),
+          ),
+          User(
+            name: 'Lucas',
+            image: _lucasImage,
+            streak: 30,
+            longestStreak: 30,
+            level: 5,
+            xp: 0,
+            friends: [],
+          ),
+        ],
+      2 => [
+          ...List.generate(
+            30,
+            (index) => User(
+              name: 'User $index',
+              image: '',
+              streak: 0,
+              longestStreak: 0,
+              level: math.Random().nextInt(4),
+              xp: 0,
+              friends: [],
+            ),
+          ),
+          User(
+            name: 'Lucas',
+            image: _lucasImage,
+            streak: 30,
+            longestStreak: 30,
+            level: 5,
+            xp: 0,
+            friends: [],
+          ),
+        ],
+      3 => [
+          ...List.generate(
+            30,
+            (index) => User(
+              name: 'User $index',
+              image: '',
+              streak: 0,
+              longestStreak: 0,
+              level: math.Random().nextInt(4),
+              xp: 0,
+              friends: [],
+            ),
+          ),
+          User(
+            name: 'Lucas',
+            image: _lucasImage,
+            streak: 30,
+            longestStreak: 30,
+            level: 6,
+            xp: 0,
+            friends: [],
           ),
         ],
       _ => [],
