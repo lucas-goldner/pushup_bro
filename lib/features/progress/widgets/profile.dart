@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/core/cubit/day_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_state.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/user.dart';
+import 'package:pushup_bro/core/provider/data_for_day.dart';
 import 'package:pushup_bro/core/widgets/profile_image_box.dart';
 import 'package:pushup_bro/core/widgets/streak_star.dart';
 import 'package:pushup_bro/features/progress/widgets/level_bar.dart';
@@ -54,7 +56,11 @@ class Profile extends StatelessWidget {
                         const SizedBox(width: 16),
                         Row(
                           children: [
-                            const StreakStar(2),
+                            StreakStar(
+                              getStreakForDay(
+                                context.read<DayCubit>().state.day,
+                              ),
+                            ),
                             const SizedBox(width: 8),
                             Text(
                               context.l10n.dayStreak,

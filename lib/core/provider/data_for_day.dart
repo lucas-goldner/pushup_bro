@@ -32,3 +32,10 @@ List<BoosterItems> getItemsForDay(int day) => switch (day) {
         ],
       _ => [],
     };
+
+int getStreakForDay(int day) => switch (day) {
+      1 => 1,
+      2 => 2,
+      3 => 3,
+      _ => 1,
+    };

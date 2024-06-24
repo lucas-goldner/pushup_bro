@@ -47,11 +47,7 @@ class _DebugState extends State<Debug> {
 
   Future<void> resetPushups() async {
     final dbCubit = context.read<DBCubit>();
-    final pushups = await context.read<DBCubit>().getAllPushupSets();
-    final pushupIds = pushups.map((e) => e.id).toList();
-    for (final id in pushupIds) {
-      await dbCubit.deletePushupSetFromDB(id);
-    }
+    await dbCubit.wipePushups();
   }
 
   Future<void> resetItems() async =>
@@ -84,7 +80,6 @@ class _DebugState extends State<Debug> {
   Future<void> switchToGamified() async {
     final sharedPrefsCubit = context.read<SharedPreferencesCubit>();
     final featuredSwitchCubit = context.read<FeatureSwitchCubit>();
-
     await sharedPrefsCubit.setFirstTimeIslandVisited(isFirstVisit: true);
     featuredSwitchCubit.switchFeature(
       FeatureVariants.gamification,
@@ -96,12 +91,21 @@ class _DebugState extends State<Debug> {
     final day = dayCubit.state.day;
     final newsCubit = context.read<NewsCubit>();
     final boosterItemCubit = context.read<BoosterItemCubit>();
-
     await newsCubit.getNews(day);
     boosterItemCubit.fetchItems(day);
   }
 
-  void resetDay() => context.read<DayCubit>().reset();
+  Future<void> resetDay() async {
+    final dayCubit = context.read<DayCubit>()..reset();
+    final day = dayCubit.state.day;
+    final newsCubit = context.read<NewsCubit>();
+    final boosterItemCubit = context.read<BoosterItemCubit>();
+
+    await newsCubit.getNews(day);
+    boosterItemCubit.fetchItems(day);
+    await wiperUser();
+    await resetPushups();
+  }
 
   @override
   Widget build(BuildContext context) => SafeArea(

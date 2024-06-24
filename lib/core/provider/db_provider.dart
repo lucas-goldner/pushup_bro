@@ -94,6 +94,13 @@ class DBProvider implements DBProviderInterface {
   }
 
   @override
+  Future<void> clearPushups() async {
+    await db?.writeTxn(() async {
+      await db?.pushupSets.clear();
+    });
+  }
+
+  @override
   Future<List<PushupSet>> getAllPushupSets() async =>
       await db?.pushupSets.where(distinct: true).findAll() ?? [];
 }
