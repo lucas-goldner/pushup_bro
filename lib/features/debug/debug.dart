@@ -16,6 +16,7 @@ import 'package:pushup_bro/core/model/feature_variants.dart';
 import 'package:pushup_bro/core/model/pushup.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
+import 'package:pushup_bro/features/pushup_tracking/cubit/news_cubit.dart';
 
 class Debug extends StatefulWidget {
   const Debug({super.key});
@@ -53,6 +54,9 @@ class _DebugState extends State<Debug> {
     }
   }
 
+  Future<void> resetItems() async =>
+      context.read<BoosterItemCubit>().resetItems();
+
   Future<void> wiperUser() async => context.read<DBCubit>().wipeUser();
 
   void addBoosterItem() => context.read<BoosterItemCubit>().addItems(
@@ -87,7 +91,16 @@ class _DebugState extends State<Debug> {
     );
   }
 
-  void addDay() => context.read<DayCubit>().increment();
+  Future<void> addDay() async {
+    final dayCubit = context.read<DayCubit>()..increment();
+    final day = dayCubit.state.day;
+    final newsCubit = context.read<NewsCubit>();
+    final boosterItemCubit = context.read<BoosterItemCubit>();
+
+    await newsCubit.getNews(day);
+    boosterItemCubit.fetchItems(day);
+  }
+
   void resetDay() => context.read<DayCubit>().reset();
 
   @override
@@ -176,6 +189,12 @@ class _DebugState extends State<Debug> {
                 PBButton(
                   'Add Friendshare Item',
                   callback: addFriendShareItem,
+                  expanded: true,
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Reset items',
+                  callback: resetItems,
                   expanded: true,
                 ),
                 const SizedBox(height: 32),

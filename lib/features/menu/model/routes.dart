@@ -64,6 +64,7 @@ Route<CupertinoPageRoute<Widget>> generateRoutes(
           const PageContainer(
             Debug(),
             menuTab: MenuTabInfo.debug,
+            showTitle: false,
           ),
         ),
       LanguageSetting.routeName => CupertinoPageRoute(

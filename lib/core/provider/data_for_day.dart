@@ -1,3 +1,4 @@
+import 'package:pushup_bro/core/model/booster_items.dart';
 import 'package:pushup_bro/features/pushup_tracking/model/news.dart';
 
 List<News> getNewsForDay(int day) => switch (day) {
@@ -17,6 +18,17 @@ List<News> getNewsForDay(int day) => switch (day) {
             type: NewsType.doublePoinstEvent,
             date: DateTime.now(),
           ),
+        ],
+      _ => [],
+    };
+
+List<BoosterItems> getItemsForDay(int day) => switch (day) {
+      1 => [],
+      2 => [
+          BoosterItems.doublePoints,
+        ],
+      3 => [
+          BoosterItems.friendBoost,
         ],
       _ => [],
     };

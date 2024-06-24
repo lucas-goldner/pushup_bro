@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/day_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_state.dart';
@@ -88,7 +89,11 @@ class _PushupTrackingState extends State<PushupTracking> {
   void initState() {
     super.initState();
     newsVisible = false;
-    context.read<NewsCubit>().getNews(context.read<DayCubit>().state.day);
+    // TODO(RealApp): fetch news and items
+    // context.read<NewsCubit>().getNews(context.read<DayCubit>().state.day);
+    // context.read<BoosterItemCubit>().fetchItems(
+    //       context.read<DayCubit>().state.day,
+    //     );
   }
 
   @override
