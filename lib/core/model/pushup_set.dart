@@ -76,9 +76,9 @@ extension PushupSetListExtension on List<PushupSet> {
     );
   }
 
-  List<DailyPushups> get lastSevenDaysPushups {
+  List<DailyPushups> lastSevenDaysPushups({int daysInFuture = 0}) {
     final dailyPushups = <DateTime, int>{};
-    final now = DateTime.now();
+    final now = DateTime.now().add(Duration(days: daysInFuture));
     final sevenDaysAgo = now.subtract(const Duration(days: 7));
 
     for (final pushupSet in this) {

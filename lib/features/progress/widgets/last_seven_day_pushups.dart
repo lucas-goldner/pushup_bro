@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pushup_bro/core/cubit/day_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/extensions/datetime_ext.dart';
@@ -34,7 +35,12 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
                 child: AspectRatio(
                   aspectRatio: 1.5,
                   child: LineChart(
-                    showTotal ? mainData(pushups) : lastSevenDaysData(pushups),
+                    showTotal
+                        ? mainData(pushups)
+                        : lastSevenDaysData(
+                            pushups,
+                            context,
+                          ),
                   ),
                 ),
               ),
@@ -182,9 +188,18 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
         ],
       );
 
-  LineChartData lastSevenDaysData(List<PushupSet> pushups) {
-    final lastSevenDaysPushups = pushups.lastSevenDaysPushups;
-    final lastSevenDays = DateTime.now().lastSevenDays;
+  LineChartData lastSevenDaysData(
+    List<PushupSet> pushups,
+    BuildContext context,
+  ) {
+    final lastSevenDaysPushups = pushups.lastSevenDaysPushups(
+      daysInFuture: context.read<DayCubit>().state.day,
+    );
+    final lastSevenDays = DateTime.now()
+        .add(
+          Duration(days: context.read<DayCubit>().state.day),
+        )
+        .lastSevenDays;
 
     return LineChartData(
       titlesData: FlTitlesData(
