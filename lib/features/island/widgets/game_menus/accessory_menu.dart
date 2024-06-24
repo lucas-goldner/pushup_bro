@@ -55,7 +55,7 @@ class _AccessoryMenuState extends State<AccessoryMenu> {
       setState(() {
         _showBuyConfirmation = false;
         cantBuy = true;
-        cantBuyReason = 'Already bought';
+        cantBuyReason = context.l10n.alreadyBought;
       });
       return false;
     }
@@ -118,7 +118,7 @@ class _AccessoryMenuState extends State<AccessoryMenu> {
                                   Row(
                                     children: [
                                       Text(
-                                        'Already bought',
+                                        context.l10n.alreadyBought,
                                         style: TextStyle(
                                           color: context.colorScheme.primary,
                                         ),
@@ -180,11 +180,13 @@ class _AccessoryMenuState extends State<AccessoryMenu> {
               Column(
                 children: [
                   Text(
-                    'Buying ${selectBuyable?.getLocalizedName(context)}',
+                    context.l10n.buyingItem(
+                      selectBuyable?.getLocalizedName(context) ?? '',
+                    ),
                     style: context.textTheme.headlineSmall,
                   ),
                   PBButton(
-                    'Confirm',
+                    context.l10n.confirm,
                     callback: confirmPurchase,
                   ),
                 ],

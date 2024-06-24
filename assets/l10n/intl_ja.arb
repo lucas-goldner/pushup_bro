@@ -159,5 +159,39 @@
         "type": "int"
       }
     }
-  }
+  },
+  "close": "閉じる",
+  "alreadyBought": "すでに購入済み",
+  "confirm": "確認",
+  "buyingItem": "{xItem}を購入中",
+  "@buyingItem": {
+    "placeholders": {
+      "xItem": {
+        "type": "String"
+      }
+    }
+  },
+  "accessories": "アクセサリー",
+  "shop": "ショップ",
+  "communityQuestBananasCollecting": "一緒に10,000本のバナナを集めて目標を達成しましょう！目標を達成すると、島に新しいエリアが解放されます！",
+  "get10BananasEveryDay": "毎日10本のバナナを無料で楽しんでください！",
+  "doubleValueQuest": "カルロスがバナナの山を見つけました。頂上に到達するためにもう20回腕立て伏せをして、バナナを2倍にしましょう。",
+  "fastPushupsQuest": "カルロスがジャガーに襲われています。救助してください！30秒間でできるだけ多くの腕立て伏せをしてください。",
+  "introQuestOne": "新しい島へようこそ！過去にはさまざまなサルが住んでいました。",
+  "introQuestTwo": "謎の嵐のため、すべてのサルが消えてしまいました。",
+  "introQuestThree": "ゴリラのカルロスは寂しいです。腕立て伏せでバナナを稼いで、建物や装飾を購入して、彼の賑やかな島を復元するのを手伝ってください。",
+  "longPushupsQuest": "今日は、カルロスは長い腕立て伏せに集中しています。腕立て伏せをする前に3秒間保持してください。",
+  "go": "行く",
+  "januaryAbreviated": "1月",
+  "aprilAbreviated": "4月",
+  "augustAbreviated": "8月",
+  "decemberAbreviated": "12月",
+  "over100": "100以上",
+  "notEnoughBananas": "バナナが足りません",
+  "quest": "クエスト",
+  "monkey": "サル",
+  "introQuest": "イントロクエスト",
+  "communityQuestTitle": "一緒に",
+  "dailyLogin": "毎日のログイン",
+  "jungleQuest": "ジャングルクエスト"
 }

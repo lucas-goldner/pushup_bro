@@ -159,5 +159,39 @@
         "type": "int"
       }
     }
-  }
+  },
+  "close": "Schließen",
+  "alreadyBought": "Bereits gekauft",
+  "confirm": "Bestätigen",
+  "buyingItem": "Kaufe {xItem}",
+  "@buyingItem": {
+    "placeholders": {
+      "xItem": {
+        "type": "String"
+      }
+    }
+  },
+  "accessories": "Zubehör",
+  "shop": "Laden",
+  "communityQuestBananasCollecting": "Lasst uns zusammenarbeiten, um das Ziel von 10.000 Bananen zu erreichen! Wenn wir das Ziel erreichen, wird ein neuer Bereich auf der Insel freigeschaltet!",
+  "get10BananasEveryDay": "Genieße jeden Tag 10 kostenlose Bananen!",
+  "doubleValueQuest": "Carlos hat einen Berg von Bananen gefunden. Mache weitere 20 Liegestütze, um die Spitze zu erreichen und doppelte Bananen zu bekommen.",
+  "fastPushupsQuest": "Carlos wird von einem Jaguar angegriffen. Rette ihn! Mache so viele Liegestütze wie möglich in 30 Sekunden.",
+  "introQuestOne": "Willkommen auf deiner neuen Insel! In der Vergangenheit wurde sie von verschiedenen Affen bewohnt.",
+  "introQuestTwo": "Aufgrund eines mysteriösen Sturms sind alle Affen verschwunden.",
+  "introQuestThree": "Carlos der Gorilla fühlt sich einsam. Hilf ihm, seine lebendige Insel wiederherzustellen, indem du durch Liegestütze Bananen verdienst, um Gebäude und Dekorationen zu kaufen.",
+  "longPushupsQuest": "Heute konzentriert sich Carlos auf längere Liegestütze. Halte deine Liegestütze 3 Sekunden lang, bevor du wieder hochgehst.",
+  "go": "Los",
+  "januaryAbreviated": "JAN",
+  "aprilAbreviated": "APR",
+  "augustAbreviated": "AUG",
+  "decemberAbreviated": "DEZ",
+  "over100": "Über 100",
+  "notEnoughBananas": "Nicht genug Bananen",
+  "quest": "Aufgabe",
+  "monkey": "Affe",
+  "introQuest": "Einführungsaufgabe",
+  "communityQuestTitle": "Gemeinsam",
+  "dailyLogin": "Täglicher Login",
+  "jungleQuest": "Dschungelaufgabe"
 }

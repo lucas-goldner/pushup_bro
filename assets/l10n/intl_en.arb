@@ -159,5 +159,38 @@
         "type": "int"
       }
     }
-  }
+  },
+  "close": "Close",
+  "alreadyBought": "Already bought",
+  "confirm": "Confirm",
+  "buyingItem": "Buying {xItem}",
+  "@buyingItem": {
+    "placeholders": {
+      "xItem": {
+        "type": "String"
+      }
+    }
+  },
+  "accessories": "Accessories",
+  "shop": "Shop",
+  "communityQuestBananasCollecting": "Let's work together to reach the goal of 10,000 bananas! If we reach the goal, we will unlock a new area on the island!",
+  "get10BananasEveryDay": "Enjoy free 10 bananas every day!",
+  "doubleValueQuest": "Carlos found a mountain of bananas. Do another 20 pushups to reach the tip and get double bananas.",
+  "fastPushupsQuest": "Carlos is getting attacked by a Jaguar. Rescue him! Do as many pushups as you can in 30 seconds.",
+  "introQuestOne": "Welcome to your new island! In the past it used to be inhibited by various monkeys.",
+  "introQuestTwo": "Due to a mysterious storm all the monkeys have disappeared.",
+  "introQuestThree": "Carlos the Gorilla feels lonely. Help him restore his lively island by earning bananas through pushups to buy buildings and decorations.",
+  "longPushupsQuest": "Today, Carlos if focusing on doing longer pushups. Hold your pushups 3 seconds before going back up.",
+  "go": "Go",
+  "januaryAbreviated": "JAN",
+  "aprilAbreviated": "APR",
+  "augustAbreviated": "AUG",
+  "decemberAbreviated": "DEC",
+  "over100": "Over 100",
+  "quest": "Quest",
+  "monkey": "Monkey",
+  "introQuest": "Intro Quest",
+  "communityQuestTitle": "Coming together",
+  "dailyLogin": "Daily Login",
+  "jungleQuest": "Jungle Quest"
 }

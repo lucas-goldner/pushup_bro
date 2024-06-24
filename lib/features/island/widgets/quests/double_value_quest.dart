@@ -20,14 +20,12 @@ class DoubleValueQuest extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8),
               child: Text(
-                '''
-Carlos found a mountain of bananas. Do another 20 pushups to reach the tip
-and get double bananas.''',
+                context.l10n.doubleValueQuest,
                 style: context.textTheme.titleSmall,
               ),
             ),
             PBButton(
-              'GO',
+              context.l10n.go.toUpperCase(),
               callback: () => Navigator.of(context).pushReplacement(
                 navigateToPushupTracking(context),
               ),

@@ -41,7 +41,7 @@ class DailyLogin extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: Text(
-              'Enjoy free 10 bananas every day!',
+              context.l10n.get10BananasEveryDay,
               style: context.textTheme.displaySmall,
             ),
           ),

@@ -93,7 +93,7 @@ class QuestDialog extends StatelessWidget {
                                     bottom: 20,
                                   ),
                                   child: Text(
-                                    'Close',
+                                    context.l10n.close,
                                     style: context.textTheme.displaySmall
                                         ?.copyWith(
                                       decoration: TextDecoration.underline,

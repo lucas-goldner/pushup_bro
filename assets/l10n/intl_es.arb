@@ -159,5 +159,39 @@
         "type": "int"
       }
     }
-  }
+  },
+  "close": "Cerrar",
+  "alreadyBought": "Ya comprado",
+  "confirm": "Confirmar",
+  "buyingItem": "Comprando {xItem}",
+  "@buyingItem": {
+    "placeholders": {
+      "xItem": {
+        "type": "String"
+      }
+    }
+  },
+  "accessories": "Accesorios",
+  "shop": "Tienda",
+  "communityQuestBananasCollecting": "¡Trabajemos juntos para alcanzar la meta de 10,000 plátanos! ¡Si alcanzamos la meta, desbloquearemos una nueva área en la isla!",
+  "get10BananasEveryDay": "¡Disfruta de 10 plátanos gratis todos los días!",
+  "doubleValueQuest": "Carlos encontró una montaña de plátanos. Haz otros 20 flexiones para alcanzar la cima y obtener el doble de plátanos.",
+  "fastPushupsQuest": "Carlos está siendo atacado por un Jaguar. ¡Rescátalo! Haz tantas flexiones como puedas en 30 segundos.",
+  "introQuestOne": "¡Bienvenido a tu nueva isla! En el pasado solía estar habitada por varios monos.",
+  "introQuestTwo": "Debido a una misteriosa tormenta, todos los monos han desaparecido.",
+  "introQuestThree": "Carlos el Gorila se siente solo. Ayúdalo a restaurar su isla animada ganando plátanos a través de flexiones para comprar edificios y decoraciones.",
+  "longPushupsQuest": "Hoy, Carlos se está concentrando en hacer flexiones más largas. Mantén tus flexiones 3 segundos antes de subir.",
+  "go": "Ir",
+  "januaryAbreviated": "ENE",
+  "aprilAbreviated": "ABR",
+  "augustAbreviated": "AGO",
+  "decemberAbreviated": "DIC",
+  "over100": "Más de 100",
+  "notEnoughBananas": "No hay suficientes plátanos",
+  "quest": "Misión",
+  "monkey": "Mono",
+  "introQuest": "Misión de Introducción",
+  "communityQuestTitle": "Unidos",
+  "dailyLogin": "Inicio de Sesión Diario",
+  "jungleQuest": "Misión en la Jungla"
 }

@@ -36,31 +36,21 @@ class _IntroQuestState extends State<IntroQuest> {
         controller: _pageController,
         children: [
           _buildPage(
-            text: '''
-Welcome to your new island!
-In the past it used to be inhibited by various monkeys.
-''',
+            text: context.l10n.introQuestOne,
             image: Assets.images.island.quests.intro.part1.image(
               width: 160,
               height: 160,
             ),
           ),
           _buildPage(
-            text: '''
-Due to a mysterious storm all the monkeys have disappeared.
-''',
+            text: context.l10n.introQuestTwo,
             image: Assets.images.island.quests.intro.part2.image(
               width: 160,
               height: 160,
             ),
           ),
           _buildPage(
-            text: '''
-Carlos the Gorilla feels lonely. 
-Help him restore his lively island
-by earning bananas through pushups 
-to buy buildings and decorations.
-''',
+            text: context.l10n.introQuestThree,
             image: Assets.images.island.quests.intro.part3.image(
               width: 160,
               height: 160,

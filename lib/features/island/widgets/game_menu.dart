@@ -84,7 +84,7 @@ class GameMenu extends StatelessWidget {
                               bottom: 16,
                             ),
                             child: Text(
-                              'Close',
+                              context.l10n.close,
                               style: context.textTheme.displaySmall?.copyWith(
                                 decoration: TextDecoration.underline,
                               ),

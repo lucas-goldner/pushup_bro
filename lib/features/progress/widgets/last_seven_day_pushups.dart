@@ -66,13 +66,13 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
     Widget text;
     switch (value.toInt()) {
       case 1:
-        text = Text('JAN', style: style);
+        text = Text(context.l10n.januaryAbreviated, style: style);
       case 4:
-        text = Text('APR', style: style);
+        text = Text(context.l10n.aprilAbreviated, style: style);
       case 8:
-        text = Text('AUG', style: style);
+        text = Text(context.l10n.augustAbreviated, style: style);
       case 12:
-        text = Text('DEC', style: style);
+        text = Text(context.l10n.decemberAbreviated, style: style);
       default:
         text = Text('', style: style);
         break;
@@ -84,7 +84,11 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
     );
   }
 
-  Widget leftTitleWidgets(BuildContext context, double value, TitleMeta meta) {
+  Widget leftTitleWidgets(
+    BuildContext context,
+    double value,
+    TitleMeta meta,
+  ) {
     final style = context.textTheme.bodyMedium;
     String text;
     switch (value.toInt()) {
@@ -97,7 +101,7 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
       case 75:
         text = '75';
       case 100:
-        text = 'Over 100';
+        text = context.l10n.over100;
       default:
         return Container();
     }

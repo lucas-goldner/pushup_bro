@@ -41,7 +41,7 @@ class Shop extends StatelessWidget {
                     vertical: 8,
                   ),
                   child: Text(
-                    'Shop'.toUpperCase(),
+                    context.l10n.shop.toUpperCase(),
                     style: context.textTheme.bodyMedium,
                   ),
                 ),

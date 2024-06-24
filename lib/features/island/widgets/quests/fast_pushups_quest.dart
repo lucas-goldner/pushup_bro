@@ -20,14 +20,12 @@ class FastPushupsQuest extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8),
               child: Text(
-                '''
-Carlos is getting attacked by a Jaguar. Rescue him!
-Do as many pushups as you can in 30 seconds.''',
+                context.l10n.fastPushupsQuest,
                 style: context.textTheme.titleSmall,
               ),
             ),
             PBButton(
-              'GO',
+              context.l10n.go.toUpperCase(),
               callback: () => Navigator.of(context).pushReplacement(
                 navigateToPushupTracking(context),
               ),

@@ -159,5 +159,39 @@
         "type": "int"
       }
     }
-  }
+  },
+  "close": "Fechar",
+  "alreadyBought": "Já comprado",
+  "confirm": "Confirmar",
+  "buyingItem": "Comprando {xItem}",
+  "@buyingItem": {
+    "placeholders": {
+      "xItem": {
+        "type": "String"
+      }
+    }
+  },
+  "accessories": "Acessórios",
+  "shop": "Loja",
+  "communityQuestBananasCollecting": "Vamos trabalhar juntos para alcançar a meta de 10.000 bananas! Se atingirmos a meta, desbloquearemos uma nova área na ilha!",
+  "get10BananasEveryDay": "Aproveite 10 bananas grátis todos os dias!",
+  "doubleValueQuest": "Carlos encontrou uma montanha de bananas. Faça mais 20 flexões para chegar ao topo e ganhar bananas em dobro.",
+  "fastPushupsQuest": "Carlos está sendo atacado por um Jaguar. Resgate-o! Faça o máximo de flexões que puder em 30 segundos.",
+  "introQuestOne": "Bem-vindo à sua nova ilha! No passado, era habitada por vários macacos.",
+  "introQuestTwo": "Devido a uma tempestade misteriosa, todos os macacos desapareceram.",
+  "introQuestThree": "Carlos, o Gorila, se sente sozinho. Ajude-o a restaurar sua ilha animada ganhando bananas através de flexões para comprar edifícios e decorações.",
+  "longPushupsQuest": "Hoje, Carlos está se concentrando em fazer flexões mais longas. Segure suas flexões por 3 segundos antes de subir.",
+  "go": "Ir",
+  "januaryAbreviated": "JAN",
+  "aprilAbreviated": "ABR",
+  "augustAbreviated": "AGO",
+  "decemberAbreviated": "DEZ",
+  "over100": "Mais de 100",
+  "notEnoughBananas": "Não há bananas suficientes",
+  "quest": "Missão",
+  "monkey": "Macaco",
+  "introQuest": "Missão de Introdução",
+  "communityQuestTitle": "Unidos",
+  "dailyLogin": "Login Diário",
+  "jungleQuest": "Missão na Selva"
 }

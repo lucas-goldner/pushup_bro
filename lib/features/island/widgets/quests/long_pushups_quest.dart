@@ -20,14 +20,12 @@ class LongPushupsQuest extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8),
               child: Text(
-                '''
-Today, Carlos if focusing on doing longer pushups.
-Hold your pushups 3 seconds before going back up.''',
+                context.l10n.longPushupsQuest,
                 style: context.textTheme.titleSmall,
               ),
             ),
             PBButton(
-              'GO',
+              context.l10n.go.toUpperCase(),
               callback: () => Navigator.of(context).pushReplacement(
                 navigateToPushupTracking(context),
               ),
