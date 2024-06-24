@@ -1,4 +1,5 @@
 import 'package:carbon_icons/carbon_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
@@ -52,20 +53,22 @@ class PushupTrackingTopRow extends StatelessWidget {
                     Positioned(
                       right: 8,
                       bottom: 2,
-                      child: Container(
-                        constraints: const BoxConstraints(
-                          minWidth: 20,
-                          minHeight: 20,
-                        ),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: context.colorScheme.onSecondary,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: Center(
-                            child: BlocBuilder<NewsCubit, NewsState>(
-                              builder: (context, state) => Text(
+                      child: BlocBuilder<NewsCubit, NewsState>(
+                        builder: (context, state) => Container(
+                          constraints: const BoxConstraints(
+                            minWidth: 20,
+                            minHeight: 20,
+                          ),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: state.news.isEmpty
+                                ? context.colorScheme.onSecondary
+                                : CupertinoColors.systemRed,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: Center(
+                              child: Text(
                                 state.news.length.toString(),
                                 style: context.textTheme.labelLarge?.copyWith(
                                   fontWeight: FontWeight.bold,

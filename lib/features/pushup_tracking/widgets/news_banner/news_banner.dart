@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
+import 'package:pushup_bro/core/cubit/day_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/news_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/news_state.dart';
 import 'package:pushup_bro/features/pushup_tracking/model/news.dart';
@@ -48,7 +49,7 @@ class _NewsBannerState extends State<NewsBanner>
     }
 
     if (widget.newsVisible) {
-      context.read<NewsCubit>().getNews();
+      context.read<NewsCubit>().getNews(context.read<DayCubit>().state.day);
       final news = context.read<NewsCubit>().state.news;
       for (final element in news) {
         final effect = element.type.correspondingEffect;

@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
+import 'package:pushup_bro/core/cubit/day_cubit.dart';
+import 'package:pushup_bro/core/cubit/day_state.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_state.dart';
@@ -85,6 +87,9 @@ class _DebugState extends State<Debug> {
     );
   }
 
+  void addDay() => context.read<DayCubit>().increment();
+  void resetDay() => context.read<DayCubit>().reset();
+
   @override
   Widget build(BuildContext context) => SafeArea(
         bottom: false,
@@ -92,79 +97,101 @@ class _DebugState extends State<Debug> {
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
           ),
-          child: Column(
-            children: [
-              const SizedBox(height: 64),
-              Text(
-                'General App Debug',
-                style: context.textTheme.titleLarge,
-              ),
-              const SizedBox(height: 12),
-              BlocBuilder<FeatureSwitchCubit, FeatureSwitchState>(
-                builder: (context, state) => Text(
-                  'Current app ${state.featureVariant.name}',
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 64),
+                Text(
+                  'General App Debug',
                   style: context.textTheme.titleLarge,
                 ),
-              ),
-              const SizedBox(height: 12),
-              PBButton(
-                'Switch to hook model',
-                callback: switchToHookModel,
-                expanded: true,
-              ),
-              const SizedBox(height: 12),
-              PBButton(
-                'Switch to gamified app',
-                callback: switchToGamified,
-                expanded: true,
-              ),
-              const SizedBox(height: 32),
-              Text(
-                'Hook Model Debug',
-                style: context.textTheme.titleLarge,
-              ),
-              const SizedBox(height: 12),
-              PBButton(
-                'Add pushups',
-                callback: addPushups,
-                expanded: true,
-              ),
-              const SizedBox(height: 12),
-              PBButton(
-                'Reset pushups',
-                callback: resetPushups,
-                expanded: true,
-              ),
-              const SizedBox(height: 12),
-              PBButton(
-                'Wiper user',
-                callback: wiperUser,
-                expanded: true,
-              ),
-              const SizedBox(height: 12),
-              PBButton(
-                'Add Booster Item',
-                callback: addBoosterItem,
-                expanded: true,
-              ),
-              const SizedBox(height: 12),
-              PBButton(
-                'Add Friendshare Item',
-                callback: addFriendShareItem,
-                expanded: true,
-              ),
-              const SizedBox(height: 32),
-              Text(
-                'Gamification Debug',
-                style: context.textTheme.titleLarge,
-              ),
-              const SizedBox(height: 12),
-              PBButton(
-                'Add 100 Bananas',
-                callback: add100Bananas,
-                expanded: true,
-              ),
-            ],
+                const SizedBox(height: 12),
+                BlocBuilder<DayCubit, DayState>(
+                  builder: (context, state) => Text(
+                    'Current day ${state.day}',
+                    style: context.textTheme.titleLarge,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Add day',
+                  callback: addDay,
+                  expanded: true,
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Reset day',
+                  callback: resetDay,
+                  expanded: true,
+                ),
+                const SizedBox(height: 12),
+                BlocBuilder<FeatureSwitchCubit, FeatureSwitchState>(
+                  builder: (context, state) => Text(
+                    'Current app ${state.featureVariant.name}',
+                    style: context.textTheme.titleLarge,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Switch to hook model',
+                  callback: switchToHookModel,
+                  expanded: true,
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Switch to gamified app',
+                  callback: switchToGamified,
+                  expanded: true,
+                ),
+                const SizedBox(height: 32),
+                Text(
+                  'Hook Model Debug',
+                  style: context.textTheme.titleLarge,
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Add pushups',
+                  callback: addPushups,
+                  expanded: true,
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Reset pushups',
+                  callback: resetPushups,
+                  expanded: true,
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Wiper user',
+                  callback: wiperUser,
+                  expanded: true,
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Add Booster Item',
+                  callback: addBoosterItem,
+                  expanded: true,
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Add Friendshare Item',
+                  callback: addFriendShareItem,
+                  expanded: true,
+                ),
+                const SizedBox(height: 32),
+                Text(
+                  'Gamification Debug',
+                  style: context.textTheme.titleLarge,
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Add 100 Bananas',
+                  callback: add100Bananas,
+                  expanded: true,
+                ),
+                const SizedBox(height: 64),
+              ],
+            ),
           ),
         ),
       );
