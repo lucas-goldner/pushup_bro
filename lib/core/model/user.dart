@@ -23,7 +23,7 @@ class User {
   factory User.empty() => User(
         level: 1,
         xp: 0,
-        name: '',
+        name: 'Your name',
         image: '',
         streak: 0,
         friends: [],

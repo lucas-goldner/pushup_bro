@@ -40,8 +40,23 @@ class DBCubit extends Cubit<DBState> {
     emit(state.copyWith(user: user));
   }
 
-  Future<void> updateUser({int xp = 0, int level = 1}) async {
+  Future<void> updateUserLvlXp({
+    int xp = 0,
+    int level = 1,
+  }) async {
     final userToUpdate = state.user.copyWith(xp: xp, level: level);
+    await _dbProvider.updateUser(userToUpdate);
+    emit(state.copyWith(user: userToUpdate));
+  }
+
+  Future<void> updateProfileImage(String imageUrl) async {
+    final userToUpdate = state.user.copyWith(image: imageUrl);
+    await _dbProvider.updateUser(userToUpdate);
+    emit(state.copyWith(user: userToUpdate));
+  }
+
+  Future<void> updateName(String name) async {
+    final userToUpdate = state.user.copyWith(name: name);
     await _dbProvider.updateUser(userToUpdate);
     emit(state.copyWith(user: userToUpdate));
   }

@@ -173,7 +173,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
       await dbCubit.createUser(level: level, xp: leftOverXP);
       await sharedPrefsCubit.finishFirstPushupCompleted();
     } else {
-      await dbCubit.updateUser(level: level, xp: leftOverXP);
+      await dbCubit.updateUserLvlXp(level: level, xp: leftOverXP);
     }
 
     await gameInventoryCubit.fetchInventory();

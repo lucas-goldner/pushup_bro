@@ -53,7 +53,7 @@ class _DebugState extends State<Debug> {
   Future<void> resetItems() async =>
       context.read<BoosterItemCubit>().resetItems();
 
-  Future<void> wiperUser() async => context.read<DBCubit>().wipeUser();
+  Future<void> wipeUser() async => context.read<DBCubit>().wipeUser();
 
   void addBoosterItem() => context.read<BoosterItemCubit>().addItems(
         item: BoosterItems.doublePoints,
@@ -103,7 +103,7 @@ class _DebugState extends State<Debug> {
 
     await newsCubit.getNews(day);
     boosterItemCubit.fetchItems(day);
-    await wiperUser();
+    await wipeUser();
     await resetPushups();
   }
 
@@ -180,7 +180,7 @@ class _DebugState extends State<Debug> {
                 const SizedBox(height: 12),
                 PBButton(
                   'Wiper user',
-                  callback: wiperUser,
+                  callback: wipeUser,
                   expanded: true,
                 ),
                 const SizedBox(height: 12),

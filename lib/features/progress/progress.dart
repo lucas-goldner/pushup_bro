@@ -39,34 +39,32 @@ class _ProgressState extends State<Progress> {
   @override
   Widget build(BuildContext context) => FutureBuilder<void>(
         future: BlocProvider.of<DBCubit>(context).getUser(),
-        builder: (context, snapshot) {
-          return SafeArea(
-            bottom: false,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              child: Column(
-                children: [
-                  const SizedBox(height: 80),
-                  const Profile(name: 'Your name', imageUrl: ''),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      const Spacer(),
-                      PBButton.icon(
-                        context.l10n.shareProfile,
-                        icon: CarbonIcons.share,
-                        callback: () => {},
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  const Expanded(child: LastSevenDayPushups()),
-                ],
-              ),
+        builder: (context, snapshot) => SafeArea(
+          bottom: false,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
             ),
-          );
-        },
+            child: Column(
+              children: [
+                const SizedBox(height: 80),
+                const Profile(name: 'Your name', imageUrl: ''),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    const Spacer(),
+                    PBButton.icon(
+                      context.l10n.shareProfile,
+                      icon: CarbonIcons.share,
+                      callback: () => {},
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                const Expanded(child: LastSevenDayPushups()),
+              ],
+            ),
+          ),
+        ),
       );
 }

@@ -21,6 +21,10 @@ class Profile extends StatelessWidget {
   final String name;
   final String imageUrl;
 
+  void _setName(BuildContext context) {
+    context.read<DBCubit>().updateName('Super Monkey');
+  }
+
   @override
   Widget build(BuildContext context) => BlocSelector<DBCubit, DBState, User>(
         selector: (state) => state.user,
@@ -40,18 +44,21 @@ class Profile extends StatelessWidget {
                         color: context.colorScheme.onPrimary,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: ProfileImageBox(imageUrl),
+                      child: ProfileImageBox(user.image),
                     ),
                     const SizedBox(width: 16),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          name,
-                          style: context.textTheme.headlineLarge?.copyWith(
-                            color: context.colorScheme.onPrimary,
+                        GestureDetector(
+                          onTap: () => _setName(context),
+                          child: Text(
+                            user.name,
+                            style: context.textTheme.headlineLarge?.copyWith(
+                              color: context.colorScheme.onPrimary,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(width: 16),
                         Row(
