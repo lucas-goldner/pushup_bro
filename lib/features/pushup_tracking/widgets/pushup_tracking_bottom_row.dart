@@ -9,10 +9,12 @@ import 'package:pushup_bro/features/pushup_tracking/widgets/start_pushups_button
 class PushupTrackingBottomRow extends StatelessWidget {
   const PushupTrackingBottomRow({
     required this.toggleListeningUpdates,
+    required this.started,
     super.key,
   });
 
   final VoidCallback toggleListeningUpdates;
+  final bool started;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,8 @@ class PushupTrackingBottomRow extends StatelessWidget {
               flex: 8,
               child: Center(
                 child: StartPushupsButton(
-                  toggleListeningUpdates,
+                  onTap: toggleListeningUpdates,
+                  started: started,
                 ),
               ),
             ),

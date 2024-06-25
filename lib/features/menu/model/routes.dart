@@ -32,7 +32,7 @@ Route<CupertinoPageRoute<Widget>> generateRoutes(
         ),
       Friends.routeName => _revealCircular(
           settings.arguments as BuildContext?,
-          PageContainer(
+          const PageContainer(
             Friends(),
             menuTab: MenuTabInfo.friends,
           ),

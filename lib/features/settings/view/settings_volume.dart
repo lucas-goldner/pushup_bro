@@ -67,7 +67,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
                             width: 80,
                             child: PBButton(
                               '-',
-                              callback: () => _updateVolume(
+                              onTap: () => _updateVolume(
                                 _selectedVolume == 0
                                     ? _selectedVolume
                                     : _selectedVolume - 1,
@@ -87,7 +87,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
                             width: 80,
                             child: PBButton(
                               '+',
-                              callback: () => _updateVolume(
+                              onTap: () => _updateVolume(
                                 _selectedVolume == 10
                                     ? _selectedVolume
                                     : _selectedVolume + 1,
@@ -100,7 +100,7 @@ class _VolumeSettingState extends State<VolumeSetting> {
                     const Spacer(),
                     PBButton(
                       context.l10n.goBack,
-                      callback: () => Navigator.of(context).pop(),
+                      onTap: () => Navigator.of(context).pop(),
                       expanded: true,
                     ),
                   ],

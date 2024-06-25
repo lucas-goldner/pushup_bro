@@ -88,7 +88,7 @@ class _ItemFriendMenuState extends State<ItemFriendMenu> {
                                 ? CarbonIcons.checkmark_filled
                                 : CarbonIcons.send,
                             '',
-                            callback: () =>
+                            onTap: () =>
                                 _addFriendToList(friendsData[index], context),
                           ),
                         ),

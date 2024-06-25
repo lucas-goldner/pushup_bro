@@ -26,7 +26,7 @@ class DoubleValueQuest extends StatelessWidget {
             ),
             PBButton(
               context.l10n.go.toUpperCase(),
-              callback: () => Navigator.of(context).pushReplacement(
+              onTap: () => Navigator.of(context).pushReplacement(
                 navigateToPushupTracking(context),
               ),
             ),

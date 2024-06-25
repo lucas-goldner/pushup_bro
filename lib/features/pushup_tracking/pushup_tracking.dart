@@ -7,7 +7,6 @@ import 'package:pushup_bro/core/cubit/feature_switch_state.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_state.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
-import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
 import 'package:pushup_bro/core/widgets/monkey.dart';
 import 'package:pushup_bro/core/widgets/party_hat_monkey.dart';
@@ -15,6 +14,7 @@ import 'package:pushup_bro/features/island/model/adoptable_monkey.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_cubit.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/airpods_tracker_state.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/pushup_cubit.dart';
+import 'package:pushup_bro/features/pushup_tracking/widgets/airpods_connection_modal.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/finished_pushup_sheet/finished_set_bottom_sheet.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/news_banner/news_banner.dart';
 import 'package:pushup_bro/features/pushup_tracking/widgets/pushup_counter.dart';
@@ -34,6 +34,7 @@ class _PushupTrackingState extends State<PushupTracking> {
   bool finished = false;
   bool started = false;
   bool newsVisible = true;
+  bool searchingForAirPods = false;
 
   void toggleListeningUpdates() {
     final airpodsCubit = BlocProvider.of<AirPodsTrackerCubit>(context);
@@ -44,6 +45,7 @@ class _PushupTrackingState extends State<PushupTracking> {
       final pushups = pushupCubit.resetAndReturnCurrentPushupSet();
       setState(() {
         finished = true;
+        searchingForAirPods = false;
         started = false;
       });
       openBottomSheet(pushups);
@@ -55,6 +57,7 @@ class _PushupTrackingState extends State<PushupTracking> {
       setState(() {
         finished = false;
         started = true;
+        searchingForAirPods = true;
       });
     }
   }
@@ -71,7 +74,7 @@ class _PushupTrackingState extends State<PushupTracking> {
     );
 
     // ?? false;
-    // TODO(Implement-onboarding): Reenable onboarding and finish feature
+    // TODO(ImplementOnboarding): Reenable onboarding and finish feature
     // if (!firstPushupCompleted) {
     //   await navigator.pushNamed(
     //     Onboarding.routeName,
@@ -81,6 +84,7 @@ class _PushupTrackingState extends State<PushupTracking> {
   }
 
   void toggleNewsVisibility() => setState(() => newsVisible = !newsVisible);
+  void closeAirPodsModal() => setState(() => searchingForAirPods = false);
 
   @override
   void initState() {
@@ -129,7 +133,12 @@ class _PushupTrackingState extends State<PushupTracking> {
                           return const Monkey();
                         },
                       ),
-                      BlocBuilder<AirPodsTrackerCubit, AirPodsTrackerState>(
+                      BlocConsumer<AirPodsTrackerCubit, AirPodsTrackerState>(
+                        listener: (context, state) {
+                          if (state.isListening && started) {
+                            setState(() => searchingForAirPods = false);
+                          }
+                        },
                         builder: (context, airPodsState) {
                           if (airPodsState.isListening && started) {
                             final pushupCubit =
@@ -144,19 +153,13 @@ class _PushupTrackingState extends State<PushupTracking> {
                             );
                           }
 
-                          if (started) {
-                            return Text(
-                              context.l10n.lookingForAirpods,
-                              style: context.textTheme.bodyMedium,
-                            );
-                          }
-
                           return const SizedBox();
                         },
                       ),
                       const Spacer(flex: 2),
                       PushupTrackingBottomRow(
                         toggleListeningUpdates: toggleListeningUpdates,
+                        started: started,
                       ),
                       const SizedBox(
                         height: 40,
@@ -170,6 +173,10 @@ class _PushupTrackingState extends State<PushupTracking> {
             if (finished)
               IgnorePointer(
                 child: Assets.rive.confetti.rive(),
+              ),
+            if (searchingForAirPods)
+              AirPodsConnectionModal(
+                closeAirPodsModal: closeAirPodsModal,
               ),
           ],
         ),

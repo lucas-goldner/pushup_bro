@@ -187,7 +187,7 @@ class _AccessoryMenuState extends State<AccessoryMenu> {
                   ),
                   PBButton(
                     context.l10n.confirm,
-                    callback: confirmPurchase,
+                    onTap: confirmPurchase,
                   ),
                 ],
               ),

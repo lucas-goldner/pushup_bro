@@ -187,7 +187,7 @@ class _ShopMenuState extends State<ShopMenu> {
                   ),
                   PBButton(
                     context.l10n.confirm,
-                    callback: confirmPurchase,
+                    onTap: confirmPurchase,
                   ),
                 ],
               ),

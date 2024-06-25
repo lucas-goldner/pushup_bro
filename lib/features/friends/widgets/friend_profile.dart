@@ -44,7 +44,7 @@ class _FriendProfileState extends State<FriendProfile> {
                       ? CarbonIcons.checkmark_filled
                       : CarbonIcons.send,
                   '',
-                  callback: () => {setState(() => _hasSent = true)},
+                  onTap: () => {setState(() => _hasSent = true)},
                 ),
               ),
             ],
@@ -96,7 +96,7 @@ class _FriendProfileState extends State<FriendProfile> {
             ),
             PBButton(
               context.l10n.acceptChallenge,
-              callback: () => {
+              onTap: () => {
                 Navigator.of(context).pushReplacement(
                   navigateToPushupTracking(context),
                 ),

@@ -52,7 +52,7 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
                       showTotal
                           ? context.l10n.lastSevenDays
                           : context.l10n.total,
-                      callback: () => setState(() => showTotal = !showTotal),
+                      onTap: () => setState(() => showTotal = !showTotal),
                     ),
                   ),
                 ],

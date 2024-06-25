@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
 import 'package:pushup_bro/core/cubit/active_effects_state.dart';
@@ -465,7 +464,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
                   },
                   PBButton(
                     localized.saveSet,
-                    callback: closeModalAndSave,
+                    onTap: closeModalAndSave,
                     expanded: true,
                   ),
                 ],
@@ -509,7 +508,7 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
                               ),
                               PBButton(
                                 localized.monkeyConfirm,
-                                callback: () => setState(
+                                onTap: () => setState(
                                   () => levelUpVisible = false,
                                 ),
                               ),

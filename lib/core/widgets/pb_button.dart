@@ -4,7 +4,7 @@ import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 sealed class PBButton extends StatelessWidget {
   const factory PBButton(
     String text, {
-    VoidCallback? callback,
+    VoidCallback? onTap,
     bool? expanded,
   }) = _PBButton;
 
@@ -13,7 +13,7 @@ sealed class PBButton extends StatelessWidget {
   const factory PBButton.icon(
     String text, {
     required IconData icon,
-    VoidCallback? callback,
+    VoidCallback? onTap,
     bool? expanded,
   }) = _PBButtonIcon;
 }
@@ -21,12 +21,12 @@ sealed class PBButton extends StatelessWidget {
 class _PBButton extends PBButton {
   const _PBButton(
     this.text, {
-    this.callback,
+    this.onTap,
     this.expanded,
   }) : super._();
 
   final String text;
-  final VoidCallback? callback;
+  final VoidCallback? onTap;
   final bool? expanded;
 
   @override
@@ -37,7 +37,7 @@ class _PBButton extends PBButton {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () => callback?.call(),
+                      onPressed: () => onTap?.call(),
                       style: ElevatedButton.styleFrom(
                         splashFactory: NoSplash.splashFactory,
                         backgroundColor: context.colorScheme.primary,
@@ -54,7 +54,7 @@ class _PBButton extends PBButton {
                 ],
               )
             : ElevatedButton(
-                onPressed: () => callback?.call(),
+                onPressed: () => onTap?.call(),
                 style: ElevatedButton.styleFrom(
                   splashFactory: NoSplash.splashFactory,
                   backgroundColor: context.colorScheme.primary,
@@ -74,13 +74,13 @@ class _PBButtonIcon extends PBButton {
   const _PBButtonIcon(
     this.text, {
     required this.icon,
-    this.callback,
+    this.onTap,
     this.expanded,
   }) : super._();
 
   final String text;
   final IconData icon;
-  final VoidCallback? callback;
+  final VoidCallback? onTap;
   final bool? expanded;
 
   @override
@@ -91,7 +91,7 @@ class _PBButtonIcon extends PBButton {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () => callback?.call(),
+                      onPressed: () => onTap?.call(),
                       style: ElevatedButton.styleFrom(
                         splashFactory: NoSplash.splashFactory,
                         backgroundColor: context.colorScheme.primary,
@@ -122,7 +122,7 @@ class _PBButtonIcon extends PBButton {
                 ],
               )
             : ElevatedButton(
-                onPressed: () => callback?.call(),
+                onPressed: () => onTap?.call(),
                 style: ElevatedButton.styleFrom(
                   splashFactory: NoSplash.splashFactory,
                   backgroundColor: context.colorScheme.primary,

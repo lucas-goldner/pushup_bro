@@ -97,7 +97,7 @@ class _IntroQuestState extends State<IntroQuest> {
               else
                 PBButton(
                   'Help Carlos!',
-                  callback: widget.onClose,
+                  onTap: widget.onClose,
                 ),
             ],
           ),

@@ -99,7 +99,7 @@ class _LanguageSettingState extends State<LanguageSetting> {
                     const Spacer(),
                     PBButton(
                       context.l10n.goBack,
-                      callback: () => Navigator.of(context).pop(),
+                      onTap: () => Navigator.of(context).pop(),
                       expanded: true,
                     ),
                   ],

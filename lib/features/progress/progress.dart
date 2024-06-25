@@ -56,7 +56,7 @@ class _ProgressState extends State<Progress> {
                     PBButton.icon(
                       context.l10n.shareProfile,
                       icon: CarbonIcons.share,
-                      callback: () => {},
+                      onTap: () => {},
                     ),
                   ],
                 ),
