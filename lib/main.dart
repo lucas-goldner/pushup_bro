@@ -11,6 +11,7 @@ import 'package:pushup_bro/core/cubit/active_effects_cubit.dart';
 import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/day_cubit.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
+import 'package:pushup_bro/core/cubit/fake_pushups_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
 import 'package:pushup_bro/core/cubit/shared_preferences_cubit.dart';
@@ -123,6 +124,7 @@ class Main extends StatelessWidget {
     final featureSwitchCubit = FeatureSwitchCubit();
     final gameInventoryCubit = GameInventoryCubit(dbProvider);
     final dayCubit = DayCubit();
+    final fakePushupsCubit = FakePushupCubit();
 
     return MultiBlocProvider(
       providers: [
@@ -155,6 +157,9 @@ class Main extends StatelessWidget {
         ),
         BlocProvider<DayCubit>(
           create: (context) => dayCubit,
+        ),
+        BlocProvider<FakePushupCubit>(
+          create: (context) => fakePushupsCubit,
         ),
       ],
       child: FutureBuilder(

@@ -6,6 +6,8 @@ import 'package:pushup_bro/core/cubit/booster_item_cubit.dart';
 import 'package:pushup_bro/core/cubit/day_cubit.dart';
 import 'package:pushup_bro/core/cubit/day_state.dart';
 import 'package:pushup_bro/core/cubit/db_cubit.dart';
+import 'package:pushup_bro/core/cubit/fake_pushups_cubit.dart';
+import 'package:pushup_bro/core/cubit/fake_pushups_state.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_cubit.dart';
 import 'package:pushup_bro/core/cubit/feature_switch_state.dart';
 import 'package:pushup_bro/core/cubit/game_inventory_cubit.dart';
@@ -87,6 +89,9 @@ class _DebugState extends State<Debug> {
     );
   }
 
+  void toggleFakePushups() =>
+      context.read<FakePushupCubit>().toggleFakePushups();
+
   Future<void> addDay() async {
     final dayCubit = context.read<DayCubit>()..increment();
     final newsCubit = context.read<NewsCubit>();
@@ -136,6 +141,21 @@ class _DebugState extends State<Debug> {
                 Text(
                   'General App Debug',
                   style: context.textTheme.titleLarge,
+                ),
+                const SizedBox(height: 12),
+                BlocBuilder<FakePushupCubit, FakePushupsState>(
+                  builder: (context, state) {
+                    return Text(
+                      'Pushups ${state.fakePushupsOn ? 'enabled' : 'disabled'}',
+                      style: context.textTheme.titleLarge,
+                    );
+                  },
+                ),
+                const SizedBox(height: 12),
+                PBButton(
+                  'Toggle pushups mode',
+                  onTap: toggleFakePushups,
+                  expanded: true,
                 ),
                 const SizedBox(height: 12),
                 BlocBuilder<DayCubit, DayState>(
