@@ -49,4 +49,10 @@ class PushupCubit extends Cubit<PushupState> {
 
   bool _checkForUpwardsMovement(num userAccelerationY) =>
       userAccelerationY > 0.3;
+
+  void addFakePushup() {
+    final newPushup = Pushup(completedAt: DateTime.now());
+    final pushups = [...state.pushups, newPushup];
+    emit(state.copyWith(pushups: pushups));
+  }
 }

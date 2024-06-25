@@ -146,7 +146,7 @@ class _DebugState extends State<Debug> {
                 BlocBuilder<FakePushupCubit, FakePushupsState>(
                   builder: (context, state) {
                     return Text(
-                      'Pushups ${state.fakePushupsOn ? 'enabled' : 'disabled'}',
+                      'Pushups ${state.fakePushupsOn ? 'disabled' : 'enabled'}',
                       style: context.textTheme.titleLarge,
                     );
                   },
