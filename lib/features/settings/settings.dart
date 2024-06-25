@@ -1,7 +1,9 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:pushup_bro/core/extensions/build_context_ext.dart';
 import 'package:pushup_bro/core/model/website_links.dart';
+import 'package:pushup_bro/core/provider/local_notification_provider.dart';
 import 'package:pushup_bro/core/provider/url_launch_provider.dart';
 import 'package:pushup_bro/features/settings/view/settings_language.dart';
 import 'package:pushup_bro/features/settings/view/settings_volume.dart';
@@ -25,6 +27,21 @@ class _SettingsState extends State<Settings> {
 
   void navigateToSettingPage(String routeName) =>
       Navigator.of(context).pushNamed(routeName);
+
+  Future<void> requestPushNotificationPermission() async {
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions();
+  }
+
+  Future<bool> checkIfPushNotificationsIsGranted() async {
+    final isGranted = await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
+        ?.checkPermissions();
+    return isGranted?.isEnabled ?? false;
+  }
 
   @override
   Widget build(BuildContext context) => SafeArea(
@@ -57,6 +74,22 @@ class _SettingsState extends State<Settings> {
               context.l10n.setVolume,
               CarbonIcons.volume_up,
               () => navigateToSettingPage(VolumeSetting.routeName),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            FutureBuilder<bool>(
+              future: checkIfPushNotificationsIsGranted(),
+              builder: (context, snapshot) =>
+                  switch ((snapshot.connectionState, snapshot.data)) {
+                (ConnectionState.done, true) => const SizedBox(),
+                (ConnectionState.done, false) => Settingsitem(
+                    context.l10n.setVolume,
+                    CarbonIcons.notification,
+                    requestPushNotificationPermission,
+                  ),
+                (_, _) => const SizedBox(),
+              },
             ),
             const SizedBox(
               height: 12,

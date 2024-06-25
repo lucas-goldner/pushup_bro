@@ -15,6 +15,7 @@ import 'package:pushup_bro/core/model/booster_items.dart';
 import 'package:pushup_bro/core/model/feature_variants.dart';
 import 'package:pushup_bro/core/model/pushup.dart';
 import 'package:pushup_bro/core/model/pushup_set.dart';
+import 'package:pushup_bro/core/provider/local_notification_provider.dart';
 import 'package:pushup_bro/core/widgets/pb_button.dart';
 import 'package:pushup_bro/features/pushup_tracking/cubit/news_cubit.dart';
 
@@ -88,11 +89,23 @@ class _DebugState extends State<Debug> {
 
   Future<void> addDay() async {
     final dayCubit = context.read<DayCubit>()..increment();
-    final day = dayCubit.state.day;
     final newsCubit = context.read<NewsCubit>();
     final boosterItemCubit = context.read<BoosterItemCubit>();
+    final featureVariantState = context.read<FeatureSwitchCubit>().state;
+    final day = dayCubit.state.day;
+
     await newsCubit.getNews(day);
     boosterItemCubit.fetchItems(day);
+
+    if (day == 2 && featureVariantState is FeatureSwitchStateHookmodel) {
+      Future.delayed(
+        const Duration(seconds: 3),
+        () => showLocalNotification(
+          title: 'A challenge awaits you',
+          body: 'Your friend Lucas has asked you to continue the streak',
+        ),
+      );
+    }
   }
 
   Future<void> resetDay() async {

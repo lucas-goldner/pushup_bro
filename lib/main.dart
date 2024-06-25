@@ -21,6 +21,7 @@ import 'package:pushup_bro/core/model/environment.dart';
 import 'package:pushup_bro/core/model/shared_preferences_key.dart';
 import 'package:pushup_bro/core/provider/audio_player_provider.dart';
 import 'package:pushup_bro/core/provider/db_provider.dart';
+import 'package:pushup_bro/core/provider/local_notification_provider.dart';
 import 'package:pushup_bro/core/provider/shared_preferences_provider.dart';
 import 'package:pushup_bro/core/style/theme.dart';
 import 'package:pushup_bro/features/menu/model/routes.dart';
@@ -97,6 +98,7 @@ class Main extends StatelessWidget {
     await dbProvider.loadDB();
     await dbCubit.getUser();
     await gameInventoryCubit.fetchInventory();
+    await setupLocalNotifications();
   }
 
   @override
