@@ -36,6 +36,13 @@ class Friends extends StatelessWidget {
                     ),
                     style: context.textTheme.titleLarge,
                   ),
+                  const SizedBox(height: 16),
+                  Text(
+                    context.l10n.brosExplanation,
+                    style: context.textTheme.labelLarge?.copyWith(
+                      color: context.theme.colorScheme.tertiary,
+                    ),
+                  ),
                   ...openFriendsWithChallenges.map(
                     (friend) => Column(
                       children: [

@@ -180,7 +180,7 @@
   "introQuestOne": "Welcome to your new island! In the past it used to be inhibited by various monkeys.",
   "introQuestTwo": "Due to a mysterious storm all the monkeys have disappeared.",
   "introQuestThree": "Carlos the Gorilla feels lonely. Help him restore his lively island by earning bananas through pushups to buy buildings and decorations.",
-  "longPushupsQuest": "Today, Carlos if focusing on doing longer pushups. Hold your pushups 3 seconds before going back up.",
+  "longPushupsQuest": "Today, Carlos is focusing on doing longer pushups. Hold your pushups 3 seconds before going back up.",
   "go": "Go",
   "januaryAbreviated": "JAN",
   "aprilAbreviated": "APR",
@@ -192,5 +192,6 @@
   "introQuest": "Intro Quest",
   "communityQuestTitle": "Coming together",
   "dailyLogin": "Daily Login",
-  "jungleQuest": "Jungle Quest"
+  "jungleQuest": "Jungle Quest",
+  "brosExplanation": "Try starting streaks with bros, by sending and accepting challenges!"
 }
