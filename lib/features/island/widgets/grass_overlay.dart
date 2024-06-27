@@ -84,7 +84,7 @@ class _GrassOverlayState extends State<GrassOverlay>
                       vertical: 8,
                     ),
                     child: Text(
-                      context.l10n.jungleQuest.toUpperCase(),
+                      context.l10n.questJungle.toUpperCase(),
                       style: context.textTheme.bodyMedium,
                     ),
                   ),
