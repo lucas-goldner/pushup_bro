@@ -18,7 +18,7 @@ class ProfileImageBox extends StatelessWidget {
 
   void _setImageAsProfilePicture(BuildContext context) {
     const imageUrl =
-        'https://media.discordapp.net/attachments/1229873636845031554/1254442735075721279/image.png?ex=667ad3d6&is=66798256&hm=5baa4e5edf50e9ef3b87301c6b11621b194290df95438629cd02eeda337c194d&=&format=webp&quality=lossless';
+        'https://firebasestorage.googleapis.com/v0/b/pushupbro-dev.appspot.com/o/image.webp?alt=media&token=fb5a258e-ce22-40f3-8957-fa253e2a92e7';
     context.read<DBCubit>().updateProfileImage(imageUrl);
   }
 

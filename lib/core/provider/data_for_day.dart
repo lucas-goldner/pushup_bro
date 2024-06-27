@@ -49,7 +49,7 @@ int getStreakForDay(int day) => switch (day) {
     };
 
 const _lucasImage =
-    'https://media.discordapp.net/attachments/1229873636845031554/1254926758495654069/5be.jpeg?ex=667b451e&is=6679f39e&hm=5cb86b48e7c515fca2dad149a25c33167a9718b57c62f71a3c8a2f44399c5531&=&format=webp';
+    'https://firebasestorage.googleapis.com/v0/b/pushupbro-dev.appspot.com/o/5be.jpeg?alt=media&token=95276eb5-c4be-4df3-b4b7-59e9d6968326';
 
 List<Friend> openChallengesBrosAtDay(int day) => switch (day) {
       1 => [],
