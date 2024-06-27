@@ -67,10 +67,27 @@ class _GrassOverlayState extends State<GrassOverlay>
                 ),
               ),
               Positioned(
-                top: 10,
-                left: -10,
-                child: Assets.images.island.palm.image(
-                  width: 200,
+                top: 164,
+                left: context.sizeOf.width / 3,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: context.colorScheme.surface,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: context.colorScheme.surfaceDim,
+                      width: 2,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    child: Text(
+                      context.l10n.jungleQuest.toUpperCase(),
+                      style: context.textTheme.bodyMedium,
+                    ),
+                  ),
                 ),
               ),
               Positioned(
