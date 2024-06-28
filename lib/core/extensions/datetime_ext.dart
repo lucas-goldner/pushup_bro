@@ -4,4 +4,5 @@ extension DateOnlyCompare on DateTime {
       List.generate(7, (index) => subtract(Duration(days: index)).date)
           .reversed
           .toList();
+  int get lastDayOfCurrentMonth => DateTime(year, month, 0).day;
 }

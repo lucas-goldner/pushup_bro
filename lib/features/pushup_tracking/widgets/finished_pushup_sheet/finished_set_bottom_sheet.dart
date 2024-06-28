@@ -56,9 +56,13 @@ class _FinishedSetBottomSheetState extends State<FinishedSetBottomSheet>
           .state
           .effects
           .map((effect) => effect.factor)
-          .reduce((value, element) => value + element);
+          .toList();
 
-      amountOfXP = widget.pushupSet.pushups.length * 2 * activeEffectsFactors;
+      final totalFactor = activeEffectsFactors.isEmpty
+          ? 1
+          : activeEffectsFactors.reduce((value, element) => value + element);
+
+      amountOfXP = widget.pushupSet.pushups.length * 2 * totalFactor;
     } else {
       amountOfXP = widget.pushupSet.pushups.length * 2;
     }

@@ -91,9 +91,19 @@ extension PushupSetListExtension on List<PushupSet> {
       }
     }
 
-    return List.generate(7, (index) {
+    final pushupsForDay = List.generate(7, (index) {
       final targetDay = now.subtract(Duration(days: index)).date;
       return (day: targetDay.day, pushups: dailyPushups[targetDay] ?? 0);
     }).reversed.toList();
+
+    final lastDayOfCurrentMonth = DateTime.now().lastDayOfCurrentMonth;
+    final firstDay = pushupsForDay.first.day;
+
+    return pushupsForDay.map((entry) {
+      if (entry.day < firstDay) {
+        return (day: entry.day + lastDayOfCurrentMonth, pushups: entry.pushups);
+      }
+      return entry;
+    }).toList();
   }
 }

@@ -119,14 +119,20 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
     BuildContext context,
     double value,
     TitleMeta meta,
-  ) =>
-      SideTitleWidget(
-        axisSide: meta.axisSide,
-        child: Text(
-          value.toInt().toString(),
-          style: context.textTheme.bodyMedium,
-        ),
-      );
+  ) {
+    final lastDayOfMonth = DateTime.now().lastDayOfCurrentMonth;
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      child: Text(
+        (value > lastDayOfMonth
+                ? value - DateTime.now().lastDayOfCurrentMonth
+                : value)
+            .toInt()
+            .toString(),
+        style: context.textTheme.bodyMedium,
+      ),
+    );
+  }
 
   LineChartData mainData(List<PushupSet> pushups) => LineChartData(
         titlesData: FlTitlesData(
@@ -195,11 +201,8 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
     final lastSevenDaysPushups = pushups.lastSevenDaysPushups(
       daysInFuture: context.read<DayCubit>().state.day,
     );
-    final lastSevenDays = DateTime.now()
-        .add(
-          Duration(days: context.read<DayCubit>().state.day),
-        )
-        .lastSevenDays;
+
+    print(lastSevenDaysPushups);
 
     return LineChartData(
       titlesData: FlTitlesData(
@@ -230,8 +233,8 @@ class _LineChartSample2State extends State<LastSevenDayPushups> {
           ),
         ),
       ),
-      minX: lastSevenDays.first.day.toDouble(),
-      maxX: lastSevenDays.last.day.toDouble(),
+      minX: lastSevenDaysPushups.first.day.toDouble(),
+      maxX: lastSevenDaysPushups.last.day.toDouble(),
       minY: 0,
       maxY: 100,
       lineBarsData: [
